@@ -1,0 +1,42 @@
+name: Update MasterProps
+
+on:
+  schedule:
+    # Run every 6 hours to refresh predictions
+    - cron: '0 */6 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate fresh tickets
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python generate.py
+
+      - name: Check results
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python check_results.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "MasterProps Bot"
+          git config user.email "bot@masterprops.ai"
+          git add index.html results.json
+          git diff --staged --quiet || git commit -m "🎰 Update predictions $(date -u +%Y-%m-%d_%H:%M)"
+          git push
