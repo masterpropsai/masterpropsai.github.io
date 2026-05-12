@@ -1,11 +1,5 @@
 {
   "tickets": {},
   "legs": {},
-  "last_updated": "2026-05-12T07:53:58.621782+00:00",
-  "generation": {
-    "timestamp": "2026-05-12T07:53:58.621772+00:00",
-    "total_props": 714,
-    "tickets_generated": 6
-  },
-  "last_checked": "2026-05-12T07:53:59.891467+00:00"
+  "last_updated": null
 }
