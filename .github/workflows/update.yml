@@ -2,8 +2,8 @@ name: Update MasterProps
 
 on:
   schedule:
-    # Run every 6 hours to refresh predictions
-    - cron: '0 */6 * * *'
+    # Run every 12 hours to conserve API credits (500/month free tier)
+    - cron: '0 8,20 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 permissions:

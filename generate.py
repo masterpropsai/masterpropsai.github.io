@@ -485,8 +485,13 @@ def main():
 
     if not all_props:
         print("⚠ No props found. Check API key and available sports.")
-        # Generate empty tickets
-        tickets_js = "const TICKETS = [];"
+        print("🔒 Keeping previous tickets (no update)")
+        # Don't overwrite — keep existing index.html
+        save_results({'tickets': {}, 'last_updated': datetime.now(timezone.utc).isoformat(),
+                       'generation': {'timestamp': datetime.now(timezone.utc).isoformat(),
+                                      'total_props': 0, 'skipped': True}})
+        print("✅ Done (no changes to index.html)")
+        return
     else:
         # Step 2: Build optimized tickets
         print("\n🎰 Building multi-sport tickets...")
