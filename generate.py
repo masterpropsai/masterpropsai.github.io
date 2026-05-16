@@ -277,7 +277,7 @@ def build_tickets(all_props):
         return None
 
     # === HUNTER TICKETS (x10-29) — Safest picks ===
-    for i in range(3):
+    for i in range(5):
         # Pick 3-4 safe legs with odds ~2.0-2.5 each
         candidates = [p for p in safe_props if 1.8 <= p['odd'] <= 2.8 and prop_key(p) not in used_props]
         random.shuffle(candidates)  # Add variety
@@ -294,7 +294,7 @@ def build_tickets(all_props):
                 })
 
     # === SHARK TICKETS (x30-99) — Medium risk ===
-    for i in range(3):
+    for i in range(5):
         candidates = [p for p in safe_props if 2.0 <= p['odd'] <= 3.5 and prop_key(p) not in used_props]
         random.shuffle(candidates)
         legs = pick_multi_sport_legs(candidates, random.choice([4, 5]), min_sports=2)
@@ -310,7 +310,7 @@ def build_tickets(all_props):
                 })
 
     # === WHALE TICKETS (x100+) — High risk, high reward ===
-    for i in range(2):
+    for i in range(4):
         candidates = [p for p in all_props if 2.2 <= p['odd'] <= 5.0 and prop_key(p) not in used_props]
         random.shuffle(candidates)
         legs = pick_multi_sport_legs(candidates, random.choice([5, 6]), min_sports=2)
@@ -362,11 +362,12 @@ def generate_ticket_js(tickets):
         legs_js = []
         for leg in ticket['legs']:
             sport = SPORT_META.get(leg['sport_key'], {})
+            leg_sport = sport.get('short', 'multi')
             legs_js.append(
                 f"    {{player:'{_esc(leg['player'])}', "
                 f"prop:'{_esc(leg['prop_es'])}', "
                 f"match:'{_esc(leg['match'])}', "
-                f"odd:{leg['odd']}}}"
+                f"odd:{leg['odd']}, sport:'{leg_sport}'}}"
             )
 
         # Determine primary sport for the ticket (most common)
