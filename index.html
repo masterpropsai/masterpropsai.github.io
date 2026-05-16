@@ -575,7 +575,7 @@ body {
 }
 </style>
 </head>
-<body data-generated="2026-05-16 02:45 UTC">
+<body data-generated="2026-05-16 07:29 UTC">
 
 <!-- SPONSOR BAR -->
 <div class="sponsor-bar">
@@ -620,20 +620,20 @@ body {
   <p class="subtitle">La primera IA especializada en <strong>props de alto rendimiento</strong>. Cuotas x10 o más. Multi-deporte. Billetes tan largos que necesitás copiar y pegar.</p>
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="stat-value">x10+</div>
-      <div class="stat-label">Cuota mínima</div>
+      <div class="stat-value" id="stat-min-odds">x10+</div>
+      <div class="stat-label" data-i18n="minOdds">Cuota mínima</div>
     </div>
     <div class="hero-stat">
-      <div class="stat-value">6</div>
-      <div class="stat-label">Deportes</div>
+      <div class="stat-value" id="stat-sports">—</div>
+      <div class="stat-label" data-i18n="sports">Deportes</div>
     </div>
     <div class="hero-stat">
-      <div class="stat-value">12</div>
-      <div class="stat-label">Billetes hoy</div>
+      <div class="stat-value" id="stat-tickets">—</div>
+      <div class="stat-label" data-i18n="ticketsToday">Billetes hoy</div>
     </div>
     <div class="hero-stat">
-      <div class="stat-value">x450</div>
-      <div class="stat-label">Mayor cuota</div>
+      <div class="stat-value" id="stat-max-odds">—</div>
+      <div class="stat-label" data-i18n="maxOdds">Mayor cuota</div>
     </div>
   </div>
 </div>
@@ -1157,6 +1157,19 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 // Init
 renderTickets();
+
+// Dynamic hero stats from real ticket data
+(function updateHeroStats() {
+  if (typeof TICKETS === 'undefined' || !TICKETS.length) return;
+  const numTickets = TICKETS.length;
+  const maxOdds = Math.max(...TICKETS.map(t => t.totalOdds));
+  const allSports = new Set();
+  TICKETS.forEach(t => t.legs.forEach(l => { if (l.sport) allSports.add(l.sport); }));
+  const el = id => document.getElementById(id);
+  if (el('stat-tickets')) el('stat-tickets').textContent = numTickets;
+  if (el('stat-max-odds')) el('stat-max-odds').textContent = 'x' + Math.round(maxOdds).toLocaleString();
+  if (el('stat-sports')) el('stat-sports').textContent = allSports.size || '—';
+})();
 
 // Show generation timestamp
 const genTime = document.body.getAttribute('data-generated');
