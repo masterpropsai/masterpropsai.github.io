@@ -631,12 +631,12 @@ body {
   .tickets-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  /* Sponsor bar — single line */
-  .sponsor-inner { padding: 10px 1rem; gap: 12px; }
+  /* Sponsor bar — mobile */
+  .sponsor-inner { padding: 10px 0.8rem; gap: 10px; justify-content: center; }
   .db-logo svg { height: 18px; }
-  .sponsor-bar .db-text { font-size: 0.7rem; }
-  .sponsor-bar .db-register { padding: 7px 14px; font-size: 0.68rem; }
-  .sponsor-divider { height: 14px; }
+  .sponsor-bar .db-text { display: none; }
+  .sponsor-divider { display: none; }
+  .sponsor-bar .db-register { padding: 7px 14px; font-size: 0.68rem; white-space: nowrap; flex-shrink: 0; }
 
   /* Navbar */
   .navbar { padding: 0.7rem 1rem; flex-wrap: wrap; gap: 6px; justify-content: center; }
@@ -747,11 +747,11 @@ body {
   .hero-stats { gap: 1rem; }
   .hero-stat .stat-value { font-size: 1.1rem; }
   .hero-stat .stat-label { font-size: 0.6rem; }
-  .sponsor-inner { padding: 9px 0.8rem; gap: 8px; justify-content: space-between; }
+  .sponsor-inner { padding: 8px 0.6rem; gap: 8px; justify-content: space-between; flex-wrap: nowrap; }
   .sponsor-bar .db-text { display: none; }
   .sponsor-divider { display: none; }
-  .db-logo svg { height: 16px; }
-  .sponsor-bar .db-register { padding: 6px 12px; font-size: 0.65rem; }
+  .db-logo svg { height: 14px; }
+  .sponsor-bar .db-register { padding: 6px 10px; font-size: 0.6rem; flex-shrink: 0; }
   .navbar .logo { font-size: 0.95rem; }
   .lang-switcher { gap: 2px; padding: 3px 5px; }
   .lang-flag { font-size: 1rem; padding: 2px 3px; }
