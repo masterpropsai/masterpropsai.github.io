@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-MasterProps.ai — Offline Ticket Generator v2
-Uses REAL matchups and results from current 2026 seasons.
-Mixes already-resolved selections (with known results) and upcoming ones.
+MasterProps.ai — Offline Ticket Generator v3
+REAL matchups, ZERO duplicate selections across tickets, team badges.
 """
 
 import random
@@ -16,86 +15,98 @@ OUTPUT_FILE = Path(__file__).parent / 'index.html'
 
 # ============================================================
 # PROP POOL — REAL matchups May 2026
-# Each prop has an optional 'result': 'won' or 'lost'
-# If absent, selection is still pending (⏳)
+# 'result': 'won'/'lost' = already resolved, absent = pending
+# 'team': team abbreviation for badge display
 # ============================================================
 PROP_POOL = [
-    # ── NBA CONFERENCE FINALS (starting May 19) ──
+    # ── NBA CONFERENCE FINALS (May 19+) ──
     # Thunder vs Spurs (West)
-    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 30.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.82, 'sport': 'nba'},
-    {'player': 'Victor Wembanyama', 'prop': 'Over 3.5 tapones', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.45, 'sport': 'nba'},
-    {'player': 'Chet Holmgren', 'prop': 'Over 2.5 tapones', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.30, 'sport': 'nba'},
-    {'player': 'Jalen Williams', 'prop': 'Over 20.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.90, 'sport': 'nba'},
-    {'player': 'Chris Paul', 'prop': 'Over 8.5 asistencias', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.15, 'sport': 'nba'},
-    {'player': 'Keldon Johnson', 'prop': 'Over 16.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.05, 'sport': 'nba'},
+    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 30.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.82, 'sport': 'nba', 'team': 'OKC'},
+    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 5.5 asistencias', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.10, 'sport': 'nba', 'team': 'OKC'},
+    {'player': 'Victor Wembanyama', 'prop': 'Over 3.5 tapones', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.45, 'sport': 'nba', 'team': 'SAS'},
+    {'player': 'Victor Wembanyama', 'prop': 'Over 22.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 1.90, 'sport': 'nba', 'team': 'SAS'},
+    {'player': 'Chet Holmgren', 'prop': 'Over 2.5 tapones', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.30, 'sport': 'nba', 'team': 'OKC'},
+    {'player': 'Jalen Williams', 'prop': 'Over 20.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.90, 'sport': 'nba', 'team': 'OKC'},
+    {'player': 'Jalen Williams', 'prop': 'Over 5.5 rebotes', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.25, 'sport': 'nba', 'team': 'OKC'},
+    {'player': 'Chris Paul', 'prop': 'Over 8.5 asistencias', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.15, 'sport': 'nba', 'team': 'SAS'},
+    {'player': 'Keldon Johnson', 'prop': 'Over 16.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.05, 'sport': 'nba', 'team': 'SAS'},
+    {'player': 'Devin Vassell', 'prop': 'Over 14.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.10, 'sport': 'nba', 'team': 'SAS'},
+    {'player': 'Lu Dort', 'prop': 'Over 10.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.00, 'sport': 'nba', 'team': 'OKC'},
     # Knicks vs Cavaliers (East)
-    {'player': 'Jalen Brunson', 'prop': 'Over 26.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.78, 'sport': 'nba'},
-    {'player': 'Donovan Mitchell', 'prop': 'Over 27.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.85, 'sport': 'nba'},
-    {'player': 'James Harden', 'prop': 'Over 8.5 asistencias', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.10, 'sport': 'nba'},
-    {'player': 'Karl-Anthony Towns', 'prop': 'Over 10.5 rebotes', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.95, 'sport': 'nba'},
-    {'player': 'Evan Mobley', 'prop': 'Over 8.5 rebotes', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.88, 'sport': 'nba'},
-    {'player': 'OG Anunoby', 'prop': 'Over 14.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.00, 'sport': 'nba'},
-    {'player': 'Darius Garland', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.20, 'sport': 'nba'},
-    {'player': 'Mikal Bridges', 'prop': 'Over 15.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.92, 'sport': 'nba'},
+    {'player': 'Jalen Brunson', 'prop': 'Over 26.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.78, 'sport': 'nba', 'team': 'NYK'},
+    {'player': 'Jalen Brunson', 'prop': 'Over 6.5 asistencias', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.20, 'sport': 'nba', 'team': 'NYK'},
+    {'player': 'Donovan Mitchell', 'prop': 'Over 27.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.85, 'sport': 'nba', 'team': 'CLE'},
+    {'player': 'James Harden', 'prop': 'Over 8.5 asistencias', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.10, 'sport': 'nba', 'team': 'CLE'},
+    {'player': 'James Harden', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.95, 'sport': 'nba', 'team': 'CLE'},
+    {'player': 'Karl-Anthony Towns', 'prop': 'Over 10.5 rebotes', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.95, 'sport': 'nba', 'team': 'NYK'},
+    {'player': 'Karl-Anthony Towns', 'prop': 'Over 22.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.05, 'sport': 'nba', 'team': 'NYK'},
+    {'player': 'Evan Mobley', 'prop': 'Over 8.5 rebotes', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.88, 'sport': 'nba', 'team': 'CLE'},
+    {'player': 'OG Anunoby', 'prop': 'Over 14.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.00, 'sport': 'nba', 'team': 'NYK'},
+    {'player': 'Darius Garland', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.20, 'sport': 'nba', 'team': 'CLE'},
+    {'player': 'Mikal Bridges', 'prop': 'Over 15.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.92, 'sport': 'nba', 'team': 'NYK'},
 
     # ── CHAMPIONS LEAGUE — ALREADY PLAYED (with results) ──
-    # QF: Bayern beat Real Madrid 6-4 agg (Apr 7 & 15)
-    {'player': 'Harry Kane', 'prop': 'Marca gol en cualquier momento', 'match': 'Bayern Munich vs Real Madrid', 'odd': 1.80, 'sport': 'futbol', 'result': 'won'},
-    {'player': 'Kylian Mbappé', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich', 'odd': 1.90, 'sport': 'futbol', 'result': 'won'},
-    {'player': 'Vinícius Jr.', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich', 'odd': 2.20, 'sport': 'futbol', 'result': 'lost'},
-    # SF: Arsenal beat Atletico 2-1 agg (May 5)
-    {'player': 'Bukayo Saka', 'prop': 'Marca gol en cualquier momento', 'match': 'Arsenal vs Atlético Madrid', 'odd': 2.80, 'sport': 'futbol', 'result': 'won'},
-    {'player': 'Antoine Griezmann', 'prop': 'Marca gol en cualquier momento', 'match': 'Atlético Madrid vs Arsenal', 'odd': 3.10, 'sport': 'futbol', 'result': 'lost'},
-    {'player': 'Julian Álvarez', 'prop': 'Marca gol en cualquier momento', 'match': 'Atlético Madrid vs Arsenal', 'odd': 2.60, 'sport': 'futbol', 'result': 'lost'},
-    # SF: PSG beat Bayern 6-5 agg (May 6-7)
-    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol en cualquier momento', 'match': 'PSG vs Bayern Munich', 'odd': 2.50, 'sport': 'futbol', 'result': 'won'},
+    {'player': 'Harry Kane', 'prop': 'Marca gol en cualquier momento', 'match': 'Bayern Munich vs Real Madrid — QF', 'odd': 1.80, 'sport': 'futbol', 'result': 'won', 'team': 'BAY'},
+    {'player': 'Kylian Mbappé', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich — QF', 'odd': 1.90, 'sport': 'futbol', 'result': 'won', 'team': 'RMA'},
+    {'player': 'Vinícius Jr.', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich — QF', 'odd': 2.20, 'sport': 'futbol', 'result': 'lost', 'team': 'RMA'},
+    {'player': 'Bukayo Saka', 'prop': 'Marca gol vs Atlético', 'match': 'Arsenal vs Atlético Madrid — SF', 'odd': 2.80, 'sport': 'futbol', 'result': 'won', 'team': 'ARS'},
+    {'player': 'Antoine Griezmann', 'prop': 'Marca gol vs Arsenal', 'match': 'Atlético Madrid vs Arsenal — SF', 'odd': 3.10, 'sport': 'futbol', 'result': 'lost', 'team': 'ATM'},
+    {'player': 'Julian Álvarez', 'prop': 'Marca gol vs Arsenal', 'match': 'Atlético Madrid vs Arsenal — SF', 'odd': 2.60, 'sport': 'futbol', 'result': 'lost', 'team': 'ATM'},
+    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol vs Bayern', 'match': 'PSG vs Bayern Munich — SF', 'odd': 2.50, 'sport': 'futbol', 'result': 'won', 'team': 'PSG'},
 
     # ── CHAMPIONS LEAGUE FINAL (May 30) — PENDING ──
-    {'player': 'Bukayo Saka', 'prop': 'Marca gol en cualquier momento', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 2.90, 'sport': 'futbol'},
-    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol en cualquier momento', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.75, 'sport': 'futbol'},
-    {'player': 'Kai Havertz', 'prop': 'Marca gol en cualquier momento', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.30, 'sport': 'futbol'},
-    {'player': 'Bradley Barcola', 'prop': 'Marca gol en cualquier momento', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.00, 'sport': 'futbol'},
-    {'player': 'Martin Ødegaard', 'prop': 'Marca gol en cualquier momento', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.50, 'sport': 'futbol'},
-    {'player': 'Marco Asensio', 'prop': 'Marca gol en cualquier momento', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.80, 'sport': 'futbol'},
-    {'player': 'Gabriel Jesus', 'prop': 'Marca gol en cualquier momento', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.20, 'sport': 'futbol'},
+    {'player': 'Bukayo Saka', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 2.90, 'sport': 'futbol', 'team': 'ARS'},
+    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.75, 'sport': 'futbol', 'team': 'PSG'},
+    {'player': 'Kai Havertz', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.30, 'sport': 'futbol', 'team': 'ARS'},
+    {'player': 'Bradley Barcola', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.00, 'sport': 'futbol', 'team': 'PSG'},
+    {'player': 'Martin Ødegaard', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.50, 'sport': 'futbol', 'team': 'ARS'},
+    {'player': 'Marco Asensio', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.80, 'sport': 'futbol', 'team': 'PSG'},
+    {'player': 'Gabriel Jesus', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.20, 'sport': 'futbol', 'team': 'ARS'},
+    {'player': 'Leandro Trossard', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.60, 'sport': 'futbol', 'team': 'ARS'},
+    {'player': 'Gonçalo Ramos', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.80, 'sport': 'futbol', 'team': 'PSG'},
 
     # ── LIGA ARGENTINA — ALREADY PLAYED ──
-    {'player': 'Adam Bareiro', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate vs Boca Juniors', 'odd': 3.50, 'sport': 'futbol', 'result': 'lost'},
-    {'player': 'Maxi Salas', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate vs Boca Juniors', 'odd': 3.20, 'sport': 'futbol', 'result': 'lost'},
+    {'player': 'Adam Bareiro', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate 0-1 Boca Juniors', 'odd': 3.50, 'sport': 'futbol', 'result': 'lost', 'team': 'RIV'},
+    {'player': 'Maxi Salas', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate 0-1 Boca Juniors', 'odd': 3.20, 'sport': 'futbol', 'result': 'lost', 'team': 'RIV'},
 
-    # ── MLB (this week, upcoming) ──
-    # May 18: Dodgers @ San Diego, Yankees @ Toronto, Reds @ Phillies, etc.
-    {'player': 'Shohei Ohtani', 'prop': 'Over 1.5 bases totales', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.65, 'sport': 'mlb'},
-    {'player': 'Mookie Betts', 'prop': 'Over 1.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 2.40, 'sport': 'mlb'},
-    {'player': 'Freddie Freeman', 'prop': 'Over 0.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.25, 'sport': 'mlb'},
-    {'player': 'Aaron Judge', 'prop': 'Home Run: Sí', 'match': 'New York Yankees vs Toronto Blue Jays', 'odd': 3.50, 'sport': 'mlb'},
-    {'player': 'Juan Soto', 'prop': 'Over 1.5 bases totales', 'match': 'New York Mets vs Washington Nationals', 'odd': 1.78, 'sport': 'mlb'},
-    {'player': 'Bryce Harper', 'prop': 'Over 1.5 hits', 'match': 'Cincinnati Reds vs Philadelphia Phillies', 'odd': 2.25, 'sport': 'mlb'},
-    {'player': 'Ronald Acuña Jr.', 'prop': 'Over 1.5 bases totales', 'match': 'Atlanta Braves vs Miami Marlins', 'odd': 1.70, 'sport': 'mlb'},
-    {'player': 'Yordan Alvarez', 'prop': 'Over 1.5 bases totales', 'match': 'Houston Astros vs Minnesota Twins', 'odd': 1.82, 'sport': 'mlb'},
-    {'player': 'Bobby Witt Jr.', 'prop': 'Over 1.5 hits', 'match': 'Boston Red Sox vs Kansas City Royals', 'odd': 2.15, 'sport': 'mlb'},
-    {'player': 'Gerrit Cole', 'prop': 'Over 6.5 strikeouts', 'match': 'New York Yankees vs Toronto Blue Jays', 'odd': 1.85, 'sport': 'mlb'},
-    {'player': 'Corbin Burnes', 'prop': 'Over 5.5 strikeouts', 'match': 'Arizona Diamondbacks vs San Francisco Giants', 'odd': 1.72, 'sport': 'mlb'},
-    {'player': 'Corey Seager', 'prop': 'Over 1.5 bases totales', 'match': 'Texas Rangers vs Colorado Rockies', 'odd': 1.80, 'sport': 'mlb'},
+    # ── MLB (May 18-20 real schedule) ──
+    {'player': 'Shohei Ohtani', 'prop': 'Over 1.5 bases totales', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.65, 'sport': 'mlb', 'team': 'LAD'},
+    {'player': 'Mookie Betts', 'prop': 'Over 1.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 2.40, 'sport': 'mlb', 'team': 'LAD'},
+    {'player': 'Freddie Freeman', 'prop': 'Over 0.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.25, 'sport': 'mlb', 'team': 'LAD'},
+    {'player': 'Aaron Judge', 'prop': 'Home Run: Sí', 'match': 'Toronto Blue Jays vs New York Yankees', 'odd': 3.50, 'sport': 'mlb', 'team': 'NYY'},
+    {'player': 'Juan Soto', 'prop': 'Over 1.5 bases totales', 'match': 'New York Mets vs Washington Nationals', 'odd': 1.78, 'sport': 'mlb', 'team': 'NYM'},
+    {'player': 'Bryce Harper', 'prop': 'Over 1.5 hits', 'match': 'Cincinnati Reds vs Philadelphia Phillies', 'odd': 2.25, 'sport': 'mlb', 'team': 'PHI'},
+    {'player': 'Ronald Acuña Jr.', 'prop': 'Over 1.5 bases totales', 'match': 'Atlanta Braves vs Miami Marlins', 'odd': 1.70, 'sport': 'mlb', 'team': 'ATL'},
+    {'player': 'Yordan Alvarez', 'prop': 'Over 1.5 bases totales', 'match': 'Houston Astros vs Minnesota Twins', 'odd': 1.82, 'sport': 'mlb', 'team': 'HOU'},
+    {'player': 'Bobby Witt Jr.', 'prop': 'Over 1.5 hits', 'match': 'Boston Red Sox vs Kansas City Royals', 'odd': 2.15, 'sport': 'mlb', 'team': 'KC'},
+    {'player': 'Gerrit Cole', 'prop': 'Over 6.5 strikeouts', 'match': 'Toronto Blue Jays vs New York Yankees', 'odd': 1.85, 'sport': 'mlb', 'team': 'NYY'},
+    {'player': 'Corbin Burnes', 'prop': 'Over 5.5 strikeouts', 'match': 'San Francisco Giants vs Arizona Diamondbacks', 'odd': 1.72, 'sport': 'mlb', 'team': 'ARI'},
+    {'player': 'Corey Seager', 'prop': 'Over 1.5 bases totales', 'match': 'Texas Rangers vs Colorado Rockies', 'odd': 1.80, 'sport': 'mlb', 'team': 'TEX'},
+    {'player': 'Rafael Devers', 'prop': 'Over 1.5 bases totales', 'match': 'Boston Red Sox vs Kansas City Royals', 'odd': 1.75, 'sport': 'mlb', 'team': 'BOS'},
+    {'player': 'Manny Machado', 'prop': 'Over 0.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.30, 'sport': 'mlb', 'team': 'SD'},
+    {'player': 'Trea Turner', 'prop': 'Over 0.5 hits', 'match': 'Cincinnati Reds vs Philadelphia Phillies', 'odd': 1.28, 'sport': 'mlb', 'team': 'PHI'},
+    {'player': 'Pete Alonso', 'prop': 'Home Run: Sí', 'match': 'New York Mets vs Washington Nationals', 'odd': 3.80, 'sport': 'mlb', 'team': 'NYM'},
+    {'player': 'Marcus Semien', 'prop': 'Over 1.5 bases totales', 'match': 'Texas Rangers vs Colorado Rockies', 'odd': 1.85, 'sport': 'mlb', 'team': 'TEX'},
+    {'player': 'Kyle Tucker', 'prop': 'Over 1.5 hits', 'match': 'Houston Astros vs Minnesota Twins', 'odd': 2.30, 'sport': 'mlb', 'team': 'HOU'},
 
-    # ── ROLAND GARROS (starts ~May 25) ──
-    {'player': 'Jannik Sinner', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis'},
-    {'player': 'Carlos Alcaraz', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.12, 'sport': 'tenis'},
-    {'player': 'Alexander Zverev', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis'},
-    {'player': 'Novak Djokovic', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.15, 'sport': 'tenis'},
-    {'player': 'Iga Świątek', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.05, 'sport': 'tenis'},
-    {'player': 'Aryna Sabalenka', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis'},
-    {'player': 'Coco Gauff', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis'},
+    # ── ROLAND GARROS (starts May 25) ──
+    {'player': 'Jannik Sinner', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis', 'team': 'ATP'},
+    {'player': 'Carlos Alcaraz', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.12, 'sport': 'tenis', 'team': 'ATP'},
+    {'player': 'Alexander Zverev', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'ATP'},
+    {'player': 'Novak Djokovic', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.15, 'sport': 'tenis', 'team': 'ATP'},
+    {'player': 'Iga Świątek', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.05, 'sport': 'tenis', 'team': 'WTA'},
+    {'player': 'Aryna Sabalenka', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis', 'team': 'WTA'},
+    {'player': 'Coco Gauff', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'WTA'},
 
-    # ── NHL CONFERENCE FINALS (starts May 20) ──
-    {'player': 'Nathan MacKinnon', 'prop': 'Over 1.5 puntos', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 1.85, 'sport': 'nhl'},
-    {'player': 'Cale Makar', 'prop': 'Over 0.5 goles', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 2.80, 'sport': 'nhl'},
-    {'player': 'Jack Eichel', 'prop': 'Over 0.5 goles', 'match': 'Vegas Golden Knights vs Colorado Avalanche', 'odd': 2.60, 'sport': 'nhl'},
-    {'player': 'Mikko Rantanen', 'prop': 'Over 0.5 goles', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 2.30, 'sport': 'nhl'},
-    {'player': 'Mark Stone', 'prop': 'Over 0.5 puntos', 'match': 'Vegas Golden Knights vs Colorado Avalanche', 'odd': 1.70, 'sport': 'nhl'},
+    # ── NHL CONFERENCE FINALS (May 20+) ──
+    {'player': 'Nathan MacKinnon', 'prop': 'Over 1.5 puntos', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 1.85, 'sport': 'nhl', 'team': 'COL'},
+    {'player': 'Cale Makar', 'prop': 'Over 0.5 goles', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 2.80, 'sport': 'nhl', 'team': 'COL'},
+    {'player': 'Jack Eichel', 'prop': 'Over 0.5 goles', 'match': 'Vegas Golden Knights vs Colorado Avalanche', 'odd': 2.60, 'sport': 'nhl', 'team': 'VGK'},
+    {'player': 'Mikko Rantanen', 'prop': 'Over 0.5 goles', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 2.30, 'sport': 'nhl', 'team': 'COL'},
+    {'player': 'Mark Stone', 'prop': 'Over 0.5 puntos', 'match': 'Vegas Golden Knights vs Colorado Avalanche', 'odd': 1.70, 'sport': 'nhl', 'team': 'VGK'},
 
     # ── UFC FREEDOM 250 (June 14) ──
-    {'player': 'Alex Pereira', 'prop': 'Gana la pelea', 'match': 'A. Pereira vs C. Gane — UFC Freedom 250', 'odd': 1.70, 'sport': 'mma'},
+    {'player': 'Alex Pereira', 'prop': 'Gana la pelea', 'match': 'A. Pereira vs C. Gane — UFC Freedom 250', 'odd': 1.70, 'sport': 'mma', 'team': 'UFC'},
 ]
 
 
@@ -119,10 +130,15 @@ def calculate_confidence(legs):
     return min(6, max(1, base))
 
 
+def prop_key(p):
+    """Unique key for a selection = player + prop text."""
+    return f"{p['player']}|{p['prop']}"
+
+
 def build_tickets():
     tickets = []
+    used_keys = set()  # GLOBAL tracker — no selection appears in more than one ticket
 
-    # Separate pools
     resolved_won = [p for p in PROP_POOL if p.get('result') == 'won']
     resolved_lost = [p for p in PROP_POOL if p.get('result') == 'lost']
     pending = [p for p in PROP_POOL if 'result' not in p]
@@ -134,9 +150,11 @@ def build_tickets():
     def pick_legs(pools_config, min_sports=2):
         selected = []
         sports_used = set()
-        players_used = set()
+        players_in_ticket = set()
         for pool, count in pools_config:
-            available = [p for p in pool if p['player'] not in players_used]
+            available = [p for p in pool
+                         if prop_key(p) not in used_keys
+                         and p['player'] not in players_in_ticket]
             random.shuffle(available)
             picked = 0
             for p in available:
@@ -144,70 +162,76 @@ def build_tickets():
                     break
                 selected.append(p)
                 sports_used.add(p['sport'])
-                players_used.add(p['player'])
+                players_in_ticket.add(p['player'])
                 picked += 1
         total_needed = sum(c for _, c in pools_config)
         if len(selected) >= total_needed and len(sports_used) >= min_sports:
+            # Mark used GLOBALLY
+            for s in selected:
+                used_keys.add(prop_key(s))
             return selected
         return None
 
-    # Strategy: build tickets that MIX resolved legs with pending legs
-    # This makes heat system visible immediately
+    def pick_resolved(pool, count):
+        available = [p for p in pool if prop_key(p) not in used_keys]
+        random.shuffle(available)
+        picked = []
+        for p in available:
+            if len(picked) >= count:
+                break
+            picked.append(p)
+            used_keys.add(prop_key(p))
+        return picked
 
-    # === WHALE TICKETS: long tickets with some resolved anchors ===
+    # === WHALE TICKETS: long tickets with resolved anchors ===
     for i in range(3):
         random.shuffle(pending)
-        # Include 1-2 resolved won legs as "heat anchors"
-        anchor_won = random.sample(resolved_won, min(2, len(resolved_won)))
+        anchors = pick_resolved(resolved_won, 2)
+        if len(anchors) < 1:
+            anchors = []
         n_pending = random.choice([5, 6])
         n_low = random.randint(1, min(2, n_pending))
         n_mid = random.randint(1, min(3, n_pending - n_low))
-        n_high = n_pending - n_low - n_mid
-        if n_high < 1: n_high = 1; n_mid = max(1, n_pending - n_low - n_high)
-        pending_legs = pick_legs([(low, n_low), (mid, n_mid), (high, max(1, n_high))], min_sports=1)
+        n_high = max(1, n_pending - n_low - n_mid)
+        pending_legs = pick_legs([(low, n_low), (mid, n_mid), (high, n_high)], min_sports=1)
         if pending_legs:
-            legs = anchor_won + pending_legs
-            # Ensure multi-sport
+            legs = anchors + pending_legs
             sports = set(l['sport'] for l in legs)
             if len(sports) >= 2:
                 total = round(math.prod(l['odd'] for l in legs), 1)
                 if total >= 40:
                     tickets.append({
-                        'tier': 'whale',
-                        'legs': legs,
-                        'total_odds': total,
-                        'confidence': calculate_confidence(legs),
+                        'tier': 'whale', 'legs': legs,
+                        'total_odds': total, 'confidence': calculate_confidence(legs),
                     })
 
-    # === SHARK TICKETS: mix resolved + pending ===
+    # === SHARK TICKETS ===
     for i in range(4):
         random.shuffle(pending)
-        # 1 resolved won anchor
-        anchor_won = random.sample(resolved_won, min(1, len(resolved_won)))
+        anchors = pick_resolved(resolved_won, 1)
         n_pending = random.choice([4, 5])
         n_low = random.randint(0, min(1, n_pending))
-        n_mid = random.randint(1, min(3, n_pending - n_low))
-        n_high = n_pending - n_low - n_mid
-        if n_high < 0: n_high = 0
+        n_mid = random.randint(1, min(3, n_pending - max(n_low, 1)))
+        n_high = max(0, n_pending - n_low - n_mid)
         pools = []
         if n_low > 0: pools.append((low, n_low))
         if n_mid > 0: pools.append((mid, n_mid))
         if n_high > 0: pools.append((high, n_high))
+        if not pools:
+            pools = [(mid, 3)]
         pending_legs = pick_legs(pools, min_sports=1)
         if pending_legs:
-            legs = anchor_won + pending_legs
+            legs = anchors + pending_legs
             sports = set(l['sport'] for l in legs)
             if len(sports) >= 2:
                 total = round(math.prod(l['odd'] for l in legs), 1)
-                if 15 <= total <= 120:
+                if 15 <= total <= 150:
                     tickets.append({
-                        'tier': 'shark',
-                        'legs': legs,
-                        'total_odds': total,
-                        'confidence': calculate_confidence(legs),
+                        'tier': 'shark', 'legs': legs,
+                        'total_odds': total, 'confidence': calculate_confidence(legs),
                     })
 
-    # === HUNTER TICKETS: safer, some all-pending ===
+    # === HUNTER TICKETS ===
     for i in range(5):
         random.shuffle(pending)
         n_legs = random.choice([4, 5])
@@ -218,33 +242,29 @@ def build_tickets():
             total = round(math.prod(l['odd'] for l in legs), 1)
             if 5 <= total <= 40:
                 tickets.append({
-                    'tier': 'hunter',
-                    'legs': legs,
-                    'total_odds': total,
-                    'confidence': calculate_confidence(legs),
+                    'tier': 'hunter', 'legs': legs,
+                    'total_odds': total, 'confidence': calculate_confidence(legs),
                 })
 
-    # === BONUS: one "dead" ticket with a lost leg for visual contrast ===
+    # === BONUS: one dead ticket (with lost leg) ===
     random.shuffle(pending)
-    dead_anchor = random.sample(resolved_lost, min(1, len(resolved_lost)))
-    dead_pending = pick_legs([(mid, 3), (high, 1)], min_sports=1)
+    dead_anchor = pick_resolved(resolved_lost, 1)
+    dead_pending = pick_legs([(mid, 3)], min_sports=1)
     if dead_pending and dead_anchor:
         legs = dead_anchor + dead_pending
         sports = set(l['sport'] for l in legs)
         if len(sports) >= 2:
             total = round(math.prod(l['odd'] for l in legs), 1)
             tickets.append({
-                'tier': 'shark',
-                'legs': legs,
-                'total_odds': total,
-                'confidence': calculate_confidence(legs),
+                'tier': 'shark', 'legs': legs,
+                'total_odds': total, 'confidence': calculate_confidence(legs),
             })
 
-    # Sort: whales first, then sharks, then hunters
+    # Sort
     tier_order = {'whale': 0, 'shark': 1, 'hunter': 2}
     tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
 
-    # Assign IDs and titles
+    # Assign IDs
     sport_names = {
         'nba': 'NBA', 'mlb': 'MLB', 'futbol': 'Fútbol',
         'tenis': 'Tenis', 'mma': 'MMA', 'nhl': 'NHL'
@@ -262,6 +282,13 @@ def build_tickets():
         else:
             ticket['title'] = f"Multi-Sport x{len(sports_in)}"
 
+    # Verify zero duplicates
+    all_keys = []
+    for t in tickets:
+        for l in t['legs']:
+            all_keys.append(prop_key(l))
+    assert len(all_keys) == len(set(all_keys)), f"DUPLICATE FOUND! {len(all_keys)} vs {len(set(all_keys))}"
+
     return tickets
 
 
@@ -276,7 +303,8 @@ def generate_ticket_js(tickets):
                 f"    {{player:'{_esc(leg['player'])}', "
                 f"prop:'{_esc(leg['prop'])}', "
                 f"match:'{_esc(leg['match'])}', "
-                f"odd:{leg['odd']}, sport:'{leg['sport']}'}}"
+                f"odd:{leg['odd']}, sport:'{leg['sport']}', "
+                f"team:'{_esc(leg['team'])}'}}"
             )
         sport_counts = {}
         for leg in ticket['legs']:
@@ -295,7 +323,6 @@ def generate_ticket_js(tickets):
 
 
 def generate_results_js(tickets):
-    """Generate LEG_RESULTS from resolved props."""
     results = {}
     for ticket in tickets:
         for j, leg in enumerate(ticket['legs']):
@@ -310,11 +337,9 @@ def generate_results_js(tickets):
 
 def update_html(tickets_js, results_js, filepath):
     content = filepath.read_text(encoding='utf-8')
-    # Replace TICKETS
     pattern = r'const TICKETS = \[[\s\S]*?\];'
     if re.search(pattern, content):
         content = re.sub(pattern, tickets_js, content, count=1)
-    # Replace LEG_RESULTS
     pattern2 = r'const LEG_RESULTS = \{[^}]*\};'
     if re.search(pattern2, content):
         content = re.sub(pattern2, results_js, content, count=1)
@@ -323,7 +348,7 @@ def update_html(tickets_js, results_js, filepath):
 
 
 def main():
-    print("🚀 MasterProps Offline Generator v2 — REAL DATA")
+    print("🚀 MasterProps Offline Generator v3 — ZERO DUPLICATES")
     print(f"📅 {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     resolved = [p for p in PROP_POOL if 'result' in p]
     pending = [p for p in PROP_POOL if 'result' not in p]
@@ -336,21 +361,32 @@ def main():
         sports_in = set(l['sport'] for l in t['legs'])
         won = sum(1 for l in t['legs'] if l.get('result') == 'won')
         lost = sum(1 for l in t['legs'] if l.get('result') == 'lost')
-        heat = f"🔥 {won}✅" if won > 0 else ""
-        dead = f"💀 {lost}❌" if lost > 0 else ""
+        heat = f"🔥{won}✅" if won > 0 else ""
+        dead = f"💀{lost}❌" if lost > 0 else ""
         print(f"  {t['id']} [{t['tier'].upper()}] x{t['total_odds']} | "
               f"{len(t['legs'])} legs | {', '.join(sports_in)} | "
               f"conf: {t['confidence']}/6 {heat} {dead}")
 
+    # Verify
+    all_sels = []
+    for t in tickets:
+        for l in t['legs']:
+            all_sels.append(f"{l['player']}|{l['prop']}")
+    print(f"\n🔍 Selecciones totales: {len(all_sels)}, únicas: {len(set(all_sels))}")
+    if len(all_sels) != len(set(all_sels)):
+        print("❌ ERROR: HAY DUPLICADOS!")
+        return
+    print("✅ CERO duplicados confirmado")
+
     tickets_js = generate_ticket_js(tickets)
     results_js = generate_results_js(tickets)
 
-    print(f"\n📝 LEG_RESULTS: {results_js[:100]}...")
+    print(f"\n📝 LEG_RESULTS: {results_js[:80]}...")
     print("\n📝 Updating HTML files...")
     update_html(tickets_js, results_js, OUTPUT_FILE)
     update_html(tickets_js, results_js, TEMPLATE_FILE)
 
-    print(f"\n✅ Done! {len(tickets)} tickets with REAL data.")
+    print(f"\n✅ Done! {len(tickets)} tickets, zero duplicates, team badges ready.")
 
 
 if __name__ == '__main__':

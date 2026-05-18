@@ -327,12 +327,20 @@ body {
 }
 .leg:last-child { border-bottom: none; }
 .leg-number {
-  width: 22px; height: 22px; border-radius: 50%;
-  background: rgba(212,165,32,0.1);
-  color: var(--gold); font-weight: 800; font-size: 0.6rem;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(255,255,255,0.06);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  border: 1px solid rgba(212,165,32,0.2);
+  overflow: hidden;
+}
+.leg-number img {
+  width: 20px; height: 20px;
+  object-fit: contain;
+  border-radius: 0;
+}
+.leg-number .emoji-badge {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 .leg-info { flex: 1; }
 .leg-player { font-weight: 700; color: var(--text-primary); font-size: 0.78rem; }
@@ -1423,84 +1431,101 @@ function translateProp(propEs) {
 }
 
 // === LIVE RESULTS ===
-const LEG_RESULTS = {'W1_0':'won', 'W1_1':'won', 'W2_0':'won', 'W2_1':'won', 'W3_0':'won', 'W3_1':'won', 'S1_0':'won', 'S2_0':'lost'};
+const LEG_RESULTS = {'W1_0':'won', 'W1_1':'won', 'W2_0':'won', 'W2_1':'won', 'S2_0':'lost'};
+
+// === TEAM BADGES ===
+const TEAM_LOGOS = {
+  // NBA
+  OKC:'https://a.espncdn.com/i/teamlogos/nba/500/okc.png',
+  SAS:'https://a.espncdn.com/i/teamlogos/nba/500/sa.png',
+  NYK:'https://a.espncdn.com/i/teamlogos/nba/500/ny.png',
+  CLE:'https://a.espncdn.com/i/teamlogos/nba/500/cle.png',
+  // MLB
+  LAD:'https://a.espncdn.com/i/teamlogos/mlb/500/lad.png',
+  NYY:'https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png',
+  NYM:'https://a.espncdn.com/i/teamlogos/mlb/500/nym.png',
+  PHI:'https://a.espncdn.com/i/teamlogos/mlb/500/phi.png',
+  ATL:'https://a.espncdn.com/i/teamlogos/mlb/500/atl.png',
+  KC:'https://a.espncdn.com/i/teamlogos/mlb/500/kc.png',
+  ARI:'https://a.espncdn.com/i/teamlogos/mlb/500/ari.png',
+  TEX:'https://a.espncdn.com/i/teamlogos/mlb/500/tex.png',
+  HOU:'https://a.espncdn.com/i/teamlogos/mlb/500/hou.png',
+  BOS:'https://a.espncdn.com/i/teamlogos/mlb/500/bos.png',
+  SD:'https://a.espncdn.com/i/teamlogos/mlb/500/sd.png',
+  // NHL
+  COL:'https://a.espncdn.com/i/teamlogos/nhl/500/col.png',
+  VGK:'https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png',
+  // Soccer
+  BAY:'https://a.espncdn.com/i/teamlogos/soccer/500/132.png',
+  RMA:'https://a.espncdn.com/i/teamlogos/soccer/500/86.png',
+  ARS:'https://a.espncdn.com/i/teamlogos/soccer/500/359.png',
+  ATM:'https://a.espncdn.com/i/teamlogos/soccer/500/1068.png',
+  PSG:'https://a.espncdn.com/i/teamlogos/soccer/500/160.png',
+  RIV:'https://a.espncdn.com/i/teamlogos/soccer/500/16498.png',
+};
+function getTeamBadge(leg) {
+  if (leg.sport === 'tenis') return '<span class="emoji-badge">🎾</span>';
+  if (leg.sport === 'mma') return '<span class="emoji-badge">🥊</span>';
+  const url = TEAM_LOGOS[leg.team];
+  if (url) {
+    const fallback = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽'}[leg.sport]||'🎯';
+    return `<img src="${url}" alt="${leg.team}" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
+  }
+  return '<span class="emoji-badge">🎯</span>';
+}
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'W1', tier:'whale', sport:'futbol', title:'Multi-Sport x3', confidence:2, totalOdds:214.4, couponCode:'', legs:[
-    {player:'Ousmane Dembélé', prop:'Marca gol en cualquier momento', match:'PSG vs Bayern Munich', odd:2.5, sport:'futbol'},
-    {player:'Kylian Mbappé', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich', odd:1.9, sport:'futbol'},
-    {player:'Jannik Sinner', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.08, sport:'tenis'},
-    {player:'Shai Gilgeous-Alexander', prop:'Over 30.5 puntos', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:1.82, sport:'nba'},
-    {player:'Keldon Johnson', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.05, sport:'nba'},
-    {player:'Martin Ødegaard', prop:'Marca gol en cualquier momento', match:'Arsenal vs PSG — Final UCL', odd:3.5, sport:'futbol'},
-    {player:'Gabriel Jesus', prop:'Marca gol en cualquier momento', match:'Arsenal vs PSG — Final UCL', odd:3.2, sport:'futbol'}
+  { id:'W1', tier:'whale', sport:'futbol', title:'Multi-Sport x3', confidence:2, totalOdds:734.5, couponCode:'', legs:[
+    {player:'Harry Kane', prop:'Marca gol en cualquier momento', match:'Bayern Munich vs Real Madrid — QF', odd:1.8, sport:'futbol', team:'BAY'},
+    {player:'Ousmane Dembélé', prop:'Marca gol vs Bayern', match:'PSG vs Bayern Munich — SF', odd:2.5, sport:'futbol', team:'PSG'},
+    {player:'Freddie Freeman', prop:'Over 0.5 hits', match:'Los Angeles Dodgers vs San Diego Padres', odd:1.25, sport:'mlb', team:'LAD'},
+    {player:'Rafael Devers', prop:'Over 1.5 bases totales', match:'Boston Red Sox vs Kansas City Royals', odd:1.75, sport:'mlb', team:'BOS'},
+    {player:'Alex Pereira', prop:'Gana la pelea', match:'A. Pereira vs C. Gane — UFC Freedom 250', odd:1.7, sport:'mma', team:'UFC'},
+    {player:'Marco Asensio', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.8, sport:'futbol', team:'PSG'},
+    {player:'Aaron Judge', prop:'Home Run: Sí', match:'Toronto Blue Jays vs New York Yankees', odd:3.5, sport:'mlb', team:'NYY'},
+    {player:'Kai Havertz', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.3, sport:'futbol', team:'ARS'}
   ]},
-  { id:'W2', tier:'whale', sport:'futbol', title:'Multi-Sport x4', confidence:2, totalOdds:148.7, couponCode:'', legs:[
-    {player:'Bukayo Saka', prop:'Marca gol en cualquier momento', match:'Arsenal vs Atlético Madrid', odd:2.8, sport:'futbol'},
-    {player:'Kylian Mbappé', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich', odd:1.9, sport:'futbol'},
-    {player:'Coco Gauff', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.1, sport:'tenis'},
-    {player:'Aryna Sabalenka', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.08, sport:'tenis'},
-    {player:'Mikal Bridges', prop:'Over 15.5 puntos', match:'New York Knicks vs Cleveland Cavaliers', odd:1.92, sport:'nba'},
-    {player:'Martin Ødegaard', prop:'Marca gol en cualquier momento', match:'Arsenal vs PSG — Final UCL', odd:3.5, sport:'futbol'},
-    {player:'Aaron Judge', prop:'Home Run: Sí', match:'New York Yankees vs Toronto Blue Jays', odd:3.5, sport:'mlb'}
+  { id:'W2', tier:'whale', sport:'futbol', title:'Multi-Sport x4', confidence:2, totalOdds:377.9, couponCode:'', legs:[
+    {player:'Kylian Mbappé', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich — QF', odd:1.9, sport:'futbol', team:'RMA'},
+    {player:'Bukayo Saka', prop:'Marca gol vs Atlético', match:'Arsenal vs Atlético Madrid — SF', odd:2.8, sport:'futbol', team:'ARS'},
+    {player:'Aryna Sabalenka', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.08, sport:'tenis', team:'WTA'},
+    {player:'Bobby Witt Jr.', prop:'Over 1.5 hits', match:'Boston Red Sox vs Kansas City Royals', odd:2.15, sport:'mlb', team:'KC'},
+    {player:'Chet Holmgren', prop:'Over 2.5 tapones', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.3, sport:'nba', team:'OKC'},
+    {player:'Pete Alonso', prop:'Home Run: Sí', match:'New York Mets vs Washington Nationals', odd:3.8, sport:'mlb', team:'NYM'},
+    {player:'Martin Ødegaard', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.5, sport:'futbol', team:'ARS'}
   ]},
-  { id:'W3', tier:'whale', sport:'futbol', title:'Multi-Sport x4', confidence:3, totalOdds:111.2, couponCode:'', legs:[
-    {player:'Harry Kane', prop:'Marca gol en cualquier momento', match:'Bayern Munich vs Real Madrid', odd:1.8, sport:'futbol'},
-    {player:'Bukayo Saka', prop:'Marca gol en cualquier momento', match:'Arsenal vs Atlético Madrid', odd:2.8, sport:'futbol'},
-    {player:'Alexander Zverev', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.1, sport:'tenis'},
-    {player:'Aryna Sabalenka', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.08, sport:'tenis'},
-    {player:'Jack Eichel', prop:'Over 0.5 goles', match:'Vegas Golden Knights vs Colorado Avalanche', odd:2.6, sport:'nhl'},
-    {player:'Evan Mobley', prop:'Over 8.5 rebotes', match:'Cleveland Cavaliers vs New York Knicks', odd:1.88, sport:'nba'},
-    {player:'Marco Asensio', prop:'Marca gol en cualquier momento', match:'PSG vs Arsenal — Final UCL', odd:3.8, sport:'futbol'}
+  { id:'S1', tier:'shark', sport:'futbol', title:'NBA + Fútbol', confidence:4, totalOdds:65.0, couponCode:'', legs:[
+    {player:'Evan Mobley', prop:'Over 8.5 rebotes', match:'Cleveland Cavaliers vs New York Knicks', odd:1.88, sport:'nba', team:'CLE'},
+    {player:'Gabriel Jesus', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.2, sport:'futbol', team:'ARS'},
+    {player:'Leandro Trossard', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.6, sport:'futbol', team:'ARS'},
+    {player:'Bradley Barcola', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.0, sport:'futbol', team:'PSG'}
   ]},
-  { id:'S1', tier:'shark', sport:'futbol', title:'NBA + Fútbol', confidence:2, totalOdds:119.5, couponCode:'', legs:[
-    {player:'Harry Kane', prop:'Marca gol en cualquier momento', match:'Bayern Munich vs Real Madrid', odd:1.8, sport:'futbol'},
-    {player:'Shai Gilgeous-Alexander', prop:'Over 30.5 puntos', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:1.82, sport:'nba'},
-    {player:'Gabriel Jesus', prop:'Marca gol en cualquier momento', match:'Arsenal vs PSG — Final UCL', odd:3.2, sport:'futbol'},
-    {player:'Marco Asensio', prop:'Marca gol en cualquier momento', match:'PSG vs Arsenal — Final UCL', odd:3.8, sport:'futbol'},
-    {player:'Bradley Barcola', prop:'Marca gol en cualquier momento', match:'PSG vs Arsenal — Final UCL', odd:3.0, sport:'futbol'}
+  { id:'S2', tier:'shark', sport:'nba', title:'Multi-Sport x3', confidence:4, totalOdds:26.2, couponCode:'', legs:[
+    {player:'Julian Álvarez', prop:'Marca gol vs Arsenal', match:'Atlético Madrid vs Arsenal — SF', odd:2.6, sport:'futbol', team:'ATM'},
+    {player:'Karl-Anthony Towns', prop:'Over 10.5 rebotes', match:'New York Knicks vs Cleveland Cavaliers', odd:1.95, sport:'nba', team:'NYK'},
+    {player:'Jalen Williams', prop:'Over 5.5 rebotes', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.25, sport:'nba', team:'OKC'},
+    {player:'Mikko Rantanen', prop:'Over 0.5 goles', match:'Colorado Avalanche vs Vegas Golden Knights', odd:2.3, sport:'nhl', team:'COL'}
   ]},
-  { id:'S2', tier:'shark', sport:'futbol', title:'Multi-Sport x4', confidence:2, totalOdds:118.2, couponCode:'', legs:[
-    {player:'Adam Bareiro', prop:'Marca gol en cualquier momento', match:'River Plate vs Boca Juniors', odd:3.5, sport:'futbol'},
-    {player:'Cale Makar', prop:'Over 0.5 goles', match:'Colorado Avalanche vs Vegas Golden Knights', odd:2.8, sport:'nhl'},
-    {player:'Chris Paul', prop:'Over 8.5 asistencias', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.15, sport:'nba'},
-    {player:'Ronald Acuña Jr.', prop:'Over 1.5 bases totales', match:'Atlanta Braves vs Miami Marlins', odd:1.7, sport:'mlb'},
-    {player:'Kai Havertz', prop:'Marca gol en cualquier momento', match:'Arsenal vs PSG — Final UCL', odd:3.3, sport:'futbol'}
+  { id:'H1', tier:'hunter', sport:'mlb', title:'Multi-Sport x3', confidence:4, totalOdds:11.7, couponCode:'', legs:[
+    {player:'Novak Djokovic', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.15, sport:'tenis', team:'ATP'},
+    {player:'Trea Turner', prop:'Over 0.5 hits', match:'Cincinnati Reds vs Philadelphia Phillies', odd:1.28, sport:'mlb', team:'PHI'},
+    {player:'James Harden', prop:'Over 8.5 asistencias', match:'Cleveland Cavaliers vs New York Knicks', odd:2.1, sport:'nba', team:'CLE'},
+    {player:'Keldon Johnson', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.05, sport:'nba', team:'SAS'},
+    {player:'Marcus Semien', prop:'Over 1.5 bases totales', match:'Texas Rangers vs Colorado Rockies', odd:1.85, sport:'mlb', team:'TEX'}
   ]},
-  { id:'H1', tier:'hunter', sport:'nba', title:'Tenis + NBA', confidence:4, totalOdds:18.7, couponCode:'', legs:[
-    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.12, sport:'tenis'},
-    {player:'Keldon Johnson', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.05, sport:'nba'},
-    {player:'Donovan Mitchell', prop:'Over 27.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:1.85, sport:'nba'},
-    {player:'OG Anunoby', prop:'Over 14.5 puntos', match:'New York Knicks vs Cleveland Cavaliers', odd:2.0, sport:'nba'},
-    {player:'Darius Garland', prop:'Over 18.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:2.2, sport:'nba'}
+  { id:'H2', tier:'hunter', sport:'nba', title:'Multi-Sport x4', confidence:4, totalOdds:8.8, couponCode:'', legs:[
+    {player:'Manny Machado', prop:'Over 0.5 hits', match:'Los Angeles Dodgers vs San Diego Padres', odd:1.3, sport:'mlb', team:'SD'},
+    {player:'Jannik Sinner', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.08, sport:'tenis', team:'ATP'},
+    {player:'Mark Stone', prop:'Over 0.5 puntos', match:'Vegas Golden Knights vs Colorado Avalanche', odd:1.7, sport:'nhl', team:'VGK'},
+    {player:'James Harden', prop:'Over 18.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:1.95, sport:'nba', team:'CLE'},
+    {player:'Victor Wembanyama', prop:'Over 22.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:1.9, sport:'nba', team:'SAS'}
   ]},
-  { id:'H2', tier:'hunter', sport:'tenis', title:'Multi-Sport x3', confidence:4, totalOdds:11.1, couponCode:'', legs:[
-    {player:'Novak Djokovic', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.15, sport:'tenis'},
-    {player:'Aryna Sabalenka', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.08, sport:'tenis'},
-    {player:'Bobby Witt Jr.', prop:'Over 1.5 hits', match:'Boston Red Sox vs Kansas City Royals', odd:2.15, sport:'mlb'},
-    {player:'Corey Seager', prop:'Over 1.5 bases totales', match:'Texas Rangers vs Colorado Rockies', odd:1.8, sport:'mlb'},
-    {player:'Mikko Rantanen', prop:'Over 0.5 goles', match:'Colorado Avalanche vs Vegas Golden Knights', odd:2.3, sport:'nhl'}
-  ]},
-  { id:'H3', tier:'hunter', sport:'tenis', title:'Multi-Sport x4', confidence:4, totalOdds:10.8, couponCode:'', legs:[
-    {player:'Novak Djokovic', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.15, sport:'tenis'},
-    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.12, sport:'tenis'},
-    {player:'Nathan MacKinnon', prop:'Over 1.5 puntos', match:'Colorado Avalanche vs Vegas Golden Knights', odd:1.85, sport:'nhl'},
-    {player:'Ousmane Dembélé', prop:'Marca gol en cualquier momento', match:'PSG vs Arsenal — Final UCL', odd:2.75, sport:'futbol'},
-    {player:'Shohei Ohtani', prop:'Over 1.5 bases totales', match:'Los Angeles Dodgers vs San Diego Padres', odd:1.65, sport:'mlb'}
-  ]},
-  { id:'H4', tier:'hunter', sport:'mlb', title:'Multi-Sport x3', confidence:4, totalOdds:10.7, couponCode:'', legs:[
-    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.12, sport:'tenis'},
-    {player:'Freddie Freeman', prop:'Over 0.5 hits', match:'Los Angeles Dodgers vs San Diego Padres', odd:1.25, sport:'mlb'},
-    {player:'Jack Eichel', prop:'Over 0.5 goles', match:'Vegas Golden Knights vs Colorado Avalanche', odd:2.6, sport:'nhl'},
-    {player:'Shohei Ohtani', prop:'Over 1.5 bases totales', match:'Los Angeles Dodgers vs San Diego Padres', odd:1.65, sport:'mlb'},
-    {player:'Juan Soto', prop:'Over 1.5 bases totales', match:'New York Mets vs Washington Nationals', odd:1.78, sport:'mlb'}
-  ]},
-  { id:'H5', tier:'hunter', sport:'mlb', title:'MLB + NBA', confidence:5, totalOdds:9.4, couponCode:'', legs:[
-    {player:'Freddie Freeman', prop:'Over 0.5 hits', match:'Los Angeles Dodgers vs San Diego Padres', odd:1.25, sport:'mlb'},
-    {player:'Karl-Anthony Towns', prop:'Over 10.5 rebotes', match:'New York Knicks vs Cleveland Cavaliers', odd:1.95, sport:'nba'},
-    {player:'Bryce Harper', prop:'Over 1.5 hits', match:'Cincinnati Reds vs Philadelphia Phillies', odd:2.25, sport:'mlb'},
-    {player:'Corbin Burnes', prop:'Over 5.5 strikeouts', match:'Arizona Diamondbacks vs San Francisco Giants', odd:1.72, sport:'mlb'}
+  { id:'H3', tier:'hunter', sport:'tenis', title:'Multi-Sport x3', confidence:5, totalOdds:5.7, couponCode:'', legs:[
+    {player:'Iga Świątek', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.05, sport:'tenis', team:'WTA'},
+    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros 2026 — 1ra Ronda', odd:1.12, sport:'tenis', team:'ATP'},
+    {player:'Corbin Burnes', prop:'Over 5.5 strikeouts', match:'San Francisco Giants vs Arizona Diamondbacks', odd:1.72, sport:'mlb', team:'ARI'},
+    {player:'Cale Makar', prop:'Over 0.5 goles', match:'Colorado Avalanche vs Vegas Golden Knights', odd:2.8, sport:'nhl', team:'COL'}
   ]},
 ];
 
@@ -1568,7 +1593,7 @@ function renderTickets(filter = 'all') {
                          '<span class="leg-result pending">⏳</span>';
       return `
       <div class="leg ${result === 'lost' ? 'leg-lost' : result === 'won' ? 'leg-won' : ''}">
-        <div class="leg-number">${j + 1}</div>
+        <div class="leg-number">${getTeamBadge(leg)}</div>
         <div class="leg-info">
           <div class="leg-player">${leg.player}</div>
           <div class="leg-detail">${translateProp(leg.prop)} · ${leg.match}</div>
