@@ -20,93 +20,93 @@ OUTPUT_FILE = Path(__file__).parent / 'index.html'
 # ============================================================
 PROP_POOL = [
     # ── NBA CONFERENCE FINALS (May 19+) ──
-    # Thunder vs Spurs (West)
-    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 30.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.82, 'sport': 'nba', 'team': 'OKC'},
-    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 5.5 asistencias', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.10, 'sport': 'nba', 'team': 'OKC'},
-    {'player': 'Victor Wembanyama', 'prop': 'Over 3.5 tapones', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.45, 'sport': 'nba', 'team': 'SAS'},
-    {'player': 'Victor Wembanyama', 'prop': 'Over 22.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 1.90, 'sport': 'nba', 'team': 'SAS'},
-    {'player': 'Chet Holmgren', 'prop': 'Over 2.5 tapones', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.30, 'sport': 'nba', 'team': 'OKC'},
-    {'player': 'Jalen Williams', 'prop': 'Over 20.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.90, 'sport': 'nba', 'team': 'OKC'},
-    {'player': 'Jalen Williams', 'prop': 'Over 5.5 rebotes', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.25, 'sport': 'nba', 'team': 'OKC'},
-    {'player': 'Chris Paul', 'prop': 'Over 8.5 asistencias', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.15, 'sport': 'nba', 'team': 'SAS'},
-    {'player': 'Keldon Johnson', 'prop': 'Over 16.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.05, 'sport': 'nba', 'team': 'SAS'},
-    {'player': 'Devin Vassell', 'prop': 'Over 14.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.10, 'sport': 'nba', 'team': 'SAS'},
-    {'player': 'Lu Dort', 'prop': 'Over 10.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.00, 'sport': 'nba', 'team': 'OKC'},
-    # Knicks vs Cavaliers (East)
-    {'player': 'Jalen Brunson', 'prop': 'Over 26.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.78, 'sport': 'nba', 'team': 'NYK'},
-    {'player': 'Jalen Brunson', 'prop': 'Over 6.5 asistencias', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.20, 'sport': 'nba', 'team': 'NYK'},
-    {'player': 'Donovan Mitchell', 'prop': 'Over 27.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.85, 'sport': 'nba', 'team': 'CLE'},
-    {'player': 'James Harden', 'prop': 'Over 8.5 asistencias', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.10, 'sport': 'nba', 'team': 'CLE'},
-    {'player': 'James Harden', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.95, 'sport': 'nba', 'team': 'CLE'},
-    {'player': 'Karl-Anthony Towns', 'prop': 'Over 10.5 rebotes', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.95, 'sport': 'nba', 'team': 'NYK'},
-    {'player': 'Karl-Anthony Towns', 'prop': 'Over 22.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.05, 'sport': 'nba', 'team': 'NYK'},
-    {'player': 'Evan Mobley', 'prop': 'Over 8.5 rebotes', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.88, 'sport': 'nba', 'team': 'CLE'},
-    {'player': 'OG Anunoby', 'prop': 'Over 14.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.00, 'sport': 'nba', 'team': 'NYK'},
-    {'player': 'Darius Garland', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.20, 'sport': 'nba', 'team': 'CLE'},
-    {'player': 'Mikal Bridges', 'prop': 'Over 15.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.92, 'sport': 'nba', 'team': 'NYK'},
+    # Thunder vs Spurs — Game 1: May 19
+    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 30.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.82, 'sport': 'nba', 'team': 'OKC', 'date': 'May 19'},
+    {'player': 'Shai Gilgeous-Alexander', 'prop': 'Over 5.5 asistencias', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.10, 'sport': 'nba', 'team': 'OKC', 'date': 'May 19'},
+    {'player': 'Victor Wembanyama', 'prop': 'Over 3.5 tapones', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.45, 'sport': 'nba', 'team': 'SAS', 'date': 'May 19'},
+    {'player': 'Victor Wembanyama', 'prop': 'Over 22.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 1.90, 'sport': 'nba', 'team': 'SAS', 'date': 'May 19'},
+    {'player': 'Chet Holmgren', 'prop': 'Over 2.5 tapones', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.30, 'sport': 'nba', 'team': 'OKC', 'date': 'May 19'},
+    {'player': 'Jalen Williams', 'prop': 'Over 20.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 1.90, 'sport': 'nba', 'team': 'OKC', 'date': 'May 19'},
+    {'player': 'Jalen Williams', 'prop': 'Over 5.5 rebotes', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.25, 'sport': 'nba', 'team': 'OKC', 'date': 'May 19'},
+    {'player': 'Chris Paul', 'prop': 'Over 8.5 asistencias', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.15, 'sport': 'nba', 'team': 'SAS', 'date': 'May 19'},
+    {'player': 'Keldon Johnson', 'prop': 'Over 16.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.05, 'sport': 'nba', 'team': 'SAS', 'date': 'May 19'},
+    {'player': 'Devin Vassell', 'prop': 'Over 14.5 puntos', 'match': 'San Antonio Spurs vs Oklahoma City Thunder', 'odd': 2.10, 'sport': 'nba', 'team': 'SAS', 'date': 'May 19'},
+    {'player': 'Lu Dort', 'prop': 'Over 10.5 puntos', 'match': 'Oklahoma City Thunder vs San Antonio Spurs', 'odd': 2.00, 'sport': 'nba', 'team': 'OKC', 'date': 'May 19'},
+    # Knicks vs Cavaliers — Game 1: May 20
+    {'player': 'Jalen Brunson', 'prop': 'Over 26.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.78, 'sport': 'nba', 'team': 'NYK', 'date': 'May 20'},
+    {'player': 'Jalen Brunson', 'prop': 'Over 6.5 asistencias', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.20, 'sport': 'nba', 'team': 'NYK', 'date': 'May 20'},
+    {'player': 'Donovan Mitchell', 'prop': 'Over 27.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.85, 'sport': 'nba', 'team': 'CLE', 'date': 'May 20'},
+    {'player': 'James Harden', 'prop': 'Over 8.5 asistencias', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.10, 'sport': 'nba', 'team': 'CLE', 'date': 'May 20'},
+    {'player': 'James Harden', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.95, 'sport': 'nba', 'team': 'CLE', 'date': 'May 20'},
+    {'player': 'Karl-Anthony Towns', 'prop': 'Over 10.5 rebotes', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.95, 'sport': 'nba', 'team': 'NYK', 'date': 'May 20'},
+    {'player': 'Karl-Anthony Towns', 'prop': 'Over 22.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.05, 'sport': 'nba', 'team': 'NYK', 'date': 'May 20'},
+    {'player': 'Evan Mobley', 'prop': 'Over 8.5 rebotes', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 1.88, 'sport': 'nba', 'team': 'CLE', 'date': 'May 20'},
+    {'player': 'OG Anunoby', 'prop': 'Over 14.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 2.00, 'sport': 'nba', 'team': 'NYK', 'date': 'May 20'},
+    {'player': 'Darius Garland', 'prop': 'Over 18.5 puntos', 'match': 'Cleveland Cavaliers vs New York Knicks', 'odd': 2.20, 'sport': 'nba', 'team': 'CLE', 'date': 'May 20'},
+    {'player': 'Mikal Bridges', 'prop': 'Over 15.5 puntos', 'match': 'New York Knicks vs Cleveland Cavaliers', 'odd': 1.92, 'sport': 'nba', 'team': 'NYK', 'date': 'May 20'},
 
-    # ── CHAMPIONS LEAGUE — ALREADY PLAYED (with results) ──
-    {'player': 'Harry Kane', 'prop': 'Marca gol en cualquier momento', 'match': 'Bayern Munich vs Real Madrid — QF', 'odd': 1.80, 'sport': 'futbol', 'result': 'won', 'team': 'BAY'},
-    {'player': 'Kylian Mbappé', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich — QF', 'odd': 1.90, 'sport': 'futbol', 'result': 'won', 'team': 'RMA'},
-    {'player': 'Vinícius Jr.', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich — QF', 'odd': 2.20, 'sport': 'futbol', 'result': 'lost', 'team': 'RMA'},
-    {'player': 'Bukayo Saka', 'prop': 'Marca gol vs Atlético', 'match': 'Arsenal vs Atlético Madrid — SF', 'odd': 2.80, 'sport': 'futbol', 'result': 'won', 'team': 'ARS'},
-    {'player': 'Antoine Griezmann', 'prop': 'Marca gol vs Arsenal', 'match': 'Atlético Madrid vs Arsenal — SF', 'odd': 3.10, 'sport': 'futbol', 'result': 'lost', 'team': 'ATM'},
-    {'player': 'Julian Álvarez', 'prop': 'Marca gol vs Arsenal', 'match': 'Atlético Madrid vs Arsenal — SF', 'odd': 2.60, 'sport': 'futbol', 'result': 'lost', 'team': 'ATM'},
-    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol vs Bayern', 'match': 'PSG vs Bayern Munich — SF', 'odd': 2.50, 'sport': 'futbol', 'result': 'won', 'team': 'PSG'},
+    # ── CHAMPIONS LEAGUE — ALREADY PLAYED ──
+    {'player': 'Harry Kane', 'prop': 'Marca gol en cualquier momento', 'match': 'Bayern Munich vs Real Madrid — QF', 'odd': 1.80, 'sport': 'futbol', 'result': 'won', 'team': 'BAY', 'date': 'Abr 15'},
+    {'player': 'Kylian Mbappé', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich — QF', 'odd': 1.90, 'sport': 'futbol', 'result': 'won', 'team': 'RMA', 'date': 'Abr 7'},
+    {'player': 'Vinícius Jr.', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Bayern Munich — QF', 'odd': 2.20, 'sport': 'futbol', 'result': 'lost', 'team': 'RMA', 'date': 'Abr 7'},
+    {'player': 'Bukayo Saka', 'prop': 'Marca gol vs Atlético', 'match': 'Arsenal vs Atlético Madrid — SF', 'odd': 2.80, 'sport': 'futbol', 'result': 'won', 'team': 'ARS', 'date': 'May 5'},
+    {'player': 'Antoine Griezmann', 'prop': 'Marca gol vs Arsenal', 'match': 'Atlético Madrid vs Arsenal — SF', 'odd': 3.10, 'sport': 'futbol', 'result': 'lost', 'team': 'ATM', 'date': 'May 5'},
+    {'player': 'Julian Álvarez', 'prop': 'Marca gol vs Arsenal', 'match': 'Atlético Madrid vs Arsenal — SF', 'odd': 2.60, 'sport': 'futbol', 'result': 'lost', 'team': 'ATM', 'date': 'May 5'},
+    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol vs Bayern', 'match': 'PSG vs Bayern Munich — SF', 'odd': 2.50, 'sport': 'futbol', 'result': 'won', 'team': 'PSG', 'date': 'May 6'},
 
-    # ── CHAMPIONS LEAGUE FINAL (May 30) — PENDING ──
-    {'player': 'Bukayo Saka', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 2.90, 'sport': 'futbol', 'team': 'ARS'},
-    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.75, 'sport': 'futbol', 'team': 'PSG'},
-    {'player': 'Kai Havertz', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.30, 'sport': 'futbol', 'team': 'ARS'},
-    {'player': 'Bradley Barcola', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.00, 'sport': 'futbol', 'team': 'PSG'},
-    {'player': 'Martin Ødegaard', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.50, 'sport': 'futbol', 'team': 'ARS'},
-    {'player': 'Marco Asensio', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.80, 'sport': 'futbol', 'team': 'PSG'},
-    {'player': 'Gabriel Jesus', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.20, 'sport': 'futbol', 'team': 'ARS'},
-    {'player': 'Leandro Trossard', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.60, 'sport': 'futbol', 'team': 'ARS'},
-    {'player': 'Gonçalo Ramos', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.80, 'sport': 'futbol', 'team': 'PSG'},
+    # ── CHAMPIONS LEAGUE FINAL (May 30) ──
+    {'player': 'Bukayo Saka', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 2.90, 'sport': 'futbol', 'team': 'ARS', 'date': 'May 30'},
+    {'player': 'Ousmane Dembélé', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.75, 'sport': 'futbol', 'team': 'PSG', 'date': 'May 30'},
+    {'player': 'Kai Havertz', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.30, 'sport': 'futbol', 'team': 'ARS', 'date': 'May 30'},
+    {'player': 'Bradley Barcola', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.00, 'sport': 'futbol', 'team': 'PSG', 'date': 'May 30'},
+    {'player': 'Martin Ødegaard', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.50, 'sport': 'futbol', 'team': 'ARS', 'date': 'May 30'},
+    {'player': 'Marco Asensio', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 3.80, 'sport': 'futbol', 'team': 'PSG', 'date': 'May 30'},
+    {'player': 'Gabriel Jesus', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.20, 'sport': 'futbol', 'team': 'ARS', 'date': 'May 30'},
+    {'player': 'Leandro Trossard', 'prop': 'Marca gol en la Final', 'match': 'Arsenal vs PSG — Final UCL', 'odd': 3.60, 'sport': 'futbol', 'team': 'ARS', 'date': 'May 30'},
+    {'player': 'Gonçalo Ramos', 'prop': 'Marca gol en la Final', 'match': 'PSG vs Arsenal — Final UCL', 'odd': 2.80, 'sport': 'futbol', 'team': 'PSG', 'date': 'May 30'},
 
     # ── LIGA ARGENTINA — ALREADY PLAYED ──
-    {'player': 'Adam Bareiro', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate 0-1 Boca Juniors', 'odd': 3.50, 'sport': 'futbol', 'result': 'lost', 'team': 'RIV'},
-    {'player': 'Maxi Salas', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate 0-1 Boca Juniors', 'odd': 3.20, 'sport': 'futbol', 'result': 'lost', 'team': 'RIV'},
+    {'player': 'Adam Bareiro', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate 0-1 Boca Juniors', 'odd': 3.50, 'sport': 'futbol', 'result': 'lost', 'team': 'RIV', 'date': 'Abr 19'},
+    {'player': 'Maxi Salas', 'prop': 'Marca gol en cualquier momento', 'match': 'River Plate 0-1 Boca Juniors', 'odd': 3.20, 'sport': 'futbol', 'result': 'lost', 'team': 'RIV', 'date': 'Abr 19'},
 
-    # ── MLB (May 18-20 real schedule) ──
-    {'player': 'Shohei Ohtani', 'prop': 'Over 1.5 bases totales', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.65, 'sport': 'mlb', 'team': 'LAD'},
-    {'player': 'Mookie Betts', 'prop': 'Over 1.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 2.40, 'sport': 'mlb', 'team': 'LAD'},
-    {'player': 'Freddie Freeman', 'prop': 'Over 0.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.25, 'sport': 'mlb', 'team': 'LAD'},
-    {'player': 'Aaron Judge', 'prop': 'Home Run: Sí', 'match': 'Toronto Blue Jays vs New York Yankees', 'odd': 3.50, 'sport': 'mlb', 'team': 'NYY'},
-    {'player': 'Juan Soto', 'prop': 'Over 1.5 bases totales', 'match': 'New York Mets vs Washington Nationals', 'odd': 1.78, 'sport': 'mlb', 'team': 'NYM'},
-    {'player': 'Bryce Harper', 'prop': 'Over 1.5 hits', 'match': 'Cincinnati Reds vs Philadelphia Phillies', 'odd': 2.25, 'sport': 'mlb', 'team': 'PHI'},
-    {'player': 'Ronald Acuña Jr.', 'prop': 'Over 1.5 bases totales', 'match': 'Atlanta Braves vs Miami Marlins', 'odd': 1.70, 'sport': 'mlb', 'team': 'ATL'},
-    {'player': 'Yordan Alvarez', 'prop': 'Over 1.5 bases totales', 'match': 'Houston Astros vs Minnesota Twins', 'odd': 1.82, 'sport': 'mlb', 'team': 'HOU'},
-    {'player': 'Bobby Witt Jr.', 'prop': 'Over 1.5 hits', 'match': 'Boston Red Sox vs Kansas City Royals', 'odd': 2.15, 'sport': 'mlb', 'team': 'KC'},
-    {'player': 'Gerrit Cole', 'prop': 'Over 6.5 strikeouts', 'match': 'Toronto Blue Jays vs New York Yankees', 'odd': 1.85, 'sport': 'mlb', 'team': 'NYY'},
-    {'player': 'Corbin Burnes', 'prop': 'Over 5.5 strikeouts', 'match': 'San Francisco Giants vs Arizona Diamondbacks', 'odd': 1.72, 'sport': 'mlb', 'team': 'ARI'},
-    {'player': 'Corey Seager', 'prop': 'Over 1.5 bases totales', 'match': 'Texas Rangers vs Colorado Rockies', 'odd': 1.80, 'sport': 'mlb', 'team': 'TEX'},
-    {'player': 'Rafael Devers', 'prop': 'Over 1.5 bases totales', 'match': 'Boston Red Sox vs Kansas City Royals', 'odd': 1.75, 'sport': 'mlb', 'team': 'BOS'},
-    {'player': 'Manny Machado', 'prop': 'Over 0.5 hits', 'match': 'Los Angeles Dodgers vs San Diego Padres', 'odd': 1.30, 'sport': 'mlb', 'team': 'SD'},
-    {'player': 'Trea Turner', 'prop': 'Over 0.5 hits', 'match': 'Cincinnati Reds vs Philadelphia Phillies', 'odd': 1.28, 'sport': 'mlb', 'team': 'PHI'},
-    {'player': 'Pete Alonso', 'prop': 'Home Run: Sí', 'match': 'New York Mets vs Washington Nationals', 'odd': 3.80, 'sport': 'mlb', 'team': 'NYM'},
-    {'player': 'Marcus Semien', 'prop': 'Over 1.5 bases totales', 'match': 'Texas Rangers vs Colorado Rockies', 'odd': 1.85, 'sport': 'mlb', 'team': 'TEX'},
-    {'player': 'Kyle Tucker', 'prop': 'Over 1.5 hits', 'match': 'Houston Astros vs Minnesota Twins', 'odd': 2.30, 'sport': 'mlb', 'team': 'HOU'},
+    # ── MLB (May 18-19 real schedule) ──
+    {'player': 'Shohei Ohtani', 'prop': 'Over 1.5 bases totales', 'match': 'Dodgers vs Padres', 'odd': 1.65, 'sport': 'mlb', 'team': 'LAD', 'date': 'May 18'},
+    {'player': 'Mookie Betts', 'prop': 'Over 1.5 hits', 'match': 'Dodgers vs Padres', 'odd': 2.40, 'sport': 'mlb', 'team': 'LAD', 'date': 'May 18'},
+    {'player': 'Freddie Freeman', 'prop': 'Over 0.5 hits', 'match': 'Dodgers vs Padres', 'odd': 1.25, 'sport': 'mlb', 'team': 'LAD', 'date': 'May 18'},
+    {'player': 'Aaron Judge', 'prop': 'Home Run: Sí', 'match': 'Blue Jays vs Yankees', 'odd': 3.50, 'sport': 'mlb', 'team': 'NYY', 'date': 'May 18'},
+    {'player': 'Juan Soto', 'prop': 'Over 1.5 bases totales', 'match': 'Mets vs Nationals', 'odd': 1.78, 'sport': 'mlb', 'team': 'NYM', 'date': 'May 18'},
+    {'player': 'Bryce Harper', 'prop': 'Over 1.5 hits', 'match': 'Reds vs Phillies', 'odd': 2.25, 'sport': 'mlb', 'team': 'PHI', 'date': 'May 18'},
+    {'player': 'Ronald Acuña Jr.', 'prop': 'Over 1.5 bases totales', 'match': 'Braves vs Marlins', 'odd': 1.70, 'sport': 'mlb', 'team': 'ATL', 'date': 'May 18'},
+    {'player': 'Yordan Alvarez', 'prop': 'Over 1.5 bases totales', 'match': 'Astros vs Twins', 'odd': 1.82, 'sport': 'mlb', 'team': 'HOU', 'date': 'May 18'},
+    {'player': 'Bobby Witt Jr.', 'prop': 'Over 1.5 hits', 'match': 'Red Sox vs Royals', 'odd': 2.15, 'sport': 'mlb', 'team': 'KC', 'date': 'May 18'},
+    {'player': 'Gerrit Cole', 'prop': 'Over 6.5 strikeouts', 'match': 'Blue Jays vs Yankees', 'odd': 1.85, 'sport': 'mlb', 'team': 'NYY', 'date': 'May 19'},
+    {'player': 'Corbin Burnes', 'prop': 'Over 5.5 strikeouts', 'match': 'Giants vs Diamondbacks', 'odd': 1.72, 'sport': 'mlb', 'team': 'ARI', 'date': 'May 19'},
+    {'player': 'Corey Seager', 'prop': 'Over 1.5 bases totales', 'match': 'Rangers vs Rockies', 'odd': 1.80, 'sport': 'mlb', 'team': 'TEX', 'date': 'May 19'},
+    {'player': 'Rafael Devers', 'prop': 'Over 1.5 bases totales', 'match': 'Red Sox vs Royals', 'odd': 1.75, 'sport': 'mlb', 'team': 'BOS', 'date': 'May 19'},
+    {'player': 'Manny Machado', 'prop': 'Over 0.5 hits', 'match': 'Dodgers vs Padres', 'odd': 1.30, 'sport': 'mlb', 'team': 'SD', 'date': 'May 19'},
+    {'player': 'Trea Turner', 'prop': 'Over 0.5 hits', 'match': 'Reds vs Phillies', 'odd': 1.28, 'sport': 'mlb', 'team': 'PHI', 'date': 'May 19'},
+    {'player': 'Pete Alonso', 'prop': 'Home Run: Sí', 'match': 'Mets vs Nationals', 'odd': 3.80, 'sport': 'mlb', 'team': 'NYM', 'date': 'May 19'},
+    {'player': 'Marcus Semien', 'prop': 'Over 1.5 bases totales', 'match': 'Rangers vs Rockies', 'odd': 1.85, 'sport': 'mlb', 'team': 'TEX', 'date': 'May 19'},
+    {'player': 'Kyle Tucker', 'prop': 'Over 1.5 hits', 'match': 'Astros vs Twins', 'odd': 2.30, 'sport': 'mlb', 'team': 'HOU', 'date': 'May 19'},
 
     # ── ROLAND GARROS (starts May 25) ──
-    {'player': 'Jannik Sinner', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis', 'team': 'ATP'},
-    {'player': 'Carlos Alcaraz', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.12, 'sport': 'tenis', 'team': 'ATP'},
-    {'player': 'Alexander Zverev', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'ATP'},
-    {'player': 'Novak Djokovic', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.15, 'sport': 'tenis', 'team': 'ATP'},
-    {'player': 'Iga Świątek', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.05, 'sport': 'tenis', 'team': 'WTA'},
-    {'player': 'Aryna Sabalenka', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis', 'team': 'WTA'},
-    {'player': 'Coco Gauff', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros 2026 — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'WTA'},
+    {'player': 'Jannik Sinner', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis', 'team': 'ATP', 'date': 'May 25'},
+    {'player': 'Carlos Alcaraz', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.12, 'sport': 'tenis', 'team': 'ATP', 'date': 'May 25'},
+    {'player': 'Alexander Zverev', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'ATP', 'date': 'May 26'},
+    {'player': 'Novak Djokovic', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.15, 'sport': 'tenis', 'team': 'ATP', 'date': 'May 26'},
+    {'player': 'Iga Świątek', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.05, 'sport': 'tenis', 'team': 'WTA', 'date': 'May 25'},
+    {'player': 'Aryna Sabalenka', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.08, 'sport': 'tenis', 'team': 'WTA', 'date': 'May 26'},
+    {'player': 'Coco Gauff', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'WTA', 'date': 'May 25'},
 
     # ── NHL CONFERENCE FINALS (May 20+) ──
-    {'player': 'Nathan MacKinnon', 'prop': 'Over 1.5 puntos', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 1.85, 'sport': 'nhl', 'team': 'COL'},
-    {'player': 'Cale Makar', 'prop': 'Over 0.5 goles', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 2.80, 'sport': 'nhl', 'team': 'COL'},
-    {'player': 'Jack Eichel', 'prop': 'Over 0.5 goles', 'match': 'Vegas Golden Knights vs Colorado Avalanche', 'odd': 2.60, 'sport': 'nhl', 'team': 'VGK'},
-    {'player': 'Mikko Rantanen', 'prop': 'Over 0.5 goles', 'match': 'Colorado Avalanche vs Vegas Golden Knights', 'odd': 2.30, 'sport': 'nhl', 'team': 'COL'},
-    {'player': 'Mark Stone', 'prop': 'Over 0.5 puntos', 'match': 'Vegas Golden Knights vs Colorado Avalanche', 'odd': 1.70, 'sport': 'nhl', 'team': 'VGK'},
+    {'player': 'Nathan MacKinnon', 'prop': 'Over 1.5 puntos', 'match': 'Avalanche vs Golden Knights', 'odd': 1.85, 'sport': 'nhl', 'team': 'COL', 'date': 'May 20'},
+    {'player': 'Cale Makar', 'prop': 'Over 0.5 goles', 'match': 'Avalanche vs Golden Knights', 'odd': 2.80, 'sport': 'nhl', 'team': 'COL', 'date': 'May 20'},
+    {'player': 'Jack Eichel', 'prop': 'Over 0.5 goles', 'match': 'Golden Knights vs Avalanche', 'odd': 2.60, 'sport': 'nhl', 'team': 'VGK', 'date': 'May 20'},
+    {'player': 'Mikko Rantanen', 'prop': 'Over 0.5 goles', 'match': 'Avalanche vs Golden Knights', 'odd': 2.30, 'sport': 'nhl', 'team': 'COL', 'date': 'May 22'},
+    {'player': 'Mark Stone', 'prop': 'Over 0.5 puntos', 'match': 'Golden Knights vs Avalanche', 'odd': 1.70, 'sport': 'nhl', 'team': 'VGK', 'date': 'May 22'},
 
     # ── UFC FREEDOM 250 (June 14) ──
-    {'player': 'Alex Pereira', 'prop': 'Gana la pelea', 'match': 'A. Pereira vs C. Gane — UFC Freedom 250', 'odd': 1.70, 'sport': 'mma', 'team': 'UFC'},
+    {'player': 'Alex Pereira', 'prop': 'Gana la pelea', 'match': 'Pereira vs Gane — UFC Freedom 250', 'odd': 1.70, 'sport': 'mma', 'team': 'UFC', 'date': 'Jun 14'},
 ]
 
 
@@ -304,7 +304,7 @@ def generate_ticket_js(tickets):
                 f"prop:'{_esc(leg['prop'])}', "
                 f"match:'{_esc(leg['match'])}', "
                 f"odd:{leg['odd']}, sport:'{leg['sport']}', "
-                f"team:'{_esc(leg['team'])}'}}"
+                f"team:'{_esc(leg['team'])}', date:'{leg.get('date', '')}'}}"
             )
         sport_counts = {}
         for leg in ticket['legs']:
