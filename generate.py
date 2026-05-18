@@ -137,8 +137,8 @@ def parse_props_from_event(event_data, sport_key):
                 point = outcome.get('point')
                 price = outcome.get('price', 0)
 
-                if price < 1.5 or price > 8.0:
-                    # Skip odds too low (no value) or too high (too risky for single leg)
+                if price < 1.10 or price > 8.0:
+                    # Skip extreme odds only
                     continue
 
                 prop_text = format_prop_text(market_key, name, point)
@@ -276,12 +276,47 @@ def build_tickets(all_props):
             return selected
         return None
 
-    # === HUNTER TICKETS (x10-29) — Safest picks ===
+    # Separate props by odds range for mixing
+    low_odds = [p for p in all_props if 1.10 <= p['odd'] < 1.55]    # "safe" legs
+    mid_odds = [p for p in all_props if 1.55 <= p['odd'] <= 2.8]    # moderate legs
+    high_odds = [p for p in all_props if 2.8 < p['odd'] <= 5.0]     # risky legs
+    very_high = [p for p in all_props if p['odd'] > 5.0]             # longshots
+
+    def pick_mixed_legs(pools_config, n_legs, min_sports=2):
+        """Pick legs from multiple odds pools for variety.
+        pools_config: list of (pool, count) tuples."""
+        selected = []
+        sports_used = set()
+        players_used = set()
+        for pool, count in pools_config:
+            pool_copy = [p for p in pool if prop_key(p) not in used_props and p['player'] not in players_used]
+            random.shuffle(pool_copy)
+            picked = 0
+            for p in pool_copy:
+                if picked >= count:
+                    break
+                selected.append(p)
+                sports_used.add(p['sport_key'])
+                players_used.add(p['player'])
+                picked += 1
+        if len(selected) >= n_legs and len(sports_used) >= min(min_sports, len(available_sports)):
+            for s in selected:
+                used_props.add(prop_key(s))
+            return selected
+        return None
+
+    # === HUNTER TICKETS (x10-29) — Mix of safe + moderate legs, more selections ===
     for i in range(5):
-        # Pick 3-4 safe legs with odds ~2.0-2.5 each
-        candidates = [p for p in safe_props if 1.8 <= p['odd'] <= 2.8 and prop_key(p) not in used_props]
-        random.shuffle(candidates)  # Add variety
-        legs = pick_multi_sport_legs(candidates, random.choice([3, 4]), min_sports=2)
+        n_legs = random.choice([4, 5, 6])
+        # Mix: some low-odds "anchors" + mid-odds for the multiplier
+        n_low = random.randint(1, min(3, n_legs - 1))
+        n_mid = n_legs - n_low
+        legs = pick_mixed_legs([(low_odds, n_low), (mid_odds, n_mid)], n_legs, min_sports=2)
+        if not legs:
+            # Fallback: all mid
+            candidates = [p for p in mid_odds if prop_key(p) not in used_props]
+            random.shuffle(candidates)
+            legs = pick_multi_sport_legs(candidates, random.choice([3, 4]), min_sports=2)
         if legs:
             total = round(math.prod(l['odd'] for l in legs), 1)
             if 10 <= total <= 29.9:
@@ -293,11 +328,17 @@ def build_tickets(all_props):
                     'confidence': conf,
                 })
 
-    # === SHARK TICKETS (x30-99) — Medium risk ===
+    # === SHARK TICKETS (x30-99) — Mix all ranges ===
     for i in range(5):
-        candidates = [p for p in safe_props if 2.0 <= p['odd'] <= 3.5 and prop_key(p) not in used_props]
-        random.shuffle(candidates)
-        legs = pick_multi_sport_legs(candidates, random.choice([4, 5]), min_sports=2)
+        n_legs = random.choice([5, 6, 7])
+        n_low = random.randint(1, min(2, n_legs - 2))
+        n_mid = random.randint(1, n_legs - n_low - 1)
+        n_high = n_legs - n_low - n_mid
+        legs = pick_mixed_legs([(low_odds, n_low), (mid_odds, n_mid), (high_odds, n_high)], n_legs, min_sports=2)
+        if not legs:
+            candidates = [p for p in safe_props if 1.5 <= p['odd'] <= 3.5 and prop_key(p) not in used_props]
+            random.shuffle(candidates)
+            legs = pick_multi_sport_legs(candidates, random.choice([4, 5]), min_sports=2)
         if legs:
             total = round(math.prod(l['odd'] for l in legs), 1)
             if 30 <= total <= 99.9:
@@ -309,11 +350,20 @@ def build_tickets(all_props):
                     'confidence': conf,
                 })
 
-    # === WHALE TICKETS (x100+) — High risk, high reward ===
+    # === WHALE TICKETS (x100+) — Lots of legs, mixed odds, long tickets ===
     for i in range(4):
-        candidates = [p for p in all_props if 2.2 <= p['odd'] <= 5.0 and prop_key(p) not in used_props]
-        random.shuffle(candidates)
-        legs = pick_multi_sport_legs(candidates, random.choice([5, 6]), min_sports=2)
+        n_legs = random.choice([6, 7, 8])
+        n_low = random.randint(1, 3)
+        n_mid = random.randint(1, 3)
+        n_high = n_legs - n_low - n_mid
+        if n_high < 1:
+            n_high = 1
+            n_mid = n_legs - n_low - n_high
+        legs = pick_mixed_legs([(low_odds, n_low), (mid_odds, n_mid), (high_odds, max(0, n_high))], n_legs, min_sports=2)
+        if not legs:
+            candidates = [p for p in all_props if 1.5 <= p['odd'] <= 5.0 and prop_key(p) not in used_props]
+            random.shuffle(candidates)
+            legs = pick_multi_sport_legs(candidates, random.choice([5, 6]), min_sports=2)
         if legs:
             total = round(math.prod(l['odd'] for l in legs), 1)
             if total >= 100:
