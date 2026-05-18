@@ -1039,6 +1039,10 @@ body {
   <button class="filter-btn" data-filter="tenis">🎾 Tenis</button>
   <button class="filter-btn" data-filter="mlb">⚾ MLB</button>
   <button class="filter-btn" data-filter="mma">🥊 MMA</button>
+  <span style="width:1px;height:20px;background:rgba(212,165,32,0.2);flex-shrink:0"></span>
+  <button class="filter-btn" data-filter="tier:whale">🐋 Ballena</button>
+  <button class="filter-btn" data-filter="tier:shark">🦈 Tiburón</button>
+  <button class="filter-btn" data-filter="tier:hunter">🎯 Cazador</button>
 </div>
 
 <!-- SECTION: MEGA TICKETS (x100+) -->
@@ -1608,7 +1612,9 @@ function renderTickets(filter = 'all') {
   };
   Object.values(containers).forEach(c => c.innerHTML = '');
 
-  const filtered = filter === 'all' ? TICKETS : TICKETS.filter(t => t.sport === filter);
+  const filtered = filter === 'all' ? TICKETS :
+    filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) :
+    TICKETS.filter(t => t.sport === filter);
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
 
   filtered.forEach((ticket, i) => {
