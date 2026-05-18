@@ -414,6 +414,98 @@ body {
 .ticket-result-badge.live { background: rgba(212,165,32,0.15); color: var(--gold); border: 1px solid rgba(212,165,32,0.3); animation: goldPulse 2s infinite; }
 .last-updated { text-align: center; font-size: 0.65rem; color: var(--text-secondary); padding: 8px; opacity: 0.6; }
 
+/* === HERO INFO BANNER === */
+.hero-info {
+  margin: 2rem auto 0;
+  max-width: 560px;
+  background: linear-gradient(135deg, rgba(26,10,16,0.8) 0%, rgba(17,17,24,0.9) 50%, rgba(26,10,16,0.8) 100%);
+  border: 1px solid rgba(255,51,92,0.25);
+  border-radius: 14px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-info::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff335c, var(--gold), #ff335c, transparent);
+}
+.hero-info-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,51,92,0.15);
+  border: 1px solid rgba(255,51,92,0.3);
+  color: #ff7a95;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hero-info-text {
+  font-size: 0.84rem;
+  color: #c4b5a0;
+  line-height: 1.55;
+}
+.hero-info-text strong {
+  color: var(--text-primary);
+}
+.hero-info-text .highlight {
+  color: var(--gold);
+  font-weight: 700;
+}
+.hero-info-text .db-pink {
+  color: #ff335c;
+  font-weight: 700;
+}
+.hero-info-steps {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.hero-info-step {
+  flex: 1;
+  min-width: 100px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(212,165,32,0.1);
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.hero-info-step .step-icon { font-size: 1.2rem; }
+.hero-info-step .step-text {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+.hero-info-step .step-text strong { color: var(--gold); }
+.hero-info-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  background: linear-gradient(135deg, #ff335c, #e0294f);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255,51,92,0.3);
+}
+.hero-info-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255,51,92,0.4);
+}
+
 /* === ACIERTOS SECTION === */
 .aciertos-section {
   margin: 40px 2rem 30px;
@@ -685,6 +777,15 @@ body {
   /* Footer */
   .footer { padding: 2rem 1rem; font-size: 0.7rem; }
 
+  /* Hero info banner */
+  .hero-info { margin: 1.5rem 0 0; padding: 14px 14px; }
+  .hero-info-text { font-size: 0.78rem; }
+  .hero-info-steps { gap: 6px; }
+  .hero-info-step { padding: 8px 6px; }
+  .hero-info-step .step-icon { font-size: 1rem; }
+  .hero-info-step .step-text { font-size: 0.58rem; }
+  .hero-info-cta { width: 100%; justify-content: center; font-size: 0.75rem; padding: 10px 14px; }
+
   /* Aciertos */
   .aciertos-section { margin: 0 0.8rem 20px; }
   .aciertos-counter { padding: 20px 14px 18px; }
@@ -830,6 +931,29 @@ body {
       <div class="stat-value" id="stat-max-odds">—</div>
       <div class="stat-label" data-i18n="maxOdds">Mayor cuota</div>
     </div>
+  </div>
+
+  <!-- INFO BANNER -->
+  <div class="hero-info">
+    <div class="hero-info-tag">⚡ ¿Por qué DBbet?</div>
+    <div class="hero-info-text">
+      Nuestros billetes tienen <strong>6, 8 o hasta 12 selecciones</strong>. Buscarlas una por una es un dolor de cabeza. Gracias a <span class="db-pink">DBbet</span>, nuestro sponsor oficial, podés <span class="highlight">cargar todo el billete en 1 click</span> y apostar al instante.
+    </div>
+    <div class="hero-info-steps">
+      <div class="hero-info-step">
+        <div class="step-icon">❌</div>
+        <div class="step-text">Sin DBbet: buscás <strong>cada selección</strong> a mano</div>
+      </div>
+      <div class="hero-info-step">
+        <div class="step-icon">⏱️</div>
+        <div class="step-text">Perdés <strong>15+ minutos</strong> armando el billete</div>
+      </div>
+      <div class="hero-info-step">
+        <div class="step-icon">✅</div>
+        <div class="step-text">Con DBbet: <strong>1 click</strong> y listo para apostar</div>
+      </div>
+    </div>
+    <a href="https://refpa96317.com/L?tag=d_5382769m_11213c_&site=5382769&ad=11213" target="_blank" class="hero-info-cta">🎰 Registrate en DBbet — Apostá en 1 click</a>
   </div>
 </div>
 
