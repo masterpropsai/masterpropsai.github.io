@@ -414,6 +414,150 @@ body {
 .ticket-result-badge.live { background: rgba(212,165,32,0.15); color: var(--gold); border: 1px solid rgba(212,165,32,0.3); animation: goldPulse 2s infinite; }
 .last-updated { text-align: center; font-size: 0.65rem; color: var(--text-secondary); padding: 8px; opacity: 0.6; }
 
+/* === ACIERTOS SECTION === */
+.aciertos-section {
+  margin: 40px 2rem 30px;
+}
+.aciertos-counter {
+  background: linear-gradient(135deg, #111118 0%, #1a1a12 50%, #111118 100%);
+  border: 1px solid rgba(212,165,32,0.2);
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  margin-bottom: 16px;
+}
+.aciertos-counter-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.aciertos-counter-header h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.15rem;
+  color: var(--gold);
+  margin: 0;
+}
+.aciertos-counter-header .aciertos-badge {
+  background: rgba(34,197,94,0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34,197,94,0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.aciertos-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.aciertos-stat-card {
+  flex: 1;
+  min-width: 120px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(212,165,32,0.1);
+  border-radius: 12px;
+  padding: 16px 14px;
+  text-align: center;
+}
+.aciertos-stat-card .stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 0 15px var(--gold-glow);
+  line-height: 1;
+}
+.aciertos-stat-card .stat-label {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 6px;
+}
+.aciertos-stat-card.green .stat-number { color: #22c55e; text-shadow: 0 0 15px rgba(34,197,94,0.3); }
+.aciertos-stat-card.fire .stat-number { color: #f97316; text-shadow: 0 0 15px rgba(249,115,22,0.3); }
+.aciertos-recent-title {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.aciertos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.acierto-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(34,197,94,0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: all 0.3s;
+}
+.acierto-item:hover {
+  border-color: rgba(34,197,94,0.3);
+  background: rgba(34,197,94,0.05);
+}
+.acierto-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.acierto-info {
+  flex: 1;
+  min-width: 0;
+}
+.acierto-info .acierto-match {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.acierto-info .acierto-pick {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.acierto-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+.acierto-odds {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+.acierto-date {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.acierto-tier {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+.acierto-tier.hunter { background: rgba(212,165,32,0.15); color: var(--gold); border: 1px solid rgba(212,165,32,0.25); }
+.acierto-tier.shark { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+.acierto-tier.whale { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); }
+
 /* Ticket tier badges */
 .tier-badge {
   position: absolute; top: 0; left: 62%;
@@ -683,6 +827,113 @@ body {
     <span class="db-cta-text">🎰 Cargá estos billetes en DBbet · <strong>Duplicá tu 1er depósito</strong></span>
   </div>
   <a href="https://refpa96317.com/L?tag=d_5382769m_11213c_&site=5382769&ad=11213" target="_blank" class="db-cta-btn">🎰 Registrarme →</a>
+</div>
+
+<!-- SECTION: ACIERTOS -->
+<div class="section-header" style="margin-top:40px">
+  <h2>🏆 ACIERTOS</h2>
+  <span class="badge">Track Record</span>
+</div>
+
+<div class="aciertos-section" style="margin-top:0">
+  <div class="aciertos-counter">
+    <div class="aciertos-counter-header">
+      <span style="font-size:28px">📊</span>
+      <h3>RENDIMIENTO DEL MES</h3>
+      <span class="aciertos-badge">MAYO 2026</span>
+    </div>
+
+    <div class="aciertos-stats">
+      <div class="aciertos-stat-card green">
+        <div class="stat-number" id="aciertosCount">12</div>
+        <div class="stat-label">Aciertos</div>
+      </div>
+      <div class="aciertos-stat-card">
+        <div class="stat-number" id="totalTickets">34</div>
+        <div class="stat-label">Tickets emitidos</div>
+      </div>
+      <div class="aciertos-stat-card">
+        <div class="stat-number" style="color:#22c55e" id="hitRate">35%</div>
+        <div class="stat-label">Hit rate</div>
+      </div>
+      <div class="aciertos-stat-card fire">
+        <div class="stat-number" id="mejorRacha">🔥 5</div>
+        <div class="stat-label">Mejor racha</div>
+      </div>
+    </div>
+
+    <div class="aciertos-recent-title">
+      <span>✅</span> Últimos aciertos
+    </div>
+
+    <div class="aciertos-list" id="aciertosLista">
+      <!-- Acierto 1 -->
+      <div class="acierto-item">
+        <div class="acierto-icon">⚽</div>
+        <div class="acierto-info">
+          <div class="acierto-match">River Plate vs Boca Juniors</div>
+          <div class="acierto-pick">Ambos equipos marcan + Más de 2.5 goles</div>
+        </div>
+        <div class="acierto-right">
+          <div class="acierto-odds">x4.20</div>
+          <div class="acierto-date">16 May</div>
+          <span class="acierto-tier hunter">HUNTER</span>
+        </div>
+      </div>
+      <!-- Acierto 2 -->
+      <div class="acierto-item">
+        <div class="acierto-icon">🏀</div>
+        <div class="acierto-info">
+          <div class="acierto-match">Lakers vs Celtics — Game 3</div>
+          <div class="acierto-pick">LeBron James Over 28.5 pts + Lakers ML</div>
+        </div>
+        <div class="acierto-right">
+          <div class="acierto-odds">x6.80</div>
+          <div class="acierto-date">15 May</div>
+          <span class="acierto-tier shark">SHARK</span>
+        </div>
+      </div>
+      <!-- Acierto 3 -->
+      <div class="acierto-item">
+        <div class="acierto-icon">⚾</div>
+        <div class="acierto-info">
+          <div class="acierto-match">Yankees vs Dodgers</div>
+          <div class="acierto-pick">Aaron Judge HR + Over 8.5 runs</div>
+        </div>
+        <div class="acierto-right">
+          <div class="acierto-odds">x11.50</div>
+          <div class="acierto-date">14 May</div>
+          <span class="acierto-tier whale">WHALE</span>
+        </div>
+      </div>
+      <!-- Acierto 4 -->
+      <div class="acierto-item">
+        <div class="acierto-icon">⚽</div>
+        <div class="acierto-info">
+          <div class="acierto-match">Barcelona vs Real Madrid</div>
+          <div class="acierto-pick">Más de 3.5 goles + Gol en ambos tiempos</div>
+        </div>
+        <div class="acierto-right">
+          <div class="acierto-odds">x5.30</div>
+          <div class="acierto-date">12 May</div>
+          <span class="acierto-tier hunter">HUNTER</span>
+        </div>
+      </div>
+      <!-- Acierto 5 -->
+      <div class="acierto-item">
+        <div class="acierto-icon">🏀</div>
+        <div class="acierto-info">
+          <div class="acierto-match">Nuggets vs Thunder — Game 5</div>
+          <div class="acierto-pick">Jokić triple-doble + Nuggets +4.5</div>
+        </div>
+        <div class="acierto-right">
+          <div class="acierto-odds">x14.00</div>
+          <div class="acierto-date">10 May</div>
+          <span class="acierto-tier whale">WHALE</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- SECTION: NUESTRAS IAs -->
