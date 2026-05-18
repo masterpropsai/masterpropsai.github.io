@@ -412,6 +412,50 @@ body {
 .ticket-result-badge.won { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
 .ticket-result-badge.lost { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
 .ticket-result-badge.live { background: rgba(212,165,32,0.15); color: var(--gold); border: 1px solid rgba(212,165,32,0.3); animation: goldPulse 2s infinite; }
+
+/* Ticket heat levels — gets hotter as more legs hit */
+@keyframes heatPulse {
+  0%, 100% { box-shadow: 0 0 15px var(--heat-glow); }
+  50% { box-shadow: 0 0 30px var(--heat-glow); }
+}
+@keyframes firePulse {
+  0%, 100% { box-shadow: 0 0 20px var(--heat-glow), 0 0 40px var(--heat-glow-outer); }
+  50% { box-shadow: 0 0 35px var(--heat-glow), 0 0 60px var(--heat-glow-outer); }
+}
+.ticket.heat-warm {
+  --heat-glow: rgba(212,165,32,0.2);
+  border-color: rgba(212,165,32,0.3);
+  animation: heatPulse 3s ease infinite;
+}
+.ticket.heat-hot {
+  --heat-glow: rgba(249,115,22,0.25);
+  border-color: rgba(249,115,22,0.4);
+  animation: heatPulse 2.5s ease infinite;
+}
+.ticket.heat-fire {
+  --heat-glow: rgba(239,68,68,0.3);
+  --heat-glow-outer: rgba(249,115,22,0.15);
+  border-color: rgba(239,68,68,0.5);
+  animation: firePulse 2s ease infinite;
+}
+.ticket.heat-inferno {
+  --heat-glow: rgba(239,68,68,0.4);
+  --heat-glow-outer: rgba(255,200,0,0.2);
+  border-color: rgba(255,200,0,0.5);
+  background: linear-gradient(135deg, rgba(40,10,5,0.95), var(--bg-card), rgba(40,10,5,0.95));
+  animation: firePulse 1.5s ease infinite;
+}
+.ticket-heat-badge {
+  position: absolute; top: 8px; left: 8px;
+  padding: 3px 10px; border-radius: 6px; font-size: 0.6rem;
+  font-weight: 800; letter-spacing: 0.3px; z-index: 5;
+}
+.ticket-heat-badge.warm { background: rgba(212,165,32,0.2); color: var(--gold); border: 1px solid rgba(212,165,32,0.3); }
+.ticket-heat-badge.hot { background: rgba(249,115,22,0.2); color: #f97316; border: 1px solid rgba(249,115,22,0.3); }
+.ticket-heat-badge.fire { background: rgba(239,68,68,0.2); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+.ticket-heat-badge.inferno { background: linear-gradient(135deg, rgba(239,68,68,0.3), rgba(255,200,0,0.3)); color: #fbbf24; border: 1px solid rgba(255,200,0,0.4); animation: goldPulse 1.5s infinite; }
+.ticket.ticket-dead { opacity: 0.55; border-color: rgba(239,68,68,0.2); }
+.ticket.ticket-dead:hover { opacity: 0.7; }
 .last-updated { text-align: center; font-size: 0.65rem; color: var(--text-secondary); padding: 8px; opacity: 0.6; }
 
 /* === HERO INFO BANNER === */
@@ -1519,9 +1563,32 @@ function renderTickets(filter = 'all') {
     const locale = currentLang === 'es' ? 'es-AR' : currentLang === 'pt' ? 'pt-BR' : currentLang;
     const returnFor1000 = (ticket.totalOdds * 1000).toLocaleString(locale);
 
+    // Calculate heat level based on won legs
+    let wonLegs = 0, lostLegs = 0, resolvedLegs = 0;
+    ticket.legs.forEach((leg, j) => {
+      const rk = `${ticket.id}_${j}`;
+      const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
+      if (r === 'won') { wonLegs++; resolvedLegs++; }
+      else if (r === 'lost') { lostLegs++; resolvedLegs++; }
+    });
+    const totalLegs = ticket.legs.length;
+    const wonRatio = totalLegs > 0 ? wonLegs / totalLegs : 0;
+    let heatClass = '', heatBadgeHTML = '';
+    if (lostLegs === 0 && wonLegs > 0) {
+      if (wonRatio >= 0.9) { heatClass = 'heat-inferno'; heatBadgeHTML = `<div class="ticket-heat-badge inferno">🔥 ${wonLegs}/${totalLegs} — INFERNO</div>`; }
+      else if (wonRatio >= 0.65) { heatClass = 'heat-fire'; heatBadgeHTML = `<div class="ticket-heat-badge fire">🔥 ${wonLegs}/${totalLegs} — EN FUEGO</div>`; }
+      else if (wonRatio >= 0.4) { heatClass = 'heat-hot'; heatBadgeHTML = `<div class="ticket-heat-badge hot">🌡️ ${wonLegs}/${totalLegs} — CALIENTE</div>`; }
+      else { heatClass = 'heat-warm'; heatBadgeHTML = `<div class="ticket-heat-badge warm">✨ ${wonLegs}/${totalLegs} — VAMOS</div>`; }
+    }
+    // If any leg lost, ticket is dead — no heat
+    const ticketDead = lostLegs > 0;
+    const ticketDeadBadge = ticketDead ? `<div class="ticket-result-badge lost">❌ PERDIDO</div>` : '';
+    const ticketWonBadge = (wonLegs === totalLegs && totalLegs > 0) ? `<div class="ticket-result-badge won">💰 ¡GANADOR!</div>` : '';
+
     const card = `
-      <div class="ticket" data-sport="${ticket.sport}" style="animation-delay: ${i * 0.08}s">
+      <div class="ticket ${heatClass}${ticketDead ? ' ticket-dead' : ''}" data-sport="${ticket.sport}" style="animation-delay: ${i * 0.08}s">
         <div class="tier-badge ${tierClass}">${tierLabel}</div>
+        ${ticketWonBadge || ticketDeadBadge || heatBadgeHTML}
         <div class="ticket-header">
           <div class="ticket-header-left">
             <span class="ticket-sport">${sportEmoji[ticket.sport] || '🎯'} ${ticket.sport.toUpperCase()}</span>
