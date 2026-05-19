@@ -261,7 +261,11 @@ def build_tickets():
             })
 
     # Sort
-    tier_order = {'whale': 0, 'shark': 1, 'hunter': 2}
+    # Promote whale tickets with x1000+ to megalodon
+    for t in tickets:
+        if t['tier'] == 'whale' and t['total_odds'] >= 1000:
+            t['tier'] = 'megalodon'
+    tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
     tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
 
     # Assign IDs
@@ -269,7 +273,7 @@ def build_tickets():
         'nba': 'NBA', 'mlb': 'MLB', 'futbol': 'Fútbol',
         'tenis': 'Tenis', 'mma': 'MMA', 'nhl': 'NHL'
     }
-    counters = {'whale': 0, 'shark': 0, 'hunter': 0}
+    counters = {'megalodon': 0, 'whale': 0, 'shark': 0, 'hunter': 0}
     for ticket in tickets:
         tier = ticket['tier']
         counters[tier] += 1

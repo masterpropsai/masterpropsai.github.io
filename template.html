@@ -707,6 +707,7 @@ body {
 }
 .acierto-tier.hunter { background: rgba(212,165,32,0.15); color: var(--gold); border: 1px solid rgba(212,165,32,0.25); }
 .acierto-tier.shark { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+.acierto-tier.megalodon { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); }
 .acierto-tier.whale { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); }
 
 /* Ticket tier badges */
@@ -716,6 +717,11 @@ body {
   padding: 3px 14px; border-radius: 0 0 8px 8px;
   font-size: 0.6rem; font-weight: 900; letter-spacing: 1px;
   text-transform: uppercase; z-index: 2;
+}
+.tier-megalodon {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  box-shadow: 0 2px 15px rgba(124,58,237,0.4);
 }
 .tier-whale {
   background: linear-gradient(135deg, #d4a520, #f0c850);
@@ -1025,12 +1031,26 @@ body {
   <button class="filter-btn" data-filter="tenis">🎾 Tenis</button>
   <button class="filter-btn" data-filter="mlb">⚾ MLB</button>
   <button class="filter-btn" data-filter="mma">🥊 MMA</button>
+  <span style="display:inline-block;width:1px;height:22px;background:rgba(255,255,255,0.15);vertical-align:middle;margin:0 6px"></span>
+  <button class="filter-btn" data-filter="tier:megalodon">🐋 Megalodón</button>
+  <button class="filter-btn" data-filter="tier:whale">🐳 Ballena</button>
+  <button class="filter-btn" data-filter="tier:shark">🦈 Tiburón</button>
+  <button class="filter-btn" data-filter="tier:hunter">🎯 Cazador</button>
 </div>
 
-<!-- SECTION: MEGA TICKETS (x100+) -->
+<!-- SECTION: MEGALODON TICKETS (x1000+) -->
 <div class="section-header">
-  <h2>🐋 BALLENA</h2>
-  <span class="badge">x100+ · 3 Cifras</span>
+  <h2>🐋 MEGALODÓN</h2>
+  <span class="badge">x1000+ · 4 Cifras</span>
+</div>
+
+<div class="tickets-grid" id="tickets-megalodon">
+</div>
+
+<!-- SECTION: WHALE TICKETS (x100-999) -->
+<div class="section-header">
+  <h2>🐳 BALLENA</h2>
+  <span class="badge">x100 — x999 · 3 Cifras</span>
 </div>
 
 <div class="tickets-grid" id="tickets-whale">
@@ -1202,8 +1222,8 @@ const I18N = {
     navTickets: 'Billetes', navHistory: 'Historial',
     minOdds: 'Cuota mínima', sports: 'Deportes', ticketsToday: 'Billetes hoy', maxOdds: 'Mayor cuota',
     filterAll: '🎯 Todos', filterFootball: '⚽ Fútbol', filterTennis: '🎾 Tenis',
-    whale: '🐋 BALLENA', shark: '🦈 TIBURÓN', hunter: '🎯 CAZADOR',
-    whaleRange: 'x100+ · 3 Cifras', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODÓN', whale: '🐳 BALLENA', shark: '🦈 TIBURÓN', hunter: '🎯 CAZADOR',
+    megalodonRange: 'x1000+ · 4 Cifras', whaleRange: 'x100 — x999 · 3 Cifras', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'Confianza IA',
     confLevels: ['', 'Baja', 'Media', 'Media-Alta', 'Alta', 'Muy Alta', 'Máxima'],
     selections: 'selecciones', copyBtn: '📋 Copiar', copied: '✅ Copiado!', betBtn: '🎰 Apostar en DBbet',
@@ -1235,8 +1255,8 @@ const I18N = {
     navTickets: 'Tickets', navHistory: 'History',
     minOdds: 'Min odds', sports: 'Sports', ticketsToday: 'Tickets today', maxOdds: 'Top odds',
     filterAll: '🎯 All', filterFootball: '⚽ Football', filterTennis: '🎾 Tennis',
-    whale: '🐋 WHALE', shark: '🦈 SHARK', hunter: '🎯 HUNTER',
-    whaleRange: 'x100+ · 3 Digits', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODON', whale: '🐳 WHALE', shark: '🦈 SHARK', hunter: '🎯 HUNTER',
+    megalodonRange: 'x1000+ · 4 Digits', whaleRange: 'x100 — x999 · 3 Digits', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'AI Confidence',
     confLevels: ['', 'Low', 'Medium', 'Med-High', 'High', 'Very High', 'Maximum'],
     selections: 'selections', copyBtn: '📋 Copy', copied: '✅ Copied!', betBtn: '🎰 Bet on DBbet',
@@ -1267,8 +1287,8 @@ const I18N = {
     navTickets: 'Bilhetes', navHistory: 'Histórico',
     minOdds: 'Odd mínima', sports: 'Esportes', ticketsToday: 'Bilhetes hoje', maxOdds: 'Maior odd',
     filterAll: '🎯 Todos', filterFootball: '⚽ Futebol', filterTennis: '🎾 Tênis',
-    whale: '🐋 BALEIA', shark: '🦈 TUBARÃO', hunter: '🎯 CAÇADOR',
-    whaleRange: 'x100+ · 3 Dígitos', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODON', whale: '🐳 BALEIA', shark: '🦈 TUBARÃO', hunter: '🎯 CAÇADOR',
+    megalodonRange: 'x1000+ · 4 Dígitos', whaleRange: 'x100 — x999 · 3 Dígitos', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'Confiança IA',
     confLevels: ['', 'Baixa', 'Média', 'Média-Alta', 'Alta', 'Muito Alta', 'Máxima'],
     selections: 'seleções', copyBtn: '📋 Copiar', copied: '✅ Copiado!', betBtn: '🎰 Apostar no DBbet',
@@ -1299,8 +1319,8 @@ const I18N = {
     navTickets: 'Biglietti', navHistory: 'Storico',
     minOdds: 'Quota minima', sports: 'Sport', ticketsToday: 'Biglietti oggi', maxOdds: 'Quota max',
     filterAll: '🎯 Tutti', filterFootball: '⚽ Calcio', filterTennis: '🎾 Tennis',
-    whale: '🐋 BALENA', shark: '🦈 SQUALO', hunter: '🎯 CACCIATORE',
-    whaleRange: 'x100+ · 3 Cifre', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODON', whale: '🐳 BALENA', shark: '🦈 SQUALO', hunter: '🎯 CACCIATORE',
+    megalodonRange: 'x1000+ · 4 Cifre', whaleRange: 'x100 — x999 · 3 Cifre', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'Fiducia IA',
     confLevels: ['', 'Bassa', 'Media', 'Medio-Alta', 'Alta', 'Molto Alta', 'Massima'],
     selections: 'selezioni', copyBtn: '📋 Copia', copied: '✅ Copiato!', betBtn: '🎰 Scommetti su DBbet',
@@ -1331,8 +1351,8 @@ const I18N = {
     navTickets: 'Tickets', navHistory: 'Historique',
     minOdds: 'Cote minimum', sports: 'Sports', ticketsToday: "Tickets aujourd'hui", maxOdds: 'Cote max',
     filterAll: '🎯 Tous', filterFootball: '⚽ Football', filterTennis: '🎾 Tennis',
-    whale: '🐋 BALEINE', shark: '🦈 REQUIN', hunter: '🎯 CHASSEUR',
-    whaleRange: 'x100+ · 3 Chiffres', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MÉGALODON', whale: '🐳 BALEINE', shark: '🦈 REQUIN', hunter: '🎯 CHASSEUR',
+    megalodonRange: 'x1000+ · 4 Chiffres', whaleRange: 'x100 — x999 · 3 Chiffres', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'Confiance IA',
     confLevels: ['', 'Faible', 'Moyenne', 'Moy-Haute', 'Haute', 'Très Haute', 'Maximale'],
     selections: 'sélections', copyBtn: '📋 Copier', copied: '✅ Copié!', betBtn: '🎰 Parier sur DBbet',
@@ -1363,8 +1383,8 @@ const I18N = {
     navTickets: 'Ставки', navHistory: 'История',
     minOdds: 'Мин. кэф', sports: 'Спорт', ticketsToday: 'Ставок сегодня', maxOdds: 'Макс. кэф',
     filterAll: '🎯 Все', filterFootball: '⚽ Футбол', filterTennis: '🎾 Теннис',
-    whale: '🐋 КИТ', shark: '🦈 АКУЛА', hunter: '🎯 ОХОТНИК',
-    whaleRange: 'x100+ · 3 Цифры', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 МЕГАЛОДОН', whale: '🐳 КИТ', shark: '🦈 АКУЛА', hunter: '🎯 ОХОТНИК',
+    megalodonRange: 'x1000+ · 4 Цифры', whaleRange: 'x100 — x999 · 3 Цифры', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'Доверие ИИ',
     confLevels: ['', 'Низкое', 'Среднее', 'Выше ср.', 'Высокое', 'Очень выс.', 'Максимум'],
     selections: 'выборов', copyBtn: '📋 Копировать', copied: '✅ Скопировано!', betBtn: '🎰 Ставка в DBbet',
@@ -1438,7 +1458,7 @@ function translateProp(propEs) {
 }
 
 // === LIVE RESULTS ===
-const LEG_RESULTS = {'W1_0':'won', 'W1_1':'won', 'W2_0':'won', 'W2_1':'won', 'S1_0':'lost'};
+const LEG_RESULTS = {'M1_0':'won', 'M1_1':'won', 'W1_0':'won', 'W1_1':'won', 'S2_0':'lost'};
 
 // === TEAM BADGES ===
 const TEAM_LOGOS = {
@@ -1481,63 +1501,52 @@ function getTeamBadge(leg) {
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'W1', tier:'whale', sport:'futbol', title:'Multi-Sport x4', confidence:1, totalOdds:1407.8, couponCode:'', legs:[
-    {player:'Harry Kane', prop:'Marca gol en cualquier momento', match:'Bayern Munich vs Real Madrid — QF', odd:1.8, sport:'futbol', team:'BAY', date:'Abr 15'},
-    {player:'Ousmane Dembélé', prop:'Marca gol vs Bayern', match:'PSG vs Bayern Munich — SF', odd:2.5, sport:'futbol', team:'PSG', date:'May 6'},
-    {player:'Aryna Sabalenka', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.08, sport:'tenis', team:'WTA', date:'May 26'},
-    {player:'Jalen Brunson', prop:'Over 6.5 asistencias', match:'New York Knicks vs Cleveland Cavaliers', odd:2.2, sport:'nba', team:'NYK', date:'May 20'},
-    {player:'Kai Havertz', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.3, sport:'futbol', team:'ARS', date:'May 30'},
-    {player:'Aaron Judge', prop:'Home Run: Sí', match:'Blue Jays vs Yankees', odd:3.5, sport:'mlb', team:'NYY', date:'May 18'},
-    {player:'Marco Asensio', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.8, sport:'futbol', team:'PSG', date:'May 30'},
-    {player:'Bradley Barcola', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.0, sport:'futbol', team:'PSG', date:'May 30'}
-  ]},
-  { id:'W2', tier:'whale', sport:'futbol', title:'Multi-Sport x5', confidence:2, totalOdds:126.1, couponCode:'', legs:[
+  { id:'M1', tier:'megalodon', sport:'futbol', title:'MLB + Fútbol', confidence:1, totalOdds:1171.2, couponCode:'', legs:[
     {player:'Kylian Mbappé', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich — QF', odd:1.9, sport:'futbol', team:'RMA', date:'Abr 7'},
     {player:'Bukayo Saka', prop:'Marca gol vs Atlético', match:'Arsenal vs Atlético Madrid — SF', odd:2.8, sport:'futbol', team:'ARS', date:'May 5'},
-    {player:'Novak Djokovic', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.15, sport:'tenis', team:'ATP', date:'May 26'},
-    {player:'Alex Pereira', prop:'Gana la pelea', match:'Pereira vs Gane — UFC Freedom 250', odd:1.7, sport:'mma', team:'UFC', date:'Jun 14'},
-    {player:'Shohei Ohtani', prop:'Over 1.5 bases totales', match:'Dodgers vs Padres', odd:1.65, sport:'mlb', team:'LAD', date:'May 18'},
-    {player:'James Harden', prop:'Over 8.5 asistencias', match:'Cleveland Cavaliers vs New York Knicks', odd:2.1, sport:'nba', team:'CLE', date:'May 20'},
+    {player:'Manny Machado', prop:'Over 0.5 hits', match:'Dodgers vs Padres', odd:1.3, sport:'mlb', team:'SD', date:'May 19'},
+    {player:'Gonçalo Ramos', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:2.8, sport:'futbol', team:'PSG', date:'May 30'},
+    {player:'Corey Seager', prop:'Over 1.5 bases totales', match:'Rangers vs Rockies', odd:1.8, sport:'mlb', team:'TEX', date:'May 19'},
+    {player:'Gabriel Jesus', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.2, sport:'futbol', team:'ARS', date:'May 30'},
+    {player:'Bradley Barcola', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.0, sport:'futbol', team:'PSG', date:'May 30'},
+    {player:'Aaron Judge', prop:'Home Run: Sí', match:'Blue Jays vs Yankees', odd:3.5, sport:'mlb', team:'NYY', date:'May 18'}
+  ]},
+  { id:'W1', tier:'whale', sport:'futbol', title:'Multi-Sport x5', confidence:2, totalOdds:140.2, couponCode:'', legs:[
+    {player:'Ousmane Dembélé', prop:'Marca gol vs Bayern', match:'PSG vs Bayern Munich — SF', odd:2.5, sport:'futbol', team:'PSG', date:'May 6'},
+    {player:'Harry Kane', prop:'Marca gol en cualquier momento', match:'Bayern Munich vs Real Madrid — QF', odd:1.8, sport:'futbol', team:'BAY', date:'Abr 15'},
+    {player:'Jannik Sinner', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.08, sport:'tenis', team:'ATP', date:'May 25'},
+    {player:'Jalen Williams', prop:'Over 5.5 rebotes', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.25, sport:'nba', team:'OKC', date:'May 19'},
+    {player:'Jack Eichel', prop:'Over 0.5 goles', match:'Golden Knights vs Avalanche', odd:2.6, sport:'nhl', team:'VGK', date:'May 20'},
+    {player:'Ronald Acuña Jr.', prop:'Over 1.5 bases totales', match:'Braves vs Marlins', odd:1.7, sport:'mlb', team:'ATL', date:'May 18'},
+    {player:'Bukayo Saka', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:2.9, sport:'futbol', team:'ARS', date:'May 30'}
+  ]},
+  { id:'W2', tier:'whale', sport:'tenis', title:'Multi-Sport x4', confidence:2, totalOdds:132.6, couponCode:'', legs:[
+    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.12, sport:'tenis', team:'ATP', date:'May 25'},
+    {player:'Aryna Sabalenka', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.08, sport:'tenis', team:'WTA', date:'May 26'},
+    {player:'Chet Holmgren', prop:'Over 2.5 tapones', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.3, sport:'nba', team:'OKC', date:'May 19'},
+    {player:'Pete Alonso', prop:'Home Run: Sí', match:'Mets vs Nationals', odd:3.8, sport:'mlb', team:'NYM', date:'May 19'},
+    {player:'Marco Asensio', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.8, sport:'futbol', team:'PSG', date:'May 30'},
+    {player:'Kai Havertz', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.3, sport:'futbol', team:'ARS', date:'May 30'}
+  ]},
+  { id:'S1', tier:'shark', sport:'futbol', title:'Multi-Sport x4', confidence:3, totalOdds:63.9, couponCode:'', legs:[
+    {player:'Coco Gauff', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.1, sport:'tenis', team:'WTA', date:'May 25'},
+    {player:'Bryce Harper', prop:'Over 1.5 hits', match:'Reds vs Phillies', odd:2.25, sport:'mlb', team:'PHI', date:'May 18'},
+    {player:'Keldon Johnson', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.05, sport:'nba', team:'SAS', date:'May 19'},
+    {player:'Leandro Trossard', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.6, sport:'futbol', team:'ARS', date:'May 30'},
     {player:'Martin Ødegaard', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.5, sport:'futbol', team:'ARS', date:'May 30'}
   ]},
-  { id:'W3', tier:'whale', sport:'nba', title:'Multi-Sport x5', confidence:3, totalOdds:52.2, couponCode:'', legs:[
-    {player:'Manny Machado', prop:'Over 0.5 hits', match:'Dodgers vs Padres', odd:1.3, sport:'mlb', team:'SD', date:'May 19'},
-    {player:'Alexander Zverev', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.1, sport:'tenis', team:'ATP', date:'May 26'},
-    {player:'Jack Eichel', prop:'Over 0.5 goles', match:'Golden Knights vs Avalanche', odd:2.6, sport:'nhl', team:'VGK', date:'May 20'},
-    {player:'Karl-Anthony Towns', prop:'Over 10.5 rebotes', match:'New York Knicks vs Cleveland Cavaliers', odd:1.95, sport:'nba', team:'NYK', date:'May 20'},
-    {player:'OG Anunoby', prop:'Over 14.5 puntos', match:'New York Knicks vs Cleveland Cavaliers', odd:2.0, sport:'nba', team:'NYK', date:'May 20'},
-    {player:'Leandro Trossard', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.6, sport:'futbol', team:'ARS', date:'May 30'}
-  ]},
-  { id:'S1', tier:'shark', sport:'futbol', title:'Multi-Sport x4', confidence:5, totalOdds:21.1, couponCode:'', legs:[
-    {player:'Vinícius Jr.', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich — QF', odd:2.2, sport:'futbol', team:'RMA', date:'Abr 7'},
-    {player:'Mikko Rantanen', prop:'Over 0.5 goles', match:'Avalanche vs Golden Knights', odd:2.3, sport:'nhl', team:'COL', date:'May 22'},
-    {player:'Marcus Semien', prop:'Over 1.5 bases totales', match:'Rangers vs Rockies', odd:1.85, sport:'mlb', team:'TEX', date:'May 19'},
-    {player:'Jalen Williams', prop:'Over 5.5 rebotes', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.25, sport:'nba', team:'OKC', date:'May 19'}
-  ]},
-  { id:'H1', tier:'hunter', sport:'nba', title:'Multi-Sport x4', confidence:4, totalOdds:22.5, couponCode:'', legs:[
-    {player:'Jannik Sinner', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.08, sport:'tenis', team:'ATP', date:'May 25'},
-    {player:'Gonçalo Ramos', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:2.8, sport:'futbol', team:'PSG', date:'May 30'},
-    {player:'James Harden', prop:'Over 18.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:1.95, sport:'nba', team:'CLE', date:'May 20'},
+  { id:'S2', tier:'shark', sport:'mlb', title:'Multi-Sport x3', confidence:4, totalOdds:33.6, couponCode:'', legs:[
+    {player:'Adam Bareiro', prop:'Marca gol en cualquier momento', match:'River Plate 0-1 Boca Juniors', odd:3.5, sport:'futbol', team:'RIV', date:'Abr 19'},
     {player:'Yordan Alvarez', prop:'Over 1.5 bases totales', match:'Astros vs Twins', odd:1.82, sport:'mlb', team:'HOU', date:'May 18'},
-    {player:'Shai Gilgeous-Alexander', prop:'Over 5.5 asistencias', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.1, sport:'nba', team:'OKC', date:'May 19'}
+    {player:'Victor Wembanyama', prop:'Over 3.5 tapones', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.45, sport:'nba', team:'SAS', date:'May 19'},
+    {player:'Bobby Witt Jr.', prop:'Over 1.5 hits', match:'Red Sox vs Royals', odd:2.15, sport:'mlb', team:'KC', date:'May 18'}
   ]},
-  { id:'H2', tier:'hunter', sport:'nba', title:'NBA + Tenis', confidence:5, totalOdds:7.8, couponCode:'', legs:[
+  { id:'H1', tier:'hunter', sport:'nba', title:'Multi-Sport x4', confidence:4, totalOdds:19.6, couponCode:'', legs:[
     {player:'Iga Świątek', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.05, sport:'tenis', team:'WTA', date:'May 25'},
-    {player:'Lu Dort', prop:'Over 10.5 puntos', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:2.0, sport:'nba', team:'OKC', date:'May 19'},
-    {player:'Shai Gilgeous-Alexander', prop:'Over 30.5 puntos', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:1.82, sport:'nba', team:'OKC', date:'May 19'},
-    {player:'Keldon Johnson', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.05, sport:'nba', team:'SAS', date:'May 19'}
-  ]},
-  { id:'H3', tier:'hunter', sport:'mlb', title:'Multi-Sport x3', confidence:5, totalOdds:6.2, couponCode:'', legs:[
-    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.12, sport:'tenis', team:'ATP', date:'May 25'},
-    {player:'Ronald Acuña Jr.', prop:'Over 1.5 bases totales', match:'Braves vs Marlins', odd:1.7, sport:'mlb', team:'ATL', date:'May 18'},
-    {player:'Donovan Mitchell', prop:'Over 27.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:1.85, sport:'nba', team:'CLE', date:'May 20'},
-    {player:'Rafael Devers', prop:'Over 1.5 bases totales', match:'Red Sox vs Royals', odd:1.75, sport:'mlb', team:'BOS', date:'May 19'}
-  ]},
-  { id:'H4', tier:'hunter', sport:'mlb', title:'Multi-Sport x3', confidence:5, totalOdds:5.6, couponCode:'', legs:[
-    {player:'Trea Turner', prop:'Over 0.5 hits', match:'Reds vs Phillies', odd:1.28, sport:'mlb', team:'PHI', date:'May 19'},
-    {player:'Freddie Freeman', prop:'Over 0.5 hits', match:'Dodgers vs Padres', odd:1.25, sport:'mlb', team:'LAD', date:'May 18'},
-    {player:'Nathan MacKinnon', prop:'Over 1.5 puntos', match:'Avalanche vs Golden Knights', odd:1.85, sport:'nhl', team:'COL', date:'May 20'},
-    {player:'Jalen Williams', prop:'Over 20.5 puntos', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:1.9, sport:'nba', team:'OKC', date:'May 19'}
+    {player:'Victor Wembanyama', prop:'Over 22.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:1.9, sport:'nba', team:'SAS', date:'May 19'},
+    {player:'Jalen Brunson', prop:'Over 26.5 puntos', match:'New York Knicks vs Cleveland Cavaliers', odd:1.78, sport:'nba', team:'NYK', date:'May 20'},
+    {player:'Mikko Rantanen', prop:'Over 0.5 goles', match:'Avalanche vs Golden Knights', odd:2.3, sport:'nhl', team:'COL', date:'May 22'},
+    {player:'Mookie Betts', prop:'Over 1.5 hits', match:'Dodgers vs Padres', odd:2.4, sport:'mlb', team:'LAD', date:'May 18'}
   ]},
 ];
 
@@ -1565,12 +1574,14 @@ function updateUI() {
   filterBtns[4].textContent = t('filterTennis');
   // Section headers
   const sectionHeaders = document.querySelectorAll('.section-header');
-  sectionHeaders[0].querySelector('h2').textContent = t('whale');
-  sectionHeaders[0].querySelector('.badge').textContent = t('whaleRange');
-  sectionHeaders[1].querySelector('h2').textContent = t('shark');
-  sectionHeaders[1].querySelector('.badge').textContent = t('sharkRange');
-  sectionHeaders[2].querySelector('h2').textContent = t('hunter');
-  sectionHeaders[2].querySelector('.badge').textContent = t('hunterRange');
+  sectionHeaders[0].querySelector('h2').textContent = t('megalodon');
+  sectionHeaders[0].querySelector('.badge').textContent = t('megalodonRange');
+  sectionHeaders[1].querySelector('h2').textContent = t('whale');
+  sectionHeaders[1].querySelector('.badge').textContent = t('whaleRange');
+  sectionHeaders[2].querySelector('h2').textContent = t('shark');
+  sectionHeaders[2].querySelector('.badge').textContent = t('sharkRange');
+  sectionHeaders[3].querySelector('h2').textContent = t('hunter');
+  sectionHeaders[3].querySelector('.badge').textContent = t('hunterRange');
   // CTA
   document.querySelector('.db-cta-text').innerHTML = t('ctaText');
   document.querySelector('.db-cta-btn').textContent = t('ctaBtn');
@@ -1583,17 +1594,18 @@ function updateUI() {
 // === RENDER TICKETS ===
 function renderTickets(filter = 'all') {
   const containers = {
+    megalodon: document.getElementById('tickets-megalodon'),
     whale: document.getElementById('tickets-whale'),
     shark: document.getElementById('tickets-shark'),
     hunter: document.getElementById('tickets-hunter'),
   };
   Object.values(containers).forEach(c => c.innerHTML = '');
 
-  const filtered = filter === 'all' ? TICKETS : TICKETS.filter(t => t.sport === filter);
+  const filtered = filter === 'all' ? TICKETS : filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) : TICKETS.filter(t => t.sport === filter);
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
 
   filtered.forEach((ticket, i) => {
-    const tierClass = ticket.tier === 'whale' ? 'tier-whale' : ticket.tier === 'shark' ? 'tier-shark' : 'tier-hunter';
+    const tierClass = ticket.tier === 'megalodon' ? 'tier-megalodon' : ticket.tier === 'whale' ? 'tier-whale' : ticket.tier === 'shark' ? 'tier-shark' : 'tier-hunter';
     const tierLabel = t(ticket.tier);
 
     const legsHTML = ticket.legs.map((leg, j) => {
@@ -1676,7 +1688,7 @@ function renderTickets(filter = 'all') {
     if (containers[ticket.tier]) containers[ticket.tier].innerHTML += card;
   });
 
-  ['whale', 'shark', 'hunter'].forEach(tier => {
+  ['megalodon', 'whale', 'shark', 'hunter'].forEach(tier => {
     const section = containers[tier].previousElementSibling;
     if (containers[tier].innerHTML === '') {
       containers[tier].style.display = 'none';
