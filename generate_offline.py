@@ -99,13 +99,65 @@ PROP_POOL = [
     {'player': 'Coco Gauff', 'prop': 'Gana su 1er partido', 'match': 'Roland Garros — 1ra Ronda', 'odd': 1.10, 'sport': 'tenis', 'team': 'WTA', 'date': 'May 25'},
 
     # ── NHL CONFERENCE FINALS (May 20+) ──
-    {'player': 'Nathan MacKinnon', 'prop': 'Over 1.5 puntos', 'match': 'Avalanche vs Golden Knights', 'odd': 1.85, 'sport': 'nhl', 'team': 'COL', 'date': 'May 20'},
-    {'player': 'Cale Makar', 'prop': 'Over 0.5 goles', 'match': 'Avalanche vs Golden Knights', 'odd': 2.80, 'sport': 'nhl', 'team': 'COL', 'date': 'May 20'},
-    {'player': 'Jack Eichel', 'prop': 'Over 0.5 goles', 'match': 'Golden Knights vs Avalanche', 'odd': 2.60, 'sport': 'nhl', 'team': 'VGK', 'date': 'May 20'},
+    # West: Colorado Avalanche vs Vegas Golden Knights
+    {'player': 'Nathan MacKinnon', 'prop': 'Over 1.5 puntos', 'match': 'Avalanche vs Golden Knights', 'odd': 1.85, 'sport': 'nhl', 'team': 'COL', 'date': 'May 22'},
+    {'player': 'Cale Makar', 'prop': 'Over 0.5 goles', 'match': 'Avalanche vs Golden Knights', 'odd': 2.80, 'sport': 'nhl', 'team': 'COL', 'date': 'May 22'},
+    {'player': 'Jack Eichel', 'prop': 'Over 0.5 goles', 'match': 'Golden Knights vs Avalanche', 'odd': 2.60, 'sport': 'nhl', 'team': 'VGK', 'date': 'May 22'},
     {'player': 'Mikko Rantanen', 'prop': 'Over 0.5 goles', 'match': 'Avalanche vs Golden Knights', 'odd': 2.30, 'sport': 'nhl', 'team': 'COL', 'date': 'May 22'},
     {'player': 'Mark Stone', 'prop': 'Over 0.5 puntos', 'match': 'Golden Knights vs Avalanche', 'odd': 1.70, 'sport': 'nhl', 'team': 'VGK', 'date': 'May 22'},
+    {'player': 'Nathan MacKinnon', 'prop': 'Over 0.5 goles', 'match': 'Avalanche vs Golden Knights', 'odd': 2.10, 'sport': 'nhl', 'team': 'COL', 'date': 'May 24'},
+    {'player': 'Jack Eichel', 'prop': 'Over 1.5 puntos', 'match': 'Golden Knights vs Avalanche', 'odd': 2.00, 'sport': 'nhl', 'team': 'VGK', 'date': 'May 24'},
+    # East: Carolina Hurricanes vs Montreal Canadiens
+    {'player': 'Sebastian Aho', 'prop': 'Over 0.5 goles', 'match': 'Hurricanes vs Canadiens', 'odd': 2.20, 'sport': 'nhl', 'team': 'CAR', 'date': 'May 21'},
+    {'player': 'Andrei Svechnikov', 'prop': 'Over 0.5 goles', 'match': 'Hurricanes vs Canadiens', 'odd': 2.50, 'sport': 'nhl', 'team': 'CAR', 'date': 'May 21'},
+    {'player': 'Nick Suzuki', 'prop': 'Over 0.5 puntos', 'match': 'Canadiens vs Hurricanes', 'odd': 1.75, 'sport': 'nhl', 'team': 'MTL', 'date': 'May 21'},
+    {'player': 'Cole Caufield', 'prop': 'Over 0.5 goles', 'match': 'Canadiens vs Hurricanes', 'odd': 2.40, 'sport': 'nhl', 'team': 'MTL', 'date': 'May 21'},
+    {'player': 'Sebastian Aho', 'prop': 'Over 1.5 puntos', 'match': 'Hurricanes vs Canadiens', 'odd': 2.60, 'sport': 'nhl', 'team': 'CAR', 'date': 'May 23'},
+    {'player': 'Cole Caufield', 'prop': 'Over 0.5 puntos', 'match': 'Canadiens vs Hurricanes', 'odd': 1.65, 'sport': 'nhl', 'team': 'MTL', 'date': 'May 25'},
 
-    # ── UFC FREEDOM 250 (June 14) ──
+    # ── COPA LIBERTADORES — FASE DE GRUPOS J5 (May 20-21) ──
+    # Boca Juniors vs Cruzeiro — La Bombonera (May 20)
+    {'player': 'Edinson Cavani', 'prop': 'Marca gol en cualquier momento', 'match': 'Boca Juniors vs Cruzeiro — Libertadores', 'odd': 2.50, 'sport': 'futbol', 'team': 'BOC', 'date': 'May 20'},
+    {'player': 'Miguel Merentiel', 'prop': 'Marca gol en cualquier momento', 'match': 'Boca Juniors vs Cruzeiro — Libertadores', 'odd': 2.80, 'sport': 'futbol', 'team': 'BOC', 'date': 'May 20'},
+    {'player': 'Kevin Zenón', 'prop': 'Over 0.5 asistencias', 'match': 'Boca Juniors vs Cruzeiro — Libertadores', 'odd': 3.00, 'sport': 'futbol', 'team': 'BOC', 'date': 'May 20'},
+    {'player': 'Matheus Pereira', 'prop': 'Marca gol en cualquier momento', 'match': 'Cruzeiro vs Boca Juniors — Libertadores', 'odd': 3.20, 'sport': 'futbol', 'team': 'CRU', 'date': 'May 20'},
+    # Flamengo vs Estudiantes LP — Maracanã (May 21)
+    {'player': 'Gabriel Barbosa', 'prop': 'Marca gol en cualquier momento', 'match': 'Flamengo vs Estudiantes LP — Libertadores', 'odd': 2.20, 'sport': 'futbol', 'team': 'FLA', 'date': 'May 21'},
+    {'player': 'Pedro', 'prop': 'Marca gol en cualquier momento', 'match': 'Flamengo vs Estudiantes LP — Libertadores', 'odd': 2.40, 'sport': 'futbol', 'team': 'FLA', 'date': 'May 21'},
+    {'player': 'Bruno Henrique', 'prop': 'Marca gol en cualquier momento', 'match': 'Flamengo vs Estudiantes LP — Libertadores', 'odd': 3.00, 'sport': 'futbol', 'team': 'FLA', 'date': 'May 21'},
+    {'player': 'De Arrascaeta', 'prop': 'Over 0.5 asistencias', 'match': 'Flamengo vs Estudiantes LP — Libertadores', 'odd': 2.80, 'sport': 'futbol', 'team': 'FLA', 'date': 'May 21'},
+    # Palmeiras vs Cerro Porteño — Allianz Parque (May 21)
+    {'player': 'Estêvão', 'prop': 'Marca gol en cualquier momento', 'match': 'Palmeiras vs Cerro Porteño — Libertadores', 'odd': 2.30, 'sport': 'futbol', 'team': 'PAL', 'date': 'May 21'},
+    {'player': 'Flaco López', 'prop': 'Marca gol en cualquier momento', 'match': 'Palmeiras vs Cerro Porteño — Libertadores', 'odd': 2.50, 'sport': 'futbol', 'team': 'PAL', 'date': 'May 21'},
+    {'player': 'Raphael Veiga', 'prop': 'Marca gol en cualquier momento', 'match': 'Palmeiras vs Cerro Porteño — Libertadores', 'odd': 3.10, 'sport': 'futbol', 'team': 'PAL', 'date': 'May 21'},
+    # LDU Quito vs Lanús — Casa Blanca (May 21)
+    {'player': 'Alex Arce', 'prop': 'Marca gol en cualquier momento', 'match': 'LDU Quito vs Lanús — Libertadores', 'odd': 2.60, 'sport': 'futbol', 'team': 'LDU', 'date': 'May 21'},
+    # Fluminense vs Bolivar — Maracanã (May 20)
+    {'player': 'Germán Cano', 'prop': 'Marca gol en cualquier momento', 'match': 'Fluminense vs Bolivar — Libertadores', 'odd': 2.30, 'sport': 'futbol', 'team': 'FLU', 'date': 'May 20'},
+    {'player': 'Jhon Arias', 'prop': 'Marca gol en cualquier momento', 'match': 'Fluminense vs Bolivar — Libertadores', 'odd': 2.80, 'sport': 'futbol', 'team': 'FLU', 'date': 'May 20'},
+    # Nacional vs Universitario — Gran Parque Central (May 21)
+    {'player': 'Luis Suárez', 'prop': 'Marca gol en cualquier momento', 'match': 'Nacional vs Universitario — Libertadores', 'odd': 2.40, 'sport': 'futbol', 'team': 'NAC', 'date': 'May 21'},
+    # Rosario Central vs U. Central — Gigante de Arroyito (May 20)
+    {'player': 'Ángel Di María', 'prop': 'Over 0.5 asistencias', 'match': 'Rosario Central vs U. Central — Libertadores', 'odd': 2.60, 'sport': 'futbol', 'team': 'ROC', 'date': 'May 20'},
+    {'player': 'Ángel Di María', 'prop': 'Marca gol en cualquier momento', 'match': 'Rosario Central vs U. Central — Libertadores', 'odd': 3.30, 'sport': 'futbol', 'team': 'ROC', 'date': 'May 20'},
+
+    # ── SERIE A — ÚLTIMA FECHA (May 24) ──
+    {'player': 'Dusan Vlahovic', 'prop': 'Marca gol en cualquier momento', 'match': 'Torino vs Juventus — Serie A J38', 'odd': 2.10, 'sport': 'futbol', 'team': 'JUV', 'date': 'May 24'},
+    {'player': 'Lautaro Martínez', 'prop': 'Marca gol en cualquier momento', 'match': 'Bologna vs Inter — Serie A J38', 'odd': 2.00, 'sport': 'futbol', 'team': 'INT', 'date': 'May 24'},
+    {'player': 'Rafael Leão', 'prop': 'Marca gol en cualquier momento', 'match': 'AC Milan vs Cagliari — Serie A J38', 'odd': 2.20, 'sport': 'futbol', 'team': 'ACM', 'date': 'May 24'},
+    {'player': 'Victor Osimhen', 'prop': 'Marca gol en cualquier momento', 'match': 'Napoli vs Udinese — Serie A J38', 'odd': 1.90, 'sport': 'futbol', 'team': 'NAP', 'date': 'May 24'},
+    {'player': 'Ademola Lookman', 'prop': 'Marca gol en cualquier momento', 'match': 'Fiorentina vs Atalanta — Serie A J38', 'odd': 2.70, 'sport': 'futbol', 'team': 'ATA', 'date': 'May 22'},
+
+    # ── LA LIGA — ÚLTIMA FECHA (May 23-24) ──
+    {'player': 'Kylian Mbappé', 'prop': 'Marca gol último partido', 'match': 'Real Madrid vs Athletic Bilbao — La Liga J38', 'odd': 1.75, 'sport': 'futbol', 'team': 'RMA', 'date': 'May 24'},
+    {'player': 'Robert Lewandowski', 'prop': 'Marca gol en cualquier momento', 'match': 'Valencia vs Barcelona — La Liga J38', 'odd': 1.85, 'sport': 'futbol', 'team': 'BAR', 'date': 'May 24'},
+    {'player': 'Vinícius Jr.', 'prop': 'Marca gol último partido', 'match': 'Real Madrid vs Athletic Bilbao — La Liga J38', 'odd': 2.30, 'sport': 'futbol', 'team': 'RMA', 'date': 'May 24'},
+    {'player': 'Lamine Yamal', 'prop': 'Over 0.5 asistencias', 'match': 'Valencia vs Barcelona — La Liga J38', 'odd': 2.40, 'sport': 'futbol', 'team': 'BAR', 'date': 'May 24'},
+    {'player': 'Raphinha', 'prop': 'Marca gol en cualquier momento', 'match': 'Valencia vs Barcelona — La Liga J38', 'odd': 2.60, 'sport': 'futbol', 'team': 'BAR', 'date': 'May 24'},
+    {'player': 'Jude Bellingham', 'prop': 'Marca gol en cualquier momento', 'match': 'Real Madrid vs Athletic Bilbao — La Liga J38', 'odd': 2.80, 'sport': 'futbol', 'team': 'RMA', 'date': 'May 24'},
+
+    # ── UFC FIGHT NIGHT — Song vs Figueiredo (May 30, Macau) ──
+    {'player': 'Yadong Song', 'prop': 'Gana la pelea', 'match': 'Song vs Figueiredo — UFC Macau', 'odd': 1.60, 'sport': 'mma', 'team': 'UFC', 'date': 'May 30'},
     {'player': 'Alex Pereira', 'prop': 'Gana la pelea', 'match': 'Pereira vs Gane — UFC Freedom 250', 'odd': 1.70, 'sport': 'mma', 'team': 'UFC', 'date': 'Jun 14'},
 ]
 
