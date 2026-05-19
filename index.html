@@ -1622,7 +1622,7 @@ function renderTickets(filter = 'all') {
 
   const filtered = filter === 'all' ? TICKETS :
     filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) :
-    TICKETS.filter(t => t.sport === filter);
+    TICKETS.filter(t => t.legs.some(l => l.sport === filter));
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
 
   filtered.forEach((ticket, i) => {
