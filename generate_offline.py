@@ -7,11 +7,13 @@ REAL matchups, ZERO duplicate selections across tickets, team badges.
 import random
 import math
 import re
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 TEMPLATE_FILE = Path(__file__).parent / 'template.html'
 OUTPUT_FILE = Path(__file__).parent / 'index.html'
+COUPONS_FILE = Path(__file__).parent / 'coupons.json'
 
 # ============================================================
 # PROP POOL — REAL matchups May 2026
@@ -370,7 +372,7 @@ def generate_ticket_js(tickets):
             f"  {{ id:'{ticket['id']}', tier:'{ticket['tier']}', "
             f"sport:'{primary_sport}', title:'{_esc(ticket['title'])}', "
             f"confidence:{ticket['confidence']}, totalOdds:{ticket['total_odds']}, "
-            f"couponCode:'', legs:[\n" +
+            f"couponCode:'{_esc(ticket.get('coupon_code', ''))}', legs:[\n" +
             ",\n".join(legs_js) +
             "\n  ]},"
         )
@@ -412,6 +414,18 @@ def main():
     print()
 
     tickets = build_tickets()
+
+    # Load coupon codes from coupons.json if it exists
+    coupons = {}
+    if COUPONS_FILE.exists():
+        try:
+            coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
+            print(f"🎫 Loaded {len(coupons)} coupon codes from coupons.json")
+        except Exception as e:
+            print(f"⚠️ Could not load coupons.json: {e}")
+    for t in tickets:
+        t['coupon_code'] = coupons.get(t['id'], '')
+
     print(f"🎰 Generated {len(tickets)} tickets:")
     for t in tickets:
         sports_in = set(l['sport'] for l in t['legs'])
@@ -441,6 +455,12 @@ def main():
     print("\n📝 Updating HTML files...")
     update_html(tickets_js, results_js, OUTPUT_FILE)
     update_html(tickets_js, results_js, TEMPLATE_FILE)
+
+    # Save/update coupons.json template (preserves existing codes)
+    coupon_template = {t['id']: coupons.get(t['id'], '') for t in tickets}
+    COUPONS_FILE.write_text(json.dumps(coupon_template, indent=2), encoding='utf-8')
+    assigned = sum(1 for v in coupon_template.values() if v)
+    print(f"🎫 coupons.json saved ({assigned}/{len(coupon_template)} codes assigned)")
 
     print(f"\n✅ Done! {len(tickets)} tickets, zero duplicates, team badges ready.")
 
