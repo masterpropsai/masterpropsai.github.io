@@ -59,7 +59,7 @@ INTERESTING_KEYWORDS = [
     'Next Goal', 'Clean Sheet', 'Win To Nil', 'To Score',
 ]
 
-# ── Spanish translations ──
+# ── Spanish translations for prop display ──
 TRANSLATIONS = {
     'Over': 'Más de', 'Under': 'Menos de', 'Handicap': 'Hándicap',
     'Both Teams To Score - Yes': 'Ambos anotan - Sí',
@@ -73,6 +73,73 @@ TRANSLATIONS = {
     'Not To Lose': 'No pierde',
     'To Score Next Goal': 'Anota próximo gol',
     'Neither Team': 'Ninguno',
+    ' And Total': ' y Total',
+    ' To Win ': ' Gana ',
+    'Any Team To': 'Algún equipo',
+    ' Or More ': ' o más ',
+    ' With Difference Of': ' por diferencia de',
+    'Total Odd': 'Total Impar',
+    'Total Even': 'Total Par',
+    ' - Yes': ' - Sí',
+    ' Wins ': ' Gana ',
+    ' By ': ' por ',
+    'Goal': 'Gol',
+    'Corners': 'Córners',
+    'Cards': 'Tarjetas',
+    'Yellow': 'Amarilla',
+    'Red': 'Roja',
+    'Half Time': '1er Tiempo',
+    'Full Time': 'Final',
+    'Next ': 'Próximo ',
+    'Score': 'Marca',
+    'First': 'Primer',
+    'Last': 'Último',
+    'penalty': 'penal',
+    'Penalty': 'Penal',
+    'Draw': 'Empate',
+    'No Draw': 'Sin Empate',
+}
+
+# ── Team/Country name translations (EN → ES) ──
+TEAM_NAME_ES = {
+    # Selecciones
+    'Spain': 'España', 'France': 'Francia', 'Germany': 'Alemania',
+    'England': 'Inglaterra', 'Netherlands': 'Holanda', 'Brazil': 'Brasil',
+    'Mexico': 'México', 'Switzerland': 'Suiza', 'Sweden': 'Suecia',
+    'Scotland': 'Escocia', 'Japan': 'Japón', 'South Korea': 'Corea del Sur',
+    'Turkey': 'Turquía', 'South Africa': 'Sudáfrica',
+    'Bosnia and Herzegovina': 'Bosnia', 'Czech Republic': 'Rep. Checa',
+    'Cape Verde': 'Cabo Verde', 'Curacao': 'Curazao',
+    'DR Congo': 'RD Congo', 'Saudi Arabia': 'Arabia Saudita',
+    'Haiti': 'Haití', 'Iraq': 'Irak', 'Tunisia': 'Túnez',
+    'Belgium': 'Bélgica', 'Egypt': 'Egipto', 'Panama': 'Panamá',
+    'Morocco': 'Marruecos', 'Croatia': 'Croacia',
+    'United States': 'EE.UU.', 'USA': 'EE.UU.', 'Costa Rica': 'Costa Rica',
+    'North Korea': 'Corea del Norte', 'Ivory Coast': 'Costa de Marfil',
+    'Denmark': 'Dinamarca', 'Poland': 'Polonia', 'Norway': 'Noruega',
+    'Finland': 'Finlandia', 'Greece': 'Grecia', 'Romania': 'Rumania',
+    'Hungary': 'Hungría', 'Serbia': 'Serbia', 'Slovakia': 'Eslovaquia',
+    'Slovenia': 'Eslovenia', 'Albania': 'Albania', 'Iceland': 'Islandia',
+    'Wales': 'Gales', 'Ireland': 'Irlanda', 'Russia': 'Rusia',
+    'Ukraine': 'Ucrania', 'Peru': 'Perú', 'Chile': 'Chile',
+    'Colombia': 'Colombia', 'Ecuador': 'Ecuador', 'Bolivia': 'Bolivia',
+    'Venezuela': 'Venezuela', 'Honduras': 'Honduras',
+    'Jamaica': 'Jamaica', 'Canada': 'Canadá',
+    'Cameroon': 'Camerún', 'Nigeria': 'Nigeria', 'Algeria': 'Argelia',
+    'China': 'China', 'Iran': 'Irán', 'New Zealand': 'Nueva Zelanda',
+    # Clubes — acortar nombres largos
+    'Brighton & Hove Albion': 'Brighton', 'VfB Stuttgart': 'Stuttgart',
+    'Nottingham Forest': 'Nott. Forest', 'Bologna 1909': 'Bologna',
+    'Sassuolo Calcio': 'Sassuolo', 'Internazionale Milano': 'Inter de Milán',
+    'Udinese Calcio': 'Udinese', 'Bayern Munich': 'Bayern Múnich',
+    'Manchester United': 'Man. United', 'Manchester City': 'Man. City',
+    'Tottenham Hotspur': 'Tottenham', 'West Ham United': 'West Ham',
+    'Newcastle United': 'Newcastle', 'Hellas Verona': 'Verona',
+    'Levante UD': 'Levante', 'Leeds United': 'Leeds',
+    'Spartak Moscow': 'Spartak Moscú', 'Crystal Palace': 'C. Palace',
+    'Wolverhampton Wanderers': 'Wolverhampton',
+    'Paris Saint-Germain': 'PSG',
+    'Cremonese': 'Cremonese',
 }
 
 
@@ -108,9 +175,78 @@ def abbrev(name):
 
 def translate(display):
     d = display
+    # Phase 1: Multi-word phrases first (order matters!)
+    multi_word = [
+        ('Any Team To Win With Difference Of', 'Algún equipo gana por diferencia de'),
+        ('Any Team To Win', 'Algún equipo gana'),
+        ('Any Team To', 'Algún equipo'),
+        ('Both Teams To Score - Yes', 'Ambos anotan - Sí'),
+        ('Both Teams To Score - No', 'Ambos anotan - No'),
+        ('Win And Total', 'Gana y Total'),
+        ('Win To Nil', 'Gana sin goles en contra'),
+        ('Not To Lose', 'No pierde'),
+        ('To Score Next Goal', 'Anota próximo gol'),
+        ('Neither Team', 'Ninguno'),
+        ('Individual Total', 'Total Individual'),
+        ('Race To', 'Primero en'),
+        ('Clean Sheet', 'Valla invicta'),
+        ('Half Time', '1er Tiempo'),
+        ('Full Time', 'Final'),
+        ('No Draw', 'Sin Empate'),
+    ]
+    for en, es in multi_word:
+        d = d.replace(en, es)
+    # Phase 2: Single-word translations
     for en, es in TRANSLATIONS.items():
         d = d.replace(en, es)
-    return d
+    # Phase 3: Clean up leftover English fragments
+    d = d.replace(' To Gana', ' Gana')
+    d = d.replace(' To No pierde', ' No pierde')
+    d = d.replace(' To Valla invicta', ' Valla invicta')
+    d = d.replace('Any Team ', 'Algún equipo ')
+    d = d.replace(' Wins ', ' Gana ')
+    d = d.replace(' By ', ' por ')
+    d = d.replace('Goals', 'Goles')
+    d = d.replace('Goal', 'Gol')
+    d = d.replace('Corners', 'Córners')
+    d = d.replace(' Or More', ' o más')
+    d = d.replace(' Of ', ' de ')
+    d = d.replace('To Nil', 'sin goles en contra')
+    d = d.replace(' To ', ' ')
+    d = d.replace('goles en contra -', 'goles en contra -')
+    # Double-space cleanup
+    while '  ' in d:
+        d = d.replace('  ', ' ')
+    return d.strip()
+
+
+def translate_name(name):
+    """Translate team/country names to Spanish."""
+    # Try exact match first
+    if name in TEAM_NAME_ES:
+        return TEAM_NAME_ES[name]
+    # Try partial match for club names
+    for en, es in TEAM_NAME_ES.items():
+        if en.lower() == name.lower():
+            return es
+    return name
+
+
+def translate_match(t1, t2, tournament):
+    """Build a Spanish-friendly match string."""
+    t1_es = translate_name(t1)
+    t2_es = translate_name(t2)
+    if tournament:
+        short = tournament.split('.')[-1].strip() if '.' in tournament else tournament
+        # Translate common tournament fragments
+        short = short.replace('World Cup', 'Mundial')
+        short = short.replace('Champions League', 'Champions')
+        short = short.replace('Premier League', 'Premier League')
+        short = short.replace('Germany DFB Pokal', 'Copa de Alemania')
+        short = short.replace('Coupe de France', 'Copa de Francia')
+        short = short.replace('Russian Cup', 'Copa de Rusia')
+        return f"{t1_es} vs {t2_es} — {short}"
+    return f"{t1_es} vs {t2_es}"
 
 
 def build_prop_pool(data):
@@ -155,15 +291,12 @@ def build_prop_pool(data):
             else:
                 player, team, logo = t1, ab1, logo1
 
-            # Short match name for display
-            if tournament:
-                short_tournament = tournament.split('.')[-1].strip() if '.' in tournament else tournament
-                match_display = f"{t1} vs {t2} — {short_tournament}"
-            else:
-                match_display = match
+            # Translate names and match
+            player_es = translate_name(player)
+            match_display = translate_match(t1, t2, tournament)
 
             props.append({
-                'player': player,
+                'player': player_es,
                 'prop': translate(display),
                 'match': match_display,
                 'odd': round(odds_val, 2),
