@@ -57,7 +57,14 @@ INTERESTING_KEYWORDS = [
     'Handicap', 'Total', 'Both Teams', 'HT-FT', 'Win And Total',
     'Individual Total', 'Race To', 'W1', 'W2', 'To Win',
     'Next Goal', 'Clean Sheet', 'Win To Nil', 'To Score',
+    'Corners', 'Cards', 'Yellow', 'Odd', 'Even',
+    'Not To Lose', 'Difference', 'Any Team', 'Neither',
+    'Draw', 'No Draw', 'Half', 'Penalty',
+    'Win By', 'Exact Score', 'Double Chance',
 ]
+
+# Markets that imply a specific team winning — used to avoid contradictions
+TEAM_WINNER_MARKETS = {'W1', 'W2', '1X', 'X2', '12'}
 
 # ── Spanish translations for prop display ──
 TRANSLATIONS = {
@@ -234,19 +241,18 @@ def translate_name(name):
 
 
 def translate_match(t1, t2, tournament):
-    """Build a Spanish-friendly match string."""
+    """Build a Spanish-friendly match string — just tournament since player has rival context."""
     t1_es = translate_name(t1)
     t2_es = translate_name(t2)
     if tournament:
         short = tournament.split('.')[-1].strip() if '.' in tournament else tournament
-        # Translate common tournament fragments
         short = short.replace('World Cup', 'Mundial')
         short = short.replace('Champions League', 'Champions')
         short = short.replace('Premier League', 'Premier League')
         short = short.replace('Germany DFB Pokal', 'Copa de Alemania')
         short = short.replace('Coupe de France', 'Copa de Francia')
         short = short.replace('Russian Cup', 'Copa de Rusia')
-        return f"{t1_es} vs {t2_es} — {short}"
+        return f"{short}"
     return f"{t1_es} vs {t2_es}"
 
 
@@ -299,18 +305,24 @@ def build_prop_pool(data):
 
             # Determine which team and logo
             if '1' in display and '2' not in display:
-                player, team, logo = t1, ab1, logo1
+                player, rival, team, logo = t1, t2, ab1, logo1
             elif '2' in display and '1' not in display:
-                player, team, logo = t2, ab2, logo2
+                player, rival, team, logo = t2, t1, ab2, logo2
             else:
-                player, team, logo = t1, ab1, logo1
+                player, rival, team, logo = t1, t2, ab1, logo1
 
-            # Translate names and match
+            # Translate names — format: "(vs Rival) Equipo"
             player_es = translate_name(player)
+            rival_es = translate_name(rival)
+            player_display = f"({abbrev(rival_es)} vs) {player_es}"
             match_display = translate_match(t1, t2, tournament)
 
+            # Detect if this is a team-winner market (for anti-contradiction)
+            is_winner_pick = any(wm in display for wm in TEAM_WINNER_MARKETS)
+            side = 'home' if player == t1 else 'away'
+
             props.append({
-                'player': player_es,
+                'player': player_display,
                 'prop': translate(display),
                 'match': match_display,
                 'odd': round(odds_val, 2),
@@ -319,6 +331,9 @@ def build_prop_pool(data):
                 'date': date_str,
                 'link': link,
                 'logo': logo,
+                'is_winner': is_winner_pick,
+                'side': side,
+                'match_key': f"{t1} vs {t2}",
             })
 
     if skipped_future:
@@ -373,9 +388,12 @@ def build_tickets(pool):
     print(f"   low(1.3-1.55): {len(low)}, mid(1.55-2.8): {len(mid)}, "
           f"high(2.8-5): {len(high)}, vhigh(5-15): {len(very_high)}")
 
+    # Anti-contradiction: track which side we've committed to per match
+    # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
+    winner_side = {}  # match_key → 'home' or 'away'
+
     def pick_legs(pools_config, min_sports=1):
-        """Pick legs enforcing MAX 1 leg per match.
-        Each pool contributes at most 1 leg per unique match."""
+        """Pick legs enforcing MAX 1 leg per match + no contradictions."""
         selected = []
         sports_used = set()
         matches_used = set()
@@ -388,9 +406,14 @@ def build_tickets(pool):
             for p in available:
                 if picked >= count:
                     break
-                # Double-check match uniqueness (belt and suspenders)
                 if p['match'] in matches_used:
                     continue
+                # Anti-contradiction: if this is a winner pick, check consistency
+                if p.get('is_winner') and p.get('match_key'):
+                    mk = p['match_key']
+                    committed = winner_side.get(mk)
+                    if committed and committed != p['side']:
+                        continue  # skip — contradicts a previous ticket
                 selected.append(p)
                 sports_used.add(p['sport'])
                 matches_used.add(p['match'])
@@ -399,6 +422,9 @@ def build_tickets(pool):
         if len(selected) >= total_needed:
             for s in selected:
                 used_keys.add(prop_key(s))
+                # Record winner commitment for anti-contradiction
+                if s.get('is_winner') and s.get('match_key'):
+                    winner_side[s['match_key']] = s['side']
             return selected
         return None
 

@@ -1634,100 +1634,105 @@ function getTeamBadge(leg) {
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'M1', tier:'megalodon', sport:'futbol', title:'NHL + Fútbol', confidence:2, totalOdds:871.0, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'HT-FT 2/1X', match:'RC Lens vs Nice — Copa de Francia', odd:11, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Local Gana por (1) goles - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:7.4, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
-    {player:'Fiorentina', prop:'Visitante Gana y Total < (1.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:10.7, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
+  { id:'M1', tier:'megalodon', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:1242.0, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(RC vs) Nice', prop:'Visitante Anota próximo gol (5)', match:'Copa de Francia', odd:15, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'(FIO vs) Atalanta', prop:'Primero en (4) goles - Visitante', match:'Serie A', odd:11.5, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'(VGK vs) Colorado Avalanche', prop:'Local Gana y Total < (4.5) - Sí', match:'NHL', odd:7.2, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
   ]},
-  { id:'M2', tier:'megalodon', sport:'futbol', title:'NHL + Fútbol', confidence:2, totalOdds:404.1, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Visitante Gana y Total > (1.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:8.2, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Fiorentina', prop:'Local Gana y Total > (3.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:6.75, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'Colorado Avalanche', prop:'Algún equipo gana sin goles en contra - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:7.3, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'M2', tier:'megalodon', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:426.7, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(NIC vs) RC Lens', prop:'Local Anota próximo gol (5)', match:'Copa de Francia', odd:7, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Visitante Gana y Total < (6.5) - Sí', match:'NHL', odd:5.3, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Hándicap 1 (-2.5)', match:'Serie A', odd:11.5, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
   ]},
-  { id:'M3', tier:'megalodon', sport:'futbol', title:'NHL + Fútbol', confidence:2, totalOdds:340.1, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Atalanta', prop:'Total Individual 2 Más de (3)', match:'Fiorentina vs Atalanta — Serie A', odd:9.1, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
-    {player:'RC Lens', prop:'Hándicap 1 (-3)', match:'RC Lens vs Nice — Copa de Francia', odd:7.4, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Hándicap 1 (-3)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:5.05, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'M3', tier:'megalodon', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:387.8, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(VGK vs) Colorado Avalanche', prop:'Algún equipo gana sin goles en contra - Sí', match:'NHL', odd:7.3, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Total Más de (5.5)', match:'Serie A', odd:8.3, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(RC vs) Nice', prop:'Primero en (2) goles - Visitante', match:'Copa de Francia', odd:6.4, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
   ]},
-  { id:'M4', tier:'megalodon', sport:'futbol', title:'NHL + Fútbol', confidence:2, totalOdds:213.4, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Vegas Golden Knights', prop:'Total Individual 2 Más de (4)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:5.8, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
-    {player:'Atalanta', prop:'Visitante Gana y Total > (3.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:5.75, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
-    {player:'Nice', prop:'Primero en (2) goles - Visitante', match:'RC Lens vs Nice — Copa de Francia', odd:6.4, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
+  { id:'M4', tier:'megalodon', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:192.1, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(RC vs) Nice', prop:'Visitante Gana y Total < (4.5) - Sí', match:'Copa de Francia', odd:6.65, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Visitante Gana y Total > (5.5) - Sí', match:'NHL', odd:5.3, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Total Más de (4.75)', match:'Serie A', odd:5.45, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
   ]},
-  { id:'W1', tier:'whale', sport:'futbol', title:'NHL + Fútbol', confidence:1, totalOdds:175.6, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Fiorentina', prop:'Primero en (4) goles - Local', match:'Fiorentina vs Atalanta — Serie A', odd:14.2, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'Vegas Golden Knights', prop:'Hándicap 2 (-0.25)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:2.91, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
-    {player:'RC Lens', prop:'HT-FT XW1', match:'RC Lens vs Nice — Copa de Francia', odd:4.25, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
+  { id:'W1', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:263.4, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(ATA vs) Fiorentina', prop:'Primero en (4) goles - Local', match:'Serie A', odd:14.2, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Total Más de (8.25)', match:'NHL', odd:4.58, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'(NIC vs) RC Lens', prop:'Algún equipo gana por diferencia de (3) o más goles - Sí', match:'Copa de Francia', odd:4.05, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'W2', tier:'whale', sport:'futbol', title:'NHL + Fútbol', confidence:1, totalOdds:149.0, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Colorado Avalanche', prop:'Total Individual 1 Más de (6.5)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:11.5, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
-    {player:'Fiorentina', prop:'Total Menos de (1.5)', match:'Fiorentina vs Atalanta — Serie A', odd:4.5, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'RC Lens', prop:'Local No pierde y Total > (1.5) - No', match:'RC Lens vs Nice — Copa de Francia', odd:2.88, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
+  { id:'W2', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:103.8, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(VGK vs) Colorado Avalanche', prop:'Local Gana por (2) goles - Sí', match:'NHL', odd:6.15, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Hándicap 2 (-1.5)', match:'Serie A', odd:4.5, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(NIC vs) RC Lens', prop:'Total Menos de (1.5)', match:'Copa de Francia', odd:3.75, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'W3', tier:'whale', sport:'futbol', title:'NHL + Fútbol', confidence:2, totalOdds:92.1, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Total Menos de (1.25)', match:'RC Lens vs Nice — Copa de Francia', odd:5.22, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Hándicap 2 (-1.5)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.25, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
-    {player:'Fiorentina', prop:'Local Gana y Total Córners Menos de (9.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:4.15, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
+  { id:'W3', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:87.0, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(VGK vs) Colorado Avalanche', prop:'Ninguno Anota próximo gol (3)', match:'NHL', odd:8.5, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(NIC vs) RC Lens', prop:'Local No pierde y Total < (4.5) - No', match:'Copa de Francia', odd:3.2, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Local Anota próximo gol (3)', match:'Serie A', odd:3.2, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
   ]},
-  { id:'W4', tier:'whale', sport:'futbol', title:'NHL + Fútbol', confidence:2, totalOdds:80.6, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'HT-FT XX', match:'RC Lens vs Nice — Copa de Francia', odd:6.55, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Atalanta', prop:'Visitante Anota próximo gol (3)', match:'Fiorentina vs Atalanta — Serie A', odd:3, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
-    {player:'Vegas Golden Knights', prop:'Visitante Gana y Total > (4.5) - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.1, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
+  { id:'W4', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:82.8, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(VGK vs) Colorado Avalanche', prop:'Total Individual 1 Más de (5)', match:'NHL', odd:5.1, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(RC vs) Nice', prop:'Ninguno Anota próximo gol (2)', match:'Copa de Francia', odd:3.75, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'(FIO vs) Atalanta', prop:'Total Individual 2 Menos de (0.5)', match:'Serie A', odd:4.33, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'}
   ]},
-  { id:'S1', tier:'shark', sport:'futbol', title:'NHL + Fútbol', confidence:4, totalOdds:18.5, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Fiorentina', prop:'Total Individual 1 Menos de (0.5)', match:'Fiorentina vs Atalanta — Serie A', odd:3.82, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'RC Lens', prop:'HT-FT W1W1', match:'RC Lens vs Nice — Copa de Francia', odd:2.15, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Primero en (4) goles - Local', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:2.25, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'S1', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:20.0, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(VGK vs) Colorado Avalanche', prop:'Local No pierde y Total < (5.5) - Sí', match:'NHL', odd:2.84, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Algún equipo gana sin goles en contra - Sí', match:'Serie A', odd:2.8, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(RC vs) Nice', prop:'Total Menos de (2.25)', match:'Copa de Francia', odd:2.51, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
   ]},
-  { id:'S2', tier:'shark', sport:'futbol', title:'NHL + Fútbol', confidence:3, totalOdds:17.5, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Nice', prop:'Algún equipo gana por diferencia de (2) Gol(s) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:3.95, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
-    {player:'Fiorentina', prop:'Local No pierde y Total < (3.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:2.34, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'Colorado Avalanche', prop:'W1', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.89, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'S2', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:3, totalOdds:16.1, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(RC vs) Nice', prop:'Total Más de (4.25)', match:'Copa de Francia', odd:4.55, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'(VGK vs) Colorado Avalanche', prop:'Local Anota próximo gol (1)', match:'NHL', odd:1.68, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Hándicap 1 (0)', match:'Serie A', odd:2.11, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
   ]},
-  { id:'S3', tier:'shark', sport:'futbol', title:'NHL + Fútbol', confidence:3, totalOdds:14.0, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Local Gana y Total < (2.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:3.85, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Fiorentina', prop:'Total Más de (3)', match:'Fiorentina vs Atalanta — Serie A', odd:1.98, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'Colorado Avalanche', prop:'Local Total Par', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.83, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'S3', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:3, totalOdds:15.9, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(ATA vs) Fiorentina', prop:'Total Menos de (1.75)', match:'Serie A', odd:3.97, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Visitante No pierde y Total < (7.5) - Sí', match:'NHL', odd:2.46, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'(RC vs) Nice', prop:'Visitante Total Par', match:'Copa de Francia', odd:1.63, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
   ]},
-  { id:'S4', tier:'shark', sport:'futbol', title:'NHL + Fútbol', confidence:4, totalOdds:11.5, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Fiorentina', prop:'Local No pierde y Total > (2.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:2.84, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'RC Lens', prop:'Local Gana por 1 - 2 goles - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:2.14, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Local No pierde y Total > (4.5) - No', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.9, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'S4', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:3, totalOdds:13.9, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(COL vs) Vegas Golden Knights', prop:'W2', match:'NHL', odd:3.6, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Visitante No pierde y Total > (1.5) - Sí', match:'Serie A', odd:1.74, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(RC vs) Nice', prop:'Total Individual 2 Menos de (0.5)', match:'Copa de Francia', odd:2.22, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
   ]},
-  { id:'S5', tier:'shark', sport:'futbol', title:'NHL + Fútbol', confidence:4, totalOdds:10.6, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Hándicap 1 (-2)', match:'RC Lens vs Nice — Copa de Francia', odd:3.52, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Local Anota próximo gol (1)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.68, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
-    {player:'Fiorentina', prop:'Total Par - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:1.8, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
+  { id:'S5', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:13.6, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(FIO vs) Atalanta', prop:'Visitante Gana y Total < (4.5) - Sí', match:'Serie A', odd:3.04, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'(VGK vs) Colorado Avalanche', prop:'Hándicap 1 (-1)', match:'NHL', odd:2.04, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(NIC vs) RC Lens', prop:'Hándicap 1 (-1.25)', match:'Copa de Francia', odd:2.2, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'H1', tier:'hunter', sport:'futbol', title:'NHL + Fútbol', confidence:5, totalOdds:5.8, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'Vegas Golden Knights', prop:'Total Individual 2 Más de (2.5)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.92, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
-    {player:'Nice', prop:'Hándicap 2 (0.75)', match:'RC Lens vs Nice — Copa de Francia', odd:2.24, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
-    {player:'Atalanta', prop:'Visitante No pierde y Total < (2.5) - No', match:'Fiorentina vs Atalanta — Serie A', odd:1.35, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'}
+  { id:'S6', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:13.2, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(NIC vs) RC Lens', prop:'Local Gana por 2 - 3 goles - Sí', match:'Copa de Francia', odd:2.9, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Local No pierde y Total < (3.5) - Sí', match:'Serie A', odd:2.34, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(VGK vs) Colorado Avalanche', prop:'Local No pierde y Total < (7.5) - No', match:'NHL', odd:1.95, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
   ]},
-  { id:'H2', tier:'hunter', sport:'futbol', title:'NHL + Fútbol', confidence:6, totalOdds:5.3, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Local No pierde y Total > (2.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:2.04, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Fiorentina', prop:'Local No pierde y Total < (4.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:1.83, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'Vegas Golden Knights', prop:'Hándicap 2 (2)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.43, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
+  { id:'H1', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:7.7, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(ATA vs) Fiorentina', prop:'Total Individual 1 Más de (1.5)', match:'Serie A', odd:2.21, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(NIC vs) RC Lens', prop:'Algún equipo gana por diferencia de (1) Gol(s) - Sí', match:'Copa de Francia', odd:2.62, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'(VGK vs) Colorado Avalanche', prop:'Local No pierde y Total > (6.5) - No', match:'NHL', odd:1.33, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
   ]},
-  { id:'H3', tier:'hunter', sport:'futbol', title:'NHL + Fútbol', confidence:6, totalOdds:5.1, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Hándicap 2 (1.25)', match:'RC Lens vs Nice — Copa de Francia', odd:1.79, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Local Total Impar', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.87, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
-    {player:'Atalanta', prop:'Total Más de (2.25)', match:'Fiorentina vs Atalanta — Serie A', odd:1.51, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'}
+  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:7.3, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(RC vs) Nice', prop:'Visitante No pierde y Total < (4.5) - Sí', match:'Copa de Francia', odd:2.79, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'(FIO vs) Atalanta', prop:'Visitante Total Par', match:'Serie A', odd:1.79, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Visitante No pierde y Total < (7.5) - No', match:'NHL', odd:1.47, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
   ]},
-  { id:'H4', tier:'hunter', sport:'futbol', title:'NHL + Fútbol', confidence:6, totalOdds:4.7, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Hándicap 1 (-1)', match:'RC Lens vs Nice — Copa de Francia', odd:1.85, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Fiorentina', prop:'Local No pierde y Total < (4.5) - No', match:'Fiorentina vs Atalanta — Serie A', odd:1.87, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
-    {player:'Vegas Golden Knights', prop:'Visitante No pierde y Total > (4.5) - No', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.37, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
+  { id:'H3', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:6, totalOdds:6.0, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(NIC vs) RC Lens', prop:'Local Gana y Total < (5.5) - No', match:'Copa de Francia', odd:2.17, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Hándicap 2 (0.75)', match:'NHL', odd:1.87, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Total Individual 1 Más de (1)', match:'Serie A', odd:1.47, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
   ]},
-  { id:'H5', tier:'hunter', sport:'futbol', title:'NHL + Fútbol', confidence:6, totalOdds:4.3, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Local Total Impar', match:'RC Lens vs Nice — Copa de Francia', odd:1.92, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Atalanta', prop:'Hándicap 2 (0.25)', match:'Fiorentina vs Atalanta — Serie A', odd:1.63, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
-    {player:'Colorado Avalanche', prop:'Local No pierde y Total < (5.5) - No', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.36, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'H4', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:5, totalOdds:5.9, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(FIO vs) Atalanta', prop:'Visitante Total Impar', match:'Serie A', odd:1.92, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'(VGK vs) Colorado Avalanche', prop:'Hándicap 1 (-1.5)', match:'NHL', odd:2.29, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(NIC vs) RC Lens', prop:'Local No pierde y Total < (4.5) - Sí', match:'Copa de Francia', odd:1.35, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'H6', tier:'hunter', sport:'futbol', title:'NHL + Fútbol', confidence:6, totalOdds:3.7, publishedAt:'2026-05-22T14:49:42Z', couponCode:'', legs:[
-    {player:'RC Lens', prop:'Local Gana y Total < (3.5) - No', match:'RC Lens vs Nice — Copa de Francia', odd:1.61, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
-    {player:'Colorado Avalanche', prop:'Total Individual 1 Más de (3)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.58, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
-    {player:'Fiorentina', prop:'Total Individual 1 Más de (1)', match:'Fiorentina vs Atalanta — Serie A', odd:1.47, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
+  { id:'H5', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:5, totalOdds:5.4, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(NIC vs) RC Lens', prop:'Local Gana y Total > (2.5) - No', match:'Copa de Francia', odd:1.63, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'(ATA vs) Fiorentina', prop:'Local Anota próximo gol (2)', match:'Serie A', odd:2.3, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'(COL vs) Vegas Golden Knights', prop:'Hándicap 2 (2)', match:'NHL', odd:1.43, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
+  ]},
+  { id:'H6', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:5, totalOdds:4.6, publishedAt:'2026-05-22T14:55:53Z', couponCode:'', legs:[
+    {player:'(VGK vs) Colorado Avalanche', prop:'Total Más de (5.5)', match:'NHL', odd:1.71, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'(RC vs) Nice', prop:'Total Más de (2.75)', match:'Copa de Francia', odd:2.02, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'(FIO vs) Atalanta', prop:'Visitante Gana y Total < (4.5) - No', match:'Serie A', odd:1.33, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'}
   ]},
 ];
 
