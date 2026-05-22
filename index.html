@@ -1475,7 +1475,7 @@ function translateProp(propEs) {
 }
 
 // === LIVE RESULTS ===
-const LEG_RESULTS = {'M1_0':'won', 'M1_1':'won', 'W1_0':'won', 'W1_1':'won', 'S3_0':'lost'};
+const LEG_RESULTS = {};
 
 // === TEAM BADGES ===
 const TEAM_LOGOS = {
@@ -1538,65 +1538,93 @@ function getTeamBadge(leg) {
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'M1', tier:'megalodon', sport:'futbol', title:'Multi-Sport x3', confidence:1, totalOdds:1393.8, couponCode:'', legs:[
-    {player:'Kylian Mbappé', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich — QF', odd:1.9, sport:'futbol', team:'RMA', date:'Abr 7'},
-    {player:'Harry Kane', prop:'Marca gol en cualquier momento', match:'Bayern Munich vs Real Madrid — QF', odd:1.8, sport:'futbol', team:'BAY', date:'Abr 15'},
-    {player:'Carlos Alcaraz', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.12, sport:'tenis', team:'ATP', date:'May 25'},
-    {player:'Jhon Arias', prop:'Marca gol en cualquier momento', match:'Fluminense vs Bolivar — Libertadores', odd:2.8, sport:'futbol', team:'FLU', date:'May 20'},
-    {player:'Pete Alonso', prop:'Home Run: Sí', match:'Mets vs Nationals', odd:3.8, sport:'mlb', team:'NYM', date:'May 19'},
-    {player:'Bruno Henrique', prop:'Marca gol en cualquier momento', match:'Flamengo vs Estudiantes LP — Libertadores', odd:3.0, sport:'futbol', team:'FLA', date:'May 21'},
-    {player:'Marco Asensio', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.8, sport:'futbol', team:'PSG', date:'May 30'},
-    {player:'Bradley Barcola', prop:'Marca gol en la Final', match:'PSG vs Arsenal — Final UCL', odd:3.0, sport:'futbol', team:'PSG', date:'May 30'}
+  { id:'M1', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:22380.3, couponCode:'', legs:[
+    {player:'Australia', prop:'Local To Gana y Total > (2.5) - Yes', match:'Australia vs Turkey — World Cup 2026', odd:8.6, sport:'futbol', team:'AUS', date:'Jun 14'},
+    {player:'DR Congo', prop:'Visitante Anota próximo gol (5)', match:'Portugal vs DR Congo — World Cup 2026', odd:11, sport:'futbol', team:'DR', date:'Jun 17'},
+    {player:'Girona', prop:'Total Menos de (0.5)', match:'Girona vs Elche — La Liga', odd:13.9, sport:'futbol', team:'GIR', date:'May 23'},
+    {player:'Sunderland', prop:'Local To Gana y Total < (5.5) - Yes', match:'Sunderland vs Chelsea — Premier League', odd:3.7, sport:'futbol', team:'SUN', date:'May 24'},
+    {player:'Paraguay', prop:'HT-FT XX', match:'Paraguay vs Australia — World Cup 2026', odd:4.6, sport:'futbol', team:'PAR', date:'Jun 26'}
   ]},
-  { id:'W1', tier:'whale', sport:'futbol', title:'Multi-Sport x4', confidence:3, totalOdds:222.1, couponCode:'YKCYT', legs:[
-    {player:'Bukayo Saka', prop:'Marca gol vs Atlético', match:'Arsenal vs Atlético Madrid — SF', odd:2.8, sport:'futbol', team:'ARS', date:'May 5'},
-    {player:'Ousmane Dembélé', prop:'Marca gol vs Bayern', match:'PSG vs Bayern Munich — SF', odd:2.5, sport:'futbol', team:'PSG', date:'May 6'},
-    {player:'Jannik Sinner', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.08, sport:'tenis', team:'ATP', date:'May 25'},
-    {player:'Iga Świątek', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.05, sport:'tenis', team:'WTA', date:'May 25'},
-    {player:'Flaco López', prop:'Marca gol en cualquier momento', match:'Palmeiras vs Cerro Porteño — Libertadores', odd:2.5, sport:'futbol', team:'PAL', date:'May 21'},
-    {player:'Yordan Alvarez', prop:'Over 1.5 bases totales', match:'Astros vs Twins', odd:1.82, sport:'mlb', team:'HOU', date:'May 18'},
-    {player:'Keldon Johnson', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:2.05, sport:'nba', team:'SAS', date:'May 19'},
-    {player:'Kevin Zenón', prop:'Over 0.5 asistencias', match:'Boca Juniors vs Cruzeiro — Libertadores', odd:3.0, sport:'futbol', team:'BOC', date:'May 20'}
+  { id:'M2', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:8610.5, couponCode:'', legs:[
+    {player:'Iran', prop:'HT-FT 2/1X', match:'Iran vs New Zealand — World Cup 2026', odd:11, sport:'futbol', team:'IRA', date:'Jun 16'},
+    {player:'Norway', prop:'Local To Gana y Total > (1.5) - Yes', match:'Norway vs France — World Cup 2026', odd:7.5, sport:'futbol', team:'NOR', date:'Jun 26'},
+    {player:'Paraguay', prop:'Hándicap 1 (-2.5)', match:'Paraguay vs Australia — World Cup 2026', odd:8.6, sport:'futbol', team:'PAR', date:'Jun 26'},
+    {player:'Brentford', prop:'Total Más de (4.25)', match:'Liverpool vs Brentford — Premier League', odd:3.28, sport:'futbol', team:'BRE', date:'May 24'},
+    {player:'Paraguay', prop:'Total Más de (3.25)', match:'Turkey vs Paraguay — World Cup 2026', odd:3.7, sport:'futbol', team:'PAR', date:'Jun 20'}
   ]},
-  { id:'W2', tier:'whale', sport:'futbol', title:'Multi-Sport x3', confidence:2, totalOdds:149.8, couponCode:'', legs:[
-    {player:'Manny Machado', prop:'Over 0.5 hits', match:'Dodgers vs Padres', odd:1.3, sport:'mlb', team:'SD', date:'May 19'},
-    {player:'Victor Osimhen', prop:'Marca gol en cualquier momento', match:'Napoli vs Udinese — Serie A J38', odd:1.9, sport:'futbol', team:'NAP', date:'May 24'},
-    {player:'Miguel Merentiel', prop:'Marca gol en cualquier momento', match:'Boca Juniors vs Cruzeiro — Libertadores', odd:2.8, sport:'futbol', team:'BOC', date:'May 20'},
-    {player:'Evan Mobley', prop:'Over 8.5 rebotes', match:'Cleveland Cavaliers vs New York Knicks', odd:1.88, sport:'nba', team:'CLE', date:'May 20'},
-    {player:'Matheus Pereira', prop:'Marca gol en cualquier momento', match:'Cruzeiro vs Boca Juniors — Libertadores', odd:3.2, sport:'futbol', team:'CRU', date:'May 20'},
-    {player:'Leandro Trossard', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.6, sport:'futbol', team:'ARS', date:'May 30'}
+  { id:'W1', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:540.8, couponCode:'', legs:[
+    {player:'Uruguay', prop:'Local To Gana y Total < (2.5) - No', match:'Uruguay vs Cape Verde — World Cup 2026', odd:1.3, sport:'futbol', team:'URU', date:'Jun 21'},
+    {player:'Haiti', prop:'Total Más de (2)', match:'Morocco vs Haiti — World Cup 2026', odd:1.35, sport:'futbol', team:'HAI', date:'Jun 24'},
+    {player:'Jordan', prop:'Total Más de (3.25)', match:'Austria vs Jordan — World Cup 2026', odd:2.18, sport:'futbol', team:'JOR', date:'Jun 17'},
+    {player:'Uzbekistan', prop:'Visitante To Gana y Total > (1.5) - Yes', match:'Uzbekistan vs Colombia — World Cup 2026', odd:1.74, sport:'futbol', team:'UZB', date:'Jun 18'},
+    {player:'Scotland', prop:'Local No pierde And Total < (4.5) - No', match:'Scotland vs Morocco — World Cup 2026', odd:1.89, sport:'futbol', team:'SCO', date:'Jun 19'},
+    {player:'Bologna 1909', prop:'Total Más de (4)', match:'Bologna 1909 vs Internazionale Milano — Serie A', odd:3.38, sport:'futbol', team:'BOL', date:'May 23'},
+    {player:'Parma', prop:'Local To Gana y Total > (2.5) - Yes', match:'Parma vs Sassuolo Calcio — Serie A', odd:4.05, sport:'futbol', team:'PAR', date:'May 24'},
+    {player:'South Korea', prop:'Visitante No pierde And Total > (2.5) - Yes', match:'South Africa vs South Korea — World Cup 2026', odd:3.14, sport:'futbol', team:'SOU', date:'Jun 25'}
   ]},
-  { id:'S1', tier:'shark', sport:'futbol', title:'Multi-Sport x3', confidence:3, totalOdds:83.5, couponCode:'', legs:[
-    {player:'Novak Djokovic', prop:'Gana su 1er partido', match:'Roland Garros — 1ra Ronda', odd:1.15, sport:'tenis', team:'ATP', date:'May 26'},
-    {player:'Ademola Lookman', prop:'Marca gol en cualquier momento', match:'Fiorentina vs Atalanta — Serie A J38', odd:2.7, sport:'futbol', team:'ATA', date:'May 22'},
-    {player:'Lamine Yamal', prop:'Over 0.5 asistencias', match:'Valencia vs Barcelona — La Liga J38', odd:2.4, sport:'futbol', team:'BAR', date:'May 24'},
-    {player:'Gabriel Jesus', prop:'Marca gol en la Final', match:'Arsenal vs PSG — Final UCL', odd:3.2, sport:'futbol', team:'ARS', date:'May 30'},
-    {player:'Aaron Judge', prop:'Home Run: Sí', match:'Blue Jays vs Yankees', odd:3.5, sport:'mlb', team:'NYY', date:'May 18'}
+  { id:'W2', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:94.3, couponCode:'', legs:[
+    {player:'Tunisia', prop:'Visitante Anota próximo gol (1)', match:'Tunisia vs Netherlands — World Cup 2026', odd:1.44, sport:'futbol', team:'TUN', date:'Jun 25'},
+    {player:'Tottenham Hotspur', prop:'Local Anota próximo gol (1)', match:'Tottenham Hotspur vs Everton — Premier League', odd:1.69, sport:'futbol', team:'TOT', date:'May 24'},
+    {player:'Real Betis', prop:'Total Individual 1 Menos de (1.5)', match:'Real Betis vs Levante UD — La Liga', odd:1.88, sport:'futbol', team:'REA', date:'May 23'},
+    {player:'Villarreal', prop:'Total Menos de (3.5)', match:'Villarreal vs Atletico Madrid — La Liga', odd:1.73, sport:'futbol', team:'VIL', date:'May 24'},
+    {player:'Haiti', prop:'Total Más de (3.5)', match:'Haiti vs Scotland — World Cup 2026', odd:3.04, sport:'futbol', team:'HAI', date:'Jun 14'},
+    {player:'Ecuador', prop:'Local No pierde And Total < (4.5) - No', match:'Ecuador vs Curacao — World Cup 2026', odd:3.92, sport:'futbol', team:'ECU', date:'Jun 21'}
   ]},
-  { id:'S2', tier:'shark', sport:'mlb', title:'Multi-Sport x3', confidence:5, totalOdds:24.8, couponCode:'', legs:[
-    {player:'Gerrit Cole', prop:'Over 6.5 strikeouts', match:'Blue Jays vs Yankees', odd:1.85, sport:'mlb', team:'NYY', date:'May 19'},
-    {player:'Marcus Semien', prop:'Over 1.5 bases totales', match:'Rangers vs Rockies', odd:1.85, sport:'mlb', team:'TEX', date:'May 19'},
-    {player:'Jalen Brunson', prop:'Over 6.5 asistencias', match:'New York Knicks vs Cleveland Cavaliers', odd:2.2, sport:'nba', team:'NYK', date:'May 20'},
-    {player:'Ángel Di María', prop:'Marca gol en cualquier momento', match:'Rosario Central vs U. Central — Libertadores', odd:3.3, sport:'futbol', team:'ROC', date:'May 20'}
+  { id:'W3', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:63.7, couponCode:'', legs:[
+    {player:'Curacao', prop:'Total Menos de (3.25)', match:'Ecuador vs Curacao — World Cup 2026', odd:1.46, sport:'futbol', team:'CUR', date:'Jun 21'},
+    {player:'Atalanta', prop:'Hándicap 2 (-0.25)', match:'Fiorentina vs Atalanta — Serie A', odd:2.12, sport:'futbol', team:'ATA', date:'May 22'},
+    {player:'Espanyol', prop:'Visitante No pierde And Total > (1.5) - No', match:'Espanyol vs Real Sociedad — La Liga', odd:1.67, sport:'futbol', team:'ESP', date:'May 23'},
+    {player:'DR Congo', prop:'Primero en (2) goles - Ninguno', match:'Portugal vs DR Congo — World Cup 2026', odd:3.54, sport:'futbol', team:'DR', date:'Jun 17'},
+    {player:'Manchester City', prop:'Visitante Anota próximo gol (1)', match:'Manchester City vs Aston Villa — Premier League', odd:3.48, sport:'futbol', team:'MCI', date:'May 24'}
   ]},
-  { id:'S3', tier:'shark', sport:'nhl', title:'Multi-Sport x3', confidence:5, totalOdds:19.3, couponCode:'', legs:[
-    {player:'Vinícius Jr.', prop:'Marca gol en cualquier momento', match:'Real Madrid vs Bayern Munich — QF', odd:2.2, sport:'futbol', team:'RMA', date:'Abr 7'},
-    {player:'Cole Caufield', prop:'Over 0.5 puntos', match:'Canadiens vs Hurricanes', odd:1.65, sport:'nhl', team:'MTL', date:'May 25'},
-    {player:'Cale Makar', prop:'Over 0.5 goles', match:'Avalanche vs Golden Knights', odd:2.8, sport:'nhl', team:'COL', date:'May 22'},
-    {player:'Victor Wembanyama', prop:'Over 22.5 puntos', match:'San Antonio Spurs vs Oklahoma City Thunder', odd:1.9, sport:'nba', team:'SAS', date:'May 19'}
+  { id:'S1', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:109.4, couponCode:'', legs:[
+    {player:'Ecuador', prop:'Local No pierde And Total > (2.5) - No', match:'Ecuador vs Curacao — World Cup 2026', odd:1.92, sport:'futbol', team:'ECU', date:'Jun 21'},
+    {player:'Saudi Arabia', prop:'W2', match:'Cape Verde vs Saudi Arabia — World Cup 2026', odd:2.16, sport:'futbol', team:'SAU', date:'Jun 27'},
+    {player:'Turkey', prop:'Visitante To Gana y Total < (4.5) - Yes', match:'Australia vs Turkey — World Cup 2026', odd:1.96, sport:'futbol', team:'TUR', date:'Jun 14'},
+    {player:'Colombia', prop:'Hándicap 1 (-2)', match:'Colombia vs DR Congo — World Cup 2026', odd:3.96, sport:'futbol', team:'COL', date:'Jun 24'},
+    {player:'Fulham', prop:'Local To Gana y Total < (4.5) - Yes', match:'Fulham vs Newcastle United — Premier League', odd:3.4, sport:'futbol', team:'FUL', date:'May 24'}
   ]},
-  { id:'H1', tier:'hunter', sport:'nba', title:'Multi-Sport x3', confidence:4, totalOdds:20.9, couponCode:'', legs:[
-    {player:'Trea Turner', prop:'Over 0.5 hits', match:'Reds vs Phillies', odd:1.28, sport:'mlb', team:'PHI', date:'May 19'},
-    {player:'Sebastian Aho', prop:'Over 0.5 goles', match:'Hurricanes vs Canadiens', odd:2.2, sport:'nhl', team:'CAR', date:'May 21'},
-    {player:'Shai Gilgeous-Alexander', prop:'Over 30.5 puntos', match:'Oklahoma City Thunder vs San Antonio Spurs', odd:1.82, sport:'nba', team:'OKC', date:'May 19'},
-    {player:'Donovan Mitchell', prop:'Over 27.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:1.85, sport:'nba', team:'CLE', date:'May 20'},
-    {player:'Darius Garland', prop:'Over 18.5 puntos', match:'Cleveland Cavaliers vs New York Knicks', odd:2.2, sport:'nba', team:'CLE', date:'May 20'}
+  { id:'S2', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:106.1, couponCode:'', legs:[
+    {player:'Crystal Palace', prop:'Hándicap 1 (0.75)', match:'Crystal Palace vs Arsenal — Premier League', odd:1.78, sport:'futbol', team:'CRY', date:'May 24'},
+    {player:'Norway', prop:'Visitante No pierde And Total < (3.5) - No', match:'Iraq vs Norway — World Cup 2026', odd:2.14, sport:'futbol', team:'NOR', date:'Jun 16'},
+    {player:'Algeria', prop:'Visitante To Gana y Total < (4.5) - Yes', match:'Jordan vs Algeria — World Cup 2026', odd:1.95, sport:'futbol', team:'ALG', date:'Jun 23'},
+    {player:'Girona', prop:'Hándicap 1 (-1.75)', match:'Girona vs Elche — La Liga', odd:3.76, sport:'futbol', team:'GIR', date:'May 23'},
+    {player:'Spartak Moscow', prop:'Total Individual 1 Menos de (0.5)', match:'Spartak Moscow vs Krasnodar — Russian Cup', odd:3.8, sport:'futbol', team:'SPA', date:'May 24'}
   ]},
-  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol + MLB', confidence:4, totalOdds:15.7, couponCode:'', legs:[
-    {player:'Freddie Freeman', prop:'Over 0.5 hits', match:'Dodgers vs Padres', odd:1.25, sport:'mlb', team:'LAD', date:'May 18'},
-    {player:'Raphinha', prop:'Marca gol en cualquier momento', match:'Valencia vs Barcelona — La Liga J38', odd:2.6, sport:'futbol', team:'BAR', date:'May 24'},
-    {player:'Rafael Leão', prop:'Marca gol en cualquier momento', match:'AC Milan vs Cagliari — Serie A J38', odd:2.2, sport:'futbol', team:'ACM', date:'May 24'},
-    {player:'Gabriel Barbosa', prop:'Marca gol en cualquier momento', match:'Flamengo vs Estudiantes LP — Libertadores', odd:2.2, sport:'futbol', team:'FLA', date:'May 21'}
+  { id:'S3', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:74.7, couponCode:'', legs:[
+    {player:'Czech Republic', prop:'Total Menos de (1.75)', match:'Czech Republic vs South Africa — World Cup 2026', odd:2.42, sport:'futbol', team:'CZE', date:'Jun 18'},
+    {player:'Tunisia', prop:'Local No pierde And Total < (4.5) - Yes', match:'Tunisia vs Japan — World Cup 2026', odd:2.02, sport:'futbol', team:'TUN', date:'Jun 21'},
+    {player:'Spartak Moscow', prop:'Local To Gana y Total < (3.5) - Yes', match:'Spartak Moscow vs Krasnodar — Russian Cup', odd:3.64, sport:'futbol', team:'SPA', date:'May 24'},
+    {player:'Atletico Madrid', prop:'Visitante To Gana y Total < (3.5) - Yes', match:'Villarreal vs Atletico Madrid — La Liga', odd:4.2, sport:'futbol', team:'ATM', date:'May 24'}
+  ]},
+  { id:'S4', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:50.2, couponCode:'', legs:[
+    {player:'Hellas Verona', prop:'Visitante To Gana y Total > (1.5) - No', match:'Hellas Verona vs Roma — Serie A', odd:2.29, sport:'futbol', team:'HEL', date:'May 24'},
+    {player:'Curacao', prop:'Total Más de (2.25)', match:'Ecuador vs Curacao — World Cup 2026', odd:1.56, sport:'futbol', team:'CUR', date:'Jun 21'},
+    {player:'Espanyol', prop:'Local Anota próximo gol (3)', match:'Espanyol vs Real Sociedad — La Liga', odd:3.25, sport:'futbol', team:'ESP', date:'May 23'},
+    {player:'Iran', prop:'Hándicap 1 (-1.75)', match:'Iran vs New Zealand — World Cup 2026', odd:4.32, sport:'futbol', team:'IRA', date:'Jun 16'}
+  ]},
+  { id:'H1', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:21.3, couponCode:'', legs:[
+    {player:'Mexico', prop:'Hándicap 2 (1.25)', match:'Mexico vs South Korea — World Cup 2026', odd:1.41, sport:'futbol', team:'MEX', date:'Jun 19'},
+    {player:'Villarreal', prop:'Visitante To Gana y Total > (1.5) - No', match:'Villarreal vs Atletico Madrid — La Liga', odd:1.36, sport:'futbol', team:'VIL', date:'May 24'},
+    {player:'Germany', prop:'Total Individual 1 Más de (3.5)', match:'Germany vs Curacao — World Cup 2026', odd:1.75, sport:'futbol', team:'GER', date:'Jun 14'},
+    {player:'Arsenal', prop:'Hándicap 2 (-0.25)', match:'Paris Saint-Germain vs Arsenal — UEFA Champions League', odd:2.66, sport:'futbol', team:'ARS', date:'May 30'},
+    {player:'Canada', prop:'Hándicap 1 (-1.5)', match:'Canada vs Qatar — World Cup 2026', odd:2.39, sport:'futbol', team:'CAN', date:'Jun 18'}
+  ]},
+  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:7.7, couponCode:'', legs:[
+    {player:'Liverpool', prop:'Local No pierde And Total > (1.5) - Yes', match:'Liverpool vs Brentford — Premier League', odd:1.44, sport:'futbol', team:'LIV', date:'May 24'},
+    {player:'Torino', prop:'Any Team To Gana sin goles en contra - Yes', match:'Torino vs Juventus — Serie A', odd:1.98, sport:'futbol', team:'TOR', date:'May 24'},
+    {player:'Jordan', prop:'Total Más de (3)', match:'Jordan vs Algeria — World Cup 2026', odd:2.69, sport:'futbol', team:'JOR', date:'Jun 23'}
+  ]},
+  { id:'H3', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:5, totalOdds:6.5, couponCode:'', legs:[
+    {player:'Iraq', prop:'Hándicap 2 (-1)', match:'Iraq vs Norway — World Cup 2026', odd:1.3, sport:'futbol', team:'IRA', date:'Jun 16'},
+    {player:'Barcelona', prop:'Visitante No pierde And Total > (3.5) - No', match:'Valencia vs Barcelona — La Liga', odd:1.43, sport:'futbol', team:'BAR', date:'May 23'},
+    {player:'Lecce', prop:'Local Anota próximo gol (1)', match:'Lecce vs Genoa — Serie A', odd:1.62, sport:'futbol', team:'LEC', date:'May 24'},
+    {player:'Morocco', prop:'Local Anota próximo gol (3)', match:'Morocco vs Haiti — World Cup 2026', odd:2.15, sport:'futbol', team:'MOR', date:'Jun 24'}
+  ]},
+  { id:'H4', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:5, totalOdds:5.7, couponCode:'', legs:[
+    {player:'Napoli', prop:'Total Más de (1.75)', match:'Napoli vs Udinese Calcio — Serie A', odd:1.33, sport:'futbol', team:'NAP', date:'May 24'},
+    {player:'Girona', prop:'Local To Gana y Total < (5.5) - No', match:'Girona vs Elche — La Liga', odd:1.79, sport:'futbol', team:'GIR', date:'May 23'},
+    {player:'Parma', prop:'Total Individual 2 Menos de (1)', match:'Parma vs Sassuolo Calcio — Serie A', odd:2.39, sport:'futbol', team:'PAR', date:'May 24'}
   ]},
 ];
 
