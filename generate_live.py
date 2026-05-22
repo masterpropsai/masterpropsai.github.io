@@ -582,11 +582,15 @@ def main():
         return
     print("✅ CERO duplicados")
 
-    # 7. Update HTML
+    # 7. Copy template → index.html, then inject data
     tickets_js = generate_ticket_js(tickets)
     results_js = generate_results_js(tickets)
 
     print("\n📝 Updating HTML files...")
+    # Always start from fresh template so structural changes carry over
+    import shutil
+    shutil.copy2(TEMPLATE_FILE, OUTPUT_FILE)
+    print(f"  📋 template.html → index.html")
     update_html(tickets_js, results_js, OUTPUT_FILE)
     update_html(tickets_js, results_js, TEMPLATE_FILE)
 
