@@ -334,6 +334,11 @@ def build_prop_pool(data):
                 'is_winner': is_winner_pick,
                 'side': side,
                 'match_key': f"{t1} vs {t2}",
+                # SaveCoupon fields for coupon code generation
+                'game_id': event.get('sportEventId', 0),
+                'type_id': odd.get('type', 0),
+                'param': odd.get('parameter', 0),
+                'player_id': odd.get('playerId', 0),
             })
 
     if skipped_future:
@@ -597,14 +602,54 @@ def main():
         for l in t['legs']:
             print(f"      x{l['odd']:.2f} {l['player'][:20]:20s} {l['prop'][:40]}")
 
-    # 5. Load coupons
+    # 5. Generate tickets_data.json for coupon code generation
+    tickets_data = []
+    for t in tickets:
+        events = []
+        for leg in t['legs']:
+            events.append({
+                'GameId': leg.get('game_id', 0),
+                'Type': leg.get('type_id', 0),
+                'Coef': leg['odd'],
+                'Param': leg.get('param', 0),
+                'PlayerId': leg.get('player_id', 0),
+            })
+        tickets_data.append({
+            'ticket_id': t['id'],
+            'events': events,
+        })
+
+    TICKETS_DATA_FILE = BASE_DIR / 'tickets_data.json'
+    TICKETS_DATA_FILE.write_text(json.dumps(tickets_data, indent=2), encoding='utf-8')
+    print(f"\n📋 tickets_data.json saved ({len(tickets_data)} tickets)")
+
+    # 5b. Generate coupon codes via Playwright (if available)
     coupons = {}
-    if COUPONS_FILE.exists():
-        try:
-            coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
-            print(f"\n🎫 Loaded {len(coupons)} coupon codes")
-        except Exception:
-            pass
+    try:
+        from generate_coupons import generate_coupon_codes
+        print("\n🎫 Generating coupon codes via Playwright...")
+        coupons = generate_coupon_codes(tickets_data)
+        print(f"✅ Generated {len(coupons)} coupon codes")
+    except ImportError:
+        print("\n⚠️  Playwright not available — skipping coupon generation")
+        print("   Run: pip install playwright && playwright install chromium")
+        print("   Then: python generate_coupons.py")
+        # Fall back to existing coupons
+        if COUPONS_FILE.exists():
+            try:
+                coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
+                print(f"   📋 Loaded {len(coupons)} existing coupon codes")
+            except Exception:
+                pass
+    except Exception as e:
+        print(f"\n⚠️  Coupon generation failed: {e}")
+        if COUPONS_FILE.exists():
+            try:
+                coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
+                print(f"   📋 Loaded {len(coupons)} existing coupon codes")
+            except Exception:
+                pass
+
     for t in tickets:
         t['coupon_code'] = coupons.get(t['id'], '')
 

@@ -1,0 +1,496 @@
+[
+  {
+    "ticket_id": "M1",
+    "events": [
+      {
+        "GameId": 722176558,
+        "Type": 10,
+        "Coef": 15,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 580,
+        "Coef": 11,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 9,
+        "Coef": 8.4,
+        "Param": 5.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "M2",
+    "events": [
+      {
+        "GameId": 722176549,
+        "Type": 388,
+        "Coef": 9,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 9,
+        "Coef": 8.9,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 13,
+        "Coef": 6.5,
+        "Param": 4.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "M3",
+    "events": [
+      {
+        "GameId": 722176549,
+        "Type": 194,
+        "Coef": 5.95,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 10,
+        "Coef": 5.2,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 2858,
+        "Coef": 15,
+        "Param": 0.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "M4",
+    "events": [
+      {
+        "GameId": 722176558,
+        "Type": 191,
+        "Coef": 10.5,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 11,
+        "Coef": 6.4,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 3829,
+        "Coef": 5.09,
+        "Param": -2.75,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "W1",
+    "events": [
+      {
+        "GameId": 715041263,
+        "Type": 191,
+        "Coef": 14.5,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 11,
+        "Coef": 4.95,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 193,
+        "Coef": 3.64,
+        "Param": 5.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "W2",
+    "events": [
+      {
+        "GameId": 722176549,
+        "Type": 11,
+        "Coef": 10.7,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 389,
+        "Coef": 5,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 13,
+        "Coef": 3.2,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "W3",
+    "events": [
+      {
+        "GameId": 715041263,
+        "Type": 10,
+        "Coef": 11.6,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176558,
+        "Type": 15,
+        "Coef": 4.7,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 199,
+        "Coef": 3.14,
+        "Param": 6.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "W4",
+    "events": [
+      {
+        "GameId": 722859013,
+        "Type": 390,
+        "Coef": 5.2,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 23,
+        "Coef": 3.38,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 389,
+        "Coef": 3.6,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "S1",
+    "events": [
+      {
+        "GameId": 722859013,
+        "Type": 10,
+        "Coef": 4.75,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 3828,
+        "Coef": 2.51,
+        "Param": 2.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 13,
+        "Coef": 2.76,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "S2",
+    "events": [
+      {
+        "GameId": 715041263,
+        "Type": 193,
+        "Coef": 4.05,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 579,
+        "Coef": 2.35,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 193,
+        "Coef": 2.21,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "S3",
+    "events": [
+      {
+        "GameId": 722176558,
+        "Type": 197,
+        "Coef": 4.15,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 9,
+        "Coef": 2.23,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 209,
+        "Coef": 1.84,
+        "Param": 4.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "S4",
+    "events": [
+      {
+        "GameId": 715041263,
+        "Type": 188,
+        "Coef": 3.1,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 13,
+        "Coef": 1.88,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 183,
+        "Coef": 1.88,
+        "Param": 0.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "S5",
+    "events": [
+      {
+        "GameId": 722176549,
+        "Type": 199,
+        "Coef": 2.89,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 3828,
+        "Coef": 1.92,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 389,
+        "Coef": 1.98,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "H1",
+    "events": [
+      {
+        "GameId": 722176549,
+        "Type": 11,
+        "Coef": 2.22,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 580,
+        "Coef": 2.3,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 519,
+        "Coef": 1.33,
+        "Param": 0.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "H2",
+    "events": [
+      {
+        "GameId": 722176549,
+        "Type": 12,
+        "Coef": 1.67,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 388,
+        "Coef": 2.8,
+        "Param": 6.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 213,
+        "Coef": 1.31,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "H3",
+    "events": [
+      {
+        "GameId": 722176558,
+        "Type": 190,
+        "Coef": 1.96,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 388,
+        "Coef": 1.78,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 3830,
+        "Coef": 1.51,
+        "Param": 1.75,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "H4",
+    "events": [
+      {
+        "GameId": 722176558,
+        "Type": 3828,
+        "Coef": 2.07,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 9,
+        "Coef": 1.74,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 199,
+        "Coef": 1.41,
+        "Param": 1.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "H5",
+    "events": [
+      {
+        "GameId": 715041263,
+        "Type": 15,
+        "Coef": 2.1,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 208,
+        "Coef": 1.75,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722859013,
+        "Type": 214,
+        "Coef": 1.4,
+        "Param": 4.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "H6",
+    "events": [
+      {
+        "GameId": 722859013,
+        "Type": 182,
+        "Coef": 1.76,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 722176549,
+        "Type": 3830,
+        "Coef": 1.56,
+        "Param": 0.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 715041263,
+        "Type": 209,
+        "Coef": 1.36,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  }
+]
