@@ -355,8 +355,14 @@ def prop_key(p):
 
 
 def build_tickets(pool):
+    """Build tickets. REGLA: máximo 1 apuesta por partido en cada billete."""
     tickets = []
     used_keys = set()
+
+    # Identify unique matches available
+    unique_matches = list(set(p['match'] for p in pool))
+    n_matches = len(unique_matches)
+    print(f"   🏟️  {n_matches} partidos disponibles: {', '.join(unique_matches[:5])}")
 
     # Split pool by odds range
     low = [p for p in pool if 1.30 <= p['odd'] < 1.55]
@@ -367,7 +373,9 @@ def build_tickets(pool):
     print(f"   low(1.3-1.55): {len(low)}, mid(1.55-2.8): {len(mid)}, "
           f"high(2.8-5): {len(high)}, vhigh(5-15): {len(very_high)}")
 
-    def pick_legs(pools_config, min_sports=2):
+    def pick_legs(pools_config, min_sports=1):
+        """Pick legs enforcing MAX 1 leg per match.
+        Each pool contributes at most 1 leg per unique match."""
         selected = []
         sports_used = set()
         matches_used = set()
@@ -380,77 +388,70 @@ def build_tickets(pool):
             for p in available:
                 if picked >= count:
                     break
+                # Double-check match uniqueness (belt and suspenders)
+                if p['match'] in matches_used:
+                    continue
                 selected.append(p)
                 sports_used.add(p['sport'])
                 matches_used.add(p['match'])
                 picked += 1
         total_needed = sum(c for _, c in pools_config)
-        if len(selected) >= total_needed and len(sports_used) >= min_sports:
+        if len(selected) >= total_needed:
             for s in selected:
                 used_keys.add(prop_key(s))
             return selected
         return None
 
-    # === MEGALODON: very high odds legs ===
-    for _ in range(2):
-        random.shuffle(very_high)
-        legs = pick_legs([(very_high, 3), (high, 2)], min_sports=1)
-        if legs:
-            total = round(math.prod(l['odd'] for l in legs), 1)
-            if total >= 500:
-                tickets.append({
-                    'tier': 'megalodon', 'legs': legs,
-                    'total_odds': total,
-                    'confidence': calculate_confidence(legs),
-                })
+    # Determine ticket sizes based on available matches
+    max_legs = min(n_matches, 5)  # Can't exceed number of unique matches
 
-    # === WHALE TICKETS: 5-7 legs, high total odds ===
-    for _ in range(3):
-        n_high = random.randint(2, 3)
-        n_mid = random.randint(2, 3)
-        n_low = random.randint(1, 2)
-        legs = pick_legs([(low, n_low), (mid, n_mid), (high, n_high)], min_sports=1)
-        if legs:
-            total = round(math.prod(l['odd'] for l in legs), 1)
-            if total >= 40:
-                tickets.append({
-                    'tier': 'whale', 'legs': legs,
-                    'total_odds': total,
-                    'confidence': calculate_confidence(legs),
-                })
+    if n_matches >= 5:
+        # Lots of matches: normal ticket sizes
+        ticket_configs = [
+            # (tier, pools_config, min_odds, max_odds, attempts)
+            ('megalodon', [(very_high, 3), (high, 2)], 500, None, 3),
+            ('whale', [(high, 2), (mid, 2), (low, 1)], 40, None, 4),
+            ('shark', [(high, 1), (mid, 2)], 10, 200, 5),
+            ('hunter', [(mid, 2), (low, 1)], 3, 40, 5),
+        ]
+    elif n_matches >= 3:
+        # Few matches (3-4): all tickets are max 3-4 legs
+        # Compensate with higher-odds picks per leg for bigger tickets
+        ticket_configs = [
+            ('megalodon', [(very_high, min(3, n_matches))], 100, None, 4),
+            ('whale', [(very_high, 1), (high, min(2, n_matches-1))], 30, None, 4),
+            ('shark', [(high, 1), (mid, min(2, n_matches-1))], 10, 200, 6),
+            ('hunter', [(mid, min(2, n_matches)), (low, min(1, max(0, n_matches-2)))], 3, 40, 6),
+        ]
+    else:
+        # Very few matches (1-2): simple parlays
+        ticket_configs = [
+            ('shark', [(very_high, min(2, n_matches))], 10, None, 3),
+            ('hunter', [(high, min(2, n_matches))], 3, None, 5),
+            ('hunter', [(mid, min(2, n_matches))], 2, None, 5),
+        ]
 
-    # === SHARK TICKETS: 4-5 legs, medium total odds ===
-    for _ in range(5):
-        n_mid = random.randint(2, 3)
-        n_high = random.randint(1, 2)
-        legs = pick_legs([(mid, n_mid), (high, n_high)], min_sports=1)
-        if legs:
-            total = round(math.prod(l['odd'] for l in legs), 1)
-            if 15 <= total <= 200:
-                tickets.append({
-                    'tier': 'shark', 'legs': legs,
-                    'total_odds': total,
-                    'confidence': calculate_confidence(legs),
-                })
+    for tier, pools_cfg, min_odds, max_odds, attempts in ticket_configs:
+        for _ in range(attempts):
+            # Re-shuffle pools each attempt
+            for pl, _ in pools_cfg:
+                random.shuffle(pl)
+            legs = pick_legs(pools_cfg)
+            if legs:
+                total = round(math.prod(l['odd'] for l in legs), 1)
+                if total >= min_odds and (max_odds is None or total <= max_odds):
+                    tickets.append({
+                        'tier': tier, 'legs': legs,
+                        'total_odds': total,
+                        'confidence': calculate_confidence(legs),
+                    })
 
-    # === HUNTER TICKETS: 4 legs, safer ===
-    for _ in range(5):
-        n_low = random.randint(1, 2)
-        n_mid = random.randint(2, 3)
-        legs = pick_legs([(low, n_low), (mid, n_mid)], min_sports=1)
-        if legs:
-            total = round(math.prod(l['odd'] for l in legs), 1)
-            if 5 <= total <= 40:
-                tickets.append({
-                    'tier': 'hunter', 'legs': legs,
-                    'total_odds': total,
-                    'confidence': calculate_confidence(legs),
-                })
-
-    # Promote whales with x1000+ to megalodon
+    # Promote tickets with x1000+ to megalodon
     for t in tickets:
-        if t['tier'] == 'whale' and t['total_odds'] >= 1000:
+        if t['tier'] in ('whale', 'shark') and t['total_odds'] >= 1000:
             t['tier'] = 'megalodon'
+        elif t['tier'] == 'whale' and t['total_odds'] < 40:
+            t['tier'] = 'shark'
 
     tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
     tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
@@ -469,12 +470,16 @@ def build_tickets(pool):
         else:
             ticket['title'] = f"Multi-Sport x{len(sports_in)}"
 
-    # Verify zero duplicates
+    # Verify: zero duplicate props AND max 1 leg per match per ticket
     all_keys = []
     for t in tickets:
+        match_check = set()
         for l in t['legs']:
             all_keys.append(prop_key(l))
-    assert len(all_keys) == len(set(all_keys)), "DUPLICATE FOUND!"
+            assert l['match'] not in match_check, \
+                f"DUPLICATE MATCH in {t['id']}: {l['match']}"
+            match_check.add(l['match'])
+    assert len(all_keys) == len(set(all_keys)), "DUPLICATE PROP FOUND!"
 
     return tickets
 
