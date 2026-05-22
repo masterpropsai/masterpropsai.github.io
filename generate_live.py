@@ -385,6 +385,7 @@ def build_tickets(pool):
     print(f"   🏟️  {n_matches} partidos disponibles: {', '.join(unique_matches[:5])}")
 
     # Split pool by odds range
+    # REGLA: máximo 1 selección >x5.00 por billete, todas las demás ≤x5.00
     low = [p for p in pool if 1.30 <= p['odd'] < 1.55]
     mid = [p for p in pool if 1.55 <= p['odd'] <= 2.80]
     high = [p for p in pool if 2.80 < p['odd'] <= 5.00]
@@ -392,6 +393,7 @@ def build_tickets(pool):
 
     print(f"   low(1.3-1.55): {len(low)}, mid(1.55-2.8): {len(mid)}, "
           f"high(2.8-5): {len(high)}, vhigh(5-15): {len(very_high)}")
+    print(f"   ⚠️  REGLA: máx 1 selección >x5.00 por billete")
 
     # Anti-contradiction: track which side we've committed to per match
     # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
@@ -436,28 +438,47 @@ def build_tickets(pool):
     # Determine ticket sizes based on available matches
     max_legs = min(n_matches, 5)  # Can't exceed number of unique matches
 
+    # ══════════════════════════════════════════════════════════════════
+    # REGLA CLAVE: Máximo 1 selección >x5.00 por billete.
+    # Todas las demás patas deben ser ≤x5.00.
+    # very_high = >x5.00 (máx 1 por billete)
+    # high = x2.80-5.00, mid = x1.55-2.80, low = x1.30-1.55
+    # ══════════════════════════════════════════════════════════════════
+
     if n_matches >= 5:
-        # Lots of matches: normal ticket sizes
         ticket_configs = [
             # (tier, pools_config, min_odds, max_odds, attempts)
-            ('megalodon', [(very_high, 3), (high, 2)], 500, None, 3),
-            ('whale', [(high, 2), (mid, 2), (low, 1)], 40, None, 4),
+            # megalodon: 1 very_high + 4 high → e.g. x12 * x4 * x4 * x4 * x3.5 = ~2700
+            ('megalodon', [(very_high, 1), (high, 4)], 500, None, 5),
+            ('megalodon', [(very_high, 1), (high, 3), (mid, 1)], 200, None, 5),
+            # whale: 1 very_high + 2 high + 1 mid → e.g. x8 * x4 * x3.5 * x2 = ~224
+            ('whale', [(very_high, 1), (high, 2), (mid, 1)], 40, None, 5),
+            ('whale', [(very_high, 1), (high, 1), (mid, 2)], 40, None, 5),
+            # shark: 1 very_high + 1 mid + 1 low  OR  no very_high + high combos
+            ('shark', [(very_high, 1), (mid, 2)], 10, 200, 5),
+            ('shark', [(high, 2), (mid, 1)], 10, 200, 5),
             ('shark', [(high, 1), (mid, 2)], 10, 200, 5),
+            # hunter: all ≤x5.00
+            ('hunter', [(high, 1), (mid, 1), (low, 1)], 3, 40, 5),
             ('hunter', [(mid, 2), (low, 1)], 3, 40, 5),
+            ('hunter', [(mid, 3)], 3, 40, 5),
         ]
     elif n_matches >= 3:
-        # Few matches (3-4): all tickets are max 3-4 legs
-        # Compensate with higher-odds picks per leg for bigger tickets
         ticket_configs = [
-            ('megalodon', [(very_high, min(3, n_matches))], 100, None, 4),
-            ('whale', [(very_high, 1), (high, min(2, n_matches-1))], 30, None, 4),
+            # megalodon: 1 very_high + 2 high
+            ('megalodon', [(very_high, 1), (high, min(2, n_matches-1))], 100, None, 6),
+            # whale: 1 very_high + 1 high + 1 mid
+            ('whale', [(very_high, 1), (high, 1), (mid, min(1, n_matches-2))], 30, None, 5),
+            # shark: 1 high + 2 mid  OR  1 very_high + 2 mid
+            ('shark', [(very_high, 1), (mid, min(2, n_matches-1))], 10, 200, 6),
             ('shark', [(high, 1), (mid, min(2, n_matches-1))], 10, 200, 6),
+            # hunter: all ≤x5.00
+            ('hunter', [(high, 1), (mid, min(1, n_matches-1)), (low, min(1, max(0, n_matches-2)))], 3, 40, 6),
             ('hunter', [(mid, min(2, n_matches)), (low, min(1, max(0, n_matches-2)))], 3, 40, 6),
         ]
     else:
-        # Very few matches (1-2): simple parlays
         ticket_configs = [
-            ('shark', [(very_high, min(2, n_matches))], 10, None, 3),
+            ('shark', [(very_high, 1), (high, min(1, n_matches-1))], 10, None, 3),
             ('hunter', [(high, min(2, n_matches))], 3, None, 5),
             ('hunter', [(mid, min(2, n_matches))], 2, None, 5),
         ]
@@ -501,9 +522,12 @@ def build_tickets(pool):
         else:
             ticket['title'] = f"Multi-Sport x{len(sports_in)}"
 
-    # Verify: zero duplicate props AND max 1 leg per match per ticket
+    # Verify: zero duplicate props AND max 1 leg per match per ticket AND max 1 leg >x5.00
     all_keys = []
     for t in tickets:
+        high_odds_count = sum(1 for l in t['legs'] if l['odd'] > 5.00)
+        assert high_odds_count <= 1, \
+            f"REGLA VIOLADA en {t['id']}: {high_odds_count} selecciones >x5.00 (máx 1)"
         match_check = set()
         for l in t['legs']:
             all_keys.append(prop_key(l))
