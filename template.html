@@ -1506,104 +1506,118 @@ const NEEDS_BG = new Set(['NYY','COL','VGK','CLE','OKC','SAS','RIV','ATM','SD','
 function getTeamBadge(leg) {
   if (leg.sport === 'tenis') return '<span class="emoji-badge">🎾</span>';
   if (leg.sport === 'mma') return '<span class="emoji-badge">🥊</span>';
-  const url = TEAM_LOGOS[leg.team];
-  if (url) {
+  const fallback = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽',hockey:'🏒'}[leg.sport]||'🎯';
+  // 1. Check hardcoded TEAM_LOGOS first
+  const hardcoded = TEAM_LOGOS[leg.team];
+  if (hardcoded) {
     const bg = NEEDS_BG.has(leg.team) ? ' needs-bg' : '';
-    const fallback = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽'}[leg.sport]||'🎯';
-    return `<img src="${url}" alt="${leg.team}" class="${bg}" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
+    return `<img src="${hardcoded}" alt="${leg.team}" class="${bg}" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
   }
-  return '<span class="emoji-badge">🎯</span>';
+  // 2. Use API logo from DBbet CDN
+  if (leg.logo) {
+    return `<img src="${leg.logo}" alt="${leg.team}" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
+  }
+  return `<span class="emoji-badge">${fallback}</span>`;
 }
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'M1', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:22380.3, couponCode:'', legs:[
-    {player:'Australia', prop:'Local To Gana y Total > (2.5) - Yes', match:'Australia vs Turkey — World Cup 2026', odd:8.6, sport:'futbol', team:'AUS', date:'Jun 14'},
-    {player:'DR Congo', prop:'Visitante Anota próximo gol (5)', match:'Portugal vs DR Congo — World Cup 2026', odd:11, sport:'futbol', team:'DR', date:'Jun 17'},
-    {player:'Girona', prop:'Total Menos de (0.5)', match:'Girona vs Elche — La Liga', odd:13.9, sport:'futbol', team:'GIR', date:'May 23'},
-    {player:'Sunderland', prop:'Local To Gana y Total < (5.5) - Yes', match:'Sunderland vs Chelsea — Premier League', odd:3.7, sport:'futbol', team:'SUN', date:'May 24'},
-    {player:'Paraguay', prop:'HT-FT XX', match:'Paraguay vs Australia — World Cup 2026', odd:4.6, sport:'futbol', team:'PAR', date:'Jun 26'}
+  { id:'M1', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:27138.8, couponCode:'', legs:[
+    {player:'Paris Saint-Germain', prop:'Total Más de (4.5)', match:'Paris Saint-Germain vs Arsenal — UEFA Champions League', odd:6.5, sport:'futbol', team:'PSG', date:'May 30', logo:'https://nimblecd.com/sfiles/logo_teams/5280.png'},
+    {player:'Curacao', prop:'Primero en (2) goles - Visitante', match:'Ecuador vs Curacao — World Cup 2026', odd:14.5, sport:'futbol', team:'CUR', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/c616d1a98b89f0e0f9fadce47e96aaa7.png'},
+    {player:'Senegal', prop:'Total Individual 2 Más de (2)', match:'France vs Senegal — World Cup 2026', odd:14, sport:'futbol', team:'SEN', date:'Jun 16', logo:'https://nimblecd.com/sfiles/logo_teams/11815.png'},
+    {player:'Spain', prop:'Hándicap 1 (-4)', match:'Spain vs Saudi Arabia — World Cup 2026', odd:4.75, sport:'futbol', team:'ESP', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/cb151152db93a8293a4bead299416b4c.png'},
+    {player:'Cape Verde', prop:'Total Más de (3.5)', match:'Cape Verde vs Saudi Arabia — World Cup 2026', odd:4.33, sport:'futbol', team:'CAP', date:'Jun 27', logo:'https://nimblecd.com/sfiles/logo_teams/12649.png'}
   ]},
-  { id:'M2', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:8610.5, couponCode:'', legs:[
-    {player:'Iran', prop:'HT-FT 2/1X', match:'Iran vs New Zealand — World Cup 2026', odd:11, sport:'futbol', team:'IRA', date:'Jun 16'},
-    {player:'Norway', prop:'Local To Gana y Total > (1.5) - Yes', match:'Norway vs France — World Cup 2026', odd:7.5, sport:'futbol', team:'NOR', date:'Jun 26'},
-    {player:'Paraguay', prop:'Hándicap 1 (-2.5)', match:'Paraguay vs Australia — World Cup 2026', odd:8.6, sport:'futbol', team:'PAR', date:'Jun 26'},
-    {player:'Brentford', prop:'Total Más de (4.25)', match:'Liverpool vs Brentford — Premier League', odd:3.28, sport:'futbol', team:'BRE', date:'May 24'},
-    {player:'Paraguay', prop:'Total Más de (3.25)', match:'Turkey vs Paraguay — World Cup 2026', odd:3.7, sport:'futbol', team:'PAR', date:'Jun 20'}
+  { id:'M2', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:2665.0, couponCode:'', legs:[
+    {player:'Mexico', prop:'Local To Gana y Total < (1.5) - Yes', match:'Mexico vs South Africa — World Cup 2026', odd:5.55, sport:'futbol', team:'MEX', date:'Jun 11', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png'},
+    {player:'Bosnia and Herzegovina', prop:'Visitante To Gana y Total < (4.5) - Yes', match:'Switzerland vs Bosnia and Herzegovina — World Cup 2026', odd:6.2, sport:'futbol', team:'BOS', date:'Jun 18', logo:'https://nimblecd.com/sfiles/logo_teams/12669.png'},
+    {player:'Napoli', prop:'Total Más de (4.5)', match:'Napoli vs Udinese Calcio — Serie A', odd:5.45, sport:'futbol', team:'NAP', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/b71fc7ce7b35cdc0b945d7db27feb62b.png'},
+    {player:'Netherlands', prop:'Total Más de (4)', match:'Netherlands vs Japan — World Cup 2026', odd:4.85, sport:'futbol', team:'NET', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'},
+    {player:'Sassuolo Calcio', prop:'Visitante To Gana y Total < (4.5) - Yes', match:'Parma vs Sassuolo Calcio — Serie A', odd:2.93, sport:'futbol', team:'SAS', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png'}
   ]},
-  { id:'W1', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:540.8, couponCode:'', legs:[
-    {player:'Uruguay', prop:'Local To Gana y Total < (2.5) - No', match:'Uruguay vs Cape Verde — World Cup 2026', odd:1.3, sport:'futbol', team:'URU', date:'Jun 21'},
-    {player:'Haiti', prop:'Total Más de (2)', match:'Morocco vs Haiti — World Cup 2026', odd:1.35, sport:'futbol', team:'HAI', date:'Jun 24'},
-    {player:'Jordan', prop:'Total Más de (3.25)', match:'Austria vs Jordan — World Cup 2026', odd:2.18, sport:'futbol', team:'JOR', date:'Jun 17'},
-    {player:'Uzbekistan', prop:'Visitante To Gana y Total > (1.5) - Yes', match:'Uzbekistan vs Colombia — World Cup 2026', odd:1.74, sport:'futbol', team:'UZB', date:'Jun 18'},
-    {player:'Scotland', prop:'Local No pierde And Total < (4.5) - No', match:'Scotland vs Morocco — World Cup 2026', odd:1.89, sport:'futbol', team:'SCO', date:'Jun 19'},
-    {player:'Bologna 1909', prop:'Total Más de (4)', match:'Bologna 1909 vs Internazionale Milano — Serie A', odd:3.38, sport:'futbol', team:'BOL', date:'May 23'},
-    {player:'Parma', prop:'Local To Gana y Total > (2.5) - Yes', match:'Parma vs Sassuolo Calcio — Serie A', odd:4.05, sport:'futbol', team:'PAR', date:'May 24'},
-    {player:'South Korea', prop:'Visitante No pierde And Total > (2.5) - Yes', match:'South Africa vs South Korea — World Cup 2026', odd:3.14, sport:'futbol', team:'SOU', date:'Jun 25'}
+  { id:'M3', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:1, totalOdds:1683.1, couponCode:'', legs:[
+    {player:'Brazil', prop:'Primero en (5) goles - Ninguno', match:'Brazil vs Haiti — World Cup 2026', odd:1.36, sport:'futbol', team:'BRA', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/dde3733bfaa4da13ac79715b8ff79eaa.png'},
+    {player:'Como', prop:'Visitante To Gana y Total < (3.5) - No', match:'Cremonese vs Como — Serie A', odd:1.51, sport:'futbol', team:'COM', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/d46ab1e7ba15176822bf8826e3ea2cdd.png'},
+    {player:'Uruguay', prop:'Local To Gana y Total < (5.5) - No', match:'Uruguay vs Cape Verde — World Cup 2026', odd:2.38, sport:'futbol', team:'URU', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/12773.png'},
+    {player:'Haiti', prop:'Total Individual 1 Menos de (0.5)', match:'Haiti vs Scotland — World Cup 2026', odd:2.08, sport:'futbol', team:'HAI', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/13301.png'},
+    {player:'England', prop:'Local No pierde And Total < (3.5) - No', match:'England vs Croatia — World Cup 2026', odd:2.25, sport:'futbol', team:'ENG', date:'Jun 17', logo:'https://nimblecd.com/sfiles/logo_teams/12763.png'},
+    {player:'VfB Stuttgart', prop:'Visitante No pierde And Total < (4.5) - Yes', match:'Bayern Munich vs VfB Stuttgart — Germany DFB Pokal', odd:4.3, sport:'futbol', team:'VFB', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/123e961b16a42a5d63301336dd119ca5.png'},
+    {player:'Brighton & Hove Albion', prop:'Total Individual 1 Menos de (1)', match:'Brighton & Hove Albion vs Manchester United — Premier League', odd:4.6, sport:'futbol', team:'BHA', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/2026.png'},
+    {player:'Fiorentina', prop:'Local To Gana y Total > (2.5) - Yes', match:'Fiorentina vs Atalanta — Serie A', odd:3.72, sport:'futbol', team:'FIO', date:'May 22', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
   ]},
-  { id:'W2', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:94.3, couponCode:'', legs:[
-    {player:'Tunisia', prop:'Visitante Anota próximo gol (1)', match:'Tunisia vs Netherlands — World Cup 2026', odd:1.44, sport:'futbol', team:'TUN', date:'Jun 25'},
-    {player:'Tottenham Hotspur', prop:'Local Anota próximo gol (1)', match:'Tottenham Hotspur vs Everton — Premier League', odd:1.69, sport:'futbol', team:'TOT', date:'May 24'},
-    {player:'Real Betis', prop:'Total Individual 1 Menos de (1.5)', match:'Real Betis vs Levante UD — La Liga', odd:1.88, sport:'futbol', team:'REA', date:'May 23'},
-    {player:'Villarreal', prop:'Total Menos de (3.5)', match:'Villarreal vs Atletico Madrid — La Liga', odd:1.73, sport:'futbol', team:'VIL', date:'May 24'},
-    {player:'Haiti', prop:'Total Más de (3.5)', match:'Haiti vs Scotland — World Cup 2026', odd:3.04, sport:'futbol', team:'HAI', date:'Jun 14'},
-    {player:'Ecuador', prop:'Local No pierde And Total < (4.5) - No', match:'Ecuador vs Curacao — World Cup 2026', odd:3.92, sport:'futbol', team:'ECU', date:'Jun 21'}
+  { id:'W1', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:343.8, couponCode:'', legs:[
+    {player:'South Africa', prop:'Total Individual 1 Más de (0.5)', match:'South Africa vs South Korea — World Cup 2026', odd:1.41, sport:'futbol', team:'SOU', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/12895.png'},
+    {player:'Real Betis', prop:'Local No pierde And Total > (3.5) - No', match:'Real Betis vs Levante UD — La Liga', odd:1.3, sport:'futbol', team:'REA', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/3454.png'},
+    {player:'Brentford', prop:'Total Menos de (3.25)', match:'Liverpool vs Brentford — Premier League', odd:1.91, sport:'futbol', team:'BRE', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/d39e5e934e338e9802b4cbe851da4359.png'},
+    {player:'Switzerland', prop:'Total Individual 1 Más de (1.5)', match:'Switzerland vs Bosnia and Herzegovina — World Cup 2026', odd:1.75, sport:'futbol', team:'SWI', date:'Jun 18', logo:'https://nimblecd.com/sfiles/logo_teams/12399.png'},
+    {player:'Real Madrid', prop:'Total Individual 1 Más de (3.5)', match:'Real Madrid vs Athletic Bilbao — La Liga', odd:4.6, sport:'futbol', team:'RMA', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/65e3e972954419765c3ce21698edf6cb.png'},
+    {player:'Spain', prop:'Hándicap 1 (-3.75)', match:'Spain vs Cape Verde — World Cup 2026', odd:3.05, sport:'futbol', team:'ESP', date:'Jun 15', logo:'https://nimblecd.com/sfiles/logo_teams/cb151152db93a8293a4bead299416b4c.png'},
+    {player:'Bologna 1909', prop:'Total Más de (4.5)', match:'Bologna 1909 vs Internazionale Milano — Serie A', odd:4, sport:'futbol', team:'BOL', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/b98f9528445fd9b99ade5c42554ee293.png'}
   ]},
-  { id:'W3', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:63.7, couponCode:'', legs:[
-    {player:'Curacao', prop:'Total Menos de (3.25)', match:'Ecuador vs Curacao — World Cup 2026', odd:1.46, sport:'futbol', team:'CUR', date:'Jun 21'},
-    {player:'Atalanta', prop:'Hándicap 2 (-0.25)', match:'Fiorentina vs Atalanta — Serie A', odd:2.12, sport:'futbol', team:'ATA', date:'May 22'},
-    {player:'Espanyol', prop:'Visitante No pierde And Total > (1.5) - No', match:'Espanyol vs Real Sociedad — La Liga', odd:1.67, sport:'futbol', team:'ESP', date:'May 23'},
-    {player:'DR Congo', prop:'Primero en (2) goles - Ninguno', match:'Portugal vs DR Congo — World Cup 2026', odd:3.54, sport:'futbol', team:'DR', date:'Jun 17'},
-    {player:'Manchester City', prop:'Visitante Anota próximo gol (1)', match:'Manchester City vs Aston Villa — Premier League', odd:3.48, sport:'futbol', team:'MCI', date:'May 24'}
+  { id:'W2', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:194.1, couponCode:'', legs:[
+    {player:'Scotland', prop:'Total Individual 2 Menos de (2.5)', match:'Haiti vs Scotland — World Cup 2026', odd:1.45, sport:'futbol', team:'SCO', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/12741.png'},
+    {player:'Parma', prop:'Any Team To Gana sin goles en contra - No', match:'Parma vs Sassuolo Calcio — Serie A', odd:1.48, sport:'futbol', team:'PAR', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/cacdab3a27eb1a7fd7d7ef873ae5e00b.png'},
+    {player:'Paraguay', prop:'Total Más de (2.25)', match:'Turkey vs Paraguay — World Cup 2026', odd:2.02, sport:'futbol', team:'PAR', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/12703.png'},
+    {player:'Australia', prop:'Visitante No pierde And Total > (1.5) - Yes', match:'Australia vs Turkey — World Cup 2026', odd:1.57, sport:'futbol', team:'AUS', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/12759.png'},
+    {player:'Spartak Moscow', prop:'Total Individual 1 Menos de (1)', match:'Spartak Moscow vs Krasnodar — Russian Cup', odd:2.47, sport:'futbol', team:'SPA', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/63a47a468267a951d16e94a8cef83543.png'},
+    {player:'Atletico Madrid', prop:'Total Individual 2 Más de (2.5)', match:'Villarreal vs Atletico Madrid — La Liga', odd:3.94, sport:'futbol', team:'ATM', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/e0fd0bec869f91a6ae1d025628ab39b5.png'},
+    {player:'Belgium', prop:'Local No pierde And Total < (4.5) - No', match:'Belgium vs Egypt — World Cup 2026', odd:2.93, sport:'futbol', team:'BEL', date:'Jun 15', logo:'https://nimblecd.com/sfiles/logo_teams/78a46feaa0803d2272f3fc59cc8c2b41.png'}
   ]},
-  { id:'S1', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:109.4, couponCode:'', legs:[
-    {player:'Ecuador', prop:'Local No pierde And Total > (2.5) - No', match:'Ecuador vs Curacao — World Cup 2026', odd:1.92, sport:'futbol', team:'ECU', date:'Jun 21'},
-    {player:'Saudi Arabia', prop:'W2', match:'Cape Verde vs Saudi Arabia — World Cup 2026', odd:2.16, sport:'futbol', team:'SAU', date:'Jun 27'},
-    {player:'Turkey', prop:'Visitante To Gana y Total < (4.5) - Yes', match:'Australia vs Turkey — World Cup 2026', odd:1.96, sport:'futbol', team:'TUR', date:'Jun 14'},
-    {player:'Colombia', prop:'Hándicap 1 (-2)', match:'Colombia vs DR Congo — World Cup 2026', odd:3.96, sport:'futbol', team:'COL', date:'Jun 24'},
-    {player:'Fulham', prop:'Local To Gana y Total < (4.5) - Yes', match:'Fulham vs Newcastle United — Premier League', odd:3.4, sport:'futbol', team:'FUL', date:'May 24'}
+  { id:'S1', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:44.5, couponCode:'', legs:[
+    {player:'Chelsea', prop:'Primero en (2) goles - Ninguno', match:'Sunderland vs Chelsea — Premier League', odd:2.7, sport:'futbol', team:'CHE', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/4d19a56f7c6e34c48f0f5e0f07bf9ac5.png'},
+    {player:'Tunisia', prop:'Ninguno Anota próximo gol (3)', match:'Tunisia vs Netherlands — World Cup 2026', odd:1.82, sport:'futbol', team:'TUN', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/12721.png'},
+    {player:'Brighton & Hove Albion', prop:'Hándicap 1 (-1.5)', match:'Brighton & Hove Albion vs Manchester United — Premier League', odd:3.04, sport:'futbol', team:'BHA', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/2026.png'},
+    {player:'Atletico Madrid', prop:'Total Individual 2 Más de (2)', match:'Villarreal vs Atletico Madrid — La Liga', odd:2.98, sport:'futbol', team:'ATM', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/e0fd0bec869f91a6ae1d025628ab39b5.png'}
   ]},
-  { id:'S2', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:106.1, couponCode:'', legs:[
-    {player:'Crystal Palace', prop:'Hándicap 1 (0.75)', match:'Crystal Palace vs Arsenal — Premier League', odd:1.78, sport:'futbol', team:'CRY', date:'May 24'},
-    {player:'Norway', prop:'Visitante No pierde And Total < (3.5) - No', match:'Iraq vs Norway — World Cup 2026', odd:2.14, sport:'futbol', team:'NOR', date:'Jun 16'},
-    {player:'Algeria', prop:'Visitante To Gana y Total < (4.5) - Yes', match:'Jordan vs Algeria — World Cup 2026', odd:1.95, sport:'futbol', team:'ALG', date:'Jun 23'},
-    {player:'Girona', prop:'Hándicap 1 (-1.75)', match:'Girona vs Elche — La Liga', odd:3.76, sport:'futbol', team:'GIR', date:'May 23'},
-    {player:'Spartak Moscow', prop:'Total Individual 1 Menos de (0.5)', match:'Spartak Moscow vs Krasnodar — Russian Cup', odd:3.8, sport:'futbol', team:'SPA', date:'May 24'}
+  { id:'S2', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:22.6, couponCode:'', legs:[
+    {player:'Nottingham Forest', prop:'Local Total Odd', match:'Nottingham Forest vs Bournemouth — Premier League', odd:1.95, sport:'futbol', team:'NOT', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/449f7ee435140e62e75fb7268da87d8e.png'},
+    {player:'Germany', prop:'Any Team To Win With Difference Of (3) Or More goles - No', match:'Germany vs Curacao — World Cup 2026', odd:2.6, sport:'futbol', team:'GER', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/2b7d9a9f081b747caced4aaad6f6890e.png'},
+    {player:'Switzerland', prop:'Local To Gana y Total > (3.5) - Yes', match:'Switzerland vs Bosnia and Herzegovina — World Cup 2026', odd:4.45, sport:'futbol', team:'SWI', date:'Jun 18', logo:'https://nimblecd.com/sfiles/logo_teams/12399.png'}
   ]},
-  { id:'S3', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:74.7, couponCode:'', legs:[
-    {player:'Czech Republic', prop:'Total Menos de (1.75)', match:'Czech Republic vs South Africa — World Cup 2026', odd:2.42, sport:'futbol', team:'CZE', date:'Jun 18'},
-    {player:'Tunisia', prop:'Local No pierde And Total < (4.5) - Yes', match:'Tunisia vs Japan — World Cup 2026', odd:2.02, sport:'futbol', team:'TUN', date:'Jun 21'},
-    {player:'Spartak Moscow', prop:'Local To Gana y Total < (3.5) - Yes', match:'Spartak Moscow vs Krasnodar — Russian Cup', odd:3.64, sport:'futbol', team:'SPA', date:'May 24'},
-    {player:'Atletico Madrid', prop:'Visitante To Gana y Total < (3.5) - Yes', match:'Villarreal vs Atletico Madrid — La Liga', odd:4.2, sport:'futbol', team:'ATM', date:'May 24'}
+  { id:'S3', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:18.5, couponCode:'', legs:[
+    {player:'Bayern Munich', prop:'Hándicap 2 (1.25)', match:'Bayern Munich vs VfB Stuttgart — Germany DFB Pokal', odd:2.21, sport:'futbol', team:'BAY', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/701415b6d5ee3ffc9aaa20b1325ec160.png'},
+    {player:'Sweden', prop:'Visitante No pierde And Total < (3.5) - No', match:'Japan vs Sweden — World Cup 2026', odd:1.71, sport:'futbol', team:'SWE', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/2df507af22f0d932d5e054f2849adc31.png'},
+    {player:'Qatar', prop:'Local No pierde And Total < (2.5) - Yes', match:'Qatar vs Switzerland — World Cup 2026', odd:4.9, sport:'futbol', team:'QAT', date:'Jun 13', logo:'https://nimblecd.com/sfiles/logo_teams/12653.png'}
   ]},
-  { id:'S4', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:50.2, couponCode:'', legs:[
-    {player:'Hellas Verona', prop:'Visitante To Gana y Total > (1.5) - No', match:'Hellas Verona vs Roma — Serie A', odd:2.29, sport:'futbol', team:'HEL', date:'May 24'},
-    {player:'Curacao', prop:'Total Más de (2.25)', match:'Ecuador vs Curacao — World Cup 2026', odd:1.56, sport:'futbol', team:'CUR', date:'Jun 21'},
-    {player:'Espanyol', prop:'Local Anota próximo gol (3)', match:'Espanyol vs Real Sociedad — La Liga', odd:3.25, sport:'futbol', team:'ESP', date:'May 23'},
-    {player:'Iran', prop:'Hándicap 1 (-1.75)', match:'Iran vs New Zealand — World Cup 2026', odd:4.32, sport:'futbol', team:'IRA', date:'Jun 16'}
+  { id:'S4', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:16.4, couponCode:'', legs:[
+    {player:'Haiti', prop:'Ninguno Anota próximo gol (3)', match:'Haiti vs Scotland — World Cup 2026', odd:1.95, sport:'futbol', team:'HAI', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/13301.png'},
+    {player:'Ghana', prop:'Local To Gana y Total < (4.5) - No', match:'Ghana vs Panama — World Cup 2026', odd:1.67, sport:'futbol', team:'GHA', date:'Jun 17', logo:'https://nimblecd.com/sfiles/logo_teams/5953283ac67dc47dc4c389481b7f0a0b.png'},
+    {player:'Napoli', prop:'Hándicap 2 (1.5)', match:'Napoli vs Udinese Calcio — Serie A', odd:1.64, sport:'futbol', team:'NAP', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/b71fc7ce7b35cdc0b945d7db27feb62b.png'},
+    {player:'Netherlands', prop:'Visitante Anota próximo gol (1)', match:'Netherlands vs Sweden — World Cup 2026', odd:3.08, sport:'futbol', team:'NET', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'}
   ]},
-  { id:'H1', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:21.3, couponCode:'', legs:[
-    {player:'Mexico', prop:'Hándicap 2 (1.25)', match:'Mexico vs South Korea — World Cup 2026', odd:1.41, sport:'futbol', team:'MEX', date:'Jun 19'},
-    {player:'Villarreal', prop:'Visitante To Gana y Total > (1.5) - No', match:'Villarreal vs Atletico Madrid — La Liga', odd:1.36, sport:'futbol', team:'VIL', date:'May 24'},
-    {player:'Germany', prop:'Total Individual 1 Más de (3.5)', match:'Germany vs Curacao — World Cup 2026', odd:1.75, sport:'futbol', team:'GER', date:'Jun 14'},
-    {player:'Arsenal', prop:'Hándicap 2 (-0.25)', match:'Paris Saint-Germain vs Arsenal — UEFA Champions League', odd:2.66, sport:'futbol', team:'ARS', date:'May 30'},
-    {player:'Canada', prop:'Hándicap 1 (-1.5)', match:'Canada vs Qatar — World Cup 2026', odd:2.39, sport:'futbol', team:'CAN', date:'Jun 18'}
+  { id:'H1', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:25.1, couponCode:'', legs:[
+    {player:'Senegal', prop:'Total Menos de (3.25)', match:'France vs Senegal — World Cup 2026', odd:1.38, sport:'futbol', team:'SEN', date:'Jun 16', logo:'https://nimblecd.com/sfiles/logo_teams/11815.png'},
+    {player:'Japan', prop:'Local To Gana y Total < (3.5) - No', match:'Japan vs Sweden — World Cup 2026', odd:1.38, sport:'futbol', team:'JAP', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/bc4ac9217b9008db4719eec0796c3121.png'},
+    {player:'Everton', prop:'Total Más de (3.25)', match:'Tottenham Hotspur vs Everton — Premier League', odd:2.42, sport:'futbol', team:'EVE', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/1992.png'},
+    {player:'Nottingham Forest', prop:'Local Anota próximo gol (1)', match:'Nottingham Forest vs Bournemouth — Premier League', odd:2.22, sport:'futbol', team:'NOT', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/449f7ee435140e62e75fb7268da87d8e.png'},
+    {player:'RC Lens', prop:'Local Anota próximo gol (3)', match:'RC Lens vs Nice — Coupe de France', odd:2.45, sport:'futbol', team:'RC', date:'May 22', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:7.7, couponCode:'', legs:[
-    {player:'Liverpool', prop:'Local No pierde And Total > (1.5) - Yes', match:'Liverpool vs Brentford — Premier League', odd:1.44, sport:'futbol', team:'LIV', date:'May 24'},
-    {player:'Torino', prop:'Any Team To Gana sin goles en contra - Yes', match:'Torino vs Juventus — Serie A', odd:1.98, sport:'futbol', team:'TOR', date:'May 24'},
-    {player:'Jordan', prop:'Total Más de (3)', match:'Jordan vs Algeria — World Cup 2026', odd:2.69, sport:'futbol', team:'JOR', date:'Jun 23'}
+  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:19.5, couponCode:'', legs:[
+    {player:'Senegal', prop:'Hándicap 2 (1.75)', match:'Senegal vs Iraq — World Cup 2026', odd:1.34, sport:'futbol', team:'SEN', date:'Jun 26', logo:'https://nimblecd.com/sfiles/logo_teams/11815.png'},
+    {player:'West Ham United', prop:'Visitante No pierde And Total > (1.5) - No', match:'West Ham United vs Leeds United — Premier League', odd:1.51, sport:'futbol', team:'WHU', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/1980.png'},
+    {player:'Brazil', prop:'Total Más de (3)', match:'Brazil vs Morocco — World Cup 2026', odd:2.62, sport:'futbol', team:'BRA', date:'Jun 13', logo:'https://nimblecd.com/sfiles/logo_teams/dde3733bfaa4da13ac79715b8ff79eaa.png'},
+    {player:'Real Sociedad', prop:'Total Más de (2.5)', match:'Espanyol vs Real Sociedad — La Liga', odd:1.91, sport:'futbol', team:'REA', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/3448.png'},
+    {player:'Sweden', prop:'Local Total Odd', match:'Sweden vs Tunisia — World Cup 2026', odd:1.93, sport:'futbol', team:'SWE', date:'Jun 15', logo:'https://nimblecd.com/sfiles/logo_teams/2df507af22f0d932d5e054f2849adc31.png'}
   ]},
-  { id:'H3', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:5, totalOdds:6.5, couponCode:'', legs:[
-    {player:'Iraq', prop:'Hándicap 2 (-1)', match:'Iraq vs Norway — World Cup 2026', odd:1.3, sport:'futbol', team:'IRA', date:'Jun 16'},
-    {player:'Barcelona', prop:'Visitante No pierde And Total > (3.5) - No', match:'Valencia vs Barcelona — La Liga', odd:1.43, sport:'futbol', team:'BAR', date:'May 23'},
-    {player:'Lecce', prop:'Local Anota próximo gol (1)', match:'Lecce vs Genoa — Serie A', odd:1.62, sport:'futbol', team:'LEC', date:'May 24'},
-    {player:'Morocco', prop:'Local Anota próximo gol (3)', match:'Morocco vs Haiti — World Cup 2026', odd:2.15, sport:'futbol', team:'MOR', date:'Jun 24'}
+  { id:'H3', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:15.0, couponCode:'', legs:[
+    {player:'Uruguay', prop:'Total Más de (2)', match:'Saudi Arabia vs Uruguay — World Cup 2026', odd:1.43, sport:'futbol', team:'URU', date:'Jun 15', logo:'https://nimblecd.com/sfiles/logo_teams/12773.png'},
+    {player:'Brighton & Hove Albion', prop:'Total Menos de (4)', match:'Brighton & Hove Albion vs Manchester United — Premier League', odd:1.34, sport:'futbol', team:'BHA', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/2026.png'},
+    {player:'Newcastle United', prop:'Visitante Total Even', match:'Fulham vs Newcastle United — Premier League', odd:1.8, sport:'futbol', team:'NEW', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/16f4b9522ff68b79b088d4c9da0939ee.png'},
+    {player:'Napoli', prop:'Local No pierde And Total < (2.5) - Yes', match:'Napoli vs Udinese Calcio — Serie A', odd:2.16, sport:'futbol', team:'NAP', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/b71fc7ce7b35cdc0b945d7db27feb62b.png'},
+    {player:'Sweden', prop:'Hándicap 2 (0.75)', match:'Netherlands vs Sweden — World Cup 2026', odd:2.02, sport:'futbol', team:'SWE', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/2df507af22f0d932d5e054f2849adc31.png'}
   ]},
-  { id:'H4', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:5, totalOdds:5.7, couponCode:'', legs:[
-    {player:'Napoli', prop:'Total Más de (1.75)', match:'Napoli vs Udinese Calcio — Serie A', odd:1.33, sport:'futbol', team:'NAP', date:'May 24'},
-    {player:'Girona', prop:'Local To Gana y Total < (5.5) - No', match:'Girona vs Elche — La Liga', odd:1.79, sport:'futbol', team:'GIR', date:'May 23'},
-    {player:'Parma', prop:'Total Individual 2 Menos de (1)', match:'Parma vs Sassuolo Calcio — Serie A', odd:2.39, sport:'futbol', team:'PAR', date:'May 24'}
+  { id:'H4', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:6, totalOdds:7.2, couponCode:'', legs:[
+    {player:'Portugal', prop:'Local To Gana y Total < (5.5) - Yes', match:'Portugal vs DR Congo — World Cup 2026', odd:1.42, sport:'futbol', team:'POR', date:'Jun 17', logo:'https://nimblecd.com/sfiles/logo_teams/8138df1a48103759480c088328c311d0.png'},
+    {player:'Roma', prop:'Total Individual 2 Menos de (2.5)', match:'Hellas Verona vs Roma — Serie A', odd:1.51, sport:'futbol', team:'ROM', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/167095.png'},
+    {player:'Mexico', prop:'Local Total Even', match:'Mexico vs South Korea — World Cup 2026', odd:1.79, sport:'futbol', team:'MEX', date:'Jun 19', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png'},
+    {player:'Czech Republic', prop:'Visitante No pierde And Total < (3.5) - No', match:'South Korea vs Czech Republic — World Cup 2026', odd:1.87, sport:'futbol', team:'CZE', date:'Jun 12', logo:'https://nimblecd.com/sfiles/logo_teams/fbb4d877e769ce92d4399466c5f2b0b0.png'}
+  ]},
+  { id:'H5', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:6, totalOdds:5.7, couponCode:'', legs:[
+    {player:'Liverpool', prop:'Hándicap 1 (0)', match:'Liverpool vs Brentford — Premier League', odd:1.4, sport:'futbol', team:'LIV', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/d3916206204ffc91b0471ff9484066d6.png'},
+    {player:'Uruguay', prop:'Primero en (3) goles - Ninguno', match:'Uruguay vs Cape Verde — World Cup 2026', odd:1.42, sport:'futbol', team:'URU', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/12773.png'},
+    {player:'Japan', prop:'Visitante To Gana y Total < (4.5) - No', match:'Tunisia vs Japan — World Cup 2026', odd:1.69, sport:'futbol', team:'JAP', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/bc4ac9217b9008db4719eec0796c3121.png'},
+    {player:'Bayern Munich', prop:'Local To Gana y Total < (5.5) - Yes', match:'Bayern Munich vs VfB Stuttgart — Germany DFB Pokal', odd:1.7, sport:'futbol', team:'BAY', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/701415b6d5ee3ffc9aaa20b1325ec160.png'}
   ]},
 ];
 

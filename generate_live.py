@@ -26,6 +26,7 @@ CLIENT_ID = "partners-3151f4df3df18d1d17e3eae7a6c43792"
 CLIENT_SECRET = "LDnyHnPGpVdar!gId431qn&YQRAZg!D5A1R010T5rk0F3ciWT1CHreULFN2Ly3Ck"
 REF = "164"
 PARTNER_LINK = "refpa1800.com"
+LOGO_BASE = "https://nimblecd.com/sfiles/logo_teams/"
 
 # ── Sport config ──
 SPORT_MAP = {1: 'futbol', 2: 'hockey', 3: 'nba', 4: 'tenis', 5: 'mlb', 189: 'ufc'}
@@ -128,6 +129,12 @@ def build_prop_pool(data):
         date_str = datetime.fromtimestamp(start_ts, tz=timezone.utc).strftime('%b %d') if start_ts else 'TBD'
         ab1, ab2 = abbrev(t1), abbrev(t2)
 
+        # Get logo URLs
+        img1_list = event.get('imageOpponent1', [])
+        img2_list = event.get('imageOpponent2', [])
+        logo1 = f"{LOGO_BASE}{img1_list[0]}" if img1_list else ''
+        logo2 = f"{LOGO_BASE}{img2_list[0]}" if img2_list else ''
+
         for odd in event.get('oddsLocalization', []):
             if odd.get('isBlocked', False):
                 continue
@@ -140,13 +147,13 @@ def build_prop_pool(data):
             if not any(kw.lower() in display.lower() for kw in INTERESTING_KEYWORDS):
                 continue
 
-            # Determine which team
+            # Determine which team and logo
             if '1' in display and '2' not in display:
-                player, team = t1, ab1
+                player, team, logo = t1, ab1, logo1
             elif '2' in display and '1' not in display:
-                player, team = t2, ab2
+                player, team, logo = t2, ab2, logo2
             else:
-                player, team = t1, ab1
+                player, team, logo = t1, ab1, logo1
 
             # Short match name for display
             if tournament:
@@ -164,6 +171,7 @@ def build_prop_pool(data):
                 'team': team,
                 'date': date_str,
                 'link': link,
+                'logo': logo,
             })
 
     return props
@@ -334,7 +342,8 @@ def generate_ticket_js(tickets):
                 f"prop:'{_esc(leg['prop'])}', "
                 f"match:'{_esc(leg['match'])}', "
                 f"odd:{leg['odd']}, sport:'{leg['sport']}', "
-                f"team:'{_esc(leg['team'])}', date:'{leg.get('date', '')}'}}"
+                f"team:'{_esc(leg['team'])}', date:'{leg.get('date', '')}', "
+                f"logo:'{_esc(leg.get('logo', ''))}'}}"
             )
         sport_counts = {}
         for leg in ticket['legs']:
