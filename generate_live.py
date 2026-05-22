@@ -519,13 +519,16 @@ def generate_ticket_js(tickets):
     for ticket in tickets:
         legs_js = []
         for leg in ticket['legs']:
+            # Convert link to Spanish version
+            leg_link = leg.get('link', '').replace('/en/', '/es/')
             legs_js.append(
                 f"    {{player:'{_esc(leg['player'])}', "
                 f"prop:'{_esc(leg['prop'])}', "
                 f"match:'{_esc(leg['match'])}', "
                 f"odd:{leg['odd']}, sport:'{leg['sport']}', "
                 f"team:'{_esc(leg['team'])}', date:'{leg.get('date', '')}', "
-                f"logo:'{_esc(leg.get('logo', ''))}'}}"
+                f"logo:'{_esc(leg.get('logo', ''))}', "
+                f"link:'{_esc(leg_link)}'}}"
             )
         sport_counts = {}
         for leg in ticket['legs']:
