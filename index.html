@@ -1543,99 +1543,77 @@ function getTeamBadge(leg) {
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'M1', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:1, totalOdds:5691.1, couponCode:'', legs:[
-    {player:'Rep. Checa', prop:'Total Más de (4.25)', match:'Corea del Sur vs Rep. Checa — Mundial 2026', odd:7.4, sport:'futbol', team:'CZE', date:'Jun 12', logo:'https://nimblecd.com/sfiles/logo_teams/fbb4d877e769ce92d4399466c5f2b0b0.png'},
-    {player:'México', prop:'Local Gana por (3) goles - Sí', match:'México vs Corea del Sur — Mundial 2026', odd:9.8, sport:'futbol', team:'MEX', date:'Jun 19', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png'},
-    {player:'Stuttgart', prop:'Total Individual 2 Más de (2.5)', match:'Bayern Múnich vs Stuttgart — Copa de Alemania', odd:8.3, sport:'futbol', team:'VFB', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/123e961b16a42a5d63301336dd119ca5.png'},
-    {player:'Australia', prop:'Visitante Anota próximo gol (2)', match:'Paraguay vs Australia — Mundial 2026', odd:3.05, sport:'futbol', team:'AUS', date:'Jun 26', logo:'https://nimblecd.com/sfiles/logo_teams/12759.png'},
-    {player:'Holanda', prop:'Total Individual 1 Más de (2)', match:'Holanda vs Japón — Mundial 2026', odd:3.1, sport:'futbol', team:'NET', date:'Jun 14', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'}
+  { id:'M1', tier:'megalodon', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:5374.1, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Fiorentina', prop:'Total Más de (4.75)', match:'Fiorentina vs Atalanta — Serie A', odd:5.45, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'Nice', prop:'Visitante Gana y Total < (2.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:11.2, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'Nice', prop:'Visitante No pierde y Total > (2.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:6.35, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'Vegas Golden Knights', prop:'Primero en (3) goles - Visitante', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:2.95, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'Vegas Golden Knights', prop:'Visitante No pierde y Total < (4.5) - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.7, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
   ]},
-  { id:'M2', tier:'megalodon', sport:'futbol', title:'Fútbol Props Mix', confidence:2, totalOdds:2769.7, couponCode:'', legs:[
-    {player:'Sudáfrica', prop:'Local Gana y Total < (2.5) - Sí', match:'Sudáfrica vs Corea del Sur — Mundial 2026', odd:5.45, sport:'futbol', team:'SOU', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/12895.png'},
-    {player:'Mallorca', prop:'Total Individual 1 Menos de (0.5)', match:'Mallorca vs Real Oviedo — La Liga', odd:6.05, sport:'futbol', team:'MAL', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/3478.png'},
-    {player:'Osasuna', prop:'HT-FT XW2', match:'Getafe vs Osasuna — La Liga', odd:7, sport:'futbol', team:'OSA', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/3470.png'},
-    {player:'Egipto', prop:'Visitante Gana y Total < (2.5) - Sí', match:'Nueva Zelanda vs Egipto — Mundial 2026', odd:3.2, sport:'futbol', team:'EGY', date:'Jun 22', logo:'https://nimblecd.com/sfiles/logo_teams/12641.png'},
-    {player:'Holanda', prop:'Hándicap 2 (-2)', match:'Túnez vs Holanda — Mundial 2026', odd:3.75, sport:'futbol', team:'NET', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'}
+  { id:'W1', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:167.3, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Fiorentina', prop:'Total Menos de (3.5)', match:'Fiorentina vs Atalanta — Serie A', odd:1.47, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'RC Lens', prop:'Local Gana y Total < (4.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:1.87, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'RC Lens', prop:'Local No pierde y Total < (3.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:1.69, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Vegas Golden Knights', prop:'Visitante Gana y Total > (4.5) - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.1, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'Colorado Avalanche', prop:'Ninguno Anota próximo gol (5)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:3.04, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'Colorado Avalanche', prop:'Total Menos de (4.75)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:2.89, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
   ]},
-  { id:'W1', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:1, totalOdds:756.7, couponCode:'', legs:[
-    {player:'Man. City', prop:'Hándicap 1 (-1.25)', match:'Man. City vs Aston Villa — Premier League', odd:1.54, sport:'futbol', team:'MCI', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/57060f6368da70fbdfff37cb4b0280a5.png'},
-    {player:'Turquía', prop:'Local Anota próximo gol (1)', match:'Turquía vs EE.UU. — Mundial 2026', odd:2.12, sport:'futbol', team:'TUR', date:'Jun 26', logo:'https://nimblecd.com/sfiles/logo_teams/3ee6545f62ec6f346543872b9cf7eba4.png'},
-    {player:'Real Madrid', prop:'Local No pierde y Total < (3.5) - Sí', match:'Real Madrid vs Athletic Bilbao — La Liga', odd:1.85, sport:'futbol', team:'RMA', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/65e3e972954419765c3ce21698edf6cb.png'},
-    {player:'España', prop:'Total Individual 1 Menos de (3.5)', match:'España vs Cabo Verde — Mundial 2026', odd:1.56, sport:'futbol', team:'ESP', date:'Jun 15', logo:'https://nimblecd.com/sfiles/logo_teams/cb151152db93a8293a4bead299416b4c.png'},
-    {player:'EE.UU.', prop:'Total Más de (3.75)', match:'EE.UU. vs Paraguay — Mundial 2026', odd:4.57, sport:'futbol', team:'USA', date:'Jun 13', logo:'https://nimblecd.com/sfiles/logo_teams/5babdac793c016d303db8c90fa6925f5.png'},
-    {player:'Holanda', prop:'Local Gana y Total < (2.5) - Sí', match:'Holanda vs Suecia — Mundial 2026', odd:3.55, sport:'futbol', team:'NET', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'},
-    {player:'Fiorentina', prop:'Total Individual 1 Más de (2.5)', match:'Fiorentina vs Atalanta — Serie A', odd:4.95, sport:'futbol', team:'FIO', date:'May 22', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'}
+  { id:'W2', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:3, totalOdds:47.7, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Atalanta', prop:'Visitante No pierde y Total > (2.5) - No', match:'Fiorentina vs Atalanta — Serie A', odd:1.45, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'RC Lens', prop:'Local Total Impar', match:'RC Lens vs Nice — Copa de Francia', odd:1.92, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Nice', prop:'Total Menos de (2.75)', match:'RC Lens vs Nice — Copa de Francia', odd:1.92, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'Colorado Avalanche', prop:'Local No pierde y Total < (5.5) - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:2.84, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'Colorado Avalanche', prop:'Local Gana y Total < (6.5) - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:3.14, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
   ]},
-  { id:'W2', tier:'whale', sport:'futbol', title:'Fútbol Props Mix', confidence:1, totalOdds:714.9, couponCode:'', legs:[
-    {player:'Corea del Sur', prop:'Total Más de (1.75)', match:'Corea del Sur vs Rep. Checa — Mundial 2026', odd:1.48, sport:'futbol', team:'SOU', date:'Jun 12', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png'},
-    {player:'Irán', prop:'Primero en (2) goles - Ninguno', match:'Bélgica vs Irán — Mundial 2026', odd:2.67, sport:'futbol', team:'IRA', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/12655.png'},
-    {player:'Costa de Marfil', prop:'Total Individual 2 Más de (2)', match:'Curazao vs Costa de Marfil — Mundial 2026', odd:1.76, sport:'futbol', team:'IVO', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/cad806fb27fe61ef5fa5e19bfc256780.png'},
-    {player:'Argentina', prop:'Local Total Par', match:'Argentina vs Austria — Mundial 2026', odd:1.81, sport:'futbol', team:'ARG', date:'Jun 22', logo:'https://nimblecd.com/sfiles/logo_teams/12601.png'},
-    {player:'Man. City', prop:'Local Gana y Total > (5.5) - Sí', match:'Man. City vs Aston Villa — Premier League', odd:5, sport:'futbol', team:'MCI', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/57060f6368da70fbdfff37cb4b0280a5.png'},
-    {player:'Brasil', prop:'Total Individual 1 Menos de (2.5)', match:'Brasil vs Haití — Mundial 2026', odd:2.95, sport:'futbol', team:'BRA', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/dde3733bfaa4da13ac79715b8ff79eaa.png'},
-    {player:'Inglaterra', prop:'HT-FT XW1', match:'Inglaterra vs Ghana — Mundial 2026', odd:3.85, sport:'futbol', team:'ENG', date:'Jun 23', logo:'https://nimblecd.com/sfiles/logo_teams/12763.png'}
+  { id:'S1', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:132.6, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'RC Lens', prop:'Hándicap 1 (-0.75)', match:'RC Lens vs Nice — Copa de Francia', odd:1.61, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'RC Lens', prop:'Local Gana y Total > (2.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:2.28, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Fiorentina', prop:'Local No pierde y Total < (4.5) - Sí', match:'Fiorentina vs Atalanta — Serie A', odd:1.83, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'Colorado Avalanche', prop:'Primero en (3) goles - Ninguno', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.7, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'Vegas Golden Knights', prop:'Visitante Gana y Total < (7.5) - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.2, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'}
   ]},
-  { id:'W3', tier:'whale', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:117.7, couponCode:'', legs:[
-    {player:'Francia', prop:'Visitante Gana y Total > (2.5) - No', match:'Noruega vs Francia — Mundial 2026', odd:1.41, sport:'futbol', team:'FRA', date:'Jun 26', logo:'https://nimblecd.com/sfiles/logo_teams/efb8daee8b027b525edadb47fbd300b2.png'},
-    {player:'Parma', prop:'Visitante No pierde y Total > (1.5) - No', match:'Parma vs Sassuolo — Serie A', odd:1.8, sport:'futbol', team:'PAR', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/cacdab3a27eb1a7fd7d7ef873ae5e00b.png'},
-    {player:'Liverpool', prop:'Total Más de (3.5)', match:'Liverpool vs Brentford — Premier League', odd:2.28, sport:'futbol', team:'LIV', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/d3916206204ffc91b0471ff9484066d6.png'},
-    {player:'Portugal', prop:'Local No pierde y Total > (4.5) - Sí', match:'Portugal vs Uzbekistán — Mundial 2026', odd:4.15, sport:'futbol', team:'POR', date:'Jun 23', logo:'https://nimblecd.com/sfiles/logo_teams/8138df1a48103759480c088328c311d0.png'},
-    {player:'Colorado Avalanche', prop:'Total Individual 1 Menos de (2)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:4.9, sport:'hockey', team:'COL', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'S2', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:105.1, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Colorado Avalanche', prop:'Hándicap 1 (-1)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:2.05, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'Atalanta', prop:'Total Más de (2.5)', match:'Fiorentina vs Atalanta — Serie A', odd:1.7, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'Vegas Golden Knights', prop:'Visitante Total Par', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.85, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'Nice', prop:'Visitante Anota próximo gol (3)', match:'RC Lens vs Nice — Copa de Francia', odd:5, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'RC Lens', prop:'Total Más de (3.75)', match:'RC Lens vs Nice — Copa de Francia', odd:3.26, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'S1', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:128.3, couponCode:'', legs:[
-    {player:'Real Oviedo', prop:'Hándicap 2 (0.75)', match:'Mallorca vs Real Oviedo — La Liga', odd:2.26, sport:'futbol', team:'REA', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/11867.png'},
-    {player:'Uzbekistán', prop:'Total Menos de (2.75)', match:'Portugal vs Uzbekistán — Mundial 2026', odd:2.12, sport:'futbol', team:'UZB', date:'Jun 23', logo:'https://nimblecd.com/sfiles/logo_teams/13197.png'},
-    {player:'Turquía', prop:'Hándicap 1 (0)', match:'Turquía vs EE.UU. — Mundial 2026', odd:2.08, sport:'futbol', team:'TUR', date:'Jun 26', logo:'https://nimblecd.com/sfiles/logo_teams/3ee6545f62ec6f346543872b9cf7eba4.png'},
-    {player:'Milan', prop:'Total Más de (3.75)', match:'Milan vs Cagliari Calcio — Serie A', odd:3.03, sport:'futbol', team:'MIL', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/3530.png'},
-    {player:'Egipto', prop:'Total Individual 2 Menos de (0.5)', match:'Nueva Zelanda vs Egipto — Mundial 2026', odd:4.25, sport:'futbol', team:'EGY', date:'Jun 22', logo:'https://nimblecd.com/sfiles/logo_teams/12641.png'}
+  { id:'S3', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:3, totalOdds:39.0, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Atalanta', prop:'Total Más de (3.25)', match:'Fiorentina vs Atalanta — Serie A', odd:2.21, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'Atalanta', prop:'Total Menos de (3.25)', match:'Fiorentina vs Atalanta — Serie A', odd:1.58, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'Colorado Avalanche', prop:'Local Gana por 1 - 2 goles - Sí', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:3.6, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'Nice', prop:'Hándicap 2 (0.25)', match:'RC Lens vs Nice — Copa de Francia', odd:3.1, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
   ]},
-  { id:'S2', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:2, totalOdds:115.4, couponCode:'', legs:[
-    {player:'Carolina Hurricanes', prop:'Total Par - No', match:'Carolina Hurricanes vs Montreal Canadiens — NHL', odd:1.93, sport:'hockey', team:'CAR', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/8492.png'},
-    {player:'Alemania', prop:'Total Más de (2.5)', match:'Ecuador vs Alemania — Mundial 2026', odd:1.82, sport:'futbol', team:'GER', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/2b7d9a9f081b747caced4aaad6f6890e.png'},
-    {player:'Arabia Saudita', prop:'Total Menos de (2.25)', match:'Cabo Verde vs Arabia Saudita — Mundial 2026', odd:1.8, sport:'futbol', team:'SAU', date:'Jun 27', logo:'https://nimblecd.com/sfiles/logo_teams/29155.png'},
-    {player:'Wolverhampton', prop:'Ninguno Anota próximo gol (2)', match:'Burnley vs Wolverhampton — Premier League', odd:4.1, sport:'futbol', team:'WOL', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/b991346416c107a8c1ee4f90f6f1fc02.png'},
-    {player:'Man. United', prop:'Total Menos de (2)', match:'Brighton vs Man. United — Premier League', odd:4.45, sport:'futbol', team:'MUN', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/1996.png'}
+  { id:'S4', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:19.9, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Fiorentina', prop:'Ninguno Anota próximo gol (3)', match:'Fiorentina vs Atalanta — Serie A', odd:2.35, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'RC Lens', prop:'Total Individual 1 Menos de (1.5)', match:'RC Lens vs Nice — Copa de Francia', odd:2.29, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Colorado Avalanche', prop:'Total Más de (7.75)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:3.69, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
   ]},
-  { id:'S3', tier:'shark', sport:'futbol', title:'Fútbol + NHL', confidence:3, totalOdds:79.1, couponCode:'', legs:[
-    {player:'Cremonese', prop:'Hándicap 1 (0.75)', match:'Cremonese vs Como — Serie A', odd:2.21, sport:'futbol', team:'CRE', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/28abadef918c096062217ae8a5237cf4.png'},
-    {player:'Bélgica', prop:'Hándicap 1 (-1.25)', match:'Bélgica vs Irán — Mundial 2026', odd:1.91, sport:'futbol', team:'BEL', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/78a46feaa0803d2272f3fc59cc8c2b41.png'},
-    {player:'Panamá', prop:'Visitante No pierde y Total > (2.5) - Sí', match:'Ghana vs Panamá — Mundial 2026', odd:5, sport:'futbol', team:'PAN', date:'Jun 17', logo:'https://nimblecd.com/sfiles/logo_teams/12699.png'},
-    {player:'Montreal Canadiens', prop:'W2', match:'Carolina Hurricanes vs Montreal Canadiens — NHL', odd:3.75, sport:'hockey', team:'MON', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/8482.png'}
+  { id:'H1', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:16.1, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Fiorentina', prop:'Hándicap 1 (0.75)', match:'Fiorentina vs Atalanta — Serie A', odd:1.38, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'Vegas Golden Knights', prop:'Visitante No pierde y Total > (4.5) - No', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.37, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'RC Lens', prop:'Total Más de (3)', match:'RC Lens vs Nice — Copa de Francia', odd:2.21, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Nice', prop:'Total Más de (3.25)', match:'RC Lens vs Nice — Copa de Francia', odd:2.49, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'},
+    {player:'RC Lens', prop:'W1', match:'RC Lens vs Nice — Copa de Francia', odd:1.55, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'S4', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:42.2, couponCode:'', legs:[
-    {player:'Qatar', prop:'Total Individual 1 Más de (0.5)', match:'Qatar vs Suiza — Mundial 2026', odd:1.92, sport:'futbol', team:'QAT', date:'Jun 13', logo:'https://nimblecd.com/sfiles/logo_teams/12653.png'},
-    {player:'Milan', prop:'Ambos anotan - Sí', match:'Milan vs Cagliari Calcio — Serie A', odd:2.17, sport:'futbol', team:'MIL', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/3530.png'},
-    {player:'Canadá', prop:'Total Individual 1 Más de (2)', match:'Canadá vs Qatar — Mundial 2026', odd:2.5, sport:'futbol', team:'CAN', date:'Jun 18', logo:'https://nimblecd.com/sfiles/logo_teams/d9d70e0f8a3c942936c29127d7eb2172.png'},
-    {player:'Uruguay', prop:'Local Anota próximo gol (4)', match:'Uruguay vs Cabo Verde — Mundial 2026', odd:4.05, sport:'futbol', team:'URU', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/12773.png'}
+  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:13.0, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Fiorentina', prop:'Primero en (3) goles - Ninguno', match:'Fiorentina vs Atalanta — Serie A', odd:1.43, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'RC Lens', prop:'Local No pierde y Total < (3.5) - No', match:'RC Lens vs Nice — Copa de Francia', odd:2.17, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Colorado Avalanche', prop:'Local Anota próximo gol (3)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.75, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'RC Lens', prop:'Local No pierde y Total < (2.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:2.4, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'}
   ]},
-  { id:'S5', tier:'shark', sport:'futbol', title:'Fútbol Props Mix', confidence:3, totalOdds:30.5, couponCode:'', legs:[
-    {player:'Holanda', prop:'Total Más de (2.25)', match:'Túnez vs Holanda — Mundial 2026', odd:1.78, sport:'futbol', team:'NET', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'},
-    {player:'Alemania', prop:'W1', match:'Alemania vs Costa de Marfil — Mundial 2026', odd:1.61, sport:'futbol', team:'GER', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/2b7d9a9f081b747caced4aaad6f6890e.png'},
-    {player:'Corea del Sur', prop:'Total Más de (3.25)', match:'Sudáfrica vs Corea del Sur — Mundial 2026', odd:3.31, sport:'futbol', team:'SOU', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png'},
-    {player:'Marruecos', prop:'HT-FT W2W2', match:'Escocia vs Marruecos — Mundial 2026', odd:3.22, sport:'futbol', team:'MOR', date:'Jun 19', logo:'https://nimblecd.com/sfiles/logo_teams/12683.png'}
+  { id:'H3', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:4, totalOdds:13.0, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Vegas Golden Knights', prop:'Visitante No pierde y Total < (6.5) - No', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.38, sport:'hockey', team:'VGK', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/663821.png'},
+    {player:'RC Lens', prop:'Local No pierde y Total < (4.5) - Sí', match:'RC Lens vs Nice — Copa de Francia', odd:1.35, sport:'futbol', team:'RC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/5338.png'},
+    {player:'Fiorentina', prop:'Local Anota próximo gol (1)', match:'Fiorentina vs Atalanta — Serie A', odd:2.05, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'Fiorentina', prop:'Local Total Par', match:'Fiorentina vs Atalanta — Serie A', odd:1.77, sport:'futbol', team:'FIO', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/70fd2da62f9f18ad5b4d3bfba1e5198f.png'},
+    {player:'Atalanta', prop:'Visitante Total Impar', match:'Fiorentina vs Atalanta — Serie A', odd:1.92, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'}
   ]},
-  { id:'H1', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:5, totalOdds:14.6, couponCode:'', legs:[
-    {player:'Croacia', prop:'Total Más de (2)', match:'Panamá vs Croacia — Mundial 2026', odd:1.5, sport:'futbol', team:'CRO', date:'Jun 23', logo:'https://nimblecd.com/sfiles/logo_teams/12739.png'},
-    {player:'Brasil', prop:'Hándicap 1 (-3.5)', match:'Brasil vs Haití — Mundial 2026', odd:2.18, sport:'futbol', team:'BRA', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/dde3733bfaa4da13ac79715b8ff79eaa.png'},
-    {player:'Curazao', prop:'Ambos anotan - Sí', match:'Curazao vs Costa de Marfil — Mundial 2026', odd:2.34, sport:'futbol', team:'CUR', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/c616d1a98b89f0e0f9fadce47e96aaa7.png'},
-    {player:'Arsenal', prop:'Hándicap 2 (-0.75)', match:'C. Palace vs Arsenal — Premier League', odd:1.91, sport:'futbol', team:'ARS', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/08a25897e35d75d7261a8095b9599aad.png'}
-  ]},
-  { id:'H2', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:4, totalOdds:8.2, couponCode:'', legs:[
-    {player:'Corea del Sur', prop:'Total Individual 1 Menos de (1.5)', match:'Corea del Sur vs Rep. Checa — Mundial 2026', odd:1.46, sport:'futbol', team:'SOU', date:'Jun 12', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png'},
-    {player:'C. Palace', prop:'Local Anota próximo gol (1)', match:'C. Palace vs Arsenal — Premier League', odd:2.56, sport:'futbol', team:'CRY', date:'May 24', logo:'https://nimblecd.com/sfiles/logo_teams/2020.png'},
-    {player:'Bayern Múnich', prop:'Hándicap 2 (1.25)', match:'Bayern Múnich vs Stuttgart — Copa de Alemania', odd:2.19, sport:'futbol', team:'BAY', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/701415b6d5ee3ffc9aaa20b1325ec160.png'}
-  ]},
-  { id:'H3', tier:'hunter', sport:'futbol', title:'Fútbol Props Mix', confidence:6, totalOdds:7.1, couponCode:'', legs:[
-    {player:'Corea del Sur', prop:'Visitante Gana y Total < (3.5) - No', match:'Sudáfrica vs Corea del Sur — Mundial 2026', odd:1.36, sport:'futbol', team:'SOU', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png'},
-    {player:'Escocia', prop:'Primero en (3) goles - Ninguno', match:'Escocia vs Brasil — Mundial 2026', odd:1.58, sport:'futbol', team:'SCO', date:'Jun 24', logo:'https://nimblecd.com/sfiles/logo_teams/12741.png'},
-    {player:'Nueva Zelanda', prop:'Hándicap 1 (0.75)', match:'Nueva Zelanda vs Egipto — Mundial 2026', odd:1.84, sport:'futbol', team:'NEW', date:'Jun 22', logo:'https://nimblecd.com/sfiles/logo_teams/29157.png'},
-    {player:'Túnez', prop:'Algún equipo gana sin goles en contra - No', match:'Túnez vs Holanda — Mundial 2026', odd:1.8, sport:'futbol', team:'TUN', date:'Jun 25', logo:'https://nimblecd.com/sfiles/logo_teams/12721.png'}
-  ]},
-  { id:'H4', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:6, totalOdds:6.6, couponCode:'', legs:[
-    {player:'Ecuador', prop:'Local Gana y Total < (4.5) - Sí', match:'Ecuador vs Curazao — Mundial 2026', odd:1.5, sport:'futbol', team:'ECU', date:'Jun 21', logo:'https://nimblecd.com/sfiles/logo_teams/12709.png'},
-    {player:'Colombia', prop:'Primero en (3) goles - Ninguno', match:'Colombia vs RD Congo — Mundial 2026', odd:1.3, sport:'futbol', team:'COL', date:'Jun 24', logo:'https://nimblecd.com/sfiles/logo_teams/12603.png'},
-    {player:'Holanda', prop:'Total Individual 1 Más de (1.5)', match:'Holanda vs Suecia — Mundial 2026', odd:1.78, sport:'futbol', team:'NET', date:'Jun 20', logo:'https://nimblecd.com/sfiles/logo_teams/13189.png'},
-    {player:'Colorado Avalanche', prop:'Total Más de (6)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.91, sport:'hockey', team:'COL', date:'May 23', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'}
+  { id:'H4', tier:'hunter', sport:'futbol', title:'Fútbol + NHL', confidence:5, totalOdds:6.1, publishedAt:'2026-05-22T13:28:36Z', couponCode:'', legs:[
+    {player:'Colorado Avalanche', prop:'Total Más de (4.75)', match:'Colorado Avalanche vs Vegas Golden Knights — NHL', odd:1.34, sport:'hockey', team:'COL', date:'May 23 · 00:00', logo:'https://nimblecd.com/sfiles/logo_teams/8512.png'},
+    {player:'Atalanta', prop:'Visitante No pierde y Total < (4.5) - No', match:'Fiorentina vs Atalanta — Serie A', odd:2.02, sport:'futbol', team:'ATA', date:'May 22 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/cf14b4d6f638679849981c0a0ff21d70.png'},
+    {player:'Nice', prop:'Hándicap 2 (0.75)', match:'RC Lens vs Nice — Copa de Francia', odd:2.24, sport:'futbol', team:'NIC', date:'May 22 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/c348416e75e2b8f39afad9a20acf9b4b.png'}
   ]},
 ];
 

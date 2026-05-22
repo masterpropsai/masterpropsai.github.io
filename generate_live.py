@@ -251,10 +251,24 @@ def translate_match(t1, t2, tournament):
 
 
 def build_prop_pool(data):
-    """Convert API events into a PROP_POOL compatible format."""
+    """Convert API events into a PROP_POOL compatible format.
+    PRINCIPIO 1: Solo eventos dentro de las próximas 24 horas.
+    Todos los billetes vencen en el día — mañana hay nuevos.
+    """
     props = []
+    now = datetime.now(timezone.utc)
+    cutoff = now.timestamp() + 24 * 3600  # 24h from now
+    skipped_future = 0
 
     for event in data.get('items', []):
+        # ── FILTRO 24H: solo eventos que arranquen dentro de las próximas 24hs ──
+        start_ts = event.get('startDate', 0)
+        if start_ts and start_ts > cutoff:
+            skipped_future += 1
+            continue
+        if start_ts and start_ts < now.timestamp():
+            continue  # skip events that already started
+
         sport_id = event.get('sportId', 0)
         sport = SPORT_MAP.get(sport_id, 'futbol')
         t1 = event.get('opponent1NameLocalization', 'Team A')
@@ -262,8 +276,7 @@ def build_prop_pool(data):
         match = f"{t1} vs {t2}"
         tournament = event.get('tournamentNameLocalization', '')
         link = event.get('link', '')
-        start_ts = event.get('startDate', 0)
-        date_str = datetime.fromtimestamp(start_ts, tz=timezone.utc).strftime('%b %d') if start_ts else 'TBD'
+        date_str = datetime.fromtimestamp(start_ts, tz=timezone.utc).strftime('%b %d · %H:%M') if start_ts else 'TBD'
         ab1, ab2 = abbrev(t1), abbrev(t2)
 
         # Get logo URLs
@@ -308,6 +321,8 @@ def build_prop_pool(data):
                 'logo': logo,
             })
 
+    if skipped_future:
+        print(f"   ⏭️  {skipped_future} eventos descartados (fuera de ventana 24h)")
     return props
 
 
@@ -465,8 +480,10 @@ def build_tickets(pool):
 
 
 def generate_ticket_js(tickets):
+    """PRINCIPIO 2: Cada billete lleva publishedAt — lo publicado no se modifica."""
     if not tickets:
         return "const TICKETS = [];"
+    published_at = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     lines = ["const TICKETS = ["]
     for ticket in tickets:
         legs_js = []
@@ -487,6 +504,7 @@ def generate_ticket_js(tickets):
             f"  {{ id:'{ticket['id']}', tier:'{ticket['tier']}', "
             f"sport:'{primary_sport}', title:'{_esc(ticket['title'])}', "
             f"confidence:{ticket['confidence']}, totalOdds:{ticket['total_odds']}, "
+            f"publishedAt:'{published_at}', "
             f"couponCode:'{_esc(ticket.get('coupon_code', ''))}', legs:[\n" +
             ",\n".join(legs_js) +
             "\n  ]},"
