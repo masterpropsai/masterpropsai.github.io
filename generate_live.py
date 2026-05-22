@@ -443,67 +443,84 @@ def build_tickets(pool):
     # Todas las demás patas deben ser ≤x5.00.
     # very_high = >x5.00 (máx 1 por billete)
     # high = x2.80-5.00, mid = x1.55-2.80, low = x1.30-1.55
+    #
+    # TIERS (por cuota total):
+    #   Megalodón: x1000+  (4 cifras — necesita 5+ patas con 1 very_high)
+    #   Whale:     x100-999
+    #   Shark:     x10-99
+    #   Hunter:    x3-9.9
     # ══════════════════════════════════════════════════════════════════
 
+    # Build ticket combos — all respect max-1-above-x5 rule
+    # We try many combos and let the tier classification happen by odds range
+    ticket_combos = []
+
     if n_matches >= 5:
-        ticket_configs = [
-            # (tier, pools_config, min_odds, max_odds, attempts)
-            # megalodon: 1 very_high + 4 high → e.g. x12 * x4 * x4 * x4 * x3.5 = ~2700
-            ('megalodon', [(very_high, 1), (high, 4)], 500, None, 5),
-            ('megalodon', [(very_high, 1), (high, 3), (mid, 1)], 200, None, 5),
-            # whale: 1 very_high + 2 high + 1 mid → e.g. x8 * x4 * x3.5 * x2 = ~224
-            ('whale', [(very_high, 1), (high, 2), (mid, 1)], 40, None, 5),
-            ('whale', [(very_high, 1), (high, 1), (mid, 2)], 40, None, 5),
-            # shark: 1 very_high + 1 mid + 1 low  OR  no very_high + high combos
-            ('shark', [(very_high, 1), (mid, 2)], 10, 200, 5),
-            ('shark', [(high, 2), (mid, 1)], 10, 200, 5),
-            ('shark', [(high, 1), (mid, 2)], 10, 200, 5),
-            # hunter: all ≤x5.00
-            ('hunter', [(high, 1), (mid, 1), (low, 1)], 3, 40, 5),
-            ('hunter', [(mid, 2), (low, 1)], 3, 40, 5),
-            ('hunter', [(mid, 3)], 3, 40, 5),
+        ticket_combos = [
+            # 5 legs: 1 very_high + 4 high → x12*x4*x4*x4*x3.5 = ~2700 (megalodón!)
+            ((very_high, 1), (high, 4)),
+            ((very_high, 1), (high, 3), (mid, 1)),
+            ((very_high, 1), (high, 2), (mid, 2)),
+            # 4 legs
+            ((very_high, 1), (high, 3)),
+            ((very_high, 1), (high, 2), (mid, 1)),
+            ((very_high, 1), (high, 1), (mid, 2)),
+            ((high, 3), (mid, 1)),
+            # 3 legs
+            ((very_high, 1), (high, 2)),
+            ((very_high, 1), (high, 1), (mid, 1)),
+            ((very_high, 1), (mid, 2)),
+            ((high, 2), (mid, 1)),
+            ((high, 1), (mid, 2)),
+            ((high, 1), (mid, 1), (low, 1)),
+            ((mid, 2), (low, 1)),
+            ((mid, 3)),
         ]
     elif n_matches >= 3:
-        ticket_configs = [
-            # megalodon: 1 very_high + 2 high
-            ('megalodon', [(very_high, 1), (high, min(2, n_matches-1))], 100, None, 6),
-            # whale: 1 very_high + 1 high + 1 mid
-            ('whale', [(very_high, 1), (high, 1), (mid, min(1, n_matches-2))], 30, None, 5),
-            # shark: 1 high + 2 mid  OR  1 very_high + 2 mid
-            ('shark', [(very_high, 1), (mid, min(2, n_matches-1))], 10, 200, 6),
-            ('shark', [(high, 1), (mid, min(2, n_matches-1))], 10, 200, 6),
-            # hunter: all ≤x5.00
-            ('hunter', [(high, 1), (mid, min(1, n_matches-1)), (low, min(1, max(0, n_matches-2)))], 3, 40, 6),
-            ('hunter', [(mid, min(2, n_matches)), (low, min(1, max(0, n_matches-2)))], 3, 40, 6),
+        ticket_combos = [
+            ((very_high, 1), (high, min(2, n_matches-1))),
+            ((very_high, 1), (high, 1), (mid, min(1, n_matches-2))),
+            ((very_high, 1), (mid, min(2, n_matches-1))),
+            ((high, min(2, n_matches-1)), (mid, 1)),
+            ((high, 1), (mid, min(2, n_matches-1))),
+            ((high, 1), (mid, min(1, n_matches-1)), (low, min(1, max(0, n_matches-2)))),
+            ((mid, min(2, n_matches)), (low, min(1, max(0, n_matches-2)))),
         ]
     else:
-        ticket_configs = [
-            ('shark', [(very_high, 1), (high, min(1, n_matches-1))], 10, None, 3),
-            ('hunter', [(high, min(2, n_matches))], 3, None, 5),
-            ('hunter', [(mid, min(2, n_matches))], 2, None, 5),
+        ticket_combos = [
+            ((very_high, 1), (high, min(1, n_matches-1))),
+            ((high, min(2, n_matches)),),
+            ((mid, min(2, n_matches)),),
         ]
 
-    for tier, pools_cfg, min_odds, max_odds, attempts in ticket_configs:
-        for _ in range(attempts):
-            # Re-shuffle pools each attempt
+    ATTEMPTS_PER_COMBO = 6
+    for combo in ticket_combos:
+        pools_cfg = list(combo)
+        for _ in range(ATTEMPTS_PER_COMBO):
             for pl, _ in pools_cfg:
                 random.shuffle(pl)
             legs = pick_legs(pools_cfg)
             if legs:
                 total = round(math.prod(l['odd'] for l in legs), 1)
-                if total >= min_odds and (max_odds is None or total <= max_odds):
+                if total >= 3.0:  # mínimo para cualquier tier
                     tickets.append({
-                        'tier': tier, 'legs': legs,
+                        'tier': 'pending',  # se clasifica abajo
+                        'legs': legs,
                         'total_odds': total,
                         'confidence': calculate_confidence(legs),
                     })
 
-    # Promote tickets with x1000+ to megalodon
+    # Classify tiers by total odds
     for t in tickets:
-        if t['tier'] in ('whale', 'shark') and t['total_odds'] >= 1000:
+        odds = t['total_odds']
+        if odds >= 1000:
             t['tier'] = 'megalodon'
-        elif t['tier'] == 'whale' and t['total_odds'] < 40:
+        elif odds >= 100:
+            t['tier'] = 'whale'
+        elif odds >= 10:
             t['tier'] = 'shark'
+        else:
+            t['tier'] = 'hunter'
 
     tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
     tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
