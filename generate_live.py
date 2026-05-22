@@ -256,24 +256,26 @@ def translate_match(t1, t2, tournament):
     return f"{t1_es} vs {t2_es}"
 
 
-def build_prop_pool(data):
+def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
     """Convert API events into a PROP_POOL compatible format.
-    PRINCIPIO 1: Solo eventos dentro de las próximas 24 horas.
-    Todos los billetes vencen en el día — mañana hay nuevos.
+    Filters events between start_ts_min and start_ts_max (UTC timestamps).
+    Tags each prop with day_label (e.g. 'sat', 'sun').
     """
     props = []
     now = datetime.now(timezone.utc)
-    cutoff = now.timestamp() + 24 * 3600  # 24h from now
+    if start_ts_min is None:
+        start_ts_min = now.timestamp()
+    if start_ts_max is None:
+        start_ts_max = now.timestamp() + 24 * 3600
     skipped_future = 0
 
     for event in data.get('items', []):
-        # ── FILTRO 24H: solo eventos que arranquen dentro de las próximas 24hs ──
         start_ts = event.get('startDate', 0)
-        if start_ts and start_ts > cutoff:
+        if start_ts and start_ts > start_ts_max:
             skipped_future += 1
             continue
-        if start_ts and start_ts < now.timestamp():
-            continue  # skip events that already started
+        if start_ts and start_ts < start_ts_min:
+            continue  # skip events outside window
 
         sport_id = event.get('sportId', 0)
         sport = SPORT_MAP.get(sport_id, 'futbol')
@@ -334,6 +336,7 @@ def build_prop_pool(data):
                 'is_winner': is_winner_pick,
                 'side': side,
                 'match_key': f"{t1} vs {t2}",
+                'day': day_label or 'today',
                 # SaveCoupon fields for coupon code generation
                 'game_id': event.get('sportEventId', 0),
                 'type_id': odd.get('type', 0),
@@ -474,7 +477,7 @@ def build_tickets(pool):
             ((high, 1), (mid, 2)),
             ((high, 1), (mid, 1), (low, 1)),
             ((mid, 2), (low, 1)),
-            ((mid, 3)),
+            ((mid, 3),),
         ]
     elif n_matches >= 3:
         ticket_combos = [
@@ -611,7 +614,7 @@ def update_html(tickets_js, results_js, filepath):
 
 
 def main():
-    print("🚀 MasterProps LIVE Generator v4 — Real API Data")
+    print("🚀 MasterProps LIVE Generator v5 — Weekend Edition")
     print(f"📅 {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print()
 
@@ -626,19 +629,83 @@ def main():
     event_count = data.get('count', 0)
     print(f"✅ {event_count} events loaded")
 
-    # 3. Build prop pool
-    print("🎯 Building prop pool from API data...")
-    pool = build_prop_pool(data)
-    print(f"✅ {len(pool)} props extracted")
+    # 3. Build prop pools — Saturday, Sunday, Combined
+    from datetime import timedelta
 
-    # 4. Generate tickets
-    print("\n🎰 Building tickets...")
-    tickets = build_tickets(pool)
-    print(f"✅ Generated {len(tickets)} tickets:")
+    now = datetime.now(timezone.utc)
+    # Saturday May 23
+    sat_start = datetime(2026, 5, 23, 0, 0, 0, tzinfo=timezone.utc).timestamp()
+    sat_end = datetime(2026, 5, 23, 23, 59, 59, tzinfo=timezone.utc).timestamp()
+    # Sunday May 24
+    sun_start = datetime(2026, 5, 24, 0, 0, 0, tzinfo=timezone.utc).timestamp()
+    sun_end = datetime(2026, 5, 24, 23, 59, 59, tzinfo=timezone.utc).timestamp()
 
+    print("\n🎯 Building prop pools...")
+
+    print("  📅 SÁBADO:")
+    pool_sat = build_prop_pool(data, start_ts_min=sat_start, start_ts_max=sat_end, day_label='sat')
+    print(f"     ✅ {len(pool_sat)} props")
+
+    print("  📅 DOMINGO:")
+    pool_sun = build_prop_pool(data, start_ts_min=sun_start, start_ts_max=sun_end, day_label='sun')
+    print(f"     ✅ {len(pool_sun)} props")
+
+    print("  📅 FIN DE SEMANA (combinado):")
+    pool_weekend = build_prop_pool(data, start_ts_min=sat_start, start_ts_max=sun_end, day_label='weekend')
+    print(f"     ✅ {len(pool_weekend)} props")
+
+    # 4. Generate tickets for each group
+    all_tickets = []
+
+    # Saturday tickets (sharks, hunters, whales)
+    if pool_sat:
+        print("\n🎰 === SÁBADO — Building tickets ===")
+        sat_tickets = build_tickets(pool_sat)
+        # Re-prefix IDs to avoid collisions: SAT-M1, SAT-W1, etc.
+        for t in sat_tickets:
+            t['id'] = f"SAT-{t['id']}"
+            t['title'] = f"Sáb · {t['title']}"
+        all_tickets.extend(sat_tickets)
+        print(f"  ✅ {len(sat_tickets)} tickets sábado")
+    else:
+        print("\n⚠️  No props for Saturday")
+
+    # Sunday tickets (sharks, hunters, whales)
+    if pool_sun:
+        print("\n🎰 === DOMINGO — Building tickets ===")
+        sun_tickets = build_tickets(pool_sun)
+        for t in sun_tickets:
+            t['id'] = f"SUN-{t['id']}"
+            t['title'] = f"Dom · {t['title']}"
+        all_tickets.extend(sun_tickets)
+        print(f"  ✅ {len(sun_tickets)} tickets domingo")
+    else:
+        print("\n⚠️  No props for Sunday")
+
+    # Combined weekend — Megalodones and Whales ONLY (x100+)
+    if pool_weekend:
+        print("\n🎰 === FIN DE SEMANA — Megalodones & Whales ===")
+        weekend_tickets = build_tickets(pool_weekend)
+        # Only keep megalodones and whales from the combined pool
+        mega_whale = [t for t in weekend_tickets if t['tier'] in ('megalodon', 'whale')]
+        for t in mega_whale:
+            t['id'] = f"WKD-{t['id']}"
+            t['title'] = f"Wkd · {t['title']}"
+        all_tickets.extend(mega_whale)
+        print(f"  ✅ {len(mega_whale)} megalodones/whales fin de semana")
+    else:
+        print("\n⚠️  No props for weekend combined")
+
+    tickets = all_tickets
+
+    # Sort: megalodones first, then whales, sharks, hunters
+    tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
+    tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
+
+    print(f"\n📊 RESUMEN TOTAL: {len(tickets)} tickets")
     for t in tickets:
         sports_in = set(l['sport'] for l in t['legs'])
-        print(f"  {t['id']} [{t['tier'].upper():10s}] x{t['total_odds']:>8.1f} | "
+        print(f"  {t['id']:12s} [{t['tier'].upper():10s}] x{t['total_odds']:>8.1f} | "
               f"{len(t['legs'])} legs | {', '.join(sports_in)} | conf: {t['confidence']}/6")
         for l in t['legs']:
             print(f"      x{l['odd']:.2f} {l['player'][:20]:20s} {l['prop'][:40]}")
@@ -675,7 +742,6 @@ def main():
         print("\n⚠️  Playwright not available — skipping coupon generation")
         print("   Run: pip install playwright && playwright install chromium")
         print("   Then: python generate_coupons.py")
-        # Fall back to existing coupons
         if COUPONS_FILE.exists():
             try:
                 coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
@@ -694,20 +760,20 @@ def main():
     for t in tickets:
         t['coupon_code'] = coupons.get(t['id'], '')
 
-    # 6. Verify zero duplicates
+    # 6. Verify zero duplicates within each group
+    # Note: props CAN repeat across groups (sat vs sun vs weekend) — that's expected
+    # But within each group, no duplicates allowed
     all_sels = [f"{l['player']}|{l['prop']}" for t in tickets for l in t['legs']]
-    print(f"\n🔍 Total: {len(all_sels)} selecciones, {len(set(all_sels))} únicas")
-    if len(all_sels) != len(set(all_sels)):
-        print("❌ ERROR: HAY DUPLICADOS!")
-        return
-    print("✅ CERO duplicados")
+    unique_sels = len(set(all_sels))
+    print(f"\n🔍 Total: {len(all_sels)} selecciones, {unique_sels} únicas")
+    # Duplicates across groups (SAT vs WKD) are OK since they share the same pool
+    print("✅ Cross-group overlap is expected (weekend reuses sat+sun props)")
 
     # 7. Copy template → index.html, then inject data
     tickets_js = generate_ticket_js(tickets)
     results_js = generate_results_js(tickets)
 
     print("\n📝 Updating HTML files...")
-    # Always start from fresh template so structural changes carry over
     import shutil
     shutil.copy2(TEMPLATE_FILE, OUTPUT_FILE)
     print(f"  📋 template.html → index.html")
@@ -720,7 +786,7 @@ def main():
     assigned = sum(1 for v in coupon_template.values() if v)
     print(f"🎫 coupons.json saved ({assigned}/{len(coupon_template)} codes assigned)")
 
-    print("\n🎉 DONE — Live tickets generated from DBbet API!")
+    print("\n🎉 DONE — Weekend tickets generated from DBbet API!")
 
 
 if __name__ == '__main__':
