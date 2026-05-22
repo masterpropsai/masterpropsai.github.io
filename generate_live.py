@@ -124,7 +124,8 @@ TEAM_NAME_ES = {
     'Ukraine': 'Ucrania', 'Peru': 'Perú', 'Chile': 'Chile',
     'Colombia': 'Colombia', 'Ecuador': 'Ecuador', 'Bolivia': 'Bolivia',
     'Venezuela': 'Venezuela', 'Honduras': 'Honduras',
-    'Jamaica': 'Jamaica', 'Canada': 'Canadá',
+    'Jamaica': 'Jamaica', 'Canada': 'Canadá', 'Uzbekistan': 'Uzbekistán',
+    'Azerbaijan': 'Azerbaiyán', 'Kazakhstan': 'Kazajistán',
     'Cameroon': 'Camerún', 'Nigeria': 'Nigeria', 'Algeria': 'Argelia',
     'China': 'China', 'Iran': 'Irán', 'New Zealand': 'Nueva Zelanda',
     # Clubes — acortar nombres largos
