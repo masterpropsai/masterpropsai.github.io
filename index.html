@@ -250,8 +250,11 @@ body {
 /* === SECTION HEADERS === */
 .section-header {
   padding: 1.5rem 0 0.5rem;
-  display: flex; align-items: center; gap: 12px;
+  display: none; align-items: center; gap: 12px;
   grid-column: 1 / -1;
+}
+@media (max-width: 700px) {
+  .section-header { display: flex; }
 }
 .section-header h2 {
   font-family: 'Orbitron', sans-serif;
