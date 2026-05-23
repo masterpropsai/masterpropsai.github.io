@@ -2458,12 +2458,13 @@ const DBBET_DIRECT = 'https://db-bet.com';
 const COUPON_DEEPLINK_ENABLED = true;
 
 function buildCouponURL(couponCode) {
-  // Route through affiliate link with coupon code — ensures referral tracking
-  return `https://refpa1800.com/es?load=${couponCode}&tag=d_5208568m_11213c_&site=5208568&ad=11213`;
+  // Deep link must go to db-bet.com directly (refpa1800 doesn't support ?load= param)
+  // Affiliate cookie is set via banner/CTA clicks through refpa1800
+  return `${DBBET_DIRECT}/es?load=${couponCode}`;
 }
 
 function buildDirectCouponURL(couponCode) {
-  return `https://refpa1800.com/es?load=${couponCode}&tag=d_5208568m_11213c_&site=5208568&ad=11213`;
+  return `${DBBET_DIRECT}/es?load=${couponCode}`;
 }
 
 // === BET ON DBBET ===
@@ -2472,7 +2473,11 @@ function betOnDBbet(id) {
   if (!ticket) return;
 
   if (COUPON_DEEPLINK_ENABLED && ticket.couponCode) {
-    window.open(buildCouponURL(ticket.couponCode), '_blank');
+    // First hit affiliate redirect (sets cookie), then load coupon
+    const affiliateWindow = window.open(DBBET_AFFILIATE_BASE, '_blank');
+    setTimeout(() => {
+      if (affiliateWindow) affiliateWindow.location.href = buildCouponURL(ticket.couponCode);
+    }, 1500);
   } else {
     // Open the first leg's event link directly on DBbet
     const firstLink = ticket.legs.find(l => l.link);
