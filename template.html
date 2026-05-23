@@ -1185,7 +1185,7 @@ body {
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
     <a href="https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213" target="_blank" class="db-cta-btn">🎰 Registrarme →</a>
-    <a href="https://db-bet.com/downloads/androidclient/releases_android/dbbet/site/dbbet.apk" target="_blank" class="db-cta-btn" style="background:linear-gradient(135deg,#1a1a2e,#16213e);font-size:0.75rem">📱 App Android</a>
+    <a href="https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213" target="_blank" class="db-cta-btn" style="background:linear-gradient(135deg,#1a1a2e,#16213e);font-size:0.75rem">📱 App Android</a>
   </div>
 </div>
 
@@ -2458,13 +2458,12 @@ const DBBET_DIRECT = 'https://db-bet.com';
 const COUPON_DEEPLINK_ENABLED = true;
 
 function buildCouponURL(couponCode) {
-  // Verified working format: db-bet.com/es?load=CODE
-  // Use direct URL — the affiliate cookie is already set via the main link
-  return `${DBBET_DIRECT}/es?load=${couponCode}`;
+  // Route through affiliate link with coupon code — ensures referral tracking
+  return `https://refpa1800.com/es?load=${couponCode}&tag=d_5208568m_11213c_&site=5208568&ad=11213`;
 }
 
 function buildDirectCouponURL(couponCode) {
-  return `${DBBET_DIRECT}/es?load=${couponCode}`;
+  return `https://refpa1800.com/es?load=${couponCode}&tag=d_5208568m_11213c_&site=5208568&ad=11213`;
 }
 
 // === BET ON DBBET ===
