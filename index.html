@@ -1002,10 +1002,11 @@ body {
   margin-left: 10px; flex-shrink: 0;
 }
 .lang-flag {
-  font-size: 1.2rem; cursor: pointer; padding: 3px 5px; border-radius: 6px;
+  cursor: pointer; padding: 3px 5px; border-radius: 6px;
   transition: all 0.2s; opacity: 0.5; border: 2px solid transparent;
-  line-height: 1;
+  line-height: 1; display: inline-flex; align-items: center;
 }
+.lang-flag img { border-radius: 2px; display: block; }
 .lang-flag:hover { opacity: 0.8; transform: scale(1.1); }
 .lang-flag.active { opacity: 1; border-color: var(--gold); background: rgba(212,165,32,0.1); }
 
@@ -1022,7 +1023,8 @@ body {
   .sponsor-bar .db-register { padding: 6px 10px; font-size: 0.6rem; flex-shrink: 0; }
   .navbar .logo { font-size: 0.95rem; }
   .lang-switcher { gap: 2px; padding: 3px 5px; }
-  .lang-flag { font-size: 1rem; padding: 2px 3px; }
+  .lang-flag { padding: 2px 3px; }
+  .lang-flag img { width: 18px; height: 13px; }
   .ticket-odds { font-size: 1rem; }
 
   /* Aciertos — extra small */
@@ -1067,12 +1069,12 @@ body {
     <a href="#">Clutch.ai</a>
   </div>
   <div class="lang-switcher">
-    <span class="lang-flag active" data-lang="es" title="Español">🇦🇷</span>
-    <span class="lang-flag" data-lang="en" title="English">🇺🇸</span>
-    <span class="lang-flag" data-lang="pt" title="Português">🇧🇷</span>
-    <span class="lang-flag" data-lang="it" title="Italiano">🇮🇹</span>
-    <span class="lang-flag" data-lang="fr" title="Français">🇫🇷</span>
-    <span class="lang-flag" data-lang="ru" title="Русский">🇷🇺</span>
+    <span class="lang-flag active" data-lang="es" title="Español"><img src="https://flagcdn.com/w40/ar.png" width="20" height="15" alt="AR"></span>
+    <span class="lang-flag" data-lang="en" title="English"><img src="https://flagcdn.com/w40/us.png" width="20" height="15" alt="US"></span>
+    <span class="lang-flag" data-lang="pt" title="Português"><img src="https://flagcdn.com/w40/br.png" width="20" height="15" alt="BR"></span>
+    <span class="lang-flag" data-lang="it" title="Italiano"><img src="https://flagcdn.com/w40/it.png" width="20" height="15" alt="IT"></span>
+    <span class="lang-flag" data-lang="fr" title="Français"><img src="https://flagcdn.com/w40/fr.png" width="20" height="15" alt="FR"></span>
+    <span class="lang-flag" data-lang="ru" title="Русский"><img src="https://flagcdn.com/w40/ru.png" width="20" height="15" alt="RU"></span>
   </div>
 </nav>
 
