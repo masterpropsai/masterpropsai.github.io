@@ -216,14 +216,29 @@ body {
 
 /* === FILTERS === */
 .filters {
-  display: flex; justify-content: center; gap: 8px; padding: 1.5rem 2rem;
-  flex-wrap: wrap;
+  display: flex; justify-content: center; gap: 12px; padding: 1.5rem 2rem;
+  flex-wrap: wrap; align-items: center;
+}
+.filter-dropdown {
+  background: var(--bg-card); color: var(--gold);
+  border: 1px solid rgba(212,165,32,0.3); padding: 10px 36px 10px 14px;
+  border-radius: 12px; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4a520' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  font-family: 'Inter', sans-serif; min-width: 160px;
+}
+.filter-dropdown:hover { border-color: rgba(212,165,32,0.5); box-shadow: 0 0 12px rgba(212,165,32,0.1); }
+.filter-dropdown:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 16px rgba(212,165,32,0.15); }
+.filter-dropdown option {
+  background: #1a1a24; color: #e0d5c5; padding: 8px;
 }
 .filter-btn {
   background: var(--bg-card); color: var(--text-secondary);
   border: 1px solid var(--border); padding: 8px 18px;
   border-radius: 20px; font-size: 0.78rem; font-weight: 700;
-  cursor: pointer; transition: all 0.3s;
+  cursor: pointer; transition: all 0.3s; display: none;
 }
 .filter-btn:hover { border-color: rgba(212,165,32,0.3); color: var(--gold); }
 .filter-btn.active {
@@ -1128,18 +1143,23 @@ body {
 
 <!-- FILTERS -->
 <div class="filters">
-  <button class="filter-btn active" data-filter="all">🎯 Todos</button>
-  <button class="filter-btn" data-filter="nba">🏀 NBA</button>
-  <button class="filter-btn" data-filter="nfl">🏈 NFL</button>
-  <button class="filter-btn" data-filter="futbol">⚽ Fútbol</button>
-  <button class="filter-btn" data-filter="tenis">🎾 Tenis</button>
-  <button class="filter-btn" data-filter="mlb">⚾ MLB</button>
-  <button class="filter-btn" data-filter="mma">🥊 MMA</button>
-  <span style="display:inline-block;width:1px;height:22px;background:rgba(255,255,255,0.15);vertical-align:middle;margin:0 6px"></span>
-  <button class="filter-btn" data-filter="tier:megalodon">🐋 Megalodón</button>
-  <button class="filter-btn" data-filter="tier:whale">🐳 Ballena</button>
-  <button class="filter-btn" data-filter="tier:shark">🦈 Tiburón</button>
-  <button class="filter-btn" data-filter="tier:hunter">🎯 Cazador</button>
+  <select class="filter-dropdown" id="sportFilter">
+    <option value="all">🎯 Todos los deportes</option>
+    <option value="futbol">⚽ Fútbol</option>
+    <option value="nba">🏀 NBA</option>
+    <option value="nfl">🏈 NFL</option>
+    <option value="tenis">🎾 Tenis</option>
+    <option value="mlb">⚾ MLB</option>
+    <option value="mma">🥊 MMA</option>
+    <option value="hockey">🏒 NHL</option>
+  </select>
+  <select class="filter-dropdown" id="tierFilter">
+    <option value="all">🏆 Todas las categorías</option>
+    <option value="tier:megalodon">🐋 Megalodón · x1000+</option>
+    <option value="tier:whale">🐳 Ballena · x100-x999</option>
+    <option value="tier:shark">🦈 Tiburón · x10-x99</option>
+    <option value="tier:hunter">🎯 Cazador · x3-x9</option>
+  </select>
 </div>
 
 <!-- SECTION: MEGALODON TICKETS (x1000+) -->
@@ -2606,18 +2626,24 @@ document.querySelectorAll('.lang-flag').forEach(flag => {
     flag.classList.add('active');
     currentLang = flag.dataset.lang;
     updateUI();
-    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-    renderTickets(activeFilter);
+    renderTickets(getActiveFilter());
   });
 });
 
-// === FILTERS ===
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderTickets(btn.dataset.filter);
-  });
+// === FILTERS (dropdowns) ===
+function getActiveFilter() {
+  const sport = document.getElementById('sportFilter').value;
+  const tier = document.getElementById('tierFilter').value;
+  if (tier !== 'all') return tier;
+  return sport;
+}
+document.getElementById('sportFilter').addEventListener('change', function() {
+  if (this.value !== 'all') document.getElementById('tierFilter').value = 'all';
+  renderTickets(getActiveFilter());
+});
+document.getElementById('tierFilter').addEventListener('change', function() {
+  if (this.value !== 'all') document.getElementById('sportFilter').value = 'all';
+  renderTickets(getActiveFilter());
 });
 
 // Init
