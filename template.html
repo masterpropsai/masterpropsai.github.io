@@ -1160,6 +1160,11 @@ body {
     <option value="tier:shark">🦈 Tiburón · x10-x99</option>
     <option value="tier:hunter">🎯 Cazador · x3-x9</option>
   </select>
+  <select class="filter-dropdown" id="statusFilter">
+    <option value="all">📊 Todas las apuestas</option>
+    <option value="alive">🟢 Apuestas vivas</option>
+    <option value="dead">💀 Apuestas muertas</option>
+  </select>
 </div>
 
 <!-- SECTION: MEGALODON TICKETS (x1000+) -->
@@ -2457,7 +2462,20 @@ function renderTickets(filter = 'all') {
   };
   Object.values(containers).forEach(c => c.innerHTML = '');
 
-  const filtered = filter === 'all' ? TICKETS : filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) : TICKETS.filter(t => t.legs.some(l => l.sport === filter));
+  let filtered = filter === 'all' ? TICKETS : filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) : TICKETS.filter(t => t.legs.some(l => l.sport === filter));
+
+  // Status filter (alive/dead)
+  const statusVal = document.getElementById('statusFilter') ? document.getElementById('statusFilter').value : 'all';
+  if (statusVal !== 'all') {
+    filtered = filtered.filter(ticket => {
+      let hasLost = false;
+      ticket.legs.forEach((leg, j) => {
+        const rk = `${ticket.id}_${j}`;
+        if (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk] === 'lost') hasLost = true;
+      });
+      return statusVal === 'dead' ? hasLost : !hasLost;
+    });
+  }
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
 
   filtered.forEach((ticket, i) => {
@@ -2643,6 +2661,9 @@ document.getElementById('sportFilter').addEventListener('change', function() {
 });
 document.getElementById('tierFilter').addEventListener('change', function() {
   if (this.value !== 'all') document.getElementById('sportFilter').value = 'all';
+  renderTickets(getActiveFilter());
+});
+document.getElementById('statusFilter').addEventListener('change', function() {
   renderTickets(getActiveFilter());
 });
 
