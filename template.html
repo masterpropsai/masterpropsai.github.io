@@ -1161,8 +1161,9 @@ body {
     <option value="tier:hunter">🎯 Cazador · x3-x9</option>
   </select>
   <select class="filter-dropdown" id="statusFilter">
+    <option value="alive" selected>🟢 Apuestas vivas</option>
     <option value="all">📊 Todas las apuestas</option>
-    <option value="alive">🟢 Apuestas vivas</option>
+    <option value="won">💰 Apuestas acertadas</option>
     <option value="dead">💀 Apuestas muertas</option>
   </select>
 </div>
@@ -2464,16 +2465,20 @@ function renderTickets(filter = 'all') {
 
   let filtered = filter === 'all' ? TICKETS : filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) : TICKETS.filter(t => t.legs.some(l => l.sport === filter));
 
-  // Status filter (alive/dead)
-  const statusVal = document.getElementById('statusFilter') ? document.getElementById('statusFilter').value : 'all';
+  // Status filter (alive/dead/won)
+  const statusVal = document.getElementById('statusFilter') ? document.getElementById('statusFilter').value : 'alive';
   if (statusVal !== 'all') {
     filtered = filtered.filter(ticket => {
-      let hasLost = false;
+      let hasLost = false, wonCount = 0;
       ticket.legs.forEach((leg, j) => {
         const rk = `${ticket.id}_${j}`;
-        if (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk] === 'lost') hasLost = true;
+        const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
+        if (r === 'lost') hasLost = true;
+        if (r === 'won') wonCount++;
       });
-      return statusVal === 'dead' ? hasLost : !hasLost;
+      if (statusVal === 'dead') return hasLost;
+      if (statusVal === 'won') return !hasLost && wonCount === ticket.legs.length && ticket.legs.length > 0;
+      return !hasLost; // alive
     });
   }
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
