@@ -2500,26 +2500,9 @@ function betOnDBbet(id) {
 // === COPY TICKET ===
 function copyTicket(id) {
   const ticket = TICKETS.find(t => t.id === id);
-  if (!ticket) return;
+  if (!ticket || !ticket.couponCode) return;
 
-  const lines = ticket.legs.map((leg, i) =>
-    `${i + 1}. ${leg.player} — ${translateProp(leg.prop)} (${leg.match}) @ ${leg.odd.toFixed(2)}`
-  );
-
-  const couponLine = ticket.couponCode
-    ? `\n🎟️ Código: ${ticket.couponCode}\n🔗 ${buildCouponURL(ticket.couponCode)}`
-    : '';
-
-  const text = `🎫 ${ticket.title} | x${ticket.totalOdds}\n` +
-    `${'─'.repeat(35)}\n` +
-    lines.join('\n') +
-    `\n${'─'.repeat(35)}\n` +
-    `💰 ${t('copyTotal')}: x${ticket.totalOdds}\n` +
-    `📊 ${t('copyConf')}: ${ticket.confidence}/6` +
-    couponLine +
-    `\n🔗 MasterProps.ai — ${t('copySlogan')}`;
-
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(ticket.couponCode).then(() => {
     const btn = event.target.closest('.copy-btn');
     if (btn) {
       btn.innerHTML = t('copied');
