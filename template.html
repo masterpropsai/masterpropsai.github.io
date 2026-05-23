@@ -1578,7 +1578,91 @@ function translateProp(propEs) {
 }
 
 // === LIVE RESULTS ===
-const LEG_RESULTS = {};
+const LEG_RESULTS = {
+  // Bayern 3-0 Stuttgart (DFB Pokal) — Kane 54', 79', 90'pen. HT 0-0
+  'WKD-M1_4': 'lost',   // Hándicap 1 (-3.5): Bayern -3.5 → 3-3.5=-0.5 vs 0
+  'WKD-M2_4': 'lost',   // Local No pierde y Total > (5.5): total=3
+  'WKD-M3_0': 'lost',   // HT-FT XX: HT 0-0 (X) pero FT 3-0 (1)
+  'WKD-M5_3': 'lost',   // Gana por diferencia (1): ganó por 3
+  'WKD-M6_4': 'lost',   // Local Gana por 1-2 goles: ganó por 3
+  'WKD-M7_3': 'lost',   // Primero en (4) goles - Local: total=3
+  'WKD-M4_4': 'won',    // Hándicap 1 (-2): 3-2=1 vs 0 ✓
+  'WKD-W2_2': 'lost',   // Total Más de (4.75): total=3
+  'WKD-W4_4': 'lost',   // TI1 Más de (3): Bayern metió 3, no >3
+  'WKD-W5_4': 'lost',   // Local No pierde y Total < (5.5) - No: condición TRUE
+  'WKD-W9_1': 'lost',   // TI1 Menos de (2): Bayern metió 3
+  'WKD-W10_2':'lost',   // Gana por diferencia (2): ganó por 3
+  'WKD-W13_4':'lost',   // Local Gana y Total > (2.5) - No: condición TRUE
+  'WKD-W15_4':'lost',   // Total Más de (3.25): total=3 half-loss
+  'WKD-W17_3':'lost',   // Hándicap 2 (0.75): 0+0.75=0.75 vs 3
+  'WKD-W19_3':'lost',   // Visitante Total Impar: Stuttgart 0 (par)
+  'WKD-W20_2':'lost',   // (en Bologna) Total Menos de (2): ver abajo
+  'SAT-W1_2': 'lost',   // Total Más de (5.25): total=3
+  'SAT-W2_1': 'lost',   // Local No pierde y Total < (5.5) - No: condición TRUE
+  'SAT-W3_1': 'lost',   // TI1 Más de (3.5): Bayern metió 3
+  // Bologna 3-3 Inter (Serie A) — Inter remontó de 2 goles abajo
+  'WKD-M4_0': 'won',    // HT-FT 1/2X: Bologna ganaba en HT, empate en FT ✓
+  'WKD-W14_3':'lost',   // Hándicap 2 (-1.75): Inter 3-1.75=1.25 vs Bol 3
+  'WKD-W24_2':'lost',   // TI2 Menos de (0.5): Inter metió 3
+  'SAT-W2_2': 'lost',   // Total Menos de (2): total=6
+  // Lazio 2-1 Pisa — Moreo(Pisa), Dele-Bashiru 33', Pedro
+  'WKD-M6_2': 'lost',   // Visitante Anota gol 3: 3er gol fue de Lazio
+  'WKD-W8_3': 'won',    // Hándicap 1 (-0.75): 2-0.75=1.25 vs 1 ✓
+  'WKD-W15_2':'lost',   // Hándicap 1 (-1.75): 2-1.75=0.25 vs 1
+  'WKD-W18_0':'lost',   // HT-FT 1/2X: HT fue 1-1 (empate), no local ganando
+  'WKD-W21_0':'lost',   // Local Gana y Total > (4.5): total=3
+  'WKD-W23_1':'lost',   // Gana por diferencia (2): ganó por 1
+  'SAT-W1_0': 'lost',   // HT-FT 1/2X: HT fue 1-1
+  // Espanyol 0-1 Real Sociedad
+  'WKD-M2_1': 'lost',   // Visitante Gana y Total > (1.5): total=1
+  'WKD-M3_2': 'won',    // TI1 Menos de (0.5): Espanyol 0 ✓
+  // Girona 1-1 Elche
+  'WKD-M7_2': 'lost',   // Hándicap 1 (-1.5): 1-1.5=-0.5 vs 1
+  'WKD-W3_2': 'lost',   // Visitante Gana: empate
+  'WKD-W15_1':'lost',   // Local No pierde y Total > (3.5): total=2
+  'WKD-W24_0':'lost',   // Hándicap 1 (-2.75): 1-2.75=-1.75 vs 1
+  // Getafe 1-0 Osasuna
+  'WKD-W1_1': 'lost',   // Gana por diferencia (2): ganó por 1
+  'WKD-W7_2': 'won',    // Total Menos de (1.25): total=1, half-win ✓
+  'WKD-W11_0':'lost',   // TI2 Más de (2): Osasuna 0
+  // Celta 1-0 Sevilla
+  'WKD-W6_1': 'lost',   // Local Anota gol 3: total=1
+  // Mallorca 3-0 Real Oviedo
+  'WKD-W10_3':'won',    // Local Gana y Total < (5.5): 3<5.5 ✓
+  'WKD-W21_1':'lost',   // Local Gana y Total < (2.5): 3>2.5
+  'SAT-W2_0': 'lost',   // HT-FT XW2: Mallorca (local) ganó
+  'SAT-W3_0': 'lost',   // TI2 Más de (2): R.Oviedo 0
+  // Real Betis 1-1 Levante — Abde 5', Espi empata
+  'WKD-W2_0': 'lost',   // Primero en (3) goles: total=2
+  'WKD-W4_2': 'lost',   // Gana por diferencia (2): empate
+  'WKD-W17_1':'lost',   // Visitante Gana: empate
+  'WKD-W25_0':'lost',   // Visitante No pierde y Total < (1.5): total=2
+  'WKD-W23_2':'won',    // Total Menos de (2.25): total=2, half-win ✓
+  // Alaves 1-0 Rayo Vallecano
+  'WKD-M5_1': 'lost',   // Total Más de (3.25): total=1
+  'WKD-W18_2':'won',    // Local Gana y Total < (3.5): 1<3.5 ✓
+  'WKD-W22_0':'lost',   // Local Anota gol 4: total=1
+  // Real Madrid 4-2 Athletic Bilbao
+  'WKD-W5_0': 'lost',   // Hándicap 1 (-3): 4-3=1 vs 2, margen=2 no >3
+  'WKD-W12_0':'lost',   // Hándicap 2 (-1): Athletic 2-1=1 vs RM 4
+  'WKD-W16_3':'lost',   // Gana por diferencia (3)+: margen=2
+  // Valencia 3-1 Barcelona
+  'WKD-W8_4': 'lost',   // Local No pierde y Total > (1.5) - No: condición TRUE
+  'WKD-W9_2': 'lost',   // Visitante Gana: Barça perdió
+  'WKD-W14_2':'lost',   // Gana sin goles en contra: Valencia ganó pero recibió 1
+  'WKD-W19_0':'won',    // TI1 Más de (2.5): Valencia 3 ✓
+  // Vegas Golden Knights 3-1 Colorado (NHL)
+  'WKD-M3_4': 'lost',   // Primero en (4) - Local: Colorado 1 gol
+  'WKD-W4_3': 'lost',   // TI2 Menos de (1.5): Vegas(away) 3
+  'WKD-W6_4': 'won',    // Total Menos de (5.5): total=4 ✓
+  'WKD-W8_1': 'lost',   // Total Menos de (3.75): total=4
+  'WKD-W9_3': 'lost',   // Total Más de (5.5): total=4
+  'WKD-W11_3':'lost',   // Hándicap 1 (-2.25): Colorado 1-2.25=-1.25 vs 3
+  'WKD-W16_1':'lost',   // Local No pierde y Total < (4.5): Colorado perdió
+  'WKD-W21_3':'won',    // Ninguno Anota gol 5: total=4 ✓
+  'WKD-W22_2':'lost',   // Local Gana y Total < (5.5): Colorado perdió
+  'SAT-W3_2': 'won',    // Primero en (4) - Visitante: Vegas anotó 4to gol ✓
+};
 
 // === TEAM BADGES ===
 const TEAM_LOGOS = {
