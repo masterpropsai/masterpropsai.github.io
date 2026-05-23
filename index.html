@@ -2487,22 +2487,30 @@ function renderTickets(filter = 'all') {
     });
   }
 
-  // Sort by heat (won ratio)
+  // Sort by heat (won ratio) — hide tickets with no heat (0 won legs)
   const sortVal = document.getElementById('sortFilter') ? document.getElementById('sortFilter').value : 'default';
   if (sortVal !== 'default') {
+    const heatScore = (tk) => {
+      let won = 0, lost = 0;
+      tk.legs.forEach((leg, j) => {
+        const rk = `${tk.id}_${j}`;
+        const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
+        if (r === 'won') won++;
+        if (r === 'lost') lost++;
+      });
+      if (lost > 0) return -1 + (won / (tk.legs.length * 10));
+      return tk.legs.length > 0 ? won / tk.legs.length : 0;
+    };
+    // Only show tickets that have at least 1 won leg (have temperature)
+    filtered = filtered.filter(tk => {
+      let won = 0;
+      tk.legs.forEach((leg, j) => {
+        const rk = `${tk.id}_${j}`;
+        if (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk] === 'won') won++;
+      });
+      return won > 0;
+    });
     filtered.sort((a, b) => {
-      const heatScore = (tk) => {
-        let won = 0, lost = 0;
-        tk.legs.forEach((leg, j) => {
-          const rk = `${tk.id}_${j}`;
-          const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
-          if (r === 'won') won++;
-          if (r === 'lost') lost++;
-        });
-        // Dead tickets get negative score, alive sorted by won ratio
-        if (lost > 0) return -1 + (won / (tk.legs.length * 10));
-        return tk.legs.length > 0 ? won / tk.legs.length : 0;
-      };
       const diff = heatScore(b) - heatScore(a);
       return sortVal === 'cold' ? -diff : diff;
     });
