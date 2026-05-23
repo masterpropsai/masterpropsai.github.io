@@ -1345,7 +1345,7 @@ const I18N = {
     megalodonRange: 'x1000+ · 4 Cifras', whaleRange: 'x100 — x999 · 3 Cifras', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
     confLabel: 'Confianza IA',
     confLevels: ['', 'Baja', 'Media', 'Media-Alta', 'Alta', 'Muy Alta', 'Máxima'],
-    selections: 'selecciones', copyBtn: '📋 Copiar', copied: '✅ Copiado!', betBtn: '🎰 Apostar en DBbet',
+    selections: 'selecciones', copyBtn: '📋 Copiar Código', copied: '✅ Código Copiado!', betBtn: '🎰 Apostar en DBbet',
     ctaText: '🎰 Cargá estos billetes en DBbet · <strong>Duplicá tu 1er depósito</strong>',
     ctaBtn: 'Registrarme →',
     footerMain: '💰 <strong>MasterProps</strong> — Billetes Largos · No es asesoramiento financiero · Apostá responsablemente',
@@ -2366,7 +2366,7 @@ function renderTickets(filter = 'all') {
       const result = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[resultKey]) || null;
       const resultHTML = result === 'won' ? '<span class="leg-result won">✅</span>' :
                          result === 'lost' ? '<span class="leg-result lost">❌</span>' :
-                         (leg.link ? `<a href="${leg.link}" target="_blank" class="leg-result pending leg-link" title="Ir al evento en DBbet">🔗</a>` : '<span class="leg-result pending">⏳</span>');
+                         (leg.link ? `<a href="${leg.link}" target="_blank" class="leg-result pending leg-link" title="Ver evento en DBbet">↗</a>` : '<span class="leg-result pending">⏳</span>');
       return `
       <div class="leg ${result === 'lost' ? 'leg-lost' : result === 'won' ? 'leg-won' : ''}">
         <div class="leg-number">${getTeamBadge(leg)}</div>
