@@ -1166,6 +1166,11 @@ body {
     <option value="won">💰 Apuestas acertadas</option>
     <option value="dead">💀 Apuestas muertas</option>
   </select>
+  <select class="filter-dropdown" id="sortFilter">
+    <option value="default">📋 Orden por defecto</option>
+    <option value="hot">🔥 Más caliente primero</option>
+    <option value="cold">❄️ Más frío primero</option>
+  </select>
 </div>
 
 <!-- SECTION: MEGALODON TICKETS (x1000+) -->
@@ -2481,6 +2486,28 @@ function renderTickets(filter = 'all') {
       return !hasLost; // alive
     });
   }
+
+  // Sort by heat (won ratio)
+  const sortVal = document.getElementById('sortFilter') ? document.getElementById('sortFilter').value : 'default';
+  if (sortVal !== 'default') {
+    filtered.sort((a, b) => {
+      const heatScore = (tk) => {
+        let won = 0, lost = 0;
+        tk.legs.forEach((leg, j) => {
+          const rk = `${tk.id}_${j}`;
+          const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
+          if (r === 'won') won++;
+          if (r === 'lost') lost++;
+        });
+        // Dead tickets get negative score, alive sorted by won ratio
+        if (lost > 0) return -1 + (won / (tk.legs.length * 10));
+        return tk.legs.length > 0 ? won / tk.legs.length : 0;
+      };
+      const diff = heatScore(b) - heatScore(a);
+      return sortVal === 'cold' ? -diff : diff;
+    });
+  }
+
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
 
   filtered.forEach((ticket, i) => {
@@ -2669,6 +2696,9 @@ document.getElementById('tierFilter').addEventListener('change', function() {
   renderTickets(getActiveFilter());
 });
 document.getElementById('statusFilter').addEventListener('change', function() {
+  renderTickets(getActiveFilter());
+});
+document.getElementById('sortFilter').addEventListener('change', function() {
   renderTickets(getActiveFilter());
 });
 
