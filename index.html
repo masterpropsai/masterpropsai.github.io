@@ -318,11 +318,11 @@ body {
 .conf-text { color: var(--gold); font-weight: 800; font-size: 0.7rem; }
 
 /* Legs */
-.ticket-legs { padding: 10px 16px; }
+.ticket-legs { padding: 10px 16px; background: #ffffff; }
 .leg {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(212,165,32,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   font-size: 0.78rem;
 }
 .leg:last-child { border-bottom: none; }
@@ -377,14 +377,14 @@ body {
 }
 .leg-date {
   font-size: 0.6rem;
-  color: var(--gold-dark);
-  opacity: 0.75;
+  color: #888;
+  opacity: 0.85;
 }
 .leg-info { flex: 1; }
-.leg-player { font-weight: 700; color: var(--text-primary); font-size: 0.78rem; }
-.leg-detail { font-size: 0.68rem; color: var(--text-secondary); margin-top: 2px; }
+.leg-player { font-weight: 700; color: #1a1a2e; font-size: 0.78rem; }
+.leg-detail { font-size: 0.68rem; color: #555; margin-top: 2px; }
 .leg-odd {
-  font-weight: 800; color: var(--gold); font-size: 0.78rem;
+  font-weight: 800; color: #b8860b; font-size: 0.78rem;
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -2428,7 +2428,6 @@ function renderTickets(filter = 'all') {
           <span class="conf-text">${ticket.confidence}/6 · ${confLevels[ticket.confidence]}</span>
         </div>
         <div class="ticket-legs">${legsHTML}</div>
-        ${ticket.publishedAt ? `<div class="published-at" style="text-align:left;margin:6px 0 2px;font-size:0.55rem;color:rgba(125,223,125,0.45);">🔐 Publicado: ${new Date(ticket.publishedAt).toLocaleString('es-AR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false})}</div>` : ''}
         <div class="ticket-footer">
           <div class="ticket-return">$1.000 → <strong>$${returnFor1000}</strong></div>
           <div class="ticket-actions">
