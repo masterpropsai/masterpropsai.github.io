@@ -2431,7 +2431,7 @@ function renderTickets(filter = 'all') {
         <div class="ticket-footer">
           <div class="ticket-return">$1.000 → <strong>$${returnFor1000}</strong></div>
           <div class="ticket-actions">
-            <button class="copy-btn copy-btn-small" onclick="copyTicket('${ticket.id}')">${t('copyBtn')}</button>
+            <button class="copy-btn copy-btn-small" onclick="copyTicket('${ticket.id}', event)">${t('copyBtn')}</button>
             <button class="bet-btn" onclick="betOnDBbet('${ticket.id}')">${t('betBtn')}</button>
           </div>
         </div>
@@ -2498,17 +2498,17 @@ function betOnDBbet(id) {
 }
 
 // === COPY TICKET ===
-function copyTicket(id) {
+function copyTicket(id, e) {
   const ticket = TICKETS.find(t => t.id === id);
   if (!ticket || !ticket.couponCode) return;
 
   navigator.clipboard.writeText(ticket.couponCode).then(() => {
-    const btn = event.target.closest('.copy-btn');
+    const btn = e && e.target ? e.target.closest('.copy-btn') : document.querySelector(`[onclick*="'${id}'"].copy-btn`);
     if (btn) {
-      btn.innerHTML = t('copied');
+      btn.textContent = t('copied');
       btn.classList.add('copied');
       setTimeout(() => {
-        btn.innerHTML = t('copyBtn');
+        btn.textContent = t('copyBtn');
         btn.classList.remove('copied');
       }, 2000);
     }
