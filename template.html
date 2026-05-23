@@ -249,8 +249,9 @@ body {
 
 /* === SECTION HEADERS === */
 .section-header {
-  padding: 1.5rem 2rem 1rem;
+  padding: 1.5rem 0 0.5rem;
   display: flex; align-items: center; gap: 12px;
+  grid-column: 1 / -1;
 }
 .section-header h2 {
   font-family: 'Orbitron', sans-serif;
@@ -1173,41 +1174,15 @@ body {
   </select>
 </div>
 
-<!-- SECTION: MEGALODON TICKETS (x1000+) -->
-<div class="section-header">
-  <h2>🐋 MEGALODÓN</h2>
-  <span class="badge">x1000+ · 4 Cifras</span>
+<!-- ALL TICKETS IN ONE CONTINUOUS GRID -->
+<div class="tickets-grid" id="tickets-all">
 </div>
 
-<div class="tickets-grid" id="tickets-megalodon">
-</div>
-
-<!-- SECTION: WHALE TICKETS (x100-999) -->
-<div class="section-header">
-  <h2>🐳 BALLENA</h2>
-  <span class="badge">x100 — x999 · 3 Cifras</span>
-</div>
-
-<div class="tickets-grid" id="tickets-whale">
-</div>
-
-<!-- SECTION: SHARK TICKETS (x30-99) -->
-<div class="section-header">
-  <h2>🦈 TIBURÓN</h2>
-  <span class="badge">x30 — x99</span>
-</div>
-
-<div class="tickets-grid" id="tickets-shark">
-</div>
-
-<!-- SECTION: HUNTER TICKETS (x10-29) -->
-<div class="section-header">
-  <h2>🎯 CAZADOR</h2>
-  <span class="badge">x10 — x29</span>
-</div>
-
-<div class="tickets-grid" id="tickets-hunter">
-</div>
+<!-- Legacy containers (hidden, kept for compat) -->
+<div id="tickets-megalodon" style="display:none"></div>
+<div id="tickets-whale" style="display:none"></div>
+<div id="tickets-shark" style="display:none"></div>
+<div id="tickets-hunter" style="display:none"></div>
 
 <!-- DBBET CTA -->
 <div class="db-cta">
@@ -2460,13 +2435,16 @@ function updateUI() {
 
 // === RENDER TICKETS ===
 function renderTickets(filter = 'all') {
+  const mainGrid = document.getElementById('tickets-all');
+  mainGrid.innerHTML = '';
+
+  // Legacy compat
   const containers = {
     megalodon: document.getElementById('tickets-megalodon'),
     whale: document.getElementById('tickets-whale'),
     shark: document.getElementById('tickets-shark'),
     hunter: document.getElementById('tickets-hunter'),
   };
-  Object.values(containers).forEach(c => c.innerHTML = '');
 
   let filtered = filter === 'all' ? TICKETS : filter.startsWith('tier:') ? TICKETS.filter(t => t.tier === filter.split(':')[1]) : TICKETS.filter(t => t.legs.some(l => l.sport === filter));
 
@@ -2599,18 +2577,24 @@ function renderTickets(filter = 'all') {
         </div>
       </div>
     `;
-    if (containers[ticket.tier]) containers[ticket.tier].innerHTML += card;
+    ticket._cardHTML = card;
   });
 
-  ['megalodon', 'whale', 'shark', 'hunter'].forEach(tier => {
-    const section = containers[tier].previousElementSibling;
-    if (containers[tier].innerHTML === '') {
-      containers[tier].style.display = 'none';
-      section.style.display = 'none';
-    } else {
-      containers[tier].style.display = '';
-      section.style.display = '';
-    }
+  // Group by tier and render with inline section headers
+  const tierOrder = ['megalodon', 'whale', 'shark', 'hunter'];
+  const tierLabels = {
+    megalodon: { emoji: '🐋', name: 'MEGALODÓN', badge: 'x1000+ · 4 Cifras' },
+    whale:     { emoji: '🐳', name: 'BALLENA', badge: 'x100 — x999 · 3 Cifras' },
+    shark:     { emoji: '🦈', name: 'TIBURÓN', badge: 'x30 — x99' },
+    hunter:    { emoji: '🎯', name: 'CAZADOR', badge: 'x10 — x29' },
+  };
+
+  tierOrder.forEach(tier => {
+    const tierTickets = filtered.filter(tk => tk.tier === tier);
+    if (tierTickets.length === 0) return;
+    const info = tierLabels[tier];
+    mainGrid.innerHTML += `<div class="section-header"><h2>${info.emoji} ${info.name}</h2><span class="badge">${info.badge}</span></div>`;
+    tierTickets.forEach(tk => { mainGrid.innerHTML += tk._cardHTML; });
   });
 }
 
