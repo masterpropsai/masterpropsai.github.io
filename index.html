@@ -2594,7 +2594,7 @@ function renderTickets(filter = 'all') {
         if (r === 'won') wonCount++;
       });
       if (statusVal === 'dead') return hasLost;
-      if (statusVal === 'won') return !hasLost && wonCount === ticket.legs.length && ticket.legs.length > 0;
+      if (statusVal === 'won') return !hasLost && wonCount > 0;
       return !hasLost; // alive
     });
   }
