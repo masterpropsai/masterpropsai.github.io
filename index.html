@@ -1170,6 +1170,15 @@ body {
     <option value="won">💰 Apuestas acertadas</option>
     <option value="dead">💀 Apuestas muertas</option>
   </select>
+  <select class="filter-dropdown" id="confFilter">
+    <option value="all">⭐ Toda confianza</option>
+    <option value="6">🟢 6/6 · Altísima</option>
+    <option value="5">🟢 5/6 · Alta</option>
+    <option value="4">🟡 4/6 · Buena</option>
+    <option value="3">🟡 3/6 · Media</option>
+    <option value="2">🟠 2/6 · Media</option>
+    <option value="1">🔴 1/6 · Baja</option>
+  </select>
   <select class="filter-dropdown" id="sortFilter">
     <option value="default">📋 Orden por defecto</option>
     <option value="hot">🔥 Más caliente primero</option>
@@ -2468,6 +2477,13 @@ function renderTickets(filter = 'all') {
     });
   }
 
+  // Confidence filter
+  const confVal = document.getElementById('confFilter') ? document.getElementById('confFilter').value : 'all';
+  if (confVal !== 'all') {
+    const minConf = parseInt(confVal);
+    filtered = filtered.filter(ticket => ticket.confidence >= minConf);
+  }
+
   // Sort by heat (won ratio) — hide tickets with no heat (0 won legs)
   const sortVal = document.getElementById('sortFilter') ? document.getElementById('sortFilter').value : 'default';
   if (sortVal !== 'default') {
@@ -2694,6 +2710,9 @@ document.getElementById('statusFilter').addEventListener('change', function() {
   renderTickets(getActiveFilter());
 });
 document.getElementById('sortFilter').addEventListener('change', function() {
+  renderTickets(getActiveFilter());
+});
+document.getElementById('confFilter').addEventListener('change', function() {
   renderTickets(getActiveFilter());
 });
 
