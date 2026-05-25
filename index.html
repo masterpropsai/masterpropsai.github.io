@@ -1289,6 +1289,10 @@ body {
         <div class="stat-number" id="mejorRacha">—</div>
         <div class="stat-label">Mejor racha</div>
       </div>
+      <div class="aciertos-stat-card">
+        <div class="stat-number" id="roiStat" style="color:#22c55e">—%</div>
+        <div class="stat-label">ROI</div>
+      </div>
     </div>
 
     <div class="aciertos-recent-title">
@@ -3169,6 +3173,27 @@ renderTickets();
   }
   if (el('mejorRacha')) el('mejorRacha').textContent = bestStreak > 0 ? bestStreak + ' 🔥' : '—';
 
+  // ROI calculation: (total returns - total invested) / total invested * 100
+  // Each resolved ticket invests $confidence. Winners return confidence * totalOdds.
+  let totalInvested = 0, totalReturns = 0;
+  TICKETS.forEach(tk => {
+    const total = tk.legs.length;
+    let won = 0, lost = 0;
+    tk.legs.forEach((leg, j) => {
+      const r = LEG_RESULTS[`${tk.id}_${j}`] || null;
+      if (r === 'won') won++;
+      else if (r === 'lost') lost++;
+    });
+    if ((won + lost) !== total) return;
+    totalInvested += tk.confidence;
+    if (won === total) totalReturns += tk.confidence * tk.totalOdds;
+  });
+  if (el('roiStat')) {
+    const roi = totalInvested > 0 ? Math.round(((totalReturns - totalInvested) / totalInvested) * 100) : 0;
+    el('roiStat').textContent = (roi >= 0 ? '+' : '') + roi + '%';
+    el('roiStat').style.color = roi >= 0 ? '#22c55e' : '#ef4444';
+  }
+
   // Update month label dynamically
   const monthBadge = document.querySelector('.aciertos-badge');
   if (monthBadge) {
@@ -3185,6 +3210,7 @@ renderTickets();
       const sports = [...new Set(tk.legs.map(l => l.sport))];
       const sportIcons = sports.map(s => sportEmoji[s] || '🎯').join(' ');
       const tierEmoji = { megalodon:'🐋', whale:'🐳', shark:'🦈', hunter:'🎯' };
+      const tierName = { megalodon:'MEGALODÓN', whale:'BALLENA', shark:'TIBURÓN', hunter:'CAZADOR' };
       return `<div class="acierto-item">
         <div class="acierto-left">
           <span class="acierto-emoji">${tierEmoji[tk.tier] || '🎯'}</span>
@@ -3193,7 +3219,7 @@ renderTickets();
             <div class="acierto-detail">US$ ${tk.confidence} → US$ ${(tk.confidence * tk.totalOdds).toLocaleString('es-AR', {maximumFractionDigits:0})}</div>
           </div>
         </div>
-        <span class="acierto-tier ${tk.tier}">${tk.tier.toUpperCase()}</span>
+        <span class="acierto-tier ${tk.tier}">${tierName[tk.tier] || tk.tier.toUpperCase()}</span>
       </div>`;
     }).join('');
   }
