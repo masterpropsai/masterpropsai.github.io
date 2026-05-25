@@ -2893,8 +2893,8 @@ function renderTickets(filter = 'all') {
 
     const confLevels = t('confLevels');
     const locale = currentLang === 'es' ? 'es-AR' : currentLang === 'pt' ? 'pt-BR' : currentLang;
-    const investAmount = ticket.confidence * 1000;
-    const returnAmount = (ticket.totalOdds * investAmount).toLocaleString(locale);
+    const investAmount = ticket.confidence;
+    const returnAmount = (ticket.totalOdds * investAmount).toLocaleString(locale, {minimumFractionDigits: 0, maximumFractionDigits: 0});
     const investFormatted = investAmount.toLocaleString(locale);
 
     // Calculate heat level based on won legs
