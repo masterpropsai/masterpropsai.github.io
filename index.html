@@ -2893,7 +2893,9 @@ function renderTickets(filter = 'all') {
 
     const confLevels = t('confLevels');
     const locale = currentLang === 'es' ? 'es-AR' : currentLang === 'pt' ? 'pt-BR' : currentLang;
-    const returnFor1000 = (ticket.totalOdds * 1000).toLocaleString(locale);
+    const investAmount = ticket.confidence * 1000;
+    const returnAmount = (ticket.totalOdds * investAmount).toLocaleString(locale);
+    const investFormatted = investAmount.toLocaleString(locale);
 
     // Calculate heat level based on won legs
     let wonLegs = 0, lostLegs = 0, resolvedLegs = 0;
@@ -2937,7 +2939,7 @@ function renderTickets(filter = 'all') {
         </div>
         <div class="ticket-legs">${legsHTML}</div>
         <div class="ticket-footer">
-          <div class="ticket-return">$1.000 → <strong>$${returnFor1000}</strong></div>
+          <div class="ticket-return">$${investFormatted} → <strong>$${returnAmount}</strong></div>
           <div class="ticket-actions">
             <button class="copy-btn copy-btn-small" onclick="copyTicket('${ticket.id}', event)">${t('copyBtn')}</button>
             <button class="bet-btn" onclick="betOnDBbet('${ticket.id}')">${t('betBtn')}</button>
