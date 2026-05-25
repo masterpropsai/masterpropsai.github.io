@@ -3190,8 +3190,14 @@ renderTickets();
   });
   if (el('roiStat')) {
     const roi = totalInvested > 0 ? Math.round(((totalReturns - totalInvested) / totalInvested) * 100) : 0;
-    el('roiStat').textContent = (roi >= 0 ? '+' : '') + roi + '%';
-    el('roiStat').style.color = roi >= 0 ? '#22c55e' : '#ef4444';
+    const roiCard = el('roiStat').closest('.aciertos-stat-card');
+    if (roi >= 0) {
+      el('roiStat').textContent = '+' + roi + '%';
+      el('roiStat').style.color = '#22c55e';
+      if (roiCard) roiCard.style.display = '';
+    } else {
+      if (roiCard) roiCard.style.display = 'none';
+    }
   }
 
   // Update month label dynamically
