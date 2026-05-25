@@ -837,6 +837,12 @@ body {
   color: var(--text-secondary);
   margin-top: 2px;
 }
+.acierto-left {
+  display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;
+}
+.acierto-emoji { font-size: 1.3rem; flex-shrink: 0; }
+.acierto-title { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); }
+.acierto-detail { font-size: 0.72rem; color: #22c55e; margin-top: 2px; }
 .acierto-tier {
   display: inline-block;
   padding: 2px 8px;
@@ -845,6 +851,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.5px;
   margin-top: 4px;
+  flex-shrink: 0;
 }
 .acierto-tier.hunter { background: rgba(212,165,32,0.15); color: var(--gold); border: 1px solid rgba(212,165,32,0.25); }
 .acierto-tier.shark { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
@@ -3104,6 +3111,93 @@ document.getElementById('confFilter').addEventListener('change', function() {
 
 // Init
 renderTickets();
+
+// === RENDIMIENTO DEL MES (auto-calculated) ===
+(function updateRendimiento() {
+  if (typeof TICKETS === 'undefined' || !TICKETS.length) return;
+  if (typeof LEG_RESULTS === 'undefined') return;
+
+  let totalResolved = 0, totalWon = 0;
+  const winners = [];
+
+  TICKETS.forEach(tk => {
+    const total = tk.legs.length;
+    let won = 0, lost = 0;
+    tk.legs.forEach((leg, j) => {
+      const r = LEG_RESULTS[`${tk.id}_${j}`] || null;
+      if (r === 'won') won++;
+      else if (r === 'lost') lost++;
+    });
+    const allResolved = (won + lost) === total;
+    if (!allResolved) return;
+    totalResolved++;
+    if (won === total) {
+      totalWon++;
+      winners.push(tk);
+    }
+  });
+
+  // Calculate best streak
+  // Sort tickets by their first leg's match date for ordering
+  const resolvedTickets = [];
+  TICKETS.forEach(tk => {
+    const total = tk.legs.length;
+    let won = 0, lost = 0;
+    tk.legs.forEach((leg, j) => {
+      const r = LEG_RESULTS[`${tk.id}_${j}`] || null;
+      if (r === 'won') won++;
+      else if (r === 'lost') lost++;
+    });
+    if ((won + lost) === total) {
+      resolvedTickets.push({ id: tk.id, won: won === total, date: tk.legs[0]?.date || '' });
+    }
+  });
+  resolvedTickets.sort((a, b) => a.date.localeCompare(b.date));
+  let bestStreak = 0, currentStreak = 0;
+  resolvedTickets.forEach(rt => {
+    if (rt.won) { currentStreak++; bestStreak = Math.max(bestStreak, currentStreak); }
+    else { currentStreak = 0; }
+  });
+
+  // Update stats
+  const el = id => document.getElementById(id);
+  if (el('aciertosCount')) el('aciertosCount').textContent = totalWon;
+  if (el('totalTickets')) el('totalTickets').textContent = totalResolved;
+  if (el('hitRate')) {
+    const rate = totalResolved > 0 ? Math.round((totalWon / totalResolved) * 100) : 0;
+    el('hitRate').textContent = rate + '%';
+  }
+  if (el('mejorRacha')) el('mejorRacha').textContent = bestStreak > 0 ? bestStreak + ' 🔥' : '—';
+
+  // Update month label dynamically
+  const monthBadge = document.querySelector('.aciertos-badge');
+  if (monthBadge) {
+    const months = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
+    const now = new Date();
+    monthBadge.textContent = months[now.getMonth()] + ' ' + now.getFullYear();
+  }
+
+  // Populate aciertos list
+  const lista = el('aciertosLista');
+  if (lista && winners.length > 0) {
+    const sportEmoji = { futbol:'⚽', hockey:'🏒', basketball:'🏀', baseball:'⚾', tennis:'🎾', boxing:'🥊', mma:'🥊', rugby:'🏉', football:'🏈' };
+    lista.innerHTML = winners.slice(-8).reverse().map(tk => {
+      const sports = [...new Set(tk.legs.map(l => l.sport))];
+      const sportIcons = sports.map(s => sportEmoji[s] || '🎯').join(' ');
+      const tierEmoji = { megalodon:'🐋', whale:'🐳', shark:'🦈', hunter:'🎯' };
+      return `<div class="acierto-item">
+        <div class="acierto-left">
+          <span class="acierto-emoji">${tierEmoji[tk.tier] || '🎯'}</span>
+          <div>
+            <div class="acierto-title">${sportIcons} x${tk.totalOdds} — ${tk.legs.length} picks</div>
+            <div class="acierto-detail">US$ ${tk.confidence} → US$ ${(tk.confidence * tk.totalOdds).toLocaleString('es-AR', {maximumFractionDigits:0})}</div>
+          </div>
+        </div>
+        <span class="acierto-tier ${tk.tier}">${tk.tier.toUpperCase()}</span>
+      </div>`;
+    }).join('');
+  }
+})();
 
 // Dynamic hero stats from real ticket data
 (function updateHeroStats() {
