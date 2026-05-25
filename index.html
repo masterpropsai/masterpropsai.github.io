@@ -2939,7 +2939,7 @@ function renderTickets(filter = 'all') {
         </div>
         <div class="ticket-legs">${legsHTML}</div>
         <div class="ticket-footer">
-          <div class="ticket-return">$${investFormatted} → <strong>$${returnAmount}</strong></div>
+          <div class="ticket-return">US$ ${investFormatted} → <strong>US$ ${returnAmount}</strong></div>
           <div class="ticket-actions">
             <button class="copy-btn copy-btn-small" onclick="copyTicket('${ticket.id}', event)">${t('copyBtn')}</button>
             <button class="bet-btn" onclick="betOnDBbet('${ticket.id}')">${t('betBtn')}</button>
