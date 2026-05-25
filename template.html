@@ -2070,7 +2070,7 @@ const TEAM_LOGOS = {
   FLU:'https://a.espncdn.com/i/teamlogos/soccer/500/2025.png',
   CRU:'https://a.espncdn.com/i/teamlogos/soccer/500/2014.png',
 };
-const NEEDS_BG = new Set(['NYY','COL','VGK','CLE','OKC','SAS','RIV','ATM','SD','BOS','CAR','MTL','JUV','INT','BOC']);
+const NEEDS_BG = new Set(['NYY','COL','VGK','CLE','OKC','RIV','ATM','SD','BOS','CAR','MTL','JUV','INT','BOC']);
 function getTeamBadge(leg) {
   const fallback = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽',hockey:'🏒',tenis:'🎾',ufc:'🥊',mma:'🥊'}[leg.sport]||'🎯';
   // Sport-specific CSS class for background
@@ -2118,7 +2118,7 @@ const TICKETS = [
     {player:'(STU vs) Bayern Múnich', prop:'Hándicap 1 (-2)', match:'Copa de Alemania', odd:2.27, sport:'futbol', team:'BAY', date:'May 23 · 18:00', logo:'https://nimblecd.com/sfiles/logo_teams/701415b6d5ee3ffc9aaa20b1325ec160.png', link:'https://refpa1800.com/es/line/Football/119235-Germany-DFB-Pokal/326676280-Bayern-Munich-VfB-Stuttgart'}
   ]},
   { id:'WKD-M5', tier:'megalodon', sport:'futbol', title:'Wkd · Fútbol Props Mix', confidence:1, totalOdds:1122.0, publishedAt:'2026-05-22T18:21:13Z', couponCode:'48YYZ', legs:[
-    {player:'(PAR vs) Sassuolo', prop:'Total Individual 2 Más de (3)', match:'Serie A', odd:11.5, sport:'futbol', team:'SAS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
+    {player:'(PAR vs) Sassuolo', prop:'Total Individual 2 Más de (3)', match:'Serie A', odd:11.5, sport:'futbol', team:'SASS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
     {player:'(DEP vs) Rayo Vallecano', prop:'Total Más de (3.25)', match:'La Liga', odd:2.87, sport:'futbol', team:'RAY', date:'May 23 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/3458.png', link:'https://refpa1800.com/es/line/Football/127733-Spain-La-Liga/333925754-Deportivo-Alaves-Rayo-Vallecano'},
     {player:'(EVE vs) Tottenham', prop:'Hándicap 1 (-2)', match:'Premier League', odd:4.85, sport:'futbol', team:'TOT', date:'May 24 · 15:00', logo:'https://nimblecd.com/sfiles/logo_teams/f43494e928135fba48f87940577011ef.png', link:'https://refpa1800.com/es/line/Football/88637-England-Premier-League/332822828-Tottenham-Hotspur-Everton'},
     {player:'(STU vs) Bayern Múnich', prop:'Algún equipo gana por diferencia de (1) Gol(s) - Sí', match:'Copa de Alemania', odd:3.26, sport:'futbol', team:'BAY', date:'May 23 · 18:00', logo:'https://nimblecd.com/sfiles/logo_teams/701415b6d5ee3ffc9aaa20b1325ec160.png', link:'https://refpa1800.com/es/line/Football/119235-Germany-DFB-Pokal/326676280-Bayern-Munich-VfB-Stuttgart'},
@@ -2245,7 +2245,7 @@ const TICKETS = [
     {player:'(ATH vs) Real Madrid', prop:'Algún equipo gana por diferencia de (3) o más goles - Sí', match:'La Liga', odd:3.3, sport:'futbol', team:'RMA', date:'May 23 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/65e3e972954419765c3ce21698edf6cb.png', link:'https://refpa1800.com/es/line/Football/127733-Spain-La-Liga/332822782-Real-Madrid-Athletic-Bilbao'}
   ]},
   { id:'WKD-W17', tier:'whale', sport:'futbol', title:'Wkd · Fútbol Props Mix', confidence:2, totalOdds:313.9, publishedAt:'2026-05-22T18:21:13Z', couponCode:'EAZYZ', legs:[
-    {player:'(PAR vs) Sassuolo', prop:'Total Más de (4.25)', match:'Serie A', odd:5.18, sport:'futbol', team:'SAS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
+    {player:'(PAR vs) Sassuolo', prop:'Total Más de (4.25)', match:'Serie A', odd:5.18, sport:'futbol', team:'SASS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
     {player:'(REA vs) Levante', prop:'Visitante Gana y Total < (3.5) - Sí', match:'La Liga', odd:5, sport:'futbol', team:'LEV', date:'May 23 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/da574aa27c39541278b89534d142cd10.png', link:'https://refpa1800.com/es/line/Football/127733-Spain-La-Liga/333925764-Real-Betis-Levante-UD'},
     {player:'(LEE vs) West Ham', prop:'Local Gana y Total > (3.5) - Sí', match:'Premier League', odd:4.15, sport:'futbol', team:'WHU', date:'May 24 · 15:00', logo:'https://nimblecd.com/sfiles/logo_teams/1980.png', link:'https://refpa1800.com/es/line/Football/88637-England-Premier-League/333649322-West-Ham-United-Leeds-United'},
     {player:'(BAY vs) Stuttgart', prop:'Hándicap 2 (0.75)', match:'Copa de Alemania', odd:2.92, sport:'futbol', team:'VFB', date:'May 23 · 18:00', logo:'https://nimblecd.com/sfiles/logo_teams/123e961b16a42a5d63301336dd119ca5.png', link:'https://refpa1800.com/es/line/Football/119235-Germany-DFB-Pokal/326676280-Bayern-Munich-VfB-Stuttgart'}
@@ -2340,7 +2340,7 @@ const TICKETS = [
     {player:'(PIS vs) Lazio', prop:'Algún equipo gana sin goles en contra - No', match:'Serie A', odd:1.64, sport:'futbol', team:'LAZ', date:'May 23 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/3534.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333971274-Lazio-Pisa'}
   ]},
   { id:'WKD-W28', tier:'whale', sport:'futbol', title:'Wkd · Fútbol Props Mix', confidence:2, totalOdds:131.6, publishedAt:'2026-05-22T18:21:13Z', couponCode:'ADZYZ', legs:[
-    {player:'(PAR vs) Sassuolo', prop:'Hándicap 2 (-2)', match:'Serie A', odd:9.1, sport:'futbol', team:'SAS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
+    {player:'(PAR vs) Sassuolo', prop:'Hándicap 2 (-2)', match:'Serie A', odd:9.1, sport:'futbol', team:'SASS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
     {player:'(LEV vs) Real Betis', prop:'Total Más de (3.75)', match:'La Liga', odd:2.88, sport:'futbol', team:'REA', date:'May 23 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/3454.png', link:'https://refpa1800.com/es/line/Football/127733-Spain-La-Liga/333925764-Real-Betis-Levante-UD'},
     {player:'(EVE vs) Tottenham', prop:'Hándicap 1 (-1.25)', match:'Premier League', odd:2.7, sport:'futbol', team:'TOT', date:'May 24 · 15:00', logo:'https://nimblecd.com/sfiles/logo_teams/f43494e928135fba48f87940577011ef.png', link:'https://refpa1800.com/es/line/Football/88637-England-Premier-League/332822828-Tottenham-Hotspur-Everton'},
     {player:'(STU vs) Bayern Múnich', prop:'Hándicap 2 (1.75)', match:'Copa de Alemania', odd:1.86, sport:'futbol', team:'BAY', date:'May 23 · 18:00', logo:'https://nimblecd.com/sfiles/logo_teams/701415b6d5ee3ffc9aaa20b1325ec160.png', link:'https://refpa1800.com/es/line/Football/119235-Germany-DFB-Pokal/326676280-Bayern-Munich-VfB-Stuttgart'}
@@ -2554,7 +2554,7 @@ const TICKETS = [
   ]},
   { id:'SUN-S18', tier:'shark', sport:'futbol', title:'Dom · Fútbol Props Mix', confidence:3, totalOdds:20.3, publishedAt:'2026-05-22T18:21:13Z', couponCode:'JMZYZ', legs:[
     {player:'(WOL vs) Burnley', prop:'Total Individual 1 Menos de (0.5)', match:'Premier League', odd:4.15, sport:'futbol', team:'BUR', date:'May 24 · 15:00', logo:'https://nimblecd.com/sfiles/logo_teams/7893714e9702c025ee2864adfb0f94ab.png', link:'https://refpa1800.com/es/line/Football/88637-England-Premier-League/333748322-Burnley-Wolverhampton-Wanderers'},
-    {player:'(PAR vs) Sassuolo', prop:'Visitante No pierde y Total < (3.5) - Sí', match:'Serie A', odd:1.99, sport:'futbol', team:'SAS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
+    {player:'(PAR vs) Sassuolo', prop:'Visitante No pierde y Total < (3.5) - Sí', match:'Serie A', odd:1.99, sport:'futbol', team:'SASS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
     {player:'(ATM vs) Villarreal', prop:'Total Más de (3.75)', match:'La Liga', odd:2.46, sport:'futbol', team:'VIL', date:'May 24 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/3488.png', link:'https://refpa1800.com/es/line/Football/127733-Spain-La-Liga/333934634-Villarreal-Atletico-Madrid'}
   ]},
   { id:'SUN-S19', tier:'shark', sport:'futbol', title:'Dom · Fútbol Props Mix', confidence:3, totalOdds:20.2, publishedAt:'2026-05-22T18:21:13Z', couponCode:'RMZYZ', legs:[
@@ -2648,7 +2648,7 @@ const TICKETS = [
     {player:'(VER vs) Roma', prop:'Total Individual 2 Menos de (2.5)', match:'Serie A', odd:1.51, sport:'futbol', team:'ROM', date:'May 24 · 18:45', logo:'https://nimblecd.com/sfiles/logo_teams/167095.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333971870-Hellas-Verona-Roma'}
   ]},
   { id:'SUN-S27', tier:'shark', sport:'futbol', title:'Dom · Fútbol Props Mix', confidence:5, totalOdds:11.6, publishedAt:'2026-05-22T18:21:13Z', couponCode:'4QZYZ', legs:[
-    {player:'(PAR vs) Sassuolo', prop:'Hándicap 2 (-0.75)', match:'Serie A', odd:2.98, sport:'futbol', team:'SAS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
+    {player:'(PAR vs) Sassuolo', prop:'Hándicap 2 (-0.75)', match:'Serie A', odd:2.98, sport:'futbol', team:'SASS', date:'May 24 · 13:00', logo:'https://nimblecd.com/sfiles/logo_teams/3566.png', link:'https://refpa1800.com/es/line/Football/110163-Italy-Serie-A/333926684-Parma-Sassuolo-Calcio'},
     {player:'(BRE vs) Liverpool', prop:'Total Menos de (3)', match:'Premier League', odd:2.04, sport:'futbol', team:'LIV', date:'May 24 · 15:00', logo:'https://nimblecd.com/sfiles/logo_teams/d3916206204ffc91b0471ff9484066d6.png', link:'https://refpa1800.com/es/line/Football/88637-England-Premier-League/333044904-Liverpool-Brentford'},
     {player:'(VIL vs) Atletico Madrid', prop:'Visitante Total Impar', match:'La Liga', odd:1.9, sport:'futbol', team:'ATM', date:'May 24 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/e0fd0bec869f91a6ae1d025628ab39b5.png', link:'https://refpa1800.com/es/line/Football/127733-Spain-La-Liga/333934634-Villarreal-Atletico-Madrid'}
   ]},
