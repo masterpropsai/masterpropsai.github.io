@@ -2870,8 +2870,8 @@ function renderTickets(filter = 'all') {
         if (r === 'won') wonCount++;
       });
       if (statusVal === 'dead') return hasLost;
-      if (statusVal === 'won') return !hasLost && wonCount > 0;
-      return !hasLost; // alive
+      if (statusVal === 'won') return !hasLost && wonCount === ticket.legs.length;
+      return !hasLost && wonCount < ticket.legs.length; // alive = sin perdidas + aún tiene pendientes
     });
   }
 
