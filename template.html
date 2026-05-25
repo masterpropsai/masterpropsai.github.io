@@ -472,9 +472,9 @@ body {
 .leg-won { border-left: 2px solid rgba(34,197,94,0.4); }
 .leg-lost { opacity: 0.5; text-decoration: line-through; border-left: 2px solid rgba(239,68,68,0.3); }
 .ticket-result-badge {
-  position: absolute; top: 8px; right: 8px;
   padding: 3px 10px; border-radius: 6px; font-size: 0.65rem;
   font-weight: 800; letter-spacing: 0.5px; z-index: 5;
+  display: inline-block;
 }
 .ticket-result-badge.won {
   background: linear-gradient(135deg, #22c55e, #16a34a);
@@ -852,12 +852,20 @@ body {
 .acierto-tier.whale { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); }
 
 /* Ticket tier badges */
+.ticket-top-bar {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0; position: relative;
+}
 .tier-badge {
-  position: absolute; top: 0; left: 62%;
-  transform: translateX(-50%);
   padding: 3px 14px; border-radius: 0 0 8px 8px;
   font-size: 0.6rem; font-weight: 900; letter-spacing: 1px;
   text-transform: uppercase; z-index: 2;
+}
+.ticket-sport-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.55rem; font-weight: 700; letter-spacing: 0.5px;
+  background: rgba(255,255,255,0.06); color: var(--text-secondary);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 .tier-megalodon {
   background: linear-gradient(135deg, #7c3aed, #a855f7);
@@ -2941,18 +2949,22 @@ function renderTickets(filter = 'all') {
     const isFullWinner = wonLegs === totalLegs && totalLegs > 0;
     const ticketWonBadge = isFullWinner ? `<div class="ticket-result-badge won">💰 ¡GANADOR! 🎉</div>` : '';
 
+    // Build sport tags from unique sports in legs
+    const legSports = [...new Set(ticket.legs.map(l => l.sport))];
+    const sportTagsHTML = legSports.map(s => `<span class="ticket-sport-tag">${sportEmoji[s] || '🎯'} ${s.toUpperCase()}</span>`).join('');
+
     const card = `
       <div class="ticket ${heatClass}${ticketDead ? ' ticket-dead' : ''}${isFullWinner ? ' ticket-winner' : ''}" data-sport="${ticket.sport}" style="animation-delay: ${i * 0.08}s">
-        <div class="tier-badge ${tierClass}">${tierLabel}</div>
-        ${ticketWonBadge || ticketDeadBadge || heatBadgeHTML}
+        <div class="ticket-top-bar">
+          <div class="tier-badge ${tierClass}">${tierLabel}</div>
+          ${ticketWonBadge || ticketDeadBadge || heatBadgeHTML}
+        </div>
         <div class="ticket-header">
           <div class="ticket-header-left">
-            <span class="ticket-sport">${sportEmoji[ticket.sport] || '🎯'} ${ticket.sport.toUpperCase()}</span>
-            <span class="ticket-title">${ticket.title}</span>
+            ${sportTagsHTML}
           </div>
           <div style="text-align:right">
             <div class="ticket-odds">x${ticket.totalOdds}</div>
-            <div class="ticket-odds-label">${ticket.legs.length} ${t('selections')}</div>
           </div>
         </div>
         <div class="ticket-confidence">
