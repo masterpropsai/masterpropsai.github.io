@@ -633,24 +633,28 @@ def main():
     from datetime import timedelta
 
     now = datetime.now(timezone.utc)
-    # Saturday May 23
-    sat_start = datetime(2026, 5, 23, 0, 0, 0, tzinfo=timezone.utc).timestamp()
-    sat_end = datetime(2026, 5, 23, 23, 59, 59, tzinfo=timezone.utc).timestamp()
-    # Sunday May 24
-    sun_start = datetime(2026, 5, 24, 0, 0, 0, tzinfo=timezone.utc).timestamp()
-    sun_end = datetime(2026, 5, 24, 23, 59, 59, tzinfo=timezone.utc).timestamp()
+    # Dynamic: HOY (today) and MAÑANA (tomorrow) in Argentina TZ (UTC-3)
+    ar_offset = timedelta(hours=-3)
+    now_ar = now + ar_offset
+    today_ar = now_ar.date()
+    tomorrow_ar = today_ar + timedelta(days=1)
+    # Convert Argentina day boundaries back to UTC timestamps
+    sat_start = (datetime.combine(today_ar, datetime.min.time(), tzinfo=timezone.utc) - ar_offset).timestamp()
+    sat_end = (datetime.combine(today_ar, datetime.max.time(), tzinfo=timezone.utc) - ar_offset).timestamp()
+    sun_start = (datetime.combine(tomorrow_ar, datetime.min.time(), tzinfo=timezone.utc) - ar_offset).timestamp()
+    sun_end = (datetime.combine(tomorrow_ar, datetime.max.time(), tzinfo=timezone.utc) - ar_offset).timestamp()
 
     print("\n🎯 Building prop pools...")
 
-    print("  📅 SÁBADO:")
+    print("  📅 HOY:")
     pool_sat = build_prop_pool(data, start_ts_min=sat_start, start_ts_max=sat_end, day_label='sat')
     print(f"     ✅ {len(pool_sat)} props")
 
-    print("  📅 DOMINGO:")
+    print("  📅 MAÑANA:")
     pool_sun = build_prop_pool(data, start_ts_min=sun_start, start_ts_max=sun_end, day_label='sun')
     print(f"     ✅ {len(pool_sun)} props")
 
-    print("  📅 FIN DE SEMANA (combinado):")
+    print("  📅 HOY+MAÑANA (combinado):")
     pool_weekend = build_prop_pool(data, start_ts_min=sat_start, start_ts_max=sun_end, day_label='weekend')
     print(f"     ✅ {len(pool_weekend)} props")
 
@@ -659,32 +663,32 @@ def main():
 
     # Saturday tickets (sharks, hunters, whales)
     if pool_sat:
-        print("\n🎰 === SÁBADO — Building tickets ===")
+        print("\n🎰 === HOY — Building tickets ===")
         sat_tickets = build_tickets(pool_sat)
         # Re-prefix IDs to avoid collisions: SAT-M1, SAT-W1, etc.
         for t in sat_tickets:
             t['id'] = f"SAT-{t['id']}"
-            t['title'] = f"Sáb · {t['title']}"
+            t['title'] = f"Hoy · {t['title']}"
         all_tickets.extend(sat_tickets)
-        print(f"  ✅ {len(sat_tickets)} tickets sábado")
+        print(f"  ✅ {len(sat_tickets)} tickets hoy")
     else:
-        print("\n⚠️  No props for Saturday")
+        print("\n⚠️  No props for HOY")
 
     # Sunday tickets (sharks, hunters, whales)
     if pool_sun:
-        print("\n🎰 === DOMINGO — Building tickets ===")
+        print("\n🎰 === MAÑANA — Building tickets ===")
         sun_tickets = build_tickets(pool_sun)
         for t in sun_tickets:
             t['id'] = f"SUN-{t['id']}"
-            t['title'] = f"Dom · {t['title']}"
+            t['title'] = f"Mañ · {t['title']}"
         all_tickets.extend(sun_tickets)
-        print(f"  ✅ {len(sun_tickets)} tickets domingo")
+        print(f"  ✅ {len(sun_tickets)} tickets mañana")
     else:
-        print("\n⚠️  No props for Sunday")
+        print("\n⚠️  No props for MAÑANA")
 
     # Combined weekend — Megalodones and Whales ONLY (x100+)
     if pool_weekend:
-        print("\n🎰 === FIN DE SEMANA — Megalodones & Whales ===")
+        print("\n🎰 === HOY+MAÑANA — Megalodones & Whales ===")
         weekend_tickets = build_tickets(pool_weekend)
         # Only keep megalodones and whales from the combined pool
         mega_whale = [t for t in weekend_tickets if t['tier'] in ('megalodon', 'whale')]
@@ -692,9 +696,9 @@ def main():
             t['id'] = f"WKD-{t['id']}"
             t['title'] = f"Wkd · {t['title']}"
         all_tickets.extend(mega_whale)
-        print(f"  ✅ {len(mega_whale)} megalodones/whales fin de semana")
+        print(f"  ✅ {len(mega_whale)} megalodones/whales 48h")
     else:
-        print("\n⚠️  No props for weekend combined")
+        print("\n⚠️  No props for HOY+MAÑANA")
 
     tickets = all_tickets
 
