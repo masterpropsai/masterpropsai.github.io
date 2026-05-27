@@ -50,6 +50,33 @@ TEAM_ABBREVS = {
     'Crystal Palace': 'CRY', 'Brighton': 'BHA', 'Wolverhampton': 'WOL',
     'Burnley': 'BUR', 'Sunderland': 'SUN', 'Brentford': 'BRE',
     'Aston Villa': 'AVL', 'West Ham': 'WHU', 'Newcastle': 'NEW',
+    # Sudamérica
+    'Palmeiras': 'PAL', 'Flamengo': 'FLA', 'Corinthians': 'COR',
+    'Cruzeiro': 'CRU', 'Botafogo': 'BOT', 'Fluminense': 'FLU',
+    'São Paulo': 'SAO', 'Internacional': 'INT', 'Grêmio': 'GRE',
+    'Santos': 'SAN', 'Vasco da Gama': 'VAS', 'Bragantino': 'BRA',
+    'Atlético Mineiro': 'MIN', 'Athletico PR': 'CAP',
+    'River Plate': 'RIV', 'Boca Juniors': 'BOC', 'Racing': 'RAC',
+    'Independiente': 'IND', 'San Lorenzo': 'SLO', 'Vélez': 'VEL',
+    'Talleres': 'TAL', 'Belgrano': 'BEL', 'Tigre': 'TIG',
+    'Lanús': 'LAN', 'Banfield': 'BAN', 'Platense': 'PLA',
+    'Huracán': 'HUR', 'Colón': 'COL', 'Unión': 'UNI',
+    'Estudiantes': 'EST', 'Rosario Central': 'ROC',
+    'Ind. Rivadavia': 'IRV', 'Ind. del Valle': 'IDV',
+    'Olimpia': 'OLI', 'Libertad': 'LIB', 'Junior': 'JUN',
+    'Santa Fe': 'STF', 'U. Católica': 'UCA', 'Macará': 'MAC',
+    # MLB short
+    'Phillies': 'PHI', 'LA Dodgers': 'LAD', 'LA Angels': 'LAA',
+    'NY Yankees': 'NYY', 'NY Mets': 'NYM', 'Boston Red Sox': 'BOS',
+    'Atlanta Braves': 'ATL', 'Houston Astros': 'HOU',
+    'San Francisco': 'SFG', 'San Diego': 'SDP', 'Tampa Bay': 'TBR',
+    'Minnesota': 'MIN', 'Chicago W. Sox': 'CHW',
+    'Texas Rangers': 'TEX', 'Cleveland': 'CLE', 'Detroit': 'DET',
+    'Seattle': 'SEA', 'Toronto': 'TOR', 'Milwaukee': 'MIL',
+    'Pittsburgh': 'PIT', 'Cincinnati': 'CIN', 'Baltimore': 'BAL',
+    'St. Louis': 'STL', 'Washington': 'WAS', 'Oakland': 'OAK',
+    'Colorado': 'COL', 'Arizona': 'ARI', 'Miami Marlins': 'MIA',
+    'Kansas City': 'KCR',
 }
 
 # ── Tournament filtering ──
@@ -309,22 +336,118 @@ def short_name(name):
     if not name:
         return name
     s = translate_name(name)
-    # Strip common prefixes that just add noise
+
+    # ── Exact overrides for known long names ──
+    EXACT = {
+        'Sociedade Esportiva Palmeiras': 'Palmeiras',
+        'Clube Atletico Mineiro': 'Atlético Mineiro',
+        'Cruzeiro Esporte Clube': 'Cruzeiro',
+        'Club Social y Deportivo Macara': 'Macará',
+        'Botafogo de Futebol e Regatas': 'Botafogo',
+        'Club Independiente Santa Fe': 'Santa Fe',
+        'Alianza Atletico Sullana': 'Alianza Sullana',
+        'Racing Club de Avellaneda': 'Racing',
+        'River Plate Buenos Aires': 'River Plate',
+        'Juventud de Las Piedras': 'Juventud',
+        'Junior de Barranquilla': 'Junior',
+        'Universidad Catolica Santiago': 'U. Católica',
+        'Universidad Central de Venezuela': 'UCV',
+        'Independiente del Valle': 'Ind. del Valle',
+        'Independiente Rivadavia': 'Ind. Rivadavia',
+        'Philadelphia Phillies': 'Phillies',
+        'San Francisco Giants': 'San Francisco',
+        'Red Bull Bragantino': 'Bragantino',
+        'Barcelona Sporting Club': 'Barcelona SC',
+        'America de Cali': 'América de Cali',
+        'Club Olimpia': 'Olimpia',
+        'Club Libertad': 'Libertad',
+        'Club Atletico Tigre': 'Tigre',
+        'Club Atletico Talleres': 'Talleres',
+        'Club Atletico Belgrano': 'Belgrano',
+        'Club Atletico Velez Sarsfield': 'Vélez',
+        'Club Atletico Huracan': 'Huracán',
+        'Club Atletico Lanus': 'Lanús',
+        'Club Atletico Banfield': 'Banfield',
+        'Club Atletico Union': 'Unión',
+        'Club Atletico Platense': 'Platense',
+        'Club Atletico Colon': 'Colón',
+        'Club Atletico San Lorenzo': 'San Lorenzo',
+        'Club Atletico Rosario Central': 'Rosario Central',
+        'Club Atletico Estudiantes': 'Estudiantes',
+        'Club Atletico Independiente': 'Independiente',
+        'Club Atletico Boca Juniors': 'Boca Juniors',
+        'Club Atletico River Plate': 'River Plate',
+        'Atletico Nacional': 'Atl. Nacional',
+        'Atletico Paranaense': 'Athletico PR',
+        'Atletico Goianiense': 'Atlético GO',
+        'Sport Club Internacional': 'Internacional',
+        'Sport Club Corinthians Paulista': 'Corinthians',
+        'Clube de Regatas do Flamengo': 'Flamengo',
+        'Sao Paulo Futebol Clube': 'São Paulo',
+        'Santos Futebol Clube': 'Santos',
+        'Fluminense Football Club': 'Fluminense',
+        'Gremio Porto Alegrense': 'Grêmio',
+        'CR Vasco da Gama': 'Vasco da Gama',
+        'Audax Italiano': 'Audax Italiano',
+        'Deportivo Carabobo': 'Carabobo',
+        'Academia Puerto Cabello': 'Puerto Cabello',
+        'Tampa Bay Rays': 'Tampa Bay',
+        'Boston Red Sox': 'Boston Red Sox',
+        'Atlanta Braves': 'Atlanta Braves',
+        'Baltimore Orioles': 'Baltimore',
+        'Los Angeles Dodgers': 'LA Dodgers',
+        'Los Angeles Angels': 'LA Angels',
+        'Colorado Rockies': 'Colorado',
+        'San Diego Padres': 'San Diego',
+        'Arizona Diamondbacks': 'Arizona',
+        'Chicago White Sox': 'Chicago W. Sox',
+        'Minnesota Twins': 'Minnesota',
+        'Kansas City Royals': 'Kansas City',
+        'Texas Rangers': 'Texas Rangers',
+        'Houston Astros': 'Houston Astros',
+        'Detroit Tigers': 'Detroit',
+        'New York Yankees': 'NY Yankees',
+        'New York Mets': 'NY Mets',
+        'Toronto Blue Jays': 'Toronto',
+        'Milwaukee Brewers': 'Milwaukee',
+        'Pittsburgh Pirates': 'Pittsburgh',
+        'Cincinnati Reds': 'Cincinnati',
+        'St. Louis Cardinals': 'St. Louis',
+        'Washington Nationals': 'Washington',
+        'Miami Marlins': 'Miami Marlins',
+        'Seattle Mariners': 'Seattle',
+        'Oakland Athletics': 'Oakland',
+        'Cleveland Guardians': 'Cleveland',
+    }
+    if s in EXACT:
+        return EXACT[s]
+
+    # ── Strip common prefixes that just add noise ──
     prefixes = [
         'Club Atletico ', 'Clube Atletico ',
         'Sociedade Esportiva ', 'Sport Club ',
         'Clube de Regatas ', 'CR ',
         'Football Club ', 'FC ',
         'Athletic Club ',
+        'Club Social y Deportivo ',
+        'Club Independiente ',
         'Club Deportivo ', 'CD ',
+        'Club ',
         'EC ', 'SC ',
         'Esporte Clube ',
         'AS ', 'AC ',
+        'Real ',
+        'CF ',
     ]
     for p in prefixes:
         if s.startswith(p):
-            s = s[len(p):]
-    # Strip common suffixes
+            candidate = s[len(p):]
+            # Don't strip if it leaves less than 3 chars
+            if len(candidate.strip()) >= 3:
+                s = candidate
+                break  # only strip one prefix
+
+    # ── Strip common suffixes ──
     suffixes = [
         ' Football Club', ' Futebol Clube',
         ' de Avellaneda', ' de Las Piedras',
@@ -333,10 +456,17 @@ def short_name(name):
         ' de Futebol e Regatas',
         ' Sporting Club',
         ' Santiago',
+        ' de Barranquilla',
+        ' de Cali',
+        ' FC', ' CF', ' SC',
     ]
     for sf in suffixes:
         if s.endswith(sf):
-            s = s[:-len(sf)]
+            candidate = s[:-len(sf)]
+            if len(candidate.strip()) >= 3:
+                s = candidate
+                break  # only strip one suffix
+
     return s.strip()
 
 
@@ -662,8 +792,8 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
                 player_es = player_display
                 rival_es = ''
             else:
-                player_es = translate_name(player)
-                rival_es = translate_name(rival)
+                player_es = short_name(player)
+                rival_es = short_name(rival)
                 player_display = f"({abbrev(rival_es)} vs) {player_es}"
             match_display = translate_match(t1, t2, tournament)
 
