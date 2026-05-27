@@ -2569,7 +2569,7 @@ function renderTickets(filter = 'all') {
         <div class="leg-number">${getTeamBadge(leg)}</div>
         <div class="leg-info">
           <div class="leg-player">${leg.player}</div>
-          <div class="leg-detail">${translateProp(leg.prop)} · ${leg.match}${leg.date ? ` <span class="leg-date">· ${leg.date}</span>` : ''}</div>
+          <div class="leg-detail">${translateProp(leg.prop)} · ${leg.match}</div>
         </div>
         <div class="leg-odd">${leg.odd.toFixed(2)}</div>
         ${resultHTML}
