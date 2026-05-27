@@ -334,9 +334,11 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
                 continue
 
             # Determine which team and logo
-            if '1' in display and '2' not in display:
+            # Strip parameter parens first — they contain numbers that confuse the 1/2 check
+            display_core = re.sub(r'\([^)]*\)', '', display)
+            if '1' in display_core and '2' not in display_core:
                 player, rival, team, logo = t1, t2, ab1, logo1
-            elif '2' in display and '1' not in display:
+            elif '2' in display_core and '1' not in display_core:
                 player, rival, team, logo = t2, t1, ab2, logo2
             else:
                 player, rival, team, logo = t1, t2, ab1, logo1
