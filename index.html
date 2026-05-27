@@ -1067,8 +1067,10 @@ body {
   .hero-stats { gap: 1.5rem; }
   .hero-stat .stat-value { font-size: 1.4rem; }
 
-  /* Filters */
-  .filters { padding: 1rem; gap: 6px; }
+  /* Filters — mobile: 2-column grid, compact */
+  .filters { padding: 0.8rem; gap: 8px; display: grid; grid-template-columns: 1fr 1fr; }
+  .filter-dropdown { min-width: 0; width: 100%; font-size: 0.75rem; padding: 9px 30px 9px 10px; border-radius: 10px; background-position: right 8px center; }
+  .filter-dropdown:last-child { grid-column: 1 / -1; max-width: 50%; justify-self: center; }
   .filter-btn { padding: 6px 12px; font-size: 0.72rem; }
 
   /* Section headers */
