@@ -2579,7 +2579,7 @@ function renderTickets(filter = 'all') {
       <div class="leg ${result === 'lost' ? 'leg-lost' : result === 'won' ? 'leg-won' : ''}">
         <div class="leg-number">${getTeamBadge(leg)}</div>
         <div class="leg-info">
-          <div class="leg-player">${leg.player}${(leg.edge != null && leg.edge >= 0.02) ? `<span class="leg-edge-badge edge-pos" title="Edge sobre el modelo Poisson">+${(leg.edge*100).toFixed(1)}% valor</span>` : (leg.edge != null && leg.edge >= -0.02) ? `<span class="leg-edge-badge edge-neutral">~ justo</span>` : ''}</div>
+          <div class="leg-player">${leg.player}</div>
           <div class="leg-detail">${translateProp(leg.prop)} · ${leg.match}</div>
         </div>
         <div class="leg-odd">${leg.odd.toFixed(2)}</div>
