@@ -2621,7 +2621,7 @@ function renderTickets(filter = 'all') {
 
     // Build sport tags from unique sports in legs
     const legSports = [...new Set(ticket.legs.map(l => l.sport))];
-    const sportTagsHTML = legSports.map(s => `<span class="ticket-sport-tag">${sportEmoji[s] || '🎯'} ${s.toUpperCase()}</span>`).join('');
+    const sportTagsHTML = legSports.map(s => `<span class="ticket-sport-tag">${sportEmoji[s] || '🎯'}</span>`).join('');
 
     const card = `
       <div class="ticket ${heatClass}${ticketDead ? ' ticket-dead' : ''}${isFullWinner ? ' ticket-winner' : ''}" data-sport="${ticket.sport}" style="animation-delay: ${i * 0.08}s">
@@ -2641,7 +2641,6 @@ function renderTickets(filter = 'all') {
           <span class="conf-label">${t('confLabel')}</span>
           <div class="conf-dots">${confDots}</div>
           <span class="conf-text">${ticket.confidence}/6 · ${confLevels[ticket.confidence]}</span>
-          ${(ticket.modelScore != null) ? `<span class="model-score-badge" title="Score del modelo Poisson (edge agregado vs cuotas del bookie)">🧠 Modelo: ${ticket.modelScore.toFixed(1)}/10</span>` : ''}
         </div>
         <div class="ticket-legs">${legsHTML}</div>
         <div class="ticket-footer">
