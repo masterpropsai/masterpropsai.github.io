@@ -420,15 +420,16 @@ def build_tickets(pool):
     print(f"   🏟️  {n_matches} partidos disponibles: {', '.join(unique_matches[:5])}")
 
     # Split pool by odds range
-    # REGLA: 1 selección de cuota libre (wildcard) + resto debe ser ≤x3.00
-    low = [p for p in pool if 1.30 <= p['odd'] < 1.55]
-    mid = [p for p in pool if 1.55 <= p['odd'] <= 2.30]
+    # REGLA: 1 wildcard (3-10) + resto ≤x3.00. Billetes LARGOS (6-8 patas).
+    ultra = [p for p in pool if 1.30 <= p['odd'] <= 1.50]   # 🎯 cuotas ~x1.40 (favoritas)
+    low = [p for p in pool if 1.50 < p['odd'] <= 1.80]
+    mid = [p for p in pool if 1.80 < p['odd'] <= 2.30]
     high = [p for p in pool if 2.30 < p['odd'] <= 3.00]
-    very_high = [p for p in pool if 3.00 < p['odd'] <= 30.0]  # wildcard
+    very_high = [p for p in pool if 3.00 < p['odd'] <= 10.0]  # wildcard, capeada a x10
 
-    print(f"   low(1.3-1.55): {len(low)}, mid(1.55-2.3): {len(mid)}, "
-          f"high(2.3-3): {len(high)}, wildcard(>3): {len(very_high)}")
-    print(f"   ⚠️  REGLA: 1 selección libre + resto ≤x3.00")
+    print(f"   ultra(1.3-1.5): {len(ultra)}, low(1.5-1.8): {len(low)}, "
+          f"mid(1.8-2.3): {len(mid)}, high(2.3-3): {len(high)}, wildcard(3-10): {len(very_high)}")
+    print(f"   ⚠️  REGLA: 1 wildcard (x3-10) + resto ≤x3.00. Billetes 6-8 patas.")
 
     # Anti-contradiction: track which side we've committed to per match
     # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
@@ -471,59 +472,74 @@ def build_tickets(pool):
         return None
 
     # Determine ticket sizes based on available matches
-    max_legs = min(n_matches, 5)  # Can't exceed number of unique matches
+    max_legs = min(n_matches, 8)  # Hasta 8 patas — billetes LARGOS
 
     # ══════════════════════════════════════════════════════════════════
-    # REGLA CLAVE: 1 selección de cuota libre (wildcard) + resto ≤x3.00.
-    # very_high (wildcard) = >x3.00 a x30.0 (máx 1 por billete)
-    # high = x2.30-3.00, mid = x1.55-2.30, low = x1.30-1.55
+    # REGLA CLAVE: 1 wildcard (x3.00-10.00) + resto ≤x3.00. Billetes LARGOS (6-8 patas).
+    # very_high (wildcard) = x3.00-10.00 (máx 1 por billete, capeada para evitar absurdos)
+    # high = x2.30-3.00, mid = x1.80-2.30, low = x1.50-1.80, ultra = x1.30-1.50
     #
     # TIERS (por cuota total):
-    #   Megalodón: x1000+  (4 cifras — necesita 5+ patas con 1 very_high)
+    #   Megalodón: x1000+
     #   Whale:     x100-999
     #   Shark:     x10-99
     #   Hunter:    x3-9.9
     # ══════════════════════════════════════════════════════════════════
 
-    # Build ticket combos — all respect max-1-above-x5 rule
-    # We try many combos and let the tier classification happen by odds range
+    # Build ticket combos — billetes LARGOS (6-8 patas), foco en cuotas ~1.40
     ticket_combos = []
 
-    if n_matches >= 5:
+    if n_matches >= 8:
         ticket_combos = [
-            # 5 legs: 1 very_high + 4 high → x12*x4*x4*x4*x3.5 = ~2700 (megalodón!)
-            ((very_high, 1), (high, 4)),
-            ((very_high, 1), (high, 3), (mid, 1)),
-            ((very_high, 1), (high, 2), (mid, 2)),
-            # 4 legs
-            ((very_high, 1), (high, 3)),
-            ((very_high, 1), (high, 2), (mid, 1)),
-            ((very_high, 1), (high, 1), (mid, 2)),
-            ((high, 3), (mid, 1)),
-            # 3 legs
-            ((very_high, 1), (high, 2)),
-            ((very_high, 1), (high, 1), (mid, 1)),
-            ((very_high, 1), (mid, 2)),
-            ((high, 2), (mid, 1)),
-            ((high, 1), (mid, 2)),
-            ((high, 1), (mid, 1), (low, 1)),
-            ((mid, 2), (low, 1)),
-            ((mid, 3),),
+            # 8 patas — máximo tedio, foco en x1.40
+            ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),  # ~1 wc + variado
+            ((very_high, 1), (mid, 2), (low, 2), (ultra, 3)),               # foco ultras
+            ((very_high, 1), (high, 2), (mid, 2), (low, 1), (ultra, 2)),
+            ((very_high, 1), (low, 3), (ultra, 4)),                          # MUY tedioso
+            ((very_high, 1), (mid, 3), (low, 2), (ultra, 2)),
+            ((high, 1), (mid, 2), (low, 3), (ultra, 2)),                     # sin wildcard
+            ((high, 2), (mid, 2), (low, 2), (ultra, 2)),
+            # 7 patas
+            ((very_high, 1), (high, 1), (mid, 2), (low, 1), (ultra, 2)),
+            ((very_high, 1), (mid, 2), (low, 2), (ultra, 2)),
+            ((very_high, 1), (high, 1), (low, 2), (ultra, 3)),
+            ((very_high, 1), (low, 3), (ultra, 3)),
+            ((high, 1), (mid, 2), (low, 2), (ultra, 2)),
+            # 6 patas
+            ((very_high, 1), (high, 1), (mid, 1), (low, 1), (ultra, 2)),
+            ((very_high, 1), (mid, 2), (low, 1), (ultra, 2)),
+            ((very_high, 1), (low, 2), (ultra, 3)),
+            ((high, 1), (mid, 1), (low, 2), (ultra, 2)),
+            ((mid, 2), (low, 2), (ultra, 2)),
+        ]
+    elif n_matches >= 6:
+        L = n_matches
+        ticket_combos = [
+            ((very_high, 1), (mid, 2), (low, min(2, L-3)), (ultra, min(2, L-5))),
+            ((very_high, 1), (low, min(2, L-1)), (ultra, min(3, L-3))),
+            ((very_high, 1), (mid, 1), (low, min(2, L-2)), (ultra, min(2, L-4))),
+            ((high, 1), (mid, 1), (low, min(2, L-2)), (ultra, min(2, L-4))),
+            ((mid, 2), (low, min(2, L-2)), (ultra, min(2, L-4))),
+        ]
+    elif n_matches >= 4:
+        L = n_matches
+        ticket_combos = [
+            ((very_high, 1), (low, min(2, L-1)), (ultra, min(1, L-3))),
+            ((very_high, 1), (mid, 1), (ultra, min(2, L-2))),
+            ((high, 1), (low, 1), (ultra, min(2, L-2))),
+            ((mid, 1), (low, 1), (ultra, min(2, L-2))),
         ]
     elif n_matches >= 3:
         ticket_combos = [
-            ((very_high, 1), (high, min(2, n_matches-1))),
-            ((very_high, 1), (high, 1), (mid, min(1, n_matches-2))),
-            ((very_high, 1), (mid, min(2, n_matches-1))),
-            ((high, min(2, n_matches-1)), (mid, 1)),
-            ((high, 1), (mid, min(2, n_matches-1))),
-            ((high, 1), (mid, min(1, n_matches-1)), (low, min(1, max(0, n_matches-2)))),
-            ((mid, min(2, n_matches)), (low, min(1, max(0, n_matches-2)))),
+            ((very_high, 1), (mid, 1), (ultra, 1)),
+            ((very_high, 1), (low, min(2, n_matches-1))),
+            ((mid, 1), (low, 1), (ultra, 1)),
+            ((low, min(2, n_matches)), (ultra, min(1, n_matches-2))),
         ]
     else:
         ticket_combos = [
-            ((very_high, 1), (high, min(1, n_matches-1))),
-            ((high, min(2, n_matches)),),
+            ((very_high, 1), (ultra, min(1, n_matches-1))),
+            ((low, min(2, n_matches)),),
             ((mid, min(2, n_matches)),),
         ]
 
@@ -573,12 +589,15 @@ def build_tickets(pool):
         else:
             ticket['title'] = f"Multi-Sport x{len(sports_in)}"
 
-    # Verify: zero duplicate props AND max 1 leg per match per ticket AND max 1 leg >x5.00
+    # Verify: zero duplicate props, max 1 leg per match, max 1 leg >x3, all legs ≤x10
     all_keys = []
     for t in tickets:
-        high_odds_count = sum(1 for l in t['legs'] if l['odd'] > 5.00)
-        assert high_odds_count <= 1, \
-            f"REGLA VIOLADA en {t['id']}: {high_odds_count} selecciones >x5.00 (máx 1)"
+        wildcard_count = sum(1 for l in t['legs'] if l['odd'] > 3.00)
+        assert wildcard_count <= 1, \
+            f"REGLA VIOLADA en {t['id']}: {wildcard_count} selecciones >x3.00 (máx 1)"
+        for l in t['legs']:
+            assert l['odd'] <= 10.0, \
+                f"REGLA VIOLADA en {t['id']}: cuota {l['odd']} > x10 (no permitido)"
         match_check = set()
         for l in t['legs']:
             all_keys.append(prop_key(l))
