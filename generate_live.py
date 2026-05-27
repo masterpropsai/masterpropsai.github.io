@@ -616,6 +616,31 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             personalized = _re_subst.sub(r'^1X$', f'Gana {n1} o Empate', personalized)
             personalized = _re_subst.sub(r'^X2$', f'Empate o Gana {n2}', personalized)
             personalized = _re_subst.sub(r'^12$', f'{n1} o {n2}', personalized)
+
+            # === Reescritura en lenguaje natural ===
+            # Unidad por deporte (goles / carreras / puntos / etc.)
+            _unit_map = {'futbol': 'goles', 'hockey': 'goles', 'mlb': 'carreras',
+                         'nba': 'puntos', 'tenis': 'puntos', 'ufc': ''}
+            _u = _unit_map.get(sport, 'goles')
+            # 1) Totales individuales con equipo: "Total Penarol Más de (1.5)" → "Más de 1.5 goles de Penarol"
+            personalized = _re_subst.sub(
+                r'Total (' + _re_subst.escape(n1) + r'|' + _re_subst.escape(n2) + r') Más de \((-?\d+(?:\.\d+)?)\)',
+                lambda m: f'Más de {m.group(2)} {_u} de {m.group(1)}',
+                personalized)
+            personalized = _re_subst.sub(
+                r'Total (' + _re_subst.escape(n1) + r'|' + _re_subst.escape(n2) + r') Menos de \((-?\d+(?:\.\d+)?)\)',
+                lambda m: f'Menos de {m.group(2)} {_u} de {m.group(1)}',
+                personalized)
+            # 2) Total general: "Total Más de (2.5)" → "Más de 2.5 goles"
+            personalized = _re_subst.sub(r'Total Más de \((-?\d+(?:\.\d+)?)\)', lambda m: f'Más de {m.group(1)} {_u}', personalized)
+            personalized = _re_subst.sub(r'Total Menos de \((-?\d+(?:\.\d+)?)\)', lambda m: f'Menos de {m.group(1)} {_u}', personalized)
+            # 3) Compound (en frases como "Gana y Total > (X)"): "Total > (X)" / "Total < (X)"
+            personalized = _re_subst.sub(r'Total > \((-?\d+(?:\.\d+)?)\)', lambda m: f'Más de {m.group(1)} {_u}', personalized)
+            personalized = _re_subst.sub(r'Total < \((-?\d+(?:\.\d+)?)\)', lambda m: f'Menos de {m.group(1)} {_u}', personalized)
+            # 4) Hándicap → HÁ con paréntesis quitados. (Preserva sufijo " Sets")
+            personalized = _re_subst.sub(r'Hándicap (.+?) \((-?\d+(?:\.\d+)?)\)( Sets)?', r'HÁ \1 \2\3', personalized)
+            # 5) Limpieza: doble espacio
+            personalized = _re_subst.sub(r'\s+', ' ', personalized).strip()
             # Compute edge from predictive model
             edge_val = None
             model_p = None
