@@ -271,6 +271,204 @@ def translate_match(t1, t2, tournament):
     return f"{t1_es} vs {t2_es}"
 
 
+# ══════════════════════════════════════════════════════════════════════
+# POISSON PREDICTIVE MODEL (football)
+# ══════════════════════════════════════════════════════════════════════
+# For each football match: extracts the bookmaker's W1/X/W2 + Total Over 2.5
+# anchor cuotas, devigs them, then grid-searches (λ_home, λ_away) to find
+# the Poisson parameters that best fit. From those λs we re-price every
+# other market (handicaps, individual totals, BTTS, etc.) and compute
+# edge = model_prob × bookmaker_odd - 1.
+# Positive edge = bookie cuota mispriced HIGH = value pick (in model's view).
+import math as _math
+
+
+def _poisson_pmf(k, lam):
+    if lam <= 0:
+        return 1.0 if k == 0 else 0.0
+    return (lam ** k) * _math.exp(-lam) / _math.factorial(k)
+
+
+def _poisson_cdf(k, lam, max_k=15):
+    """P(X ≤ k)"""
+    return sum(_poisson_pmf(i, lam) for i in range(min(int(k), max_k) + 1))
+
+
+def model_p_home_win(lh, la, max_goals=10):
+    p = 0.0
+    for h in range(max_goals + 1):
+        ph = _poisson_pmf(h, lh)
+        for a in range(h):
+            p += ph * _poisson_pmf(a, la)
+    return p
+
+
+def model_p_draw(lh, la, max_goals=10):
+    return sum(_poisson_pmf(k, lh) * _poisson_pmf(k, la) for k in range(max_goals + 1))
+
+
+def model_p_away_win(lh, la, max_goals=10):
+    return max(0.0, 1.0 - model_p_home_win(lh, la, max_goals) - model_p_draw(lh, la, max_goals))
+
+
+def model_p_total_over(threshold, lh, la):
+    """P(H + A > threshold) for fractional threshold like 2.5."""
+    lam_total = lh + la
+    floor_t = int(_math.floor(threshold))
+    return max(0.0, 1.0 - _poisson_cdf(floor_t, lam_total))
+
+
+def model_p_individual_total_over(threshold, lam):
+    """P(team's goals > threshold)"""
+    floor_t = int(_math.floor(threshold))
+    return max(0.0, 1.0 - _poisson_cdf(floor_t, lam))
+
+
+def model_p_btts(lh, la):
+    """P(both teams score)"""
+    return (1 - _math.exp(-lh)) * (1 - _math.exp(-la))
+
+
+def model_p_handicap(handicap, lh, la, is_home, max_goals=10):
+    """P(team covers handicap). Handicap is from team's perspective.
+    e.g. Handicap 1 (-1.5) means team1 needs to win by 2+."""
+    p = 0.0
+    for h in range(max_goals + 1):
+        ph = _poisson_pmf(h, lh)
+        for a in range(max_goals + 1):
+            pa = _poisson_pmf(a, la)
+            if is_home:
+                diff = (h - a) + handicap
+            else:
+                diff = (a - h) + handicap
+            # Asian handicap with fractional: covers if diff > 0
+            # For integer handicap, push is excluded (treated as half-loss in practice)
+            if diff > 0.01:
+                p += ph * pa
+    return p
+
+
+def devig_pair(o1, o2):
+    """Remove margin from a 2-way market."""
+    if not o1 or not o2:
+        return None, None
+    p1, p2 = 1/o1, 1/o2
+    s = p1 + p2
+    if s <= 0:
+        return None, None
+    return p1/s, p2/s
+
+
+def devig_triple(o1, ox, o2):
+    """Remove margin from 1X2."""
+    if not o1 or not ox or not o2:
+        return None, None, None
+    p1, px, p2 = 1/o1, 1/ox, 1/o2
+    s = p1 + px + p2
+    if s <= 0:
+        return None, None, None
+    return p1/s, px/s, p2/s
+
+
+def fit_match_lambdas(event):
+    """Grid-search the Poisson lambdas that best fit the bookmaker's anchors.
+    Returns (λ_home, λ_away) or None if anchors missing.
+    Only for football matches."""
+    if event.get('sportId', 0) != 1:
+        return None
+
+    odds_by_key = {}
+    for odd in event.get('oddsLocalization', []):
+        if odd.get('isBlocked'):
+            continue
+        key = (odd.get('type'), round(odd.get('parameter', 0), 2))
+        odds_by_key[key] = odd.get('oddsMarket', 0)
+
+    w1 = odds_by_key.get((1, 0.0))
+    x = odds_by_key.get((2, 0.0))
+    w2 = odds_by_key.get((3, 0.0))
+    o25 = odds_by_key.get((9, 2.5))
+    u25 = odds_by_key.get((10, 2.5))
+
+    if not all([w1, x, w2]):
+        return None
+    if not (o25 and u25):
+        # Fall back to alternative anchors
+        o15 = odds_by_key.get((9, 1.5))
+        u15 = odds_by_key.get((10, 1.5))
+        if not (o15 and u15):
+            return None
+        po_fair, _ = devig_pair(o15, u15)
+        anchor_total_threshold = 1.5
+        anchor_total_prob = po_fair
+    else:
+        po_fair, _ = devig_pair(o25, u25)
+        anchor_total_threshold = 2.5
+        anchor_total_prob = po_fair
+
+    p1_fair, px_fair, p2_fair = devig_triple(w1, x, w2)
+    if not (p1_fair and px_fair and p2_fair and anchor_total_prob):
+        return None
+
+    # Grid search (lh, la) — coarse then fine
+    best = None
+    best_err = float('inf')
+    # Coarse pass
+    for lh_t in range(3, 36):
+        lh = lh_t / 10.0
+        for la_t in range(3, 36):
+            la = la_t / 10.0
+            err = (model_p_home_win(lh, la) - p1_fair) ** 2
+            err += (model_p_draw(lh, la) - px_fair) ** 2
+            err += (model_p_away_win(lh, la) - p2_fair) ** 2
+            err += (model_p_total_over(anchor_total_threshold, lh, la) - anchor_total_prob) ** 2
+            if err < best_err:
+                best_err = err
+                best = (lh, la)
+    # Fine pass around best
+    if best:
+        lh0, la0 = best
+        for dlh in range(-9, 10):
+            lh = max(0.1, lh0 + dlh / 100.0)
+            for dla in range(-9, 10):
+                la = max(0.1, la0 + dla / 100.0)
+                err = (model_p_home_win(lh, la) - p1_fair) ** 2
+                err += (model_p_draw(lh, la) - px_fair) ** 2
+                err += (model_p_away_win(lh, la) - p2_fair) ** 2
+                err += (model_p_total_over(anchor_total_threshold, lh, la) - anchor_total_prob) ** 2
+                if err < best_err:
+                    best_err = err
+                    best = (lh, la)
+    return best
+
+
+def model_probability(odd_type, param, lh, la):
+    """Return the model's probability for a given market type, or None if unsupported."""
+    if lh is None or la is None:
+        return None
+    t = odd_type
+    if t == 1: return model_p_home_win(lh, la)
+    if t == 2: return model_p_draw(lh, la)
+    if t == 3: return model_p_away_win(lh, la)
+    if t == 4: return model_p_home_win(lh, la) + model_p_draw(lh, la)        # 1X
+    if t == 5: return model_p_home_win(lh, la) + model_p_away_win(lh, la)    # 12
+    if t == 6: return model_p_draw(lh, la) + model_p_away_win(lh, la)        # 2X
+    if t == 7: return model_p_handicap(param, lh, la, is_home=True)          # Handicap 1
+    if t == 8: return model_p_handicap(param, lh, la, is_home=False)         # Handicap 2
+    if t == 9: return model_p_total_over(param, lh, la)                      # Total Over
+    if t == 10: return max(0.0, 1.0 - model_p_total_over(param, lh, la))     # Total Under
+    if t == 11: return model_p_individual_total_over(param, lh)              # Ind Total 1 Over
+    if t == 12: return max(0.0, 1.0 - model_p_individual_total_over(param, lh))  # Ind Total 1 Under
+    if t == 13: return model_p_individual_total_over(param, la)              # Ind Total 2 Over
+    if t == 14: return max(0.0, 1.0 - model_p_individual_total_over(param, la))  # Ind Total 2 Under
+    if t == 180: return model_p_btts(lh, la)                                  # BTTS Yes
+    if t == 181: return max(0.0, 1.0 - model_p_btts(lh, la))                 # BTTS No
+    return None
+
+
+# ══════════════════════════════════════════════════════════════════════
+
+
 def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
     """Convert API events into a PROP_POOL compatible format.
     Filters events between start_ts_min and start_ts_max (UTC timestamps).
@@ -297,6 +495,10 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
         if sport_id not in SPORT_MAP:
             continue
         sport = SPORT_MAP[sport_id]
+
+        # ── PREDICTIVE MODEL ──
+        # Fit Poisson lambdas from the bookie's anchor odds (football only)
+        lambdas = fit_match_lambdas(event)  # None for non-football
         t1 = event.get('opponent1NameLocalization', 'Team A')
         t2 = event.get('opponent2NameLocalization', 'Team B')
         match = f"{t1} vs {t2}"
@@ -353,6 +555,20 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             is_winner_pick = any(wm in display for wm in TEAM_WINNER_MARKETS)
             side = 'home' if player == t1 else 'away'
 
+            # Compute edge from predictive model
+            edge_val = None
+            model_p = None
+            if lambdas:
+                model_p = model_probability(
+                    odd.get('type', 0),
+                    odd.get('parameter', 0),
+                    lambdas[0], lambdas[1]
+                )
+                if model_p is not None and 0.04 <= model_p <= 0.96:
+                    # Clip extreme edges — Poisson is unreliable at market tails
+                    raw_edge = (model_p * odds_val) - 1
+                    edge_val = round(max(-0.30, min(0.25, raw_edge)), 4)
+
             prop_obj = {
                 'player': player_display,
                 'prop': translate(display),
@@ -368,6 +584,8 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
                 'match_key': f"{t1} vs {t2}",
                 'day': day_label or 'today',
                 'tournament': tournament,
+                'edge': edge_val,           # None if unsupported, else fraction (-0.05 = -5%)
+                'model_p': model_p,         # None or 0..1
                 # SaveCoupon fields for coupon code generation
                 'game_id': event.get('sportEventId', 0),
                 'type_id': odd.get('type', 0),
@@ -437,8 +655,15 @@ def build_tickets(pool):
     # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
     winner_side = {}  # match_key → 'home' or 'away'
 
+    def _edge_sort_key(p):
+        """Sort: higher edge first; None edges treated as -1 (skeptical). Add jitter for variety."""
+        e = p.get('edge')
+        base = e if (e is not None) else -1.0
+        return -(base + random.uniform(-0.02, 0.02))
+
     def pick_legs(pools_config, min_sports=1):
-        """Pick legs enforcing MAX 1 leg per match + no contradictions."""
+        """Pick legs enforcing MAX 1 leg per match + no contradictions.
+        Prioriza picks de mayor edge (Modelo Poisson)."""
         selected = []
         sports_used = set()
         matches_used = set()
@@ -446,7 +671,8 @@ def build_tickets(pool):
             available = [p for p in pool_list
                          if prop_key(p) not in used_keys
                          and p['match'] not in matches_used]
-            random.shuffle(available)
+            # Sort by edge desc with small jitter (so tickets are diverse but biased to value)
+            available.sort(key=_edge_sort_key)
             picked = 0
             for p in available:
                 if picked >= count:
@@ -617,11 +843,24 @@ def build_tickets(pool):
             if legs:
                 total = round(math.prod(l['odd'] for l in legs), 1)
                 if total >= 3.0:  # mínimo para cualquier tier
+                    # Compute model score: avg edge mapped to 0-10
+                    edges = [l.get('edge') for l in legs if l.get('edge') is not None]
+                    if edges:
+                        avg_edge = sum(edges) / len(edges)
+                        coverage = len(edges) / len(legs)
+                        # Map avg_edge [-0.15..+0.10] to score [0..10], adjust by coverage
+                        raw_score = max(0.0, min(10.0, (avg_edge + 0.15) / 0.25 * 10))
+                        model_score = round(raw_score * coverage + 5 * (1 - coverage), 1)
+                    else:
+                        model_score = None  # no covered markets (e.g. tenis/mlb-heavy ticket)
                     tickets.append({
-                        'tier': 'pending',  # se clasifica abajo
+                        'tier': 'pending',
                         'legs': legs,
                         'total_odds': total,
                         'confidence': calculate_confidence(legs),
+                        'model_score': model_score,
+                        'avg_edge': round(avg_edge, 4) if edges else None,
+                        'model_coverage': round(coverage, 2) if edges else 0.0,
                     })
 
     # ── FILTRO DE CONFIANZA ──
@@ -707,6 +946,8 @@ def generate_ticket_js(tickets):
         for leg in ticket['legs']:
             # Convert link to Spanish version
             leg_link = leg.get('link', '').replace('/en/', '/es/')
+            edge_val = leg.get('edge')
+            edge_js = f"{edge_val}" if edge_val is not None else "null"
             legs_js.append(
                 f"    {{player:'{_esc(leg['player'])}', "
                 f"prop:'{_esc(leg['prop'])}', "
@@ -714,16 +955,22 @@ def generate_ticket_js(tickets):
                 f"odd:{leg['odd']}, sport:'{leg['sport']}', "
                 f"team:'{_esc(leg['team'])}', date:'{leg.get('date', '')}', "
                 f"logo:'{_esc(leg.get('logo', ''))}', "
+                f"edge:{edge_js}, "
                 f"link:'{_esc(leg_link)}'}}"
             )
         sport_counts = {}
         for leg in ticket['legs']:
             sport_counts[leg['sport']] = sport_counts.get(leg['sport'], 0) + 1
         primary_sport = max(sport_counts, key=sport_counts.get)
+        ms = ticket.get('model_score')
+        ms_js = f"{ms}" if ms is not None else "null"
+        ae = ticket.get('avg_edge')
+        ae_js = f"{ae}" if ae is not None else "null"
         lines.append(
             f"  {{ id:'{ticket['id']}', tier:'{ticket['tier']}', "
             f"sport:'{primary_sport}', title:'{_esc(ticket['title'])}', "
             f"confidence:{ticket['confidence']}, totalOdds:{ticket['total_odds']}, "
+            f"modelScore:{ms_js}, avgEdge:{ae_js}, "
             f"publishedAt:'{published_at}', "
             f"couponCode:'{_esc(ticket.get('coupon_code', ''))}', legs:[\n" +
             ",\n".join(legs_js) +
