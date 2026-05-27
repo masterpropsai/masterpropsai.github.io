@@ -194,6 +194,10 @@ def abbrev(name):
         if full.lower() in name.lower():
             return ab
     words = name.split()
+    # Skip leading tokens that are not letters (e.g. "1." in "1. Slovacko")
+    for w in words:
+        if w and w[0].isalpha() and len(w) >= 2:
+            return w[:3].upper()
     return (words[0][:3]).upper() if words else 'UNK'
 
 
@@ -556,6 +560,24 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             is_winner_pick = any(wm in display for wm in TEAM_WINNER_MARKETS)
             side = 'home' if player == t1 else 'away'
 
+            # Personalize prop text: replace "1"/"2"/"Local"/"Visitante" with team abbrevs
+            translated_prop = translate(display)
+            personalized = translated_prop
+            personalized = personalized.replace('Hándicap 1 ', f'Hándicap {ab1} ')
+            personalized = personalized.replace('Hándicap 2 ', f'Hándicap {ab2} ')
+            personalized = personalized.replace('Total Individual 1 ', f'Total {ab1} ')
+            personalized = personalized.replace('Total Individual 2 ', f'Total {ab2} ')
+            personalized = personalized.replace('Local ', f'{ab1} ')
+            personalized = personalized.replace('Visitante ', f'{ab2} ')
+            personalized = personalized.replace(' - Local', f' - {ab1}')
+            personalized = personalized.replace(' - Visitante', f' - {ab2}')
+            # Standalone W1/W2/X handled by replacing exact match (with word boundary)
+            import re as _re_subst
+            personalized = _re_subst.sub(r'^W1$', f'Gana {ab1}', personalized)
+            personalized = _re_subst.sub(r'^W2$', f'Gana {ab2}', personalized)
+            personalized = _re_subst.sub(r'^1X$', f'Gana {ab1} o Empate', personalized)
+            personalized = _re_subst.sub(r'^X2$', f'Empate o Gana {ab2}', personalized)
+            personalized = _re_subst.sub(r'^12$', f'{ab1} o {ab2}', personalized)
             # Compute edge from predictive model
             edge_val = None
             model_p = None
@@ -572,7 +594,7 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
 
             prop_obj = {
                 'player': player_display,
-                'prop': translate(display),
+                'prop': personalized,
                 'match': match_display,
                 'odd': round(odds_val, 2),
                 'sport': sport,
