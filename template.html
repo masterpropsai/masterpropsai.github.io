@@ -3011,7 +3011,7 @@ function renderTickets(filter = 'all') {
           <div class="ticket-return">US$ ${investFormatted} → <strong>US$ ${returnAmount}</strong></div>
           <div class="ticket-actions">
             <button class="copy-btn copy-btn-small" onclick="copyTicket('${ticket.id}', event)">${t('copyBtn')}</button>
-            <a class="bet-btn" href="${getBetURL(ticket)}" target="_blank" rel="noopener" onclick="betBtnFeedback(this)">${t('betBtn')}</a>
+            <a class="bet-btn" href="${getBetURL(ticket)}" target="_blank" rel="noopener" onclick="handleBetClick(event, this, '${ticket.couponCode || ''}')">${t('betBtn')}</a>
           </div>
         </div>
       </div>
@@ -3044,13 +3044,17 @@ const DBBET_AFFILIATE_BASE = 'https://refpa1800.com/L?tag=d_5208568m_11213c_&sit
 const DBBET_DIRECT = 'https://db-bet.com';
 const COUPON_DEEPLINK_ENABLED = true;
 
-function buildCouponURL(couponCode) {
-  // Use redirect page to ensure ?load= param survives on mobile browsers
-  // go.html does a JS location.replace → db-bet.com/es?load=CODE
-  return `./go.html?c=${encodeURIComponent(couponCode)}`;
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
 }
 
-function buildDirectCouponURL(couponCode) {
+function buildCouponURL(couponCode) {
+  if (isMobile()) {
+    // Mobile: deep link doesn't work — link goes to DBbet home, coupon code is copied separately
+    return `${DBBET_DIRECT}/es`;
+  }
+  // Desktop: deep link works fine
   return `${DBBET_DIRECT}/es?load=${couponCode}`;
 }
 
@@ -3063,10 +3067,72 @@ function getBetURL(ticket) {
   return firstLink ? firstLink.link : DBBET_AFFILIATE_BASE;
 }
 
-function betBtnFeedback(el) {
-  const origText = el.textContent;
-  el.textContent = '✅ Abriendo...';
-  setTimeout(() => { el.textContent = origText; }, 2000);
+function handleBetClick(e, el, couponCode) {
+  if (isMobile() && couponCode) {
+    e.preventDefault();
+    // Copy coupon code to clipboard
+    navigator.clipboard.writeText(couponCode).then(() => {
+      // Show toast notification
+      showCouponToast(couponCode);
+      // Open DBbet after a brief moment so user sees the toast
+      setTimeout(() => {
+        window.open(`${DBBET_DIRECT}/es`, '_blank');
+      }, 600);
+    }).catch(() => {
+      // Fallback: show code in alert if clipboard fails
+      showCouponToast(couponCode);
+      setTimeout(() => {
+        window.open(`${DBBET_DIRECT}/es`, '_blank');
+      }, 600);
+    });
+    el.textContent = '✅ Código copiado';
+    setTimeout(() => { el.textContent = t('betBtn'); }, 3000);
+  } else {
+    // Desktop: normal link behavior (deep link works)
+    el.textContent = '✅ Abriendo...';
+    setTimeout(() => { el.textContent = t('betBtn'); }, 2000);
+  }
+}
+
+function showCouponToast(code) {
+  // Remove any existing toast
+  const old = document.getElementById('coupon-toast');
+  if (old) old.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'coupon-toast';
+  toast.innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:20px;">📋</span>
+      <div>
+        <div style="font-weight:700;font-size:14px;">Código copiado: <span style="color:#00e676;font-family:monospace;letter-spacing:1px">${code}</span></div>
+        <div style="font-size:12px;opacity:.8;margin-top:2px;">Pegalo en DBbet → sección "Cupón" del boleto</div>
+      </div>
+    </div>
+  `;
+  toast.style.cssText = `
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:#1a1a2e;color:#fff;padding:14px 20px;border-radius:12px;
+    box-shadow:0 4px 24px rgba(0,0,0,.5);z-index:99999;
+    border:1px solid rgba(0,230,118,.3);
+    animation:toastIn .3s ease-out;
+    max-width:90vw;
+  `;
+  // Add animation keyframes if not present
+  if (!document.getElementById('toast-styles')) {
+    const style = document.createElement('style');
+    style.id = 'toast-styles';
+    style.textContent = `
+      @keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+      @keyframes toastOut { from { opacity:1; transform:translateX(-50%) translateY(0); } to { opacity:0; transform:translateX(-50%) translateY(20px); } }
+    `;
+    document.head.appendChild(style);
+  }
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.animation = 'toastOut .3s ease-in forwards';
+    setTimeout(() => toast.remove(), 300);
+  }, 5000);
 }
 
 // === COPY TICKET ===
