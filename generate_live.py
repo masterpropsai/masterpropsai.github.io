@@ -59,6 +59,28 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'amistos',          # Spanish variants if any
     'club friendl',
     'mls+',             # MLS+ — formato corto poco confiable, mucha duplicación
+    # ── Esports / gaming / simulación ──
+    'esoccer',
+    'e-soccer',
+    'efootball',
+    'e-football',
+    'efighting',
+    'cyber ',           # Cyber League, Cyber Cup
+    'cyber.',
+    'cyber-',
+    'simulator',
+    'simulated',
+    'virtual ',
+    'fifa league',
+    'fifa cup',
+    'fifa club',
+    'volta ',
+    'e-series',
+    'eseries',
+    'esports ',
+    'e-sports',
+    # ── Amateur / niche russian tournaments con equipos joke-name ──
+    'magnitka',         # Tournament Magnitka Open (hockey amateur con equipos tipo "Cunning Foxes")
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
