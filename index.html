@@ -297,6 +297,21 @@ body {
 .ticket-header-left {
   display: flex; align-items: center; gap: 10px;
 }
+.ticket-hero-logo {
+  width: 42px; height: 42px; border-radius: 50%;
+  object-fit: contain; flex-shrink: 0;
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(212,165,32,0.25);
+  padding: 3px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.ticket-hero-emoji {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(212,165,32,0.15);
+}
 .ticket-sport {
   font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
   letter-spacing: 1px; color: var(--text-secondary);
@@ -1783,6 +1798,44 @@ function getTeamBadge(leg) {
   return `<span class="emoji-badge">${fallback}</span>`;
 }
 
+// Popularity ranking for hero logo selection (higher = more popular)
+const TEAM_POPULARITY = {
+  // Football giants
+  RMA:99, BAR:98, BAY:95, PSG:93, ARS:90, ATM:88, JUV:87, INT:86, ACM:85, NAP:83, ATA:80,
+  // South American
+  RIV:92, BOC:91, FLA:89, PAL:84, FLU:82, CRU:81,
+  // NBA
+  OKC:75, CLE:74, NYK:76, SAS:70,
+  // MLB
+  NYY:78, LAD:77, NYM:72, BOS:73, PHI:71, ATL:70, HOU:69, KC:65, ARI:64, TEX:63, SD:62,
+  // NHL
+  COL:68, VGK:67, CAR:66, MTL:65,
+  // Crystal Palace etc
+  CRY:60
+};
+
+function getTicketHeroLogo(ticket) {
+  const fallbackEmojis = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽',hockey:'🏒',tenis:'🎾',ufc:'🥊',mma:'🥊'};
+  let best = null, bestScore = -1;
+  ticket.legs.forEach(leg => {
+    if (!leg.team && !leg.logo) return;
+    const pop = TEAM_POPULARITY[leg.team] || 0;
+    const hasLogo = !!(TEAM_LOGOS[leg.team] || leg.logo);
+    const score = pop * 10 + (hasLogo ? 5 : 0);
+    if (score > bestScore) { bestScore = score; best = leg; }
+  });
+  if (best) {
+    const src = TEAM_LOGOS[best.team] || best.logo;
+    if (src) {
+      const fb = fallbackEmojis[best.sport] || '🎯';
+      return `<img src="${src}" alt="${best.team}" class="ticket-hero-logo" onerror="this.outerHTML='<div class=\\'ticket-hero-emoji\\'>${fb}</div>'" />`;
+    }
+  }
+  // Fallback: emoji of the main sport
+  const mainSport = ticket.legs[0]?.sport || 'futbol';
+  return `<div class="ticket-hero-emoji">${fallbackEmojis[mainSport] || '🎯'}</div>`;
+}
+
 // === TICKET DATA ===
 const TICKETS = [
   { id:'WKD-M1', tier:'megalodon', sport:'tenis', title:'Wkd · Multi-Sport x4', confidence:3, totalOdds:21300.4, modelScore:6.3, avgEdge:0.0958, publishedAt:'2026-05-27T03:02:37Z', couponCode:'', legs:[
@@ -2575,6 +2628,7 @@ function renderTickets(filter = 'all') {
     // Build sport tags from unique sports in legs
     const legSports = [...new Set(ticket.legs.map(l => l.sport))];
     const sportTagsHTML = legSports.map(s => `<span class="ticket-sport-tag">${sportEmoji[s] || '🎯'}</span>`).join('');
+    const heroLogoHTML = getTicketHeroLogo(ticket);
 
     const card = `
       <div class="ticket ${heatClass}${ticketDead ? ' ticket-dead' : ''}${isFullWinner ? ' ticket-winner' : ''}" data-sport="${ticket.sport}" style="animation-delay: ${i * 0.08}s">
@@ -2584,6 +2638,7 @@ function renderTickets(filter = 'all') {
         </div>
         <div class="ticket-header">
           <div class="ticket-header-left">
+            ${heroLogoHTML}
             ${sportTagsHTML}
           </div>
           <div style="text-align:right">
