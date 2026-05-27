@@ -420,15 +420,15 @@ def build_tickets(pool):
     print(f"   🏟️  {n_matches} partidos disponibles: {', '.join(unique_matches[:5])}")
 
     # Split pool by odds range
-    # REGLA: máximo 1 selección >x5.00 por billete, todas las demás ≤x5.00
+    # REGLA: 1 selección de cuota libre (wildcard) + resto debe ser ≤x3.00
     low = [p for p in pool if 1.30 <= p['odd'] < 1.55]
-    mid = [p for p in pool if 1.55 <= p['odd'] <= 2.80]
-    high = [p for p in pool if 2.80 < p['odd'] <= 5.00]
-    very_high = [p for p in pool if 5.00 < p['odd'] <= 15.0]
+    mid = [p for p in pool if 1.55 <= p['odd'] <= 2.30]
+    high = [p for p in pool if 2.30 < p['odd'] <= 3.00]
+    very_high = [p for p in pool if 3.00 < p['odd'] <= 30.0]  # wildcard
 
-    print(f"   low(1.3-1.55): {len(low)}, mid(1.55-2.8): {len(mid)}, "
-          f"high(2.8-5): {len(high)}, vhigh(5-15): {len(very_high)}")
-    print(f"   ⚠️  REGLA: máx 1 selección >x5.00 por billete")
+    print(f"   low(1.3-1.55): {len(low)}, mid(1.55-2.3): {len(mid)}, "
+          f"high(2.3-3): {len(high)}, wildcard(>3): {len(very_high)}")
+    print(f"   ⚠️  REGLA: 1 selección libre + resto ≤x3.00")
 
     # Anti-contradiction: track which side we've committed to per match
     # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
@@ -474,10 +474,9 @@ def build_tickets(pool):
     max_legs = min(n_matches, 5)  # Can't exceed number of unique matches
 
     # ══════════════════════════════════════════════════════════════════
-    # REGLA CLAVE: Máximo 1 selección >x5.00 por billete.
-    # Todas las demás patas deben ser ≤x5.00.
-    # very_high = >x5.00 (máx 1 por billete)
-    # high = x2.80-5.00, mid = x1.55-2.80, low = x1.30-1.55
+    # REGLA CLAVE: 1 selección de cuota libre (wildcard) + resto ≤x3.00.
+    # very_high (wildcard) = >x3.00 a x30.0 (máx 1 por billete)
+    # high = x2.30-3.00, mid = x1.55-2.30, low = x1.30-1.55
     #
     # TIERS (por cuota total):
     #   Megalodón: x1000+  (4 cifras — necesita 5+ patas con 1 very_high)
