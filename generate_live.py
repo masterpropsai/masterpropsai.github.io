@@ -52,6 +52,21 @@ TEAM_ABBREVS = {
     'Aston Villa': 'AVL', 'West Ham': 'WHU', 'Newcastle': 'NEW',
 }
 
+# ── Tournament filtering ──
+# Exclude friendlies — too unpredictable, low motivation
+EXCLUDED_TOURNAMENT_KEYWORDS = [
+    'friendl',          # Friendlies. National Teams / Friendlies U19
+    'amistos',          # Spanish variants if any
+    'club friendl',
+]
+# Boost factor for preferred tournaments (Conmebol focus)
+PREFERRED_TOURNAMENT_KEYWORDS = {
+    'libertadores': 4,      # Copa Libertadores → 4x weight
+    'sudamericana': 4,      # Copa Sudamericana → 4x weight
+    'brasileiro': 2,        # Brazilian Serie A → 2x weight
+    'copa argentina': 3,    # Copa Argentina → 3x weight
+}
+
 # ── Interesting market keywords ──
 INTERESTING_KEYWORDS = [
     'Handicap', 'Total', 'Both Teams', 'HT-FT', 'Win And Total',
@@ -167,9 +182,9 @@ def get_token():
 def fetch_events(token):
     url = (f"{API_BASE}/sportevents?"
            f"ref={REF}&SchemeOfGettingOddsOperations=GetAllOdds"
-           f"&partnerLink={PARTNER_LINK}")
+           f"&partnerLink={PARTNER_LINK}&count=1000")
     req = urllib.request.Request(url, headers={'Authorization': f'Bearer {token}'})
-    with urllib.request.urlopen(req, timeout=30) as resp:
+    with urllib.request.urlopen(req, timeout=60) as resp:
         return json.loads(resp.read())
 
 
@@ -278,12 +293,25 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             continue  # skip events outside window
 
         sport_id = event.get('sportId', 0)
-        sport = SPORT_MAP.get(sport_id, 'futbol')
+        # Only allow recognized sports (skip horse racing, table tennis, snooker, etc.)
+        if sport_id not in SPORT_MAP:
+            continue
+        sport = SPORT_MAP[sport_id]
         t1 = event.get('opponent1NameLocalization', 'Team A')
         t2 = event.get('opponent2NameLocalization', 'Team B')
         match = f"{t1} vs {t2}"
         tournament = event.get('tournamentNameLocalization', '')
         link = event.get('link', '')
+        # Skip excluded tournaments (friendlies, etc.)
+        tlow = tournament.lower()
+        if any(kw in tlow for kw in EXCLUDED_TOURNAMENT_KEYWORDS):
+            continue
+        # Compute boost weight for preferred tournaments
+        boost_weight = 1
+        for kw, w in PREFERRED_TOURNAMENT_KEYWORDS.items():
+            if kw in tlow:
+                boost_weight = max(boost_weight, w)
+                break
         date_str = datetime.fromtimestamp(start_ts, tz=timezone.utc).strftime('%b %d · %H:%M') if start_ts else 'TBD'
         ab1, ab2 = abbrev(t1), abbrev(t2)
 
@@ -323,7 +351,7 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             is_winner_pick = any(wm in display for wm in TEAM_WINNER_MARKETS)
             side = 'home' if player == t1 else 'away'
 
-            props.append({
+            prop_obj = {
                 'player': player_display,
                 'prop': translate(display),
                 'match': match_display,
@@ -337,12 +365,16 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
                 'side': side,
                 'match_key': f"{t1} vs {t2}",
                 'day': day_label or 'today',
+                'tournament': tournament,
                 # SaveCoupon fields for coupon code generation
                 'game_id': event.get('sportEventId', 0),
                 'type_id': odd.get('type', 0),
                 'param': odd.get('parameter', 0),
                 'player_id': odd.get('playerId', 0),
-            })
+            }
+            # Duplicate prop boost_weight times so build_tickets picks it more often
+            for _ in range(boost_weight):
+                props.append(prop_obj)
 
     if skipped_future:
         print(f"   ⏭️  {skipped_future} eventos descartados (fuera de ventana 24h)")
