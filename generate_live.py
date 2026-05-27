@@ -248,6 +248,42 @@ def translate(display):
     return d.strip()
 
 
+def short_name(name):
+    """Get a clean, compact full team name by stripping common club prefixes/suffixes."""
+    if not name:
+        return name
+    s = translate_name(name)
+    # Strip common prefixes that just add noise
+    prefixes = [
+        'Club Atletico ', 'Clube Atletico ',
+        'Sociedade Esportiva ', 'Sport Club ',
+        'Clube de Regatas ', 'CR ',
+        'Football Club ', 'FC ',
+        'Athletic Club ',
+        'Club Deportivo ', 'CD ',
+        'EC ', 'SC ',
+        'Esporte Clube ',
+        'AS ', 'AC ',
+    ]
+    for p in prefixes:
+        if s.startswith(p):
+            s = s[len(p):]
+    # Strip common suffixes
+    suffixes = [
+        ' Football Club', ' Futebol Clube',
+        ' de Avellaneda', ' de Las Piedras',
+        ' Buenos Aires', ' Paulista',
+        ' Porto Alegrense', ' Esporte Clube',
+        ' de Futebol e Regatas',
+        ' Sporting Club',
+        ' Santiago',
+    ]
+    for sf in suffixes:
+        if s.endswith(sf):
+            s = s[:-len(sf)]
+    return s.strip()
+
+
 def translate_name(name):
     """Translate team/country names to Spanish."""
     # Try exact match first
@@ -560,24 +596,26 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             is_winner_pick = any(wm in display for wm in TEAM_WINNER_MARKETS)
             side = 'home' if player == t1 else 'away'
 
-            # Personalize prop text: replace "1"/"2"/"Local"/"Visitante" with team abbrevs
+            # Personalize prop text with full team names (Peñarol, not PEN)
+            n1 = short_name(t1)
+            n2 = short_name(t2)
             translated_prop = translate(display)
             personalized = translated_prop
-            personalized = personalized.replace('Hándicap 1 ', f'Hándicap {ab1} ')
-            personalized = personalized.replace('Hándicap 2 ', f'Hándicap {ab2} ')
-            personalized = personalized.replace('Total Individual 1 ', f'Total {ab1} ')
-            personalized = personalized.replace('Total Individual 2 ', f'Total {ab2} ')
-            personalized = personalized.replace('Local ', f'{ab1} ')
-            personalized = personalized.replace('Visitante ', f'{ab2} ')
-            personalized = personalized.replace(' - Local', f' - {ab1}')
-            personalized = personalized.replace(' - Visitante', f' - {ab2}')
-            # Standalone W1/W2/X handled by replacing exact match (with word boundary)
+            personalized = personalized.replace('Hándicap 1 ', f'Hándicap {n1} ')
+            personalized = personalized.replace('Hándicap 2 ', f'Hándicap {n2} ')
+            personalized = personalized.replace('Total Individual 1 ', f'Total {n1} ')
+            personalized = personalized.replace('Total Individual 2 ', f'Total {n2} ')
+            personalized = personalized.replace('Local ', f'{n1} ')
+            personalized = personalized.replace('Visitante ', f'{n2} ')
+            personalized = personalized.replace(' - Local', f' - {n1}')
+            personalized = personalized.replace(' - Visitante', f' - {n2}')
+            # Standalone W1/W2/1X/X2/12
             import re as _re_subst
-            personalized = _re_subst.sub(r'^W1$', f'Gana {ab1}', personalized)
-            personalized = _re_subst.sub(r'^W2$', f'Gana {ab2}', personalized)
-            personalized = _re_subst.sub(r'^1X$', f'Gana {ab1} o Empate', personalized)
-            personalized = _re_subst.sub(r'^X2$', f'Empate o Gana {ab2}', personalized)
-            personalized = _re_subst.sub(r'^12$', f'{ab1} o {ab2}', personalized)
+            personalized = _re_subst.sub(r'^W1$', f'Gana {n1}', personalized)
+            personalized = _re_subst.sub(r'^W2$', f'Gana {n2}', personalized)
+            personalized = _re_subst.sub(r'^1X$', f'Gana {n1} o Empate', personalized)
+            personalized = _re_subst.sub(r'^X2$', f'Empate o Gana {n2}', personalized)
+            personalized = _re_subst.sub(r'^12$', f'{n1} o {n2}', personalized)
             # Compute edge from predictive model
             edge_val = None
             model_p = None
