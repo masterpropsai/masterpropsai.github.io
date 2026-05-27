@@ -3070,23 +3070,10 @@ function getBetURL(ticket) {
 function handleBetClick(e, el, couponCode) {
   if (isMobile() && couponCode) {
     e.preventDefault();
-    // Copy coupon code to clipboard
-    navigator.clipboard.writeText(couponCode).then(() => {
-      // Show toast notification
-      showCouponToast(couponCode);
-      // Open DBbet after a brief moment so user sees the toast
-      setTimeout(() => {
-        window.open(`${DBBET_DIRECT}/es`, '_blank');
-      }, 600);
-    }).catch(() => {
-      // Fallback: show code in alert if clipboard fails
-      showCouponToast(couponCode);
-      setTimeout(() => {
-        window.open(`${DBBET_DIRECT}/es`, '_blank');
-      }, 600);
-    });
-    el.textContent = '✅ Código copiado';
-    setTimeout(() => { el.textContent = t('betBtn'); }, 3000);
+    // Copy coupon code to clipboard silently
+    navigator.clipboard.writeText(couponCode).catch(() => {});
+    // Show modal with code + button to open DBbet
+    showCouponModal(couponCode);
   } else {
     // Desktop: normal link behavior (deep link works)
     el.textContent = '✅ Abriendo...';
@@ -3094,45 +3081,53 @@ function handleBetClick(e, el, couponCode) {
   }
 }
 
-function showCouponToast(code) {
-  // Remove any existing toast
-  const old = document.getElementById('coupon-toast');
+function showCouponModal(code) {
+  const old = document.getElementById('coupon-modal');
   if (old) old.remove();
 
-  const toast = document.createElement('div');
-  toast.id = 'coupon-toast';
-  toast.innerHTML = `
-    <div style="display:flex;align-items:center;gap:8px;">
-      <span style="font-size:20px;">📋</span>
-      <div>
-        <div style="font-weight:700;font-size:14px;">Código copiado: <span style="color:#00e676;font-family:monospace;letter-spacing:1px">${code}</span></div>
-        <div style="font-size:12px;opacity:.8;margin-top:2px;">Pegalo en DBbet → sección "Cupón" del boleto</div>
+  const modal = document.createElement('div');
+  modal.id = 'coupon-modal';
+  modal.innerHTML = `
+    <div class="cm-backdrop"></div>
+    <div class="cm-box">
+      <div class="cm-close" onclick="document.getElementById('coupon-modal').remove()">✕</div>
+      <div class="cm-icon">📋</div>
+      <div class="cm-title">Código copiado</div>
+      <div class="cm-code" onclick="navigator.clipboard.writeText('${code}')">${code}</div>
+      <div class="cm-steps">
+        <div class="cm-step"><span class="cm-num">1</span> Tocá el botón de abajo para ir a DBbet</div>
+        <div class="cm-step"><span class="cm-num">2</span> Abrí el boleto (icono 🎫 abajo a la derecha)</div>
+        <div class="cm-step"><span class="cm-num">3</span> Tocá "Cupón" y pegá el código</div>
       </div>
+      <a class="cm-go" href="${DBBET_DIRECT}/es" target="_blank" rel="noopener"
+         onclick="setTimeout(()=>document.getElementById('coupon-modal').remove(),300)">
+        Abrir DBbet →
+      </a>
     </div>
   `;
-  toast.style.cssText = `
-    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-    background:#1a1a2e;color:#fff;padding:14px 20px;border-radius:12px;
-    box-shadow:0 4px 24px rgba(0,0,0,.5);z-index:99999;
-    border:1px solid rgba(0,230,118,.3);
-    animation:toastIn .3s ease-out;
-    max-width:90vw;
-  `;
-  // Add animation keyframes if not present
-  if (!document.getElementById('toast-styles')) {
-    const style = document.createElement('style');
-    style.id = 'toast-styles';
-    style.textContent = `
-      @keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
-      @keyframes toastOut { from { opacity:1; transform:translateX(-50%) translateY(0); } to { opacity:0; transform:translateX(-50%) translateY(20px); } }
+  // Inject styles once
+  if (!document.getElementById('cm-styles')) {
+    const s = document.createElement('style');
+    s.id = 'cm-styles';
+    s.textContent = `
+      #coupon-modal{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
+      .cm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px)}
+      .cm-box{position:relative;background:#12121a;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center;border:1px solid rgba(0,230,118,.25);box-shadow:0 8px 40px rgba(0,0,0,.6)}
+      .cm-close{position:absolute;top:12px;right:16px;font-size:18px;color:#888;cursor:pointer}
+      .cm-icon{font-size:36px;margin-bottom:8px}
+      .cm-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}
+      .cm-code{font-family:monospace;font-size:22px;letter-spacing:3px;color:#00e676;background:rgba(0,230,118,.1);border:1px dashed rgba(0,230,118,.4);border-radius:8px;padding:10px 16px;margin:0 auto 18px;cursor:pointer;display:inline-block}
+      .cm-steps{text-align:left;margin-bottom:20px}
+      .cm-step{display:flex;align-items:center;gap:10px;color:#ccc;font-size:13px;margin-bottom:8px}
+      .cm-num{background:#00e676;color:#000;font-weight:700;font-size:11px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .cm-go{display:block;background:linear-gradient(135deg,#00e676,#00c853);color:#000;font-weight:700;font-size:15px;padding:14px;border-radius:10px;text-decoration:none;text-align:center}
+      .cm-go:active{transform:scale(.97)}
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(s);
   }
-  document.body.appendChild(toast);
-  setTimeout(() => {
-    toast.style.animation = 'toastOut .3s ease-in forwards';
-    setTimeout(() => toast.remove(), 300);
-  }, 5000);
+  document.body.appendChild(modal);
+  // Close on backdrop tap
+  modal.querySelector('.cm-backdrop').addEventListener('click', () => modal.remove());
 }
 
 // === COPY TICKET ===
