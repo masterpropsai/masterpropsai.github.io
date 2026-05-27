@@ -364,6 +364,8 @@ def translate_match(t1, t2, tournament):
         short = short.replace('Germany DFB Pokal', 'Copa de Alemania')
         short = short.replace('Coupe de France', 'Copa de Francia')
         short = short.replace('Russian Cup', 'Copa de Rusia')
+        short = short.replace('Copa Libertadores', 'Libertadores')
+        short = short.replace('Copa Sudamericana', 'Sudamericana')
         return f"{short}"
     return f"{t1_es} vs {t2_es}"
 
@@ -711,7 +713,12 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             personalized = _re_subst.sub(r'Total > \((-?\d+(?:\.\d+)?)\)', lambda m: f'Más de {m.group(1)} {_u}', personalized)
             personalized = _re_subst.sub(r'Total < \((-?\d+(?:\.\d+)?)\)', lambda m: f'Menos de {m.group(1)} {_u}', personalized)
             # 4) Hándicap → HÁ con paréntesis quitados. (Preserva sufijo " Sets")
-            personalized = _re_subst.sub(r'Hándicap (.+?) \((-?\d+(?:\.\d+)?)\)( Sets)?', r'HÁ \1 \2\3', personalized)
+            # Positivos llevan "+", negativos ya tienen "-"
+            def _fmt_handicap(m):
+                name, val, sets = m.group(1), m.group(2), m.group(3) or ''
+                prefix = '+' if not val.startswith('-') and val not in ('0', '0.0') else ''
+                return f'HÁ {name} {prefix}{val}{sets}'
+            personalized = _re_subst.sub(r'Hándicap (.+?) \((-?\d+(?:\.\d+)?)\)( Sets)?', _fmt_handicap, personalized)
             # 5) Limpieza: doble espacio
             personalized = _re_subst.sub(r'\s+', ' ', personalized).strip()
             # Compute edge from predictive model
@@ -799,7 +806,7 @@ def build_tickets(pool):
     print(f"   🏟️  {n_matches} partidos disponibles: {', '.join(unique_matches[:5])}")
 
     # Split pool by odds range
-    # REGLA: 1 wildcard (3-10) + resto ≤x3.00. Billetes LARGOS (6-8 patas).
+    # REGLA: 1 wildcard (3-10) + resto ≤x3.00. Billetes LARGOS (6-8 selecciones).
     ultra = [p for p in pool if 1.30 <= p['odd'] <= 1.50]   # 🎯 cuotas ~x1.40 (favoritas)
     low = [p for p in pool if 1.50 < p['odd'] <= 1.80]
     mid = [p for p in pool if 1.80 < p['odd'] <= 2.30]
@@ -808,7 +815,7 @@ def build_tickets(pool):
 
     print(f"   ultra(1.3-1.5): {len(ultra)}, low(1.5-1.8): {len(low)}, "
           f"mid(1.8-2.3): {len(mid)}, high(2.3-3): {len(high)}, wildcard(3-10): {len(very_high)}")
-    print(f"   ⚠️  REGLA: 1 wildcard (x3-10) + resto ≤x3.00. Billetes 6-15 patas (megalodones!).")
+    print(f"   ⚠️  REGLA: 1 wildcard (x3-10) + resto ≤x3.00. Billetes 6-15 selecciones (megalodones!).")
 
     # Anti-contradiction: track which side we've committed to per match
     # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
@@ -859,10 +866,10 @@ def build_tickets(pool):
         return None
 
     # Determine ticket sizes based on available matches
-    max_legs = min(n_matches, 15)  # Hasta 15 patas — Megalodones desbloqueados
+    max_legs = min(n_matches, 15)  # Hasta 15 selecciones — Megalodones desbloqueados
 
     # ══════════════════════════════════════════════════════════════════
-    # REGLA CLAVE: 1 wildcard (x3.00-10.00) + resto ≤x3.00. Billetes LARGOS (6-15 patas).
+    # REGLA CLAVE: 1 wildcard (x3.00-10.00) + resto ≤x3.00. Billetes LARGOS (6-15 selecciones).
     # very_high (wildcard) = x3.00-10.00 (máx 1 por billete, capeada para evitar absurdos)
     # high = x2.30-3.00, mid = x1.80-2.30, low = x1.50-1.80, ultra = x1.30-1.50
     #
@@ -875,74 +882,74 @@ def build_tickets(pool):
     #   Segura:     x3-6    (5-10 legs, confianza 6/6)
     # ══════════════════════════════════════════════════════════════════
 
-    # Build ticket combos — billetes LARGOS (6-8 patas), foco en cuotas ~1.40
+    # Build ticket combos — billetes LARGOS (6-8 selecciones), foco en cuotas ~1.40
     ticket_combos = []
 
     if n_matches >= 15:
         ticket_combos = [
-            # 15 patas — MEGALODÓN extremo
+            # 15 selecciones — MEGALODÓN extremo
             ((very_high, 1), (high, 3), (mid, 4), (low, 4), (ultra, 3)),
             ((very_high, 1), (high, 2), (mid, 4), (low, 4), (ultra, 4)),
-            # 14 patas
+            # 14 selecciones
             ((very_high, 1), (high, 3), (mid, 4), (low, 3), (ultra, 3)),
             ((very_high, 1), (high, 2), (mid, 3), (low, 4), (ultra, 4)),
-            # 13 patas
+            # 13 selecciones
             ((very_high, 1), (high, 3), (mid, 3), (low, 3), (ultra, 3)),
             ((very_high, 1), (high, 2), (mid, 4), (low, 3), (ultra, 3)),
-            # 12 patas
+            # 12 selecciones
             ((very_high, 1), (high, 3), (mid, 3), (low, 3), (ultra, 2)),
             ((very_high, 1), (high, 2), (mid, 3), (low, 3), (ultra, 3)),
             ((very_high, 1), (high, 2), (mid, 4), (low, 3), (ultra, 2)),
-            # 11 patas
+            # 11 selecciones
             ((very_high, 1), (high, 3), (mid, 3), (low, 2), (ultra, 2)),
             ((very_high, 1), (high, 2), (mid, 3), (low, 3), (ultra, 2)),
             ((very_high, 1), (high, 2), (mid, 2), (low, 3), (ultra, 3)),
-            # 10 patas
+            # 10 selecciones
             ((very_high, 1), (high, 3), (mid, 3), (low, 2), (ultra, 1)),
             ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 2)),
             ((very_high, 1), (high, 2), (mid, 2), (low, 3), (ultra, 2)),
             ((very_high, 1), (mid, 3), (low, 3), (ultra, 3)),
-            # 9 patas
+            # 9 selecciones
             ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 1)),
             ((very_high, 1), (high, 2), (mid, 2), (low, 2), (ultra, 2)),
             ((very_high, 1), (mid, 3), (low, 2), (ultra, 3)),
-            # 8 patas — foco en x1.40
+            # 8 selecciones — foco en x1.40
             ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),
             ((very_high, 1), (mid, 2), (low, 2), (ultra, 3)),
             ((very_high, 1), (high, 2), (mid, 2), (low, 1), (ultra, 2)),
             ((very_high, 1), (low, 3), (ultra, 4)),
             ((very_high, 1), (mid, 3), (low, 2), (ultra, 2)),
-            # 7 patas
+            # 7 selecciones
             ((very_high, 1), (high, 1), (mid, 2), (low, 1), (ultra, 2)),
             ((very_high, 1), (mid, 2), (low, 2), (ultra, 2)),
             ((very_high, 1), (low, 3), (ultra, 3)),
-            # 6 patas
+            # 6 selecciones
             ((very_high, 1), (high, 1), (mid, 1), (low, 1), (ultra, 2)),
             ((very_high, 1), (mid, 2), (low, 1), (ultra, 2)),
         ]
     elif n_matches >= 10:
         ticket_combos = [
-            # 10 patas — megalodón posible
+            # 10 selecciones — megalodón posible
             ((very_high, 1), (high, 3), (mid, 3), (low, 2), (ultra, 1)),
             ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 2)),
             ((very_high, 1), (mid, 3), (low, 3), (ultra, 3)),
-            # 9 patas
+            # 9 selecciones
             ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 1)),
             ((very_high, 1), (mid, 3), (low, 2), (ultra, 3)),
-            # 8 patas
+            # 8 selecciones
             ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),
             ((very_high, 1), (mid, 2), (low, 2), (ultra, 3)),
             ((very_high, 1), (low, 3), (ultra, 4)),
-            # 7 patas
+            # 7 selecciones
             ((very_high, 1), (mid, 2), (low, 2), (ultra, 2)),
             ((very_high, 1), (low, 3), (ultra, 3)),
-            # 6 patas
+            # 6 selecciones
             ((very_high, 1), (mid, 2), (low, 1), (ultra, 2)),
             ((very_high, 1), (low, 2), (ultra, 3)),
         ]
     elif n_matches >= 8:
         ticket_combos = [
-            # 8 patas — máximo tedio, foco en x1.40
+            # 8 selecciones — máximo tedio, foco en x1.40
             ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),  # ~1 wc + variado
             ((very_high, 1), (mid, 2), (low, 2), (ultra, 3)),               # foco ultras
             ((very_high, 1), (high, 2), (mid, 2), (low, 1), (ultra, 2)),
@@ -950,13 +957,13 @@ def build_tickets(pool):
             ((very_high, 1), (mid, 3), (low, 2), (ultra, 2)),
             ((high, 1), (mid, 2), (low, 3), (ultra, 2)),                     # sin wildcard
             ((high, 2), (mid, 2), (low, 2), (ultra, 2)),
-            # 7 patas
+            # 7 selecciones
             ((very_high, 1), (high, 1), (mid, 2), (low, 1), (ultra, 2)),
             ((very_high, 1), (mid, 2), (low, 2), (ultra, 2)),
             ((very_high, 1), (high, 1), (low, 2), (ultra, 3)),
             ((very_high, 1), (low, 3), (ultra, 3)),
             ((high, 1), (mid, 2), (low, 2), (ultra, 2)),
-            # 6 patas
+            # 6 selecciones
             ((very_high, 1), (high, 1), (mid, 1), (low, 1), (ultra, 2)),
             ((very_high, 1), (mid, 2), (low, 1), (ultra, 2)),
             ((very_high, 1), (low, 2), (ultra, 3)),
@@ -1024,32 +1031,32 @@ def build_tickets(pool):
                         'model_coverage': round(coverage, 2) if edges else 0.0,
                     })
 
-    # ── GENERAR BILLETES SEGUROS/CONFIABLES (cuotas bajas, 5-10 patas) ──
+    # ── GENERAR BILLETES SEGUROS/CONFIABLES (cuotas bajas, 5-10 selecciones) ──
     # Estos billetes usan SÓLO cuotas ultra + low para maximizar probabilidad de acierto.
     safe_combos = []
     if n_matches >= 10:
         safe_combos = [
-            # 10 patas — cuota total ~x5-x15 con puras ultras/lows
+            # 10 selecciones — cuota total ~x5-x15 con puras ultras/lows
             ((low, 3), (ultra, 7)),
             ((low, 2), (ultra, 8)),
             ((ultra, 10),),
-            # 9 patas
+            # 9 selecciones
             ((low, 3), (ultra, 6)),
             ((low, 2), (ultra, 7)),
             ((ultra, 9),),
-            # 8 patas
+            # 8 selecciones
             ((low, 2), (ultra, 6)),
             ((low, 3), (ultra, 5)),
             ((ultra, 8),),
-            # 7 patas
+            # 7 selecciones
             ((low, 2), (ultra, 5)),
             ((low, 1), (ultra, 6)),
             ((ultra, 7),),
-            # 6 patas
+            # 6 selecciones
             ((low, 2), (ultra, 4)),
             ((low, 1), (ultra, 5)),
             ((ultra, 6),),
-            # 5 patas
+            # 5 selecciones
             ((low, 2), (ultra, 3)),
             ((low, 1), (ultra, 4)),
             ((ultra, 5),),
