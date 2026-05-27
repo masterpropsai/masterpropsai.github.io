@@ -1246,10 +1246,6 @@ body {
       <div class="stat-label" data-i18n="minOdds">Cuota mínima</div>
     </div>
     <div class="hero-stat">
-      <div class="stat-value" id="stat-sports">—</div>
-      <div class="stat-label" data-i18n="sports">Deportes</div>
-    </div>
-    <div class="hero-stat">
       <div class="stat-value" id="stat-tickets">—</div>
       <div class="stat-label" data-i18n="ticketsToday">Billetes hoy</div>
     </div>
@@ -2828,9 +2824,8 @@ function updateUI() {
   document.querySelector('.hero .subtitle').innerHTML = t('subtitle');
   const statLabels = document.querySelectorAll('.hero-stat .stat-label');
   statLabels[0].textContent = t('minOdds');
-  statLabels[1].textContent = t('sports');
-  statLabels[2].textContent = t('ticketsToday');
-  statLabels[3].textContent = t('maxOdds');
+  statLabels[1].textContent = t('ticketsToday');
+  statLabels[2].textContent = t('maxOdds');
   // Filters
   const filterBtns = document.querySelectorAll('.filter-btn');
   filterBtns[0].textContent = t('filterAll');
@@ -3314,12 +3309,9 @@ renderTickets();
   if (typeof TICKETS === 'undefined' || !TICKETS.length) return;
   const numTickets = TICKETS.length;
   const maxOdds = Math.max(...TICKETS.map(t => t.totalOdds));
-  const allSports = new Set();
-  TICKETS.forEach(t => t.legs.forEach(l => { if (l.sport) allSports.add(l.sport); }));
   const el = id => document.getElementById(id);
   if (el('stat-tickets')) el('stat-tickets').textContent = numTickets;
   if (el('stat-max-odds')) el('stat-max-odds').textContent = 'x' + Math.round(maxOdds).toLocaleString();
-  if (el('stat-sports')) el('stat-sports').textContent = allSports.size || '—';
 })();
 
 // Show generation timestamp
