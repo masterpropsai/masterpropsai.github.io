@@ -119,6 +119,22 @@ INTERESTING_KEYWORDS = [
     'Win By', 'Exact Score', 'Double Chance',
 ]
 
+# Markets that are GENERIC (no team-specific) — show match instead of one team
+# Type IDs from DBbet:
+#   9/10 Total Over/Under, 180/181 BTTS Yes/No, 182/183 Total Even Yes/No,
+#   5 = 12 (either team wins), 580 = Race To... Neither
+#   1808/1809 Any Team Win To Nil, 4850/4851 Any Team Win Diff 1,
+#   4918/4919 Any Team Win Diff 3+
+#   188/189/190 1st Half vs 2nd Half (general match flow)
+#   731 Correct Score, 8617/8618 Correct Score 17way
+#   518/519 Penalty Awarded
+GENERIC_MARKET_TYPES = {
+    9, 10, 180, 181, 182, 183, 5, 580,
+    1808, 1809, 4850, 4851, 4918, 4919,
+    188, 189, 190,
+    731, 8617, 8618,
+    518, 519,
+}
 # Markets that imply a specific team winning — used to avoid contradictions
 TEAM_WINNER_MARKETS = {'W1', 'W2', '1X', 'X2', '12'}
 
@@ -619,24 +635,39 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
                 continue
 
             # Determine which team and logo
-            # Strip parameter parens first — they contain numbers that confuse the 1/2 check
-            display_core = re.sub(r'\([^)]*\)', '', display)
-            if '1' in display_core and '2' not in display_core:
-                player, rival, team, logo = t1, t2, ab1, logo1
-            elif '2' in display_core and '1' not in display_core:
-                player, rival, team, logo = t2, t1, ab2, logo2
+            otype = odd.get('type', 0)
+            if otype in GENERIC_MARKET_TYPES:
+                # Generic market (Total, BTTS, Even/Odd, Any Team, etc.) — show MATCH not a team
+                player, rival, team, logo = None, None, '', ''
+                is_generic = True
             else:
-                player, rival, team, logo = t1, t2, ab1, logo1
+                # Strip parameter parens first — they contain numbers that confuse the 1/2 check
+                display_core = re.sub(r'\([^)]*\)', '', display)
+                if '1' in display_core and '2' not in display_core:
+                    player, rival, team, logo = t1, t2, ab1, logo1
+                elif '2' in display_core and '1' not in display_core:
+                    player, rival, team, logo = t2, t1, ab2, logo2
+                else:
+                    player, rival, team, logo = t1, t2, ab1, logo1
+                is_generic = False
 
             # Translate names — format: "(vs Rival) Equipo"
-            player_es = translate_name(player)
-            rival_es = translate_name(rival)
-            player_display = f"({abbrev(rival_es)} vs) {player_es}"
+            if is_generic:
+                # For generic markets, the "player" line shows both teams
+                t1_es = translate_name(t1)
+                t2_es = translate_name(t2)
+                player_display = f"{short_name(t1)} vs {short_name(t2)}"
+                player_es = player_display
+                rival_es = ''
+            else:
+                player_es = translate_name(player)
+                rival_es = translate_name(rival)
+                player_display = f"({abbrev(rival_es)} vs) {player_es}"
             match_display = translate_match(t1, t2, tournament)
 
             # Detect if this is a team-winner market (for anti-contradiction)
-            is_winner_pick = any(wm in display for wm in TEAM_WINNER_MARKETS)
-            side = 'home' if player == t1 else 'away'
+            is_winner_pick = (not is_generic) and any(wm in display for wm in TEAM_WINNER_MARKETS)
+            side = 'home' if (not is_generic and player == t1) else 'away'
 
             # Personalize prop text with full team names (Peñarol, not PEN)
             n1 = short_name(t1)
