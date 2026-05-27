@@ -545,6 +545,7 @@ body {
   letter-spacing: 0.3px;
   box-shadow: 0 2px 12px rgba(255,51,92,0.3);
   white-space: nowrap;
+  text-decoration: none; justify-content: center;
 }
 .bet-btn:hover {
   box-shadow: 0 4px 20px rgba(255,51,92,0.5);
@@ -3010,7 +3011,7 @@ function renderTickets(filter = 'all') {
           <div class="ticket-return">US$ ${investFormatted} → <strong>US$ ${returnAmount}</strong></div>
           <div class="ticket-actions">
             <button class="copy-btn copy-btn-small" onclick="copyTicket('${ticket.id}', event)">${t('copyBtn')}</button>
-            <button class="bet-btn" onclick="betOnDBbet('${ticket.id}')">${t('betBtn')}</button>
+            <a class="bet-btn" href="${getBetURL(ticket)}" target="_blank" rel="noopener" onclick="betBtnFeedback(this)">${t('betBtn')}</a>
           </div>
         </div>
       </div>
@@ -3054,31 +3055,18 @@ function buildDirectCouponURL(couponCode) {
 }
 
 // === BET ON DBBET ===
-function betOnDBbet(id) {
-  const ticket = TICKETS.find(t => t.id === id);
-  if (!ticket) return;
-
-  // Visual feedback on button
-  const btn = event?.target?.closest('.bet-btn');
-  if (btn) {
-    const origText = btn.textContent;
-    btn.textContent = '✅ Abriendo...';
-    setTimeout(() => { btn.textContent = origText; }, 2000);
-  }
-
+function getBetURL(ticket) {
   if (COUPON_DEEPLINK_ENABLED && ticket.couponCode) {
-    // Go directly to coupon deep link — works on mobile & desktop
-    // Affiliate cookie is set via banner/CTA clicks through refpa1800
-    window.open(buildCouponURL(ticket.couponCode), '_blank');
-  } else {
-    // Open the first leg's event link directly on DBbet
-    const firstLink = ticket.legs.find(l => l.link);
-    if (firstLink) {
-      window.open(firstLink.link, '_blank');
-    } else {
-      window.open(DBBET_AFFILIATE_BASE, '_blank');
-    }
+    return buildCouponURL(ticket.couponCode);
   }
+  const firstLink = ticket.legs.find(l => l.link);
+  return firstLink ? firstLink.link : DBBET_AFFILIATE_BASE;
+}
+
+function betBtnFeedback(el) {
+  const origText = el.textContent;
+  el.textContent = '✅ Abriendo...';
+  setTimeout(() => { el.textContent = origText; }, 2000);
 }
 
 // === COPY TICKET ===
