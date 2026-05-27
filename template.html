@@ -1382,6 +1382,20 @@ body {
   </div>
 </div>
 
+<!-- CROSS-PROMO: Gambeta — último pick Máxima confianza acertado -->
+<div id="gambeta-crosspromo" style="max-width:1200px;margin:32px auto 24px;padding:0 16px;display:none;">
+  <a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=crosspromo&utm_campaign=footer" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:linear-gradient(135deg,rgba(0,200,83,0.10),rgba(0,200,83,0.03));border:1px solid rgba(0,200,83,0.35);border-radius:14px;padding:20px 24px;transition:border-color .2s,background .2s">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between">
+      <div style="flex:1;min-width:260px">
+        <div style="font-size:0.72rem;color:#00c853;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">🧠 También del equipo Latam</div>
+        <div id="gcp-title" style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1.35;margin-bottom:4px">Cargando último pick acertado…</div>
+        <div id="gcp-sub" style="font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.5"></div>
+      </div>
+      <div style="background:#00c853;color:#000;font-weight:800;font-size:0.85rem;padding:11px 22px;border-radius:8px;white-space:nowrap">Ver pronósticos IA →</div>
+    </div>
+  </a>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
   <p>💰 <strong>MasterProps</strong> — Billetes Largos · No es asesoramiento financiero · Apostá responsablemente</p>
@@ -3258,6 +3272,33 @@ if (genTime) {
   const el = document.getElementById('last-updated');
   if (el) el.textContent = `Última actualización: ${genTime}`;
 }
+
+// === CROSS-PROMO: Gambeta — último pick Máxima/Alta acertado ===
+(function(){
+  const el = document.getElementById('gambeta-crosspromo');
+  if (!el) return;
+  fetch('https://gambeta.ai/api/sb?type=historial', { cache: 'default' })
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      const all = (data && data[0] && data[0].historial_full) || [];
+      // Filter wins with high or max confidence (bvr >= 5 = Alta/Maxima)
+      const wins = all.filter(p => p.result === 'win' && (p.bvr >= 5 || p.conf === 'high') && p.commenceTs)
+                     .sort((a,b) => (b.commenceTs||0) - (a.commenceTs||0));
+      if (!wins.length) { console.log('[gcp] no wins'); return; }
+      const w = wins[0];
+      const conf = w.bvrText || (w.conf === 'high' ? 'Alta' : 'Media');
+      const home = (w.home || '').replace(/[<>]/g, '');
+      const away = (w.away || '').replace(/[<>]/g, '');
+      const rec = (w.rec || '').replace(/[<>]/g, '');
+      const score = (w.finalScore || '').replace(/[<>]/g, '');
+      document.getElementById('gcp-title').textContent =
+        `✅ ${home} ${score} ${away} — la IA dijo "${rec}"`;
+      document.getElementById('gcp-sub').textContent =
+        `Confianza ${conf} · acertado por gambeta.ai — IA de pronósticos de fútbol gratis`;
+      el.style.display = 'block';
+    })
+    .catch(e => console.log('[gcp] fetch err:', e && e.message));
+})();
 </script>
 
 </body>
