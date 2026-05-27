@@ -58,6 +58,7 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'friendl',          # Friendlies. National Teams / Friendlies U19
     'amistos',          # Spanish variants if any
     'club friendl',
+    'mls+',             # MLS+ — formato corto poco confiable, mucha duplicación
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
