@@ -3051,8 +3051,8 @@ function isMobile() {
 
 function buildCouponURL(couponCode) {
   if (isMobile()) {
-    // Mobile: deep link doesn't work — link goes to DBbet home, coupon code is copied separately
-    return `${DBBET_DIRECT}/es`;
+    // Mobile: deep link doesn't work — go through affiliate link, coupon code is copied separately
+    return DBBET_AFFILIATE_BASE;
   }
   // Desktop: deep link works fine
   return `${DBBET_DIRECT}/es?load=${couponCode}`;
@@ -3096,7 +3096,7 @@ function showCouponModal(code) {
         <div class="cm-step"><span class="cm-num">2</span> Abrí el boleto (icono 🎫 abajo a la derecha)</div>
         <div class="cm-step"><span class="cm-num">3</span> Tocá "Cupón" y pegá el código</div>
       </div>
-      <a class="cm-go" href="${DBBET_DIRECT}/es" target="_blank" rel="noopener"
+      <a class="cm-go" href="${DBBET_AFFILIATE_BASE}" target="_blank" rel="noopener"
          onclick="setTimeout(()=>document.getElementById('coupon-modal').remove(),300)">
         Abrir DBbet →
       </a>
