@@ -216,7 +216,7 @@ TEAM_NAME_ES = {
     'Tottenham Hotspur': 'Tottenham', 'West Ham United': 'West Ham',
     'Newcastle United': 'Newcastle', 'Hellas Verona': 'Verona',
     'Levante UD': 'Levante', 'Leeds United': 'Leeds',
-    'Spartak Moscow': 'Spartak Moscú', 'Crystal Palace': 'C. Palace',
+    'Spartak Moscow': 'Spartak Moscú', 'Crystal Palace': 'Crystal Palace',
     'Wolverhampton Wanderers': 'Wolverhampton',
     'Paris Saint-Germain': 'PSG',
     'Cremonese': 'Cremonese',
