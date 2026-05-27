@@ -429,7 +429,7 @@ def build_tickets(pool):
 
     print(f"   ultra(1.3-1.5): {len(ultra)}, low(1.5-1.8): {len(low)}, "
           f"mid(1.8-2.3): {len(mid)}, high(2.3-3): {len(high)}, wildcard(3-10): {len(very_high)}")
-    print(f"   ⚠️  REGLA: 1 wildcard (x3-10) + resto ≤x3.00. Billetes 6-8 patas.")
+    print(f"   ⚠️  REGLA: 1 wildcard (x3-10) + resto ≤x3.00. Billetes 6-15 patas (megalodones!).")
 
     # Anti-contradiction: track which side we've committed to per match
     # e.g. winner_side['Lens vs Nice'] = 'home' → never pick 'away wins' for that match
@@ -472,10 +472,10 @@ def build_tickets(pool):
         return None
 
     # Determine ticket sizes based on available matches
-    max_legs = min(n_matches, 8)  # Hasta 8 patas — billetes LARGOS
+    max_legs = min(n_matches, 15)  # Hasta 15 patas — Megalodones desbloqueados
 
     # ══════════════════════════════════════════════════════════════════
-    # REGLA CLAVE: 1 wildcard (x3.00-10.00) + resto ≤x3.00. Billetes LARGOS (6-8 patas).
+    # REGLA CLAVE: 1 wildcard (x3.00-10.00) + resto ≤x3.00. Billetes LARGOS (6-15 patas).
     # very_high (wildcard) = x3.00-10.00 (máx 1 por billete, capeada para evitar absurdos)
     # high = x2.30-3.00, mid = x1.80-2.30, low = x1.50-1.80, ultra = x1.30-1.50
     #
@@ -489,7 +489,69 @@ def build_tickets(pool):
     # Build ticket combos — billetes LARGOS (6-8 patas), foco en cuotas ~1.40
     ticket_combos = []
 
-    if n_matches >= 8:
+    if n_matches >= 15:
+        ticket_combos = [
+            # 15 patas — MEGALODÓN extremo
+            ((very_high, 1), (high, 3), (mid, 4), (low, 4), (ultra, 3)),
+            ((very_high, 1), (high, 2), (mid, 4), (low, 4), (ultra, 4)),
+            # 14 patas
+            ((very_high, 1), (high, 3), (mid, 4), (low, 3), (ultra, 3)),
+            ((very_high, 1), (high, 2), (mid, 3), (low, 4), (ultra, 4)),
+            # 13 patas
+            ((very_high, 1), (high, 3), (mid, 3), (low, 3), (ultra, 3)),
+            ((very_high, 1), (high, 2), (mid, 4), (low, 3), (ultra, 3)),
+            # 12 patas
+            ((very_high, 1), (high, 3), (mid, 3), (low, 3), (ultra, 2)),
+            ((very_high, 1), (high, 2), (mid, 3), (low, 3), (ultra, 3)),
+            ((very_high, 1), (high, 2), (mid, 4), (low, 3), (ultra, 2)),
+            # 11 patas
+            ((very_high, 1), (high, 3), (mid, 3), (low, 2), (ultra, 2)),
+            ((very_high, 1), (high, 2), (mid, 3), (low, 3), (ultra, 2)),
+            ((very_high, 1), (high, 2), (mid, 2), (low, 3), (ultra, 3)),
+            # 10 patas
+            ((very_high, 1), (high, 3), (mid, 3), (low, 2), (ultra, 1)),
+            ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 2)),
+            ((very_high, 1), (high, 2), (mid, 2), (low, 3), (ultra, 2)),
+            ((very_high, 1), (mid, 3), (low, 3), (ultra, 3)),
+            # 9 patas
+            ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 1)),
+            ((very_high, 1), (high, 2), (mid, 2), (low, 2), (ultra, 2)),
+            ((very_high, 1), (mid, 3), (low, 2), (ultra, 3)),
+            # 8 patas — foco en x1.40
+            ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),
+            ((very_high, 1), (mid, 2), (low, 2), (ultra, 3)),
+            ((very_high, 1), (high, 2), (mid, 2), (low, 1), (ultra, 2)),
+            ((very_high, 1), (low, 3), (ultra, 4)),
+            ((very_high, 1), (mid, 3), (low, 2), (ultra, 2)),
+            # 7 patas
+            ((very_high, 1), (high, 1), (mid, 2), (low, 1), (ultra, 2)),
+            ((very_high, 1), (mid, 2), (low, 2), (ultra, 2)),
+            ((very_high, 1), (low, 3), (ultra, 3)),
+            # 6 patas
+            ((very_high, 1), (high, 1), (mid, 1), (low, 1), (ultra, 2)),
+            ((very_high, 1), (mid, 2), (low, 1), (ultra, 2)),
+        ]
+    elif n_matches >= 10:
+        ticket_combos = [
+            # 10 patas — megalodón posible
+            ((very_high, 1), (high, 3), (mid, 3), (low, 2), (ultra, 1)),
+            ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 2)),
+            ((very_high, 1), (mid, 3), (low, 3), (ultra, 3)),
+            # 9 patas
+            ((very_high, 1), (high, 2), (mid, 3), (low, 2), (ultra, 1)),
+            ((very_high, 1), (mid, 3), (low, 2), (ultra, 3)),
+            # 8 patas
+            ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),
+            ((very_high, 1), (mid, 2), (low, 2), (ultra, 3)),
+            ((very_high, 1), (low, 3), (ultra, 4)),
+            # 7 patas
+            ((very_high, 1), (mid, 2), (low, 2), (ultra, 2)),
+            ((very_high, 1), (low, 3), (ultra, 3)),
+            # 6 patas
+            ((very_high, 1), (mid, 2), (low, 1), (ultra, 2)),
+            ((very_high, 1), (low, 2), (ultra, 3)),
+        ]
+    elif n_matches >= 8:
         ticket_combos = [
             # 8 patas — máximo tedio, foco en x1.40
             ((very_high, 1), (high, 1), (mid, 2), (low, 2), (ultra, 2)),  # ~1 wc + variado
