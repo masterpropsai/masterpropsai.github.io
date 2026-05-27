@@ -80,14 +80,32 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'esports ',
     'e-sports',
     # ── Amateur / niche russian tournaments con equipos joke-name ──
-    'magnitka',         # Tournament Magnitka Open (hockey amateur con equipos tipo "Cunning Foxes")
+    'magnitka',
+    # ── Ligas menores / formatos chicos / regiones de bajo nivel ──
+    'k3/k4',                                # South Korea Championship K3/K4
+    'wk-league', 'wk league',               # South Korea WK-League (femenino menor)
+    'australia cup',                        # Australia Cup
+    'nsw cup',                              # Australia NSW Cup Women
+    'china. second league', 'china second',
+    'kazakhstan. premier',                  # Kazakhstan Premier League
+    '6x6', 'mini euro',                     # Minifootball 6 vs 6
+    'czech republic. qualification',
+    'czech republic. 3 liga',
+    'finnish cup',
+    'philippines. ufl',
+    'kenya. super league', 'kenya super',
+    'vietnam',                              # Vietnam 2nd Division + Cup Women
+    'utr pro',                              # UTR Pro Tennis Series (no pro real)
+    'nhl',                                  # NHL (sólo 1 evento Stanley Cup final, descartado por pedido)
+    'japan. npb', 'japan npb',              # NPB + Reserve + Winners
+    'kbo',                                  # KBO South Korea + Winner
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
-    'libertadores': 4,      # Copa Libertadores → 4x weight
-    'sudamericana': 4,      # Copa Sudamericana → 4x weight
-    'brasileiro': 2,        # Brazilian Serie A → 2x weight
-    'copa argentina': 3,    # Copa Argentina → 3x weight
+    'libertadores': 8,      # Copa Libertadores → 8x weight
+    'sudamericana': 8,      # Copa Sudamericana → 8x weight
+    'brasileiro': 4,        # Brazilian Serie A → 4x weight
+    'copa argentina': 5,    # Copa Argentina → 5x weight
 }
 
 # ── Interesting market keywords ──
@@ -590,7 +608,9 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             if odd.get('isBlocked', False):
                 continue
             odds_val = odd.get('oddsMarket', 0)
-            if odds_val < 1.3:
+            # Min odds threshold: 1.30 normal, 1.20 para torneos preferidos (más alternativas)
+            min_odd = 1.20 if boost_weight > 1 else 1.30
+            if odds_val < min_odd:
                 continue  # skip near-certain outcomes
             display = odd.get('display', '')
 
