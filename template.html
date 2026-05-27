@@ -2903,12 +2903,18 @@ function betOnDBbet(id) {
   const ticket = TICKETS.find(t => t.id === id);
   if (!ticket) return;
 
+  // Visual feedback on button
+  const btn = event?.target?.closest('.bet-btn');
+  if (btn) {
+    const origText = btn.textContent;
+    btn.textContent = '✅ Abriendo...';
+    setTimeout(() => { btn.textContent = origText; }, 2000);
+  }
+
   if (COUPON_DEEPLINK_ENABLED && ticket.couponCode) {
-    // First hit affiliate redirect (sets cookie), then load coupon
-    const affiliateWindow = window.open(DBBET_AFFILIATE_BASE, '_blank');
-    setTimeout(() => {
-      if (affiliateWindow) affiliateWindow.location.href = buildCouponURL(ticket.couponCode);
-    }, 1500);
+    // Go directly to coupon deep link — works on mobile & desktop
+    // Affiliate cookie is set via banner/CTA clicks through refpa1800
+    window.open(buildCouponURL(ticket.couponCode), '_blank');
   } else {
     // Open the first leg's event link directly on DBbet
     const firstLink = ticket.legs.find(l => l.link);
@@ -2917,14 +2923,6 @@ function betOnDBbet(id) {
     } else {
       window.open(DBBET_AFFILIATE_BASE, '_blank');
     }
-  }
-
-  // Visual feedback on button
-  const btn = event?.target?.closest('.bet-btn');
-  if (btn) {
-    const origText = btn.textContent;
-    btn.textContent = '✅ Abriendo...';
-    setTimeout(() => { btn.textContent = origText; }, 2000);
   }
 }
 
