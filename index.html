@@ -3045,9 +3045,9 @@ const DBBET_DIRECT = 'https://db-bet.com';
 const COUPON_DEEPLINK_ENABLED = true;
 
 function buildCouponURL(couponCode) {
-  // Deep link must go to db-bet.com directly (refpa1800 doesn't support ?load= param)
-  // Affiliate cookie is set via banner/CTA clicks through refpa1800
-  return `${DBBET_DIRECT}/es?load=${couponCode}`;
+  // Use redirect page to ensure ?load= param survives on mobile browsers
+  // go.html does a JS location.replace → db-bet.com/es?load=CODE
+  return `./go.html?c=${encodeURIComponent(couponCode)}`;
 }
 
 function buildDirectCouponURL(couponCode) {
