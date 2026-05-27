@@ -867,10 +867,12 @@ def build_tickets(pool):
     # high = x2.30-3.00, mid = x1.80-2.30, low = x1.50-1.80, ultra = x1.30-1.50
     #
     # TIERS (por cuota total):
-    #   Megalodón: x1000+
-    #   Whale:     x100-999
-    #   Shark:     x10-99
-    #   Hunter:    x3-9.9
+    #   Megalodón:  x1000+
+    #   Whale:      x100-999
+    #   Shark:      x10-99
+    #   Hunter:     x3-9.9
+    #   Confiable:  x5-9    (5-10 legs, confianza 5/6)
+    #   Segura:     x3-6    (5-10 legs, confianza 6/6)
     # ══════════════════════════════════════════════════════════════════
 
     # Build ticket combos — billetes LARGOS (6-8 patas), foco en cuotas ~1.40
@@ -1022,6 +1024,88 @@ def build_tickets(pool):
                         'model_coverage': round(coverage, 2) if edges else 0.0,
                     })
 
+    # ── GENERAR BILLETES SEGUROS/CONFIABLES (cuotas bajas, 5-10 patas) ──
+    # Estos billetes usan SÓLO cuotas ultra + low para maximizar probabilidad de acierto.
+    safe_combos = []
+    if n_matches >= 10:
+        safe_combos = [
+            # 10 patas — cuota total ~x5-x15 con puras ultras/lows
+            ((low, 3), (ultra, 7)),
+            ((low, 2), (ultra, 8)),
+            ((ultra, 10),),
+            # 9 patas
+            ((low, 3), (ultra, 6)),
+            ((low, 2), (ultra, 7)),
+            ((ultra, 9),),
+            # 8 patas
+            ((low, 2), (ultra, 6)),
+            ((low, 3), (ultra, 5)),
+            ((ultra, 8),),
+            # 7 patas
+            ((low, 2), (ultra, 5)),
+            ((low, 1), (ultra, 6)),
+            ((ultra, 7),),
+            # 6 patas
+            ((low, 2), (ultra, 4)),
+            ((low, 1), (ultra, 5)),
+            ((ultra, 6),),
+            # 5 patas
+            ((low, 2), (ultra, 3)),
+            ((low, 1), (ultra, 4)),
+            ((ultra, 5),),
+        ]
+    elif n_matches >= 7:
+        safe_combos = [
+            ((low, 2), (ultra, 5)),
+            ((low, 3), (ultra, 4)),
+            ((ultra, 7),),
+            ((low, 2), (ultra, 4)),
+            ((low, 1), (ultra, 5)),
+            ((ultra, 6),),
+            ((low, 2), (ultra, 3)),
+            ((low, 1), (ultra, 4)),
+            ((ultra, 5),),
+        ]
+    elif n_matches >= 5:
+        safe_combos = [
+            ((low, 2), (ultra, 3)),
+            ((low, 1), (ultra, 4)),
+            ((ultra, 5),),
+            ((low, 1), (ultra, 3)),
+            ((low, 2), (ultra, 2)),
+        ]
+
+    safe_tickets = []
+    SAFE_ATTEMPTS = 8
+    for combo in safe_combos:
+        pools_cfg = list(combo)
+        for _ in range(SAFE_ATTEMPTS):
+            for pl, _ in pools_cfg:
+                random.shuffle(pl)
+            legs = pick_legs(pools_cfg)
+            if legs and len(legs) >= 5:
+                total = round(math.prod(l['odd'] for l in legs), 1)
+                if 3.0 <= total <= 9.0:
+                    edges = [l.get('edge') for l in legs if l.get('edge') is not None]
+                    if edges:
+                        avg_edge = sum(edges) / len(edges)
+                        coverage = len(edges) / len(legs)
+                        raw_score = max(0.0, min(10.0, (avg_edge + 0.15) / 0.25 * 10))
+                        model_score = round(raw_score * coverage + 5 * (1 - coverage), 1)
+                    else:
+                        model_score = None
+                    safe_tickets.append({
+                        'tier': 'pending_safe',
+                        'legs': legs,
+                        'total_odds': total,
+                        'confidence': 6 if total <= 6.0 else 5,  # segura=6, confiable=5
+                        'model_score': model_score,
+                        'avg_edge': round(avg_edge, 4) if edges else None,
+                        'model_coverage': round(coverage, 2) if edges else 0.0,
+                    })
+
+    print(f"   🔒 Billetes seguros/confiables generados: {len(safe_tickets)}")
+
     # ── FILTRO DE CONFIANZA ──
     # Quitar billetes de baja confianza (confianza 1, 2). Sólo se publican medio+.
     MIN_CONFIDENCE = 3
@@ -1041,13 +1125,27 @@ def build_tickets(pool):
         else:
             t['tier'] = 'hunter'
 
+    # Classify safe tickets: segura (x3-6) vs confiable (x5-9)
+    for t in safe_tickets:
+        if t['total_odds'] <= 6.0:
+            t['tier'] = 'segura'
+            t['confidence'] = 6
+        else:
+            t['tier'] = 'confiable'
+            t['confidence'] = 5
+
     # ── CAP POR TIER ──
     # Limitar cantidad por tier — la página crasheaba con 350+ billetes.
-    tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
-    tier_caps = {'megalodon': 8, 'whale': 12, 'shark': 10, 'hunter': 6}
+    tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3, 'confiable': 4, 'segura': 5}
+    tier_caps = {'megalodon': 8, 'whale': 12, 'shark': 10, 'hunter': 6, 'confiable': 6, 'segura': 6}
+
+    # Merge safe tickets into main list
+    tickets.extend(safe_tickets)
+
     by_tier = {k: [] for k in tier_caps}
     for t in tickets:
-        by_tier[t['tier']].append(t)
+        if t['tier'] in by_tier:
+            by_tier[t['tier']].append(t)
     capped = []
     for tier, max_n in tier_caps.items():
         # Ordenar por (confianza DESC, cuota DESC) y tomar los mejores
@@ -1061,7 +1159,7 @@ def build_tickets(pool):
     tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
 
     # Assign IDs
-    counters = {'megalodon': 0, 'whale': 0, 'shark': 0, 'hunter': 0}
+    counters = {'megalodon': 0, 'whale': 0, 'shark': 0, 'hunter': 0, 'confiable': 0, 'segura': 0}
     for ticket in tickets:
         tier = ticket['tier']
         counters[tier] += 1
@@ -1246,8 +1344,8 @@ def main():
     tickets = all_tickets
 
     # Sort: megalodones first, then whales, sharks, hunters
-    tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
-    tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
+    tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3, 'confiable': 4, 'segura': 5}
+    tickets.sort(key=lambda t: (tier_order.get(t['tier'], 99), -t['total_odds']))
 
     print(f"\n📊 RESUMEN TOTAL: {len(tickets)} tickets")
     for t in tickets:

@@ -983,6 +983,16 @@ body {
   background: linear-gradient(135deg, #cd7f32, #e8a54a);
   color: #1a1a1a;
 }
+.tier-confiable {
+  background: linear-gradient(135deg, #059669, #34d399);
+  color: #fff;
+  box-shadow: 0 2px 15px rgba(5,150,105,0.4);
+}
+.tier-segura {
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  color: #fff;
+  box-shadow: 0 2px 15px rgba(14,165,233,0.4);
+}
 
 /* === DBBET CTA === */
 .db-cta {
@@ -1290,7 +1300,9 @@ body {
     <option value="tier:megalodon">🐋 Megalodón · x1000+</option>
     <option value="tier:whale">🐳 Ballena · x100-x999</option>
     <option value="tier:shark">🦈 Tiburón · x10-x99</option>
-    <option value="tier:hunter">🎯 Cazador · x3-x9</option>
+    <option value="tier:hunter">🎯 Cazador · x10-x29</option>
+    <option value="tier:confiable">✅ Confiable · x5-x9</option>
+    <option value="tier:segura">🔒 Segura · x3-x6</option>
   </select>
   <select class="filter-dropdown" id="statusFilter">
     <option value="alive" selected>🟢 Apuestas vivas</option>
@@ -1504,8 +1516,8 @@ const I18N = {
     navTickets: 'Billetes', navHistory: 'Historial',
     minOdds: 'Cuota mínima', sports: 'Deportes', ticketsToday: 'Billetes hoy', maxOdds: 'Mayor cuota',
     filterAll: '🎯 Todos', filterFootball: '⚽ Fútbol', filterTennis: '🎾 Tenis',
-    megalodon: '🐋 MEGALODÓN', whale: '🐳 BALLENA', shark: '🦈 TIBURÓN', hunter: '🎯 CAZADOR',
-    megalodonRange: 'x1000+ · 4 Cifras', whaleRange: 'x100 — x999 · 3 Cifras', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODÓN', whale: '🐳 BALLENA', shark: '🦈 TIBURÓN', hunter: '🎯 CAZADOR', confiable: '✅ CONFIABLE', segura: '🔒 SEGURA',
+    megalodonRange: 'x1000+ · 4 Cifras', whaleRange: 'x100 — x999 · 3 Cifras', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29', confiableRange: 'x5 — x9 · Alta Confianza', seguraRange: 'x3 — x6 · Máxima Confianza',
     confLabel: 'Confianza IA',
     confLevels: ['', 'Baja', 'Media', 'Media-Alta', 'Alta', 'Muy Alta', 'Máxima'],
     selections: 'selecciones', copyBtn: '📋', copied: '✅', betBtn: '🎰 Apostar en DBbet',
@@ -1537,8 +1549,8 @@ const I18N = {
     navTickets: 'Tickets', navHistory: 'History',
     minOdds: 'Min odds', sports: 'Sports', ticketsToday: 'Tickets today', maxOdds: 'Top odds',
     filterAll: '🎯 All', filterFootball: '⚽ Football', filterTennis: '🎾 Tennis',
-    megalodon: '🐋 MEGALODON', whale: '🐳 WHALE', shark: '🦈 SHARK', hunter: '🎯 HUNTER',
-    megalodonRange: 'x1000+ · 4 Digits', whaleRange: 'x100 — x999 · 3 Digits', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODON', whale: '🐳 WHALE', shark: '🦈 SHARK', hunter: '🎯 HUNTER', confiable: '✅ RELIABLE', segura: '🔒 SAFE BET',
+    megalodonRange: 'x1000+ · 4 Digits', whaleRange: 'x100 — x999 · 3 Digits', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29', confiableRange: 'x5 — x9 · High Confidence', seguraRange: 'x3 — x6 · Maximum Confidence',
     confLabel: 'AI Confidence',
     confLevels: ['', 'Low', 'Medium', 'Med-High', 'High', 'Very High', 'Maximum'],
     selections: 'selections', copyBtn: '📋', copied: '✅', betBtn: '🎰 Bet on DBbet',
@@ -1569,8 +1581,8 @@ const I18N = {
     navTickets: 'Bilhetes', navHistory: 'Histórico',
     minOdds: 'Odd mínima', sports: 'Esportes', ticketsToday: 'Bilhetes hoje', maxOdds: 'Maior odd',
     filterAll: '🎯 Todos', filterFootball: '⚽ Futebol', filterTennis: '🎾 Tênis',
-    megalodon: '🐋 MEGALODON', whale: '🐳 BALEIA', shark: '🦈 TUBARÃO', hunter: '🎯 CAÇADOR',
-    megalodonRange: 'x1000+ · 4 Dígitos', whaleRange: 'x100 — x999 · 3 Dígitos', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODON', whale: '🐳 BALEIA', shark: '🦈 TUBARÃO', hunter: '🎯 CAÇADOR', confiable: '✅ CONFIÁVEL', segura: '🔒 SEGURA',
+    megalodonRange: 'x1000+ · 4 Dígitos', whaleRange: 'x100 — x999 · 3 Dígitos', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29', confiableRange: 'x5 — x9 · Alta Confiança', seguraRange: 'x3 — x6 · Confiança Máxima',
     confLabel: 'Confiança IA',
     confLevels: ['', 'Baixa', 'Média', 'Média-Alta', 'Alta', 'Muito Alta', 'Máxima'],
     selections: 'seleções', copyBtn: '📋', copied: '✅', betBtn: '🎰 Apostar no DBbet',
@@ -1601,8 +1613,8 @@ const I18N = {
     navTickets: 'Biglietti', navHistory: 'Storico',
     minOdds: 'Quota minima', sports: 'Sport', ticketsToday: 'Biglietti oggi', maxOdds: 'Quota max',
     filterAll: '🎯 Tutti', filterFootball: '⚽ Calcio', filterTennis: '🎾 Tennis',
-    megalodon: '🐋 MEGALODON', whale: '🐳 BALENA', shark: '🦈 SQUALO', hunter: '🎯 CACCIATORE',
-    megalodonRange: 'x1000+ · 4 Cifre', whaleRange: 'x100 — x999 · 3 Cifre', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29',
+    megalodon: '🐋 MEGALODON', whale: '🐳 BALENA', shark: '🦈 SQUALO', hunter: '🎯 CACCIATORE', confiable: '✅ AFFIDABILE', segura: '🔒 SICURA',
+    megalodonRange: 'x1000+ · 4 Cifre', whaleRange: 'x100 — x999 · 3 Cifre', sharkRange: 'x30 — x99', hunterRange: 'x10 — x29', confiableRange: 'x5 — x9 · Alta Fiducia', seguraRange: 'x3 — x6 · Massima Fiducia',
     confLabel: 'Fiducia IA',
     confLevels: ['', 'Bassa', 'Media', 'Medio-Alta', 'Alta', 'Molto Alta', 'Massima'],
     selections: 'selezioni', copyBtn: '📋', copied: '✅', betBtn: '🎰 Scommetti su DBbet',
@@ -2571,7 +2583,8 @@ function renderTickets(filter = 'all') {
   const sportEmoji = { nba:'🏀', nfl:'🏈', futbol:'⚽', tenis:'🎾', mlb:'⚾', mma:'🥊' };
 
   filtered.forEach((ticket, i) => {
-    const tierClass = ticket.tier === 'megalodon' ? 'tier-megalodon' : ticket.tier === 'whale' ? 'tier-whale' : ticket.tier === 'shark' ? 'tier-shark' : 'tier-hunter';
+    const tierClassMap = {megalodon:'tier-megalodon', whale:'tier-whale', shark:'tier-shark', hunter:'tier-hunter', confiable:'tier-confiable', segura:'tier-segura'};
+    const tierClass = tierClassMap[ticket.tier] || 'tier-hunter';
     const tierLabel = t(ticket.tier);
 
     const legsHTML = ticket.legs.map((leg, j) => {
@@ -2664,12 +2677,14 @@ function renderTickets(filter = 'all') {
   });
 
   // Group by tier and render with inline section headers
-  const tierOrder = ['megalodon', 'whale', 'shark', 'hunter'];
+  const tierOrder = ['megalodon', 'whale', 'shark', 'hunter', 'confiable', 'segura'];
   const tierLabels = {
-    megalodon: { emoji: '🐋', name: 'MEGALODÓN', badge: 'x1000+ · 4 Cifras' },
-    whale:     { emoji: '🐳', name: 'BALLENA', badge: 'x100 — x999 · 3 Cifras' },
-    shark:     { emoji: '🦈', name: 'TIBURÓN', badge: 'x30 — x99' },
-    hunter:    { emoji: '🎯', name: 'CAZADOR', badge: 'x10 — x29' },
+    megalodon:  { emoji: '🐋', name: 'MEGALODÓN', badge: 'x1000+ · 4 Cifras' },
+    whale:      { emoji: '🐳', name: 'BALLENA', badge: 'x100 — x999 · 3 Cifras' },
+    shark:      { emoji: '🦈', name: 'TIBURÓN', badge: 'x30 — x99' },
+    hunter:     { emoji: '🎯', name: 'CAZADOR', badge: 'x10 — x29' },
+    confiable:  { emoji: '✅', name: 'CONFIABLE', badge: 'x5 — x9 · Alta Confianza' },
+    segura:     { emoji: '🔒', name: 'SEGURA', badge: 'x3 — x6 · Máxima Confianza' },
   };
 
   tierOrder.forEach(tier => {
@@ -2883,7 +2898,7 @@ renderTickets();
       const sports = [...new Set(tk.legs.map(l => l.sport))];
       const sportIcons = sports.map(s => sportEmoji[s] || '🎯').join(' ');
       const tierEmoji = { megalodon:'🐋', whale:'🐳', shark:'🦈', hunter:'🎯' };
-      const tierName = { megalodon:'MEGALODÓN', whale:'BALLENA', shark:'TIBURÓN', hunter:'CAZADOR' };
+      const tierName = { megalodon:'MEGALODÓN', whale:'BALLENA', shark:'TIBURÓN', hunter:'CAZADOR', confiable:'CONFIABLE', segura:'SEGURA' };
       return `<div class="acierto-item">
         <div class="acierto-left">
           <span class="acierto-emoji">${tierEmoji[tk.tier] || '🎯'}</span>
