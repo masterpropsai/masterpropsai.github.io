@@ -21,22 +21,24 @@ p{font-size:14px;opacity:.7;margin:0}
 (function() {
   var params = new URLSearchParams(window.location.search);
   var code = params.get('c') || params.get('code');
-  var base = 'https://db-bet.com/es';
+  var affiliate = 'https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213';
+  var direct = 'https://db-bet.com/es';
 
   if (!code) {
-    // No coupon code — go to affiliate link
-    window.location.replace('https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213');
+    window.location.replace(affiliate);
     return;
   }
 
-  // Build the target URL with the coupon code
-  var target = base + '?load=' + encodeURIComponent(code);
+  // Step 1: Hit the affiliate link in a hidden iframe to set the cookie
+  var iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.src = affiliate;
+  document.body.appendChild(iframe);
 
-  // Use location.replace so there's no back-button loop
-  // Small delay to ensure the page is fully loaded before redirect
+  // Step 2: After a short delay for the cookie to set, redirect to the deep link
   setTimeout(function() {
-    window.location.replace(target);
-  }, 300);
+    window.location.replace(direct + '?load=' + encodeURIComponent(code));
+  }, 1500);
 })();
 </script>
 </body>

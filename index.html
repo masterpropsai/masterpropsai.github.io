@@ -3051,11 +3051,11 @@ function isMobile() {
 
 function buildCouponURL(couponCode) {
   if (isMobile()) {
-    // Mobile: deep link doesn't work — go through affiliate link, coupon code is copied separately
+    // Mobile: deep link doesn't work — go through affiliate link, coupon code is copied separately via modal
     return DBBET_AFFILIATE_BASE;
   }
-  // Desktop: deep link works fine
-  return `${DBBET_DIRECT}/es?load=${couponCode}`;
+  // Desktop: go.html sets affiliate cookie via hidden iframe, then redirects to deep link
+  return `./go.html?c=${encodeURIComponent(couponCode)}`;
 }
 
 // === BET ON DBBET ===
