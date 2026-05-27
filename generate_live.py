@@ -622,6 +622,13 @@ def build_tickets(pool):
                         'confidence': calculate_confidence(legs),
                     })
 
+    # ── FILTRO DE CONFIANZA ──
+    # Quitar billetes de baja confianza (confianza 1, 2). Sólo se publican medio+.
+    MIN_CONFIDENCE = 3
+    before_filter = len(tickets)
+    tickets = [t for t in tickets if t['confidence'] >= MIN_CONFIDENCE]
+    print(f"   🎯 Filtro confianza ≥{MIN_CONFIDENCE}: {before_filter} → {len(tickets)} billetes")
+
     # Classify tiers by total odds
     for t in tickets:
         odds = t['total_odds']
@@ -634,7 +641,23 @@ def build_tickets(pool):
         else:
             t['tier'] = 'hunter'
 
+    # ── CAP POR TIER ──
+    # Limitar cantidad por tier — la página crasheaba con 350+ billetes.
     tier_order = {'megalodon': 0, 'whale': 1, 'shark': 2, 'hunter': 3}
+    tier_caps = {'megalodon': 8, 'whale': 12, 'shark': 10, 'hunter': 6}
+    by_tier = {k: [] for k in tier_caps}
+    for t in tickets:
+        by_tier[t['tier']].append(t)
+    capped = []
+    for tier, max_n in tier_caps.items():
+        # Ordenar por (confianza DESC, cuota DESC) y tomar los mejores
+        sorted_tier = sorted(by_tier[tier], key=lambda t: (-t['confidence'], -t['total_odds']))
+        kept = sorted_tier[:max_n]
+        capped.extend(kept)
+        if sorted_tier and len(sorted_tier) > max_n:
+            print(f"   ✂️  Tier {tier}: {len(sorted_tier)} → {len(kept)} (cap)")
+    tickets = capped
+
     tickets.sort(key=lambda t: (tier_order[t['tier']], -t['total_odds']))
 
     # Assign IDs
