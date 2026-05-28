@@ -438,7 +438,7 @@ def main():
         match_results = input_data.get('match_results', [])
         batch_label = input_data.get('batch_label', 'AUTO-RESOLVE')
 
-        results, skipped = resolve_matches(content, match_results)
+        results, skipped = resolve_matches_v2(content, match_results)
 
         if results:
             new_content = inject_results(content, results, batch_label)
@@ -472,6 +472,297 @@ def main():
     else:
         print(f"Unknown command: {sys.argv[1]}")
         sys.exit(1)
+
+
+
+
+
+# ============================================================================
+# EXTENDED RESOLVER (handles team-name props used by current generate pipeline)
+# ============================================================================
+
+import unicodedata
+
+def _strip_accents(s):
+    return ''.join(c for c in unicodedata.normalize('NFKD', s) if not unicodedata.combining(c))
+
+def _team_side(team_str, local_name, visitor_name):
+    """Return 'local', 'visitor', or None depending on which team the prop string refers to."""
+    if team_str is None:
+        return None
+    t = team_str.strip().lower()
+    if local_name and t == local_name.strip().lower():
+        return 'local'
+    if visitor_name and t == visitor_name.strip().lower():
+        return 'visitor'
+    # Fuzzy: strip accents and compare
+    t2 = _strip_accents(t)
+    if local_name and t2 == _strip_accents(local_name.strip().lower()):
+        return 'local'
+    if visitor_name and t2 == _strip_accents(visitor_name.strip().lower()):
+        return 'visitor'
+    # Try startswith for cases like "TEAM Gana y ..." vs "Gana TEAM"
+    return None
+
+
+def _asian_handicap(team_goals, other_goals, handicap):
+    """
+    Resolve an Asian handicap. handicap is from the team's perspective (+/- with .0/.25/.5/.75).
+    Returns 'won' or 'lost'. Push portions are counted as 'won' (stake returned).
+    """
+    # Quarter handicaps: split into two half-handicaps
+    # e.g. +0.25 = +0 and +0.5; +0.75 = +0.5 and +1.0
+    h_frac = round(handicap - int(handicap), 2) if handicap >= 0 else round(handicap - int(handicap), 2)
+    # Use a cleaner approach: multiply by 4 to get quarter integer
+    q = round(handicap * 4)
+    # q % 2 != 0 means quarter handicap (.25 or .75 fraction)
+    if q % 2 != 0:
+        # Split into two halves: lower = handicap - 0.25, upper = handicap + 0.25
+        h1 = handicap - 0.25
+        h2 = handicap + 0.25
+        r1 = _asian_handicap(team_goals, other_goals, h1)
+        r2 = _asian_handicap(team_goals, other_goals, h2)
+        if r1 == 'won' and r2 == 'won':
+            return 'won'
+        if r1 == 'lost' and r2 == 'lost':
+            return 'lost'
+        # Mixed: treat as won (half-win or half-push)
+        return 'won'
+    # Integer or .5 handicap
+    diff = team_goals + handicap - other_goals
+    if diff > 0:
+        return 'won'
+    if diff < 0:
+        return 'lost'
+    # diff == 0: push (only possible on integer handicaps)
+    return 'won'  # push = stake returned, treat as won
+
+
+def _asian_total(total, line, op):
+    """
+    Resolve an Asian total. op is '>' (Más de) or '<' (Menos de).
+    line can have .0, .25, .5, .75 fractions.
+    Returns 'won' or 'lost'.
+    """
+    q = round(line * 4)
+    if q % 2 != 0:
+        # Quarter line: split
+        l1 = line - 0.25
+        l2 = line + 0.25
+        r1 = _asian_total(total, l1, op)
+        r2 = _asian_total(total, l2, op)
+        if r1 == 'won' and r2 == 'won':
+            return 'won'
+        if r1 == 'lost' and r2 == 'lost':
+            return 'lost'
+        return 'won'  # mixed: half-win or half-push
+    # Integer or .5 line
+    if op == '>':
+        if total > line: return 'won'
+        if total < line: return 'lost'
+        return 'won'  # push
+    else:  # '<'
+        if total < line: return 'won'
+        if total > line: return 'lost'
+        return 'won'  # push
+
+
+def resolve_prop_v2(prop, local_goals, visitor_goals, total, ht_local, ht_visitor,
+                    goals_1h, goals_2h, goal_sequence, local_name, visitor_name):
+    """
+    Extended resolver handling team-name props.
+    Falls back to the original resolve_prop for standard formats.
+    """
+    p = prop.strip()
+
+    # Try the OLD resolver first (handles HT-FT, W1/W2/X, Hándicap, etc.)
+    old_result = resolve_prop(p, local_goals, visitor_goals, total, ht_local, ht_visitor,
+                              goals_1h, goals_2h, goal_sequence)
+    if old_result != 'SKIP':
+        return old_result
+
+    # --- TOTAL GOALS WITHOUT TEAM (Asian totals) ---
+    m = re.match(r'Más de ([\d.]+) (?:goles|puntos|carreras)$', p)
+    if m:
+        return _asian_total(total, float(m.group(1)), '>')
+    m = re.match(r'Menos de ([\d.]+) (?:goles|puntos|carreras)$', p)
+    if m:
+        return _asian_total(total, float(m.group(1)), '<')
+
+    # --- TEAM TOTAL GOALS / PUNTOS / CARRERAS (e.g. "Menos de 2 goles de Cruzeiro") ---
+    m = re.match(r'(Más|Menos) de ([\d.]+) (?:goles|puntos|carreras) de (.+)$', p)
+    if m:
+        op_word, line, team = m.group(1), float(m.group(2)), m.group(3)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        team_goals = local_goals if side == 'local' else visitor_goals
+        op = '>' if op_word == 'Más' else '<'
+        return _asian_total(team_goals, line, op)
+
+    # --- GANA TEAM (team wins) ---
+    m = re.match(r'Gana (.+)$', p)
+    if m:
+        team = m.group(1)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        if side == 'local':
+            return 'won' if local_goals > visitor_goals else 'lost'
+        else:
+            return 'won' if visitor_goals > local_goals else 'lost'
+
+    # --- HANDICAP WITH TEAM NAME (HÁ TEAM ±X [Sets]) ---
+    m = re.match(r'HÁ (.+?) ([+-]?[\d.]+)(?:\s+Sets)?$', p)
+    if m:
+        team, h = m.group(1).strip(), float(m.group(2))
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        if side == 'local':
+            return _asian_handicap(local_goals, visitor_goals, h)
+        else:
+            return _asian_handicap(visitor_goals, local_goals, h)
+
+    # --- TEAM GANA Y MÁS/MENOS DE X GOLES/PUNTOS/CARRERAS - SÍ/NO ---
+    m = re.match(r'(.+?) Gana y (Más|Menos) de ([\d.]+) (?:goles|puntos|carreras) - (Sí|No)$', p)
+    if m:
+        team, op_word, line, si = m.group(1).strip(), m.group(2), float(m.group(3)), m.group(4)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        team_wins = (local_goals > visitor_goals) if side == 'local' else (visitor_goals > local_goals)
+        op = '>' if op_word == 'Más' else '<'
+        total_match = _asian_total(total, line, op)
+        condition = team_wins and (total_match == 'won')
+        return 'won' if (condition and si == 'Sí') or (not condition and si == 'No') else 'lost'
+
+    # --- TEAM NO PIERDE Y MÁS/MENOS DE X GOLES/PUNTOS/CARRERAS - SÍ/NO ---
+    m = re.match(r'(.+?) No pierde y (Más|Menos) de ([\d.]+) (?:goles|puntos|carreras) - (Sí|No)$', p)
+    if m:
+        team, op_word, line, si = m.group(1).strip(), m.group(2), float(m.group(3)), m.group(4)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        team_no_lose = (local_goals >= visitor_goals) if side == 'local' else (visitor_goals >= local_goals)
+        op = '>' if op_word == 'Más' else '<'
+        total_match = _asian_total(total, line, op)
+        condition = team_no_lose and (total_match == 'won')
+        return 'won' if (condition and si == 'Sí') or (not condition and si == 'No') else 'lost'
+
+    # --- TEAM TOTAL PAR / IMPAR ---
+    m = re.match(r'(.+?) Total (Par|Impar)$', p)
+    if m:
+        team, parity = m.group(1).strip(), m.group(2)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        team_goals = local_goals if side == 'local' else visitor_goals
+        is_even = team_goals % 2 == 0
+        if parity == 'Par':
+            return 'won' if is_even else 'lost'
+        else:
+            return 'won' if not is_even else 'lost'
+
+    # --- TEAM ANOTA PRÓXIMO GOL (N) ---
+    m = re.match(r'(.+?) Anota próximo gol \((\d+)\)$', p)
+    if m:
+        team, n = m.group(1).strip(), int(m.group(2))
+        if team == 'Ninguno':
+            # "Ninguno" → goal N didn't happen
+            return 'won' if n > len(goal_sequence) else 'lost'
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        if not goal_sequence:
+            return 'SKIP'
+        if n > len(goal_sequence):
+            return 'lost'  # team's goal N never happened
+        scorer = goal_sequence[n - 1]
+        return 'won' if scorer == side else 'lost'
+
+    # --- TEAM GANA POR X - Y GOLES - SÍ/NO ---
+    m = re.match(r'(.+?) Gana por (\d+) - (\d+) goles - (Sí|No)$', p)
+    if m:
+        team, low, high, si = m.group(1).strip(), int(m.group(2)), int(m.group(3)), m.group(4)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        if side == 'local':
+            diff = local_goals - visitor_goals
+            condition = local_goals > visitor_goals and low <= diff <= high
+        else:
+            diff = visitor_goals - local_goals
+            condition = visitor_goals > local_goals and low <= diff <= high
+        return 'won' if (condition and si == 'Sí') or (not condition and si == 'No') else 'lost'
+
+    # --- TEAM GANA POR (N) GOLES - SÍ/NO ---
+    m = re.match(r'(.+?) Gana por \((\d+)\) goles - (Sí|No)$', p)
+    if m:
+        team, n, si = m.group(1).strip(), int(m.group(2)), m.group(3)
+        side = _team_side(team, local_name, visitor_name)
+        if side is None:
+            return 'SKIP'
+        if side == 'local':
+            diff = local_goals - visitor_goals
+            condition = local_goals > visitor_goals and diff == n
+        else:
+            diff = visitor_goals - local_goals
+            condition = visitor_goals > local_goals and diff == n
+        return 'won' if (condition and si == 'Sí') or (not condition and si == 'No') else 'lost'
+
+    return 'SKIP'
+
+
+def resolve_matches_v2(content, match_results):
+    """Like resolve_matches but uses resolve_prop_v2 and accepts visitor_name."""
+    existing = get_existing_keys(content)
+    tickets = parse_tickets(content)
+
+    result_map = {}
+    for mr in match_results:
+        result_map[mr['local_name']] = mr
+
+    results = {}
+    skipped = []
+
+    for leg in tickets:
+        if leg['key'] in existing:
+            continue
+        _, local_name = parse_player(leg['player'])
+        if not local_name or local_name not in result_map:
+            continue
+        mr = result_map[local_name]
+        local_goals = mr['local_goals']
+        visitor_goals = mr['visitor_goals']
+        total = local_goals + visitor_goals
+        ht_local = mr.get('ht_local', 0)
+        ht_visitor = mr.get('ht_visitor', 0)
+        goals_1h = ht_local + ht_visitor
+        goals_2h = total - goals_1h
+        goal_sequence = mr.get('goal_scorers', [])
+        visitor_name = mr.get('visitor_name', '')
+
+        result = resolve_prop_v2(
+            leg['prop'], local_goals, visitor_goals, total,
+            ht_local, ht_visitor, goals_1h, goals_2h, goal_sequence,
+            local_name, visitor_name
+        )
+
+        if result == 'SKIP':
+            skipped.append({
+                'key': leg['key'],
+                'player': leg['player'],
+                'prop': leg['prop'],
+                'reason': 'PROP_NOT_HANDLED'
+            })
+        else:
+            results[leg['key']] = {
+                'result': result,
+                'player': leg['player'],
+                'prop': leg['prop'],
+            }
+    return results, skipped
 
 
 if __name__ == '__main__':
