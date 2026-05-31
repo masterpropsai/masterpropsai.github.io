@@ -1920,6 +1920,44 @@ const TEAM_LOGOS = {
   'WKD-W1_2': 'lost',   // (ENV vs) Corporacion Deportiva Real Cartagena | Menos de 0.5 goles de Corporacion Deportiva Real Cartagena
   'WKD-W4_6': 'won',   // (SLI vs) Bohemian Dublin | Gana Bohemian Dublin
   'WKD-W6_8': 'won',   // (DEP vs) Atletico Grau | Gana Atletico Grau
+
+  // === AUTO-RESOLVE May 30 batch (36 legs: 23 won, 13 lost) ===
+  'SAT-C1_3': 'won',   // (GUA vs) Joinville | Joinville Gana y Menos de 2.5 goles - No
+  'SAT-C2_2': 'won',   // (PRI vs) Aparecidense | Aparecidense Gana y Más de 1.5 goles - No
+  'SAT-C3_1': 'won',   // (CA vs) All Boys | All Boys Gana y Menos de 3.5 goles - No
+  'SAT-C6_4': 'lost',   // (AGR vs) Colegiales | Colegiales No pierde y Menos de 1.5 goles - No
+  'SAT-M1_10': 'won',   // (GOD vs) Estudiantes de | Menos de 1 goles de Estudiantes de
+  'SAT-M1_8': 'won',   // (ATL vs) Goias | Menos de 1 goles de Goias
+  'SAT-M1_9': 'lost',   // (COR vs) Flamengo | Menos de 2 goles de Flamengo
+  'SAT-M2_1': 'won',   // (SPO vs) Granada | Menos de 1 goles de Granada
+  'SAT-M3_11': 'won',   // (PAR vs) Mirassol | Menos de 1 goles de Mirassol
+  'SAT-M5_0': 'lost',   // (PAR vs) Iguatu | Menos de 1 goles de Iguatu
+  'SAT-M5_10': 'won',   // (ALM vs) Colón | Menos de 1 goles de Colón
+  'SAT-M5_13': 'won',   // (FLA vs) Coritiba | Menos de 1 goles de Coritiba
+  'SAT-S1_0': 'lost',   // (GUA vs) Joinville | HÁ Joinville -1
+  'SAT-S3_1': 'won',   // (IGU vs) Parnahyba | Más de 0.5 goles de Parnahyba
+  'SAT-S3_2': 'won',   // (COL vs) Almirante Brown | Más de 0.5 goles de Almirante Brown
+  'SAT-S4_0': 'lost',   // (AGU vs) Madureira | Madureira Total Par
+  'SAT-S4_4': 'won',   // (CRI vs) Avai | Avai Gana y Menos de 3.5 goles - No
+  'SAT-S6_2': 'lost',   // (MAD vs) Agua Santa | Menos de 1.5 goles de Agua Santa
+  'SAT-S8_3': 'lost',   // (FLA vs) Coritiba | Más de 0.5 goles de Coritiba
+  'SAT-W11_4': 'won',   // (ATL vs) Goias | Más de 0.5 goles de Goias
+  'SAT-W12_1': 'lost',   // (BEL vs) Gimnasia y Esgrima de Jujuy | Menos de 0.5 goles de Gimnasia y Esgrima de Jujuy
+  'SAT-W2_4': 'won',   // (COR vs) Flamengo | Más de 1.5 goles de Flamengo
+  'SAT-W3_5': 'won',   // (PRI vs) Aparecidense | Menos de 1.5 goles de Aparecidense
+  'SAT-W7_5': 'lost',   // (PAR vs) Mirassol | Más de 0.5 goles de Mirassol
+  'SAT-W8_7': 'won',   // (CRI vs) Avai | Más de 0.5 goles de Avai
+  'WKD-M1_3': 'won',   // (AGR vs) Colegiales | Menos de 1 goles de Colegiales
+  'WKD-M2_8': 'won',   // (ATL vs) Goias | Menos de 1 goles de Goias
+  'WKD-M3_1': 'won',   // (MIR vs) Paranaense | Menos de 1 goles de Paranaense
+  'WKD-M6_10': 'won',   // (FLA vs) Coritiba | Menos de 1 goles de Coritiba
+  'WKD-M7_10': 'won',   // (PAR vs) Mirassol | Menos de 1 goles de Mirassol
+  'WKD-M8_1': 'lost',   // (SPO vs) Granada | Gana Granada
+  'WKD-W10_3': 'lost',   // (ALL vs) CA Los Andes | Más de 0.5 goles de CA Los Andes
+  'WKD-W11_3': 'won',   // (AGU vs) Madureira | Más de 0.5 goles de Madureira
+  'WKD-W3_7': 'won',   // (GUA vs) Joinville | Menos de 2 goles de Joinville
+  'WKD-W4_4': 'lost',   // (GRA vs) Sporting de Gijon | Menos de 1.5 goles de Sporting de Gijon
+  'WKD-W7_8': 'lost',   // (AGR vs) Colegiales | Más de 0.5 goles de Colegiales
 };
 const NEEDS_BG = new Set(['NYY','COL','VGK','CLE','OKC','RIV','ATM','SD','BOS','CAR','MTL','JUV','INT','BOC']);
 function getTeamBadge(leg) {
