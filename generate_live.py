@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-MasterProps.ai — LIVE Ticket Generator v4
-Fetches real odds from DBbet Marketing API, builds high-value prop tickets.
-Replaces the hardcoded PROP_POOL with real-time data.
+MasterProps.ai — LIVE Ticket Generator v5
+Fetches real odds from DBbet Marketing API, cross-references with sharp
+bookmaker odds (The Odds API) and team stats (API-Football) to build
+fewer, higher-quality tickets with verified edge.
 """
 
 import random
@@ -11,8 +12,17 @@ import re
 import json
 import urllib.request
 import urllib.parse
+import os
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Market intelligence (sharp odds + team stats)
+try:
+    from market_intelligence import MarketIntel, odds_api_market_from_dbbet
+    HAS_INTEL = True
+except ImportError:
+    HAS_INTEL = False
+    print("⚠️  market_intelligence.py not found — running without sharp odds/stats")
 
 BASE_DIR = Path(__file__).parent
 TEMPLATE_FILE = BASE_DIR / 'template.html'
@@ -853,17 +863,32 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             personalized = _re_subst.sub(r'Hándicap (.+?) \((-?\d+(?:\.\d+)?)\)( Sets)?', _fmt_handicap, personalized)
             # 5) Limpieza: doble espacio
             personalized = _re_subst.sub(r'\s+', ' ', personalized).strip()
-            # Compute edge from predictive model
+            # ── EDGE CALCULATION ──
+            # Priority: Sharp market edge (The Odds API) > Poisson model edge
             edge_val = None
             model_p = None
-            if lambdas:
+            sharp_edge = None
+
+            # 1) Sharp edge from market intelligence (if available)
+            if HAS_INTEL and hasattr(build_prop_pool, '_intel') and build_prop_pool._intel:
+                intel = build_prop_pool._intel
+                mapping = odds_api_market_from_dbbet(
+                    odd.get('type', 0), odd.get('parameter', 0), t1, t2
+                )
+                if mapping:
+                    mkt, outcome, param_str = mapping
+                    sharp_edge = intel.true_edge(t1, t2, mkt, outcome, param_str, odds_val)
+                    if sharp_edge is not None:
+                        edge_val = round(max(-0.30, min(0.30, sharp_edge)), 4)
+
+            # 2) Fallback: Poisson model edge (if no sharp data)
+            if edge_val is None and lambdas:
                 model_p = model_probability(
                     odd.get('type', 0),
                     odd.get('parameter', 0),
                     lambdas[0], lambdas[1]
                 )
                 if model_p is not None and 0.04 <= model_p <= 0.96:
-                    # Clip extreme edges — Poisson is unreliable at market tails
                     raw_edge = (model_p * odds_val) - 1
                     edge_val = round(max(-0.30, min(0.25, raw_edge)), 4)
 
@@ -882,8 +907,10 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
                 'match_key': f"{t1} vs {t2}",
                 'day': day_label or 'today',
                 'tournament': tournament,
-                'edge': edge_val,           # None if unsupported, else fraction (-0.05 = -5%)
-                'model_p': model_p,         # None or 0..1
+                'edge': edge_val,           # None if no data, else fraction (-0.05 = -5%)
+                'sharp_edge': sharp_edge,   # Edge from sharp books (None if unavailable)
+                'model_p': model_p,         # Poisson probability (None or 0..1)
+                'edge_source': 'sharp' if sharp_edge is not None else ('poisson' if model_p is not None else None),
                 # SaveCoupon fields for coupon code generation
                 'game_id': event.get('sportEventId', 0),
                 'type_id': odd.get('type', 0),
@@ -908,18 +935,76 @@ def _esc(s):
 
 
 def calculate_confidence(legs):
+    """Calculate confidence score (1-6) for a ticket.
+
+    Uses three layers:
+    1. Edge quality: how many legs have verified sharp edge > 0
+    2. Team stats: form, injuries (from API-Football when available)
+    3. Odds consistency: probability distribution variance
+    """
     probs = [1/leg['odd'] for leg in legs]
     avg_prob = sum(probs) / len(probs)
     n = len(legs)
+
+    # Base from average probability
     if avg_prob > 0.55: base = 5
     elif avg_prob > 0.45: base = 4
     elif avg_prob > 0.35: base = 3
     elif avg_prob > 0.25: base = 2
     else: base = 1
+
+    # Penalty for too many legs
     if n >= 6: base = max(1, base - 2)
     elif n >= 5: base = max(1, base - 1)
+
+    # Bonus for consistent probabilities (low variance)
     variance = sum((p - avg_prob)**2 for p in probs) / len(probs)
     if variance < 0.01: base = min(6, base + 1)
+
+    # ── NEW: Edge quality bonus ──
+    # If we have sharp edge data, reward tickets where most legs have positive edge
+    sharp_edges = [l.get('sharp_edge') for l in legs if l.get('sharp_edge') is not None]
+    if sharp_edges:
+        positive_pct = sum(1 for e in sharp_edges if e > 0) / len(sharp_edges)
+        if positive_pct >= 0.8:
+            base = min(6, base + 1)  # 80%+ legs have positive sharp edge
+        elif positive_pct >= 0.6:
+            pass  # neutral
+        else:
+            base = max(1, base - 1)  # too many negative-edge legs
+
+        # Extra bonus if average sharp edge is strongly positive
+        avg_sharp = sum(sharp_edges) / len(sharp_edges)
+        if avg_sharp >= 0.05:  # 5%+ average edge across the ticket
+            base = min(6, base + 1)
+
+    # ── NEW: Team stats adjustment ──
+    if HAS_INTEL and hasattr(build_prop_pool, '_intel') and build_prop_pool._intel:
+        intel = build_prop_pool._intel
+        stat_adjustments = 0
+        stat_count = 0
+
+        for leg in legs:
+            if leg.get('sport') != 'futbol':
+                continue
+            mk = leg.get('match_key', '')
+            if ' vs ' not in mk:
+                continue
+            parts = mk.split(' vs ')
+            if len(parts) != 2:
+                continue
+            conf = intel.team_confidence(parts[0].strip(), parts[1].strip())
+            if conf['score'] != 3:  # 3 is neutral (no data)
+                stat_adjustments += conf['score'] - 3
+                stat_count += 1
+
+        if stat_count >= 2:
+            avg_adj = stat_adjustments / stat_count
+            if avg_adj >= 0.5:
+                base = min(6, base + 1)
+            elif avg_adj <= -0.5:
+                base = max(1, base - 1)
+
     return min(6, max(1, base))
 
 
@@ -1409,6 +1494,40 @@ def main():
     event_count = data.get('count', 0)
     print(f"✅ {event_count} events loaded")
 
+    # 2b. Initialize Market Intelligence (sharp odds + team stats)
+    intel = None
+    if HAS_INTEL:
+        odds_key = os.environ.get('ODDS_API_KEY', '')
+        fb_key = os.environ.get('FOOTBALL_API_KEY', '')
+        if odds_key or fb_key:
+            print("\n📈 Initializing Market Intelligence...")
+            intel = MarketIntel(odds_api_key=odds_key, football_api_key=fb_key)
+
+            # Fetch sharp odds
+            intel.fetch_sharp_odds()
+
+            # Extract football match pairs for team stats
+            football_pairs = []
+            for event in data.get('items', []):
+                if event.get('sportId') == 1:  # Football
+                    t1 = event.get('opponent1NameLocalization', '')
+                    t2 = event.get('opponent2NameLocalization', '')
+                    if t1 and t2:
+                        football_pairs.append((t1, t2))
+            if football_pairs:
+                # Limit to avoid burning too many API calls
+                intel.fetch_team_stats(football_pairs[:50])
+
+            intel.fetch_all()  # Summary
+
+            # Attach intel to build_prop_pool so it can access sharp odds
+            build_prop_pool._intel = intel
+        else:
+            print("\n⚠️  ODDS_API_KEY / FOOTBALL_API_KEY not set — running without market intelligence")
+            print("   Set env vars to enable sharp edge calculation and team stats")
+    else:
+        build_prop_pool._intel = None
+
     # 3. Build prop pools — Saturday, Sunday, Combined
     from datetime import timedelta
 
@@ -1437,6 +1556,24 @@ def main():
     print("  📅 HOY+MAÑANA (combinado):")
     pool_weekend = build_prop_pool(data, start_ts_min=sat_start, start_ts_max=sun_end, day_label='weekend')
     print(f"     ✅ {len(pool_weekend)} props")
+
+    # 3b. Quality filter — remove picks with confirmed negative sharp edge
+    if intel and intel.sharp_odds:
+        for pool_name, pool in [('HOY', pool_sat), ('MAÑANA', pool_sun), ('COMBINADO', pool_weekend)]:
+            before = len(pool)
+            # Remove picks where sharp bookmakers say edge is clearly negative (< -5%)
+            filtered = [p for p in pool if p.get('sharp_edge') is None or p['sharp_edge'] > -0.05]
+            removed = before - len(filtered)
+            if removed > 0:
+                pool.clear()
+                pool.extend(filtered)
+                print(f"  🚫 {pool_name}: {removed} picks descartados (edge sharp < -5%)")
+
+        # Stats
+        for pool_name, pool in [('HOY', pool_sat), ('MAÑANA', pool_sun)]:
+            sharp_count = sum(1 for p in pool if p.get('sharp_edge') is not None)
+            pos_count = sum(1 for p in pool if (p.get('sharp_edge') or 0) > 0)
+            print(f"  📊 {pool_name}: {sharp_count} picks con datos sharp, {pos_count} con edge positivo")
 
     # 4. Generate tickets for each group
     all_tickets = []
