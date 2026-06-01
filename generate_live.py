@@ -753,9 +753,12 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
         match = f"{t1} vs {t2}"
         tournament = event.get('tournamentNameLocalization', '')
         link = event.get('link', '')
-        # Skip excluded tournaments (friendlies, etc.)
+        # Skip excluded tournaments AND team names (friendlies, reserves, U20, etc.)
         tlow = tournament.lower()
-        if any(kw in tlow for kw in EXCLUDED_TOURNAMENT_KEYWORDS):
+        t1low = t1.lower()
+        t2low = t2.lower()
+        combined = f"{tlow} {t1low} {t2low}"
+        if any(kw in combined for kw in EXCLUDED_TOURNAMENT_KEYWORDS):
             continue
         # Compute boost weight for preferred tournaments
         boost_weight = 1
