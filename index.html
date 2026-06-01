@@ -1298,22 +1298,20 @@ body {
     var m = Math.floor((diff % 3600000) / 60000);
     var s = Math.floor((diff % 60000) / 1000);
 
-    if (d > 0) {
-      el.textContent = d;
-      var suffix = document.getElementById('mpMundialSuffix');
-      if (!suffix) {
-        suffix = document.createElement('span');
-        suffix.id = 'mpMundialSuffix';
-        suffix.style.cssText = 'color:rgba(255,255,255,0.85)';
-        el.parentNode.insertBefore(suffix, el.nextSibling);
-      }
-      suffix.textContent = (d === 1 ? ' día' : ' días') + ' · ' + h + 'h ' + m + 'm';
-    } else {
-      row.innerHTML = 'Mundial 2026 · <span style="color:#d4a520">' + h + 'h ' + m + 'm ' + s + 's</span>';
+    var total = d + (h > 0 || m > 0 ? 1 : 0);
+    el.textContent = total;
+    var suffix = document.getElementById('mpMundialSuffix');
+    if (!suffix) {
+      suffix = document.createElement('span');
+      suffix.id = 'mpMundialSuffix';
+      suffix.style.cssText = 'color:rgba(255,255,255,0.85)';
+      el.parentNode.insertBefore(suffix, el.nextSibling);
     }
+    suffix.textContent = total === 1 ? ' día' : ' días';
   }
   update();
-  setInterval(update, 1000);
+  var msToMidnight = new Date(new Date().toDateString()).getTime() + 86400000 - Date.now();
+  setTimeout(function tick() { update(); setTimeout(tick, 86400000); }, msToMidnight);
 })();
 </script>
 
