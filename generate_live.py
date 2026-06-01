@@ -137,6 +137,14 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'nhl',                                  # NHL (sólo 1 evento Stanley Cup final, descartado por pedido)
     'japan. npb', 'japan npb',              # NPB + Reserve + Winners
     'kbo',                                  # KBO South Korea + Winner
+    # ── Reservas / Mujeres / Sub-20 — sin cobertura en The Odds API ──
+    'u20', 'u19', 'u21', 'u23',            # Youth categories
+    'sub 20', 'sub 19', 'sub 21', 'sub-20', 'sub-19', 'sub-21',
+    'reserve', 'reserva',                   # Reserve leagues
+    'women', 'femenin', 'female', 'mujeres',  # Women's leagues
+    'youth', 'juvenil', 'junior',           # Youth/junior
+    'primavera',                            # Italian youth league
+    'opg',                                  # Torneio OPG U20
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
