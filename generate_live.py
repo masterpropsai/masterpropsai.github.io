@@ -47,7 +47,7 @@ SPORT_NAMES = {
 
 # ── Team abbreviations ──
 TEAM_ABBREVS = {
-    'Real Madrid': 'RMA', 'Barcelona': 'BAR', 'Atletico Madrid': 'ATM',
+    'Real Madrid': 'RMA', 'Barcelona Sporting': 'BSC', 'Barcelona': 'BAR', 'Atletico Madrid': 'ATM',
     'Manchester City': 'MCI', 'Manchester United': 'MUN', 'Liverpool': 'LIV',
     'Arsenal': 'ARS', 'Chelsea': 'CHE', 'Tottenham': 'TOT', 'Everton': 'EVE',
     'Bayern': 'BAY', 'Dortmund': 'BVB', 'Juventus': 'JUV',
@@ -366,7 +366,8 @@ def fetch_events(token):
 
 
 def abbrev(name):
-    for full, ab in TEAM_ABBREVS.items():
+    # Sort by key length descending so 'Barcelona Sporting' matches before 'Barcelona'
+    for full, ab in sorted(TEAM_ABBREVS.items(), key=lambda x: len(x[0]), reverse=True):
         if full.lower() in name.lower():
             return ab
     words = name.split()
