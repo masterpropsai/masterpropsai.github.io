@@ -150,11 +150,63 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'série c', 'serie c',                   # Brazilian Serie C
     'sul-sudeste', 'suleste',               # Brazilian regional cups
     'copa paulista', 'gaucho u',            # Brazilian state youth
+    'carioca c', 'carioca b',              # Campeonato Carioca C/B (regional BR)
+    'campeonato carioca c', 'campeonato carioca b',
+    'promocional amateur',                  # Torneo Promocional Amateur (ARG minor)
+    'primera c ', 'primera c,',            # Primera C Metropolitana (ARG 4th)
+    'primera b metropolitana',              # Primera B Metro (ARG 3rd)
+    'primera b nacional',                   # Primera B Nacional
+    'intermedia',                           # División Intermedia (Paraguay 2nd)
+    # ── Divisiones 3ra/4ta/5ta de cualquier país ──
     'segunda b', 'tercera division',        # Spanish lower divisions
-    '3. deild', '4. deild',                # Icelandic lower divisions
-    'division 2', 'division 3',             # Scandinavian lower divisions
+    'third league', 'third division',       # Generic 3rd division
+    'fourth league', 'fourth division',     # Generic 4th
+    'fifth league', 'fifth division',       # Generic 5th
+    '3. liga', '4. liga', '5. liga',       # Czech/German 3rd-5th
+    '3 liga', '4 liga',                    # Polish etc.
+    '3. deild', '4. deild',               # Icelandic lower divisions
+    '2 deild', '2. deild',                # Icelandic 2nd
+    'division 1,', 'division 2', 'division 3',  # Scandinavian lower
+    'esiliiga',                             # Estonian 2nd division
+    'league two', 'usl league two',        # USL League Two (US amateur)
+    # ── Campeonatos regionales (Brasil y otros) ──
+    'campeonato mineiro', 'campeonato carioca',    # Brazilian state championships
+    'campeonato gaucho', 'campeonato paranaense',
+    'campeonato paulista', 'campeonato baiano',
+    'campeonato catarinense', 'campeonato goiano',
+    'campeonato capixaba', 'campeonato sergipano',
+    'campeonato maranhense', 'campeonato piauiense',
+    'campeonato paraibano', 'campeonato potiguar',
+    'campeonato pernambucano', 'campeonato alagoano',
+    'campeonato acreano', 'campeonato amapaense',
+    'campeonato amazonense', 'campeonato matogrossense',
+    'campeonato rondoniense', 'campeonato roraimense',
+    'campeonato tocantinense', 'campeonato brasiliense',
+    'liga gaucho', 'copa paulista',
+    'simon bolivar',                        # Copa Simon Bolivar (Bolivia regional)
+    # ── Ligas amateur / semi-pro ──
+    'ahl',                                  # American Hockey League (minor)
+    'latvian cup',                          # Latvia minor
+    'silver league',                        # Minor volleyball/handball
+    'liga 2',                               # Romanian/other 2nd division
+    'ncaa',                                 # US college
+    'qualification',                        # Qualification rounds
+    'league cup',                           # Minor domestic cups
     'regionalliga',                         # German regional leagues
     'oberliga',                             # German amateur
+    'landesliga',                           # German state leagues
+    'kreisliga',                            # German district leagues
+    'botola',                               # Morocco minor
+    'stars league',                         # Qatar Stars League minor
+    # ── Más islandesas/nórdicas menores ──
+    'deild', 'delid',                       # Icelandic all lower divisions
+    # ── Tenis circuitos menores (Challenger/ITF/Futures) ──
+    'challenger', 'itf ',                   # ITF/Challenger circuits
+    'birmingham', 'caltanissetta', 'heilbronn',  # Minor tour cities
+    'tyler', 'harmon', 'perugia',          # Minor tour cities
+    'santo domingo', 'prostejov', 'surbiton',
+    # ── Primera B (genérica, no primera división) ──
+    'primera b',                            # 2nd division Argentina/Chile/etc.
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
