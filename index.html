@@ -1213,7 +1213,7 @@ body {
 }
 </style>
 </head>
-<body data-generated="2026-06-01 01:20 UTC">
+<body data-generated="2026-06-01 13:29 UTC">
 
 <!-- SPONSOR BAR -->
 <div class="sponsor-bar">
@@ -2129,32 +2129,40 @@ function getTicketHeroLogo(ticket) {
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'S1', tier:'shark', sport:'nba', title:'NBA + MLB', confidence:4, totalOdds:35.4, couponCode:'', legs:[
-    {player:'Jalen Brunson', prop:'Over 24.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:2.05, sport:'nba'},
-    {player:'Victor Wembanyama', prop:'Over 12.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.88, sport:'nba'},
-    {player:'Michael Busch', prop:'Over 0.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:2.32, sport:'mlb'},
-    {player:'Pedro Pages', prop:'Over 0.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:2.25, sport:'mlb'},
-    {player:'De\'Aaron Fox', prop:'Over 3.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.76, sport:'nba'}
+  { id:'S1', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:55.2, couponCode:'', legs:[
+    {player:'Dillon Dingler', prop:'Over 0.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:1.52, sport:'mlb'},
+    {player:'Nathaniel Lowe', prop:'Home Run: Sí', match:'Cincinnati Reds vs Kansas City Royals', odd:1.17, sport:'mlb'},
+    {player:'Mikal Bridges', prop:'Over 2.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.71, sport:'nba'},
+    {player:'Junior Caminero', prop:'Home Run: Sí', match:'Tampa Bay Rays vs Detroit Tigers', odd:4.54, sport:'mlb'},
+    {player:'James Wood', prop:'Home Run: Sí', match:'Washington Nationals vs Miami Marlins', odd:4.0, sport:'mlb'}
   ]},
-  { id:'H1', tier:'hunter', sport:'nba', title:'NBA + MLB', confidence:4, totalOdds:22.1, couponCode:'', legs:[
-    {player:'Carson Kelly', prop:'Over 1.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:1.47, sport:'mlb'},
-    {player:'Devin Vassell', prop:'Over 2.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:2.31, sport:'nba'},
-    {player:'Julian Champagnie', prop:'Over 5.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.02, sport:'nba'},
-    {player:'OG Anunoby', prop:'Over 1.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.67, sport:'nba'},
-    {player:'Matthew Liberatore', prop:'Over 4.5 strikeouts', match:'St. Louis Cardinals vs Chicago Cubs', odd:1.93, sport:'mlb'}
+  { id:'S2', tier:'shark', sport:'nba', title:'NBA + MLB', confidence:4, totalOdds:37.2, couponCode:'', legs:[
+    {player:'Jalen Brunson', prop:'Over 2.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.29, sport:'nba'},
+    {player:'De\'Aaron Fox', prop:'Over 3.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.0, sport:'nba'},
+    {player:'Julian Champagnie', prop:'Over 5.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.74, sport:'nba'},
+    {player:'OG Anunoby', prop:'Over 1.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:2.12, sport:'nba'},
+    {player:'Matt Vierling', prop:'Over 0.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:2.2, sport:'mlb'}
   ]},
-  { id:'H2', tier:'hunter', sport:'nba', title:'NBA + MLB', confidence:5, totalOdds:13.5, couponCode:'', legs:[
-    {player:'Karl-Anthony Towns', prop:'Over 11.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.95, sport:'nba'},
-    {player:'Ivan Herrera', prop:'Over 1.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:1.74, sport:'mlb'},
-    {player:'De\'Aaron Fox', prop:'Over 15.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.87, sport:'nba'},
-    {player:'Kevin Alcantara', prop:'Over 0.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:2.13, sport:'mlb'}
+  { id:'H1', tier:'hunter', sport:'nba', title:'NBA + MLB', confidence:3, totalOdds:23.6, couponCode:'', legs:[
+    {player:'Eugenio Suarez', prop:'Home Run: Sí', match:'Cincinnati Reds vs Kansas City Royals', odd:1.17, sport:'mlb'},
+    {player:'Devin Vassell', prop:'Over 2.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.57, sport:'nba'},
+    {player:'Jonathan Aranda', prop:'Over 1.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:1.58, sport:'mlb'},
+    {player:'Dylan Harper', prop:'Over 2.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.98, sport:'nba'},
+    {player:'Josh Hart', prop:'Over 7.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.03, sport:'nba'},
+    {player:'Karl-Anthony Towns', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:2.02, sport:'nba'}
   ]},
-  { id:'H3', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:4, totalOdds:11.8, couponCode:'', legs:[
-    {player:'Jordan Walker', prop:'Home Run: Sí', match:'St. Louis Cardinals vs Chicago Cubs', odd:1.12, sport:'mlb'},
-    {player:'Devin Vassell', prop:'Over 4.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.61, sport:'nba'},
-    {player:'Seiya Suzuki', prop:'Over 1.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:1.63, sport:'mlb'},
-    {player:'Pete Crow-Armstrong', prop:'Over 0.5 bases totales', match:'St. Louis Cardinals vs Chicago Cubs', odd:2.37, sport:'mlb'},
-    {player:'Dylan Harper', prop:'Over 3.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.69, sport:'nba'}
+  { id:'H2', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:4, totalOdds:14.8, couponCode:'', legs:[
+    {player:'Jac Caglianone', prop:'Home Run: Sí', match:'Cincinnati Reds vs Kansas City Royals', odd:1.2, sport:'mlb'},
+    {player:'Karl-Anthony Towns', prop:'Over 4.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.72, sport:'nba'},
+    {player:'Ty Madden', prop:'Over 3.5 strikeouts', match:'Tampa Bay Rays vs Detroit Tigers', odd:1.76, sport:'mlb'},
+    {player:'Stephon Castle', prop:'Over 16.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.83, sport:'nba'},
+    {player:'Riley Greene', prop:'Over 0.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:2.23, sport:'mlb'}
+  ]},
+  { id:'H3', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:13.5, couponCode:'', legs:[
+    {player:'Cedric Mullins', prop:'Over 0.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:2.04, sport:'mlb'},
+    {player:'Richie Palacios', prop:'Over 0.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:2.11, sport:'mlb'},
+    {player:'Wenceel Perez', prop:'Over 0.5 bases totales', match:'Tampa Bay Rays vs Detroit Tigers', odd:1.8, sport:'mlb'},
+    {player:'Mikal Bridges', prop:'Over 14.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.74, sport:'nba'}
   ]},
 ];
 
