@@ -145,6 +145,16 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'youth', 'juvenil', 'junior',           # Youth/junior
     'primavera',                            # Italian youth league
     'opg',                                  # Torneio OPG U20
+    # ── Ligas menores sin cobertura en The Odds API ──
+    'série d', 'serie d',                   # Brazilian Serie D
+    'série c', 'serie c',                   # Brazilian Serie C
+    'sul-sudeste', 'suleste',               # Brazilian regional cups
+    'copa paulista', 'gaucho u',            # Brazilian state youth
+    'segunda b', 'tercera division',        # Spanish lower divisions
+    '3. deild', '4. deild',                # Icelandic lower divisions
+    'division 2', 'division 3',             # Scandinavian lower divisions
+    'regionalliga',                         # German regional leagues
+    'oberliga',                             # German amateur
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
