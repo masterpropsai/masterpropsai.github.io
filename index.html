@@ -1284,25 +1284,25 @@ body {
   if (!el || !row) return;
 
   function update() {
-    var now = Date.now();
-    if (now > wcEnd.getTime()) {
+    // Compare calendar dates only
+    var today = new Date();
+    var todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var startDate = new Date(2026, 5, 11);
+    var endDate = new Date(2026, 6, 19);
+
+    if (todayDate > endDate) {
       // World Cup finished — hide banner
       if (banner) banner.style.display = 'none';
       return;
     }
-    if (now >= wcStart.getTime()) {
+    if (todayDate >= startDate) {
       // World Cup LIVE — show day number
-      var dayNum = Math.floor((now - wcStart.getTime()) / 86400000) + 1;
+      var dayNum = Math.round((todayDate - startDate) / 86400000) + 1;
       row.innerHTML = 'Mundial 2026 <span style="color:#d4a520">EN VIVO</span> · Día ' + dayNum + ' 🔥';
       return;
     }
     // Countdown
-    var diff = wcStart.getTime() - now;
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    var s = Math.floor((diff % 60000) / 1000);
-
+    var d = Math.round((startDate - todayDate) / 86400000);
     el.textContent = d;
     var suffix = document.getElementById('mpMundialSuffix');
     if (!suffix) {
