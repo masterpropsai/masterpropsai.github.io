@@ -47,7 +47,7 @@ SPORT_NAMES = {
 
 # ── Team abbreviations ──
 TEAM_ABBREVS = {
-    'Real Madrid': 'RMA', 'Barcelona Sporting': 'BSC', 'Barcelona': 'BAR', 'Atletico Madrid': 'ATM',
+    'Real Madrid': 'RMA', 'Barracas Central': 'BRC', 'Barcelona Sporting': 'BSC', 'Barcelona': 'BAR', 'Atletico Madrid': 'ATM',
     'Manchester City': 'MCI', 'Manchester United': 'MUN', 'Liverpool': 'LIV',
     'Arsenal': 'ARS', 'Chelsea': 'CHE', 'Tottenham': 'TOT', 'Everton': 'EVE',
     'Bayern': 'BAY', 'Dortmund': 'BVB', 'Juventus': 'JUV',
