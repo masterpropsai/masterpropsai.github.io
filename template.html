@@ -1276,7 +1276,7 @@ body {
 </style>
 <script>
 (function(){
-  var wcStart = new Date('2026-06-11T20:00:00Z'); // Inaugural match
+  var wcStart = new Date('2026-06-11T00:00:00-03:00'); // 11 de junio Argentina
   var wcEnd   = new Date('2026-07-19T22:00:00Z'); // Final
   var banner  = document.getElementById('mpMundialBanner');
   var el      = document.getElementById('mpMundialDays');
@@ -1303,8 +1303,7 @@ body {
     var m = Math.floor((diff % 3600000) / 60000);
     var s = Math.floor((diff % 60000) / 1000);
 
-    var total = d + (h > 0 || m > 0 ? 1 : 0); // round up partial day
-    el.textContent = total;
+    el.textContent = d;
     var suffix = document.getElementById('mpMundialSuffix');
     if (!suffix) {
       suffix = document.createElement('span');
@@ -1312,7 +1311,7 @@ body {
       suffix.style.cssText = 'color:rgba(255,255,255,0.85)';
       el.parentNode.insertBefore(suffix, el.nextSibling);
     }
-    suffix.textContent = total === 1 ? ' día' : ' días';
+    suffix.textContent = d === 1 ? ' día' : ' días';
   }
   update();
   // Update once at midnight (calculate ms until next 00:00)
