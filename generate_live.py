@@ -207,6 +207,18 @@ EXCLUDED_TOURNAMENT_KEYWORDS = [
     'santo domingo', 'prostejov', 'surbiton',
     # ── Primera B (genérica, no primera división) ──
     'primera b',                            # 2nd division Argentina/Chile/etc.
+    # ── Apuestas a largo plazo / especiales (sin fecha de resolución) ──
+    'special bet', 'special bets',          # DBbet "Special bets" category
+    'outright', 'outrights',                # Season outrights (winner of league etc.)
+    'ballon d', 'balon de oro',             # Ballon d'Or
+    'golden boot', 'golden ball', 'golden glove',
+    'mvp', 'most valuable',
+    'before retirement', 'retire',
+    'transfer', 'next club',
+    'top scorer', 'goleador',
+    'best player', 'mejor jugador',
+    'season winner', 'winner 202',          # "Winner 2025/26" etc.
+    'champion 202',                         # "Champion 2025/26"
 ]
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
