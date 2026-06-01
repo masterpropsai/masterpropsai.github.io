@@ -568,11 +568,13 @@ body {
 .leg-result { margin-left: 8px; font-size: 0.85rem; flex-shrink: 0; }
 .leg-result.won { color: #22c55e; }
 .leg-result.lost { color: #ef4444; }
+.leg-result.void { color: #60a5fa; }
 .leg-result.pending { color: #8a8578; opacity: 0.4; font-size: 0.7rem; }
 .leg-link { opacity: 1 !important; font-size: 0.95rem !important; color: #e91e63 !important; text-decoration: none; cursor: pointer; transition: transform 0.15s; }
 .leg-link:hover { transform: scale(1.3); }
 .leg-won { border-left: 2px solid rgba(34,197,94,0.4); }
 .leg-lost { opacity: 0.5; text-decoration: line-through; border-left: 2px solid rgba(239,68,68,0.3); }
+.leg-void { opacity: 0.6; border-left: 2px solid rgba(96,165,250,0.4); text-decoration: line-through; }
 .ticket-result-badge {
   padding: 3px 10px; border-radius: 6px; font-size: 0.65rem;
   font-weight: 800; letter-spacing: 0.5px; z-index: 5;
@@ -2931,16 +2933,18 @@ function renderTickets(filter = 'all') {
   const statusVal = document.getElementById('statusFilter') ? document.getElementById('statusFilter').value : 'alive';
   if (statusVal !== 'all') {
     filtered = filtered.filter(ticket => {
-      let hasLost = false, wonCount = 0;
+      let hasLost = false, wonCount = 0, voidCount = 0;
       ticket.legs.forEach((leg, j) => {
         const rk = `${ticket.id}_${j}`;
         const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
         if (r === 'lost') hasLost = true;
         if (r === 'won') wonCount++;
+        if (r === 'void') voidCount++;
       });
       if (statusVal === 'dead') return hasLost;
-      if (statusVal === 'won') return !hasLost && wonCount === ticket.legs.length;
-      return !hasLost && wonCount < ticket.legs.length; // alive = sin perdidas + aún tiene pendientes
+      const activLegs = ticket.legs.length - voidCount;
+      if (statusVal === 'won') return !hasLost && activLegs > 0 && wonCount === activLegs;
+      return !hasLost && wonCount < activLegs; // alive = sin perdidas + aún tiene pendientes
     });
   }
 
@@ -2993,9 +2997,10 @@ function renderTickets(filter = 'all') {
       const result = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[resultKey]) || null;
       const resultHTML = result === 'won' ? '<span class="leg-result won">✅</span>' :
                          result === 'lost' ? '<span class="leg-result lost">❌</span>' :
+                         result === 'void' ? '<span class="leg-result void">🔄</span>' :
                          (leg.link ? `<a href="${leg.link}" target="_blank" class="leg-result pending leg-link" title="Ver evento en DBbet">↗</a>` : '<span class="leg-result pending">⏳</span>');
       return `
-      <div class="leg ${result === 'lost' ? 'leg-lost' : result === 'won' ? 'leg-won' : ''}">
+      <div class="leg ${result === 'lost' ? 'leg-lost' : result === 'won' ? 'leg-won' : result === 'void' ? 'leg-void' : ''}">
         <div class="leg-number">${getTeamBadge(leg)}</div>
         <div class="leg-info">
           <div class="leg-player">${leg.player}</div>
@@ -3017,25 +3022,27 @@ function renderTickets(filter = 'all') {
     const investFormatted = investAmount.toLocaleString(locale);
 
     // Calculate heat level based on won legs
-    let wonLegs = 0, lostLegs = 0, resolvedLegs = 0;
+    let wonLegs = 0, lostLegs = 0, resolvedLegs = 0, voidLegs = 0;
     ticket.legs.forEach((leg, j) => {
       const rk = `${ticket.id}_${j}`;
       const r = (typeof LEG_RESULTS !== 'undefined' && LEG_RESULTS[rk]) || null;
       if (r === 'won') { wonLegs++; resolvedLegs++; }
       else if (r === 'lost') { lostLegs++; resolvedLegs++; }
+      else if (r === 'void') { voidLegs++; resolvedLegs++; }
     });
     const totalLegs = ticket.legs.length;
-    const wonRatio = totalLegs > 0 ? wonLegs / totalLegs : 0;
+    const activeLegs = totalLegs - voidLegs;
+    const wonRatio = activeLegs > 0 ? wonLegs / activeLegs : 0;
     let heatClass = '', heatBadgeHTML = '';
     if (lostLegs === 0 && wonLegs > 0) {
-      if (wonRatio >= 0.9) { heatClass = 'heat-inferno'; heatBadgeHTML = `<div class="ticket-heat-badge inferno">🔥 ${wonLegs}/${totalLegs} — INFERNO</div>`; }
-      else if (wonRatio >= 0.65) { heatClass = 'heat-fire'; heatBadgeHTML = `<div class="ticket-heat-badge fire">🔥 ${wonLegs}/${totalLegs} — EN FUEGO</div>`; }
-      else if (wonRatio >= 0.4) { heatClass = 'heat-hot'; heatBadgeHTML = `<div class="ticket-heat-badge hot">🌡️ ${wonLegs}/${totalLegs} — CALIENTE</div>`; }
-      else { heatClass = 'heat-warm'; heatBadgeHTML = `<div class="ticket-heat-badge warm">✨ ${wonLegs}/${totalLegs} — VAMOS</div>`; }
+      if (wonRatio >= 0.9) { heatClass = 'heat-inferno'; heatBadgeHTML = `<div class="ticket-heat-badge inferno">🔥 ${wonLegs}/${activeLegs} — INFERNO</div>`; }
+      else if (wonRatio >= 0.65) { heatClass = 'heat-fire'; heatBadgeHTML = `<div class="ticket-heat-badge fire">🔥 ${wonLegs}/${activeLegs} — EN FUEGO</div>`; }
+      else if (wonRatio >= 0.4) { heatClass = 'heat-hot'; heatBadgeHTML = `<div class="ticket-heat-badge hot">🌡️ ${wonLegs}/${activeLegs} — CALIENTE</div>`; }
+      else { heatClass = 'heat-warm'; heatBadgeHTML = `<div class="ticket-heat-badge warm">✨ ${wonLegs}/${activeLegs} — VAMOS</div>`; }
     }
     const ticketDead = lostLegs > 0;
     const ticketDeadBadge = ticketDead ? `<div class="ticket-result-badge lost">❌ PERDIDO</div>` : '';
-    const isFullWinner = wonLegs === totalLegs && totalLegs > 0;
+    const isFullWinner = activeLegs > 0 && wonLegs === activeLegs;
     const ticketWonBadge = isFullWinner ? `<div class="ticket-result-badge won">💰 ¡GANADOR! 🎉</div>` : '';
 
     // Build sport tags from unique sports in legs
