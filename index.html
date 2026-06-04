@@ -1219,7 +1219,7 @@ body {
 }
 </style>
 </head>
-<body data-generated="2026-06-03 22:24 UTC">
+<body data-generated="2026-06-04 10:56 UTC">
 
 <!-- SPONSOR BAR -->
 <div class="sponsor-bar">
@@ -2182,27 +2182,35 @@ function getTicketHeroLogo(ticket) {
 
 // === TICKET DATA ===
 const TICKETS = [
-  { id:'S1', tier:'shark', sport:'nba', title:'NBA + MLB', confidence:4, totalOdds:34.3, couponCode:'', legs:[
-    {player:'Landry Shamet', prop:'Over 1.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.4, sport:'nba'},
-    {player:'George Kirby', prop:'Over 5.5 strikeouts', match:'Seattle Mariners vs New York Mets', odd:1.75, sport:'mlb'},
-    {player:'Karl-Anthony Towns', prop:'Over 11.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.06, sport:'nba'},
-    {player:'Victor Wembanyama', prop:'Over 3.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:2.46, sport:'nba'},
-    {player:'Carter Bryant', prop:'Over 1.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.61, sport:'nba'}
+  { id:'S1', tier:'shark', sport:'mlb', title:'MLB Props Mix', confidence:2, totalOdds:72.8, couponCode:'', legs:[
+    {player:'Bryce Harper', prop:'Home Run: Sí', match:'Philadelphia Phillies vs San Diego Padres', odd:1.17, sport:'mlb'},
+    {player:'Carlos Narvaez', prop:'Over 0.5 bases totales', match:'Boston Red Sox vs Baltimore Orioles', odd:2.37, sport:'mlb'},
+    {player:'J.T. Realmuto', prop:'Over 1.5 bases totales', match:'Philadelphia Phillies vs San Diego Padres', odd:2.54, sport:'mlb'},
+    {player:'Kyle Manzardo', prop:'Over 0.5 bases totales', match:'New York Yankees vs Cleveland Guardians', odd:1.83, sport:'mlb'},
+    {player:'David Fry', prop:'Over 0.5 bases totales', match:'New York Yankees vs Cleveland Guardians', odd:1.96, sport:'mlb'},
+    {player:'Kyle Schwarber', prop:'Home Run: Sí', match:'Philadelphia Phillies vs San Diego Padres', odd:2.88, sport:'mlb'}
   ]},
-  { id:'H1', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:26.9, couponCode:'', legs:[
-    {player:'Taylor Ward', prop:'Home Run: Sí', match:'Boston Red Sox vs Baltimore Orioles', odd:1.12, sport:'mlb'},
-    {player:'Mitchell Robinson', prop:'Over 4.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.67, sport:'nba'},
-    {player:'Carson Benge', prop:'Over 0.5 bases totales', match:'Seattle Mariners vs New York Mets', odd:2.56, sport:'mlb'},
-    {player:'OG Anunoby', prop:'Over 5.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.96, sport:'nba'},
-    {player:'Bo Bichette', prop:'Over 1.5 bases totales', match:'Seattle Mariners vs New York Mets', odd:1.55, sport:'mlb'},
-    {player:'Dylan Harper', prop:'Over 10.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.85, sport:'nba'}
+  { id:'S2', tier:'shark', sport:'mlb', title:'MLB Props Mix', confidence:3, totalOdds:60.8, couponCode:'', legs:[
+    {player:'Gunnar Henderson', prop:'Home Run: Sí', match:'Boston Red Sox vs Baltimore Orioles', odd:1.1, sport:'mlb'},
+    {player:'Caleb Durbin', prop:'Over 0.5 bases totales', match:'Boston Red Sox vs Baltimore Orioles', odd:1.53, sport:'mlb'},
+    {player:'Freddy Fermin', prop:'Over 0.5 bases totales', match:'Philadelphia Phillies vs San Diego Padres', odd:1.84, sport:'mlb'},
+    {player:'Pete Alonso', prop:'Home Run: Sí', match:'Boston Red Sox vs Baltimore Orioles', odd:4.36, sport:'mlb'},
+    {player:'Trent Grisham', prop:'Home Run: Sí', match:'New York Yankees vs Cleveland Guardians', odd:4.5, sport:'mlb'}
   ]},
-  { id:'H2', tier:'hunter', sport:'nba', title:'NBA + MLB', confidence:4, totalOdds:15.5, couponCode:'', legs:[
-    {player:'Jarren Duran', prop:'Home Run: Sí', match:'Boston Red Sox vs Baltimore Orioles', odd:1.15, sport:'mlb'},
-    {player:'De\'Aaron Fox', prop:'Over 5.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.78, sport:'nba'},
-    {player:'Stephon Castle', prop:'Over 6.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.78, sport:'nba'},
-    {player:'Luke Kornet', prop:'Over 2.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.93, sport:'nba'},
-    {player:'Cole Young', prop:'Over 0.5 bases totales', match:'Seattle Mariners vs New York Mets', odd:2.21, sport:'mlb'}
+  { id:'H1', tier:'hunter', sport:'mlb', title:'MLB Props Mix', confidence:4, totalOdds:26.7, couponCode:'', legs:[
+    {player:'Xander Bogaerts', prop:'Over 0.5 bases totales', match:'Philadelphia Phillies vs San Diego Padres', odd:1.52, sport:'mlb'},
+    {player:'Rhys Hoskins', prop:'Over 0.5 bases totales', match:'New York Yankees vs Cleveland Guardians', odd:2.13, sport:'mlb'},
+    {player:'Carlos Rodon', prop:'Over 5.5 strikeouts', match:'New York Yankees vs Cleveland Guardians', odd:1.69, sport:'mlb'},
+    {player:'Ty France', prop:'Over 0.5 bases totales', match:'Philadelphia Phillies vs San Diego Padres', odd:1.56, sport:'mlb'},
+    {player:'Taylor Ward', prop:'Over 1.5 bases totales', match:'Boston Red Sox vs Baltimore Orioles', odd:1.62, sport:'mlb'},
+    {player:'Trevor Rogers', prop:'Over 4.5 strikeouts', match:'Boston Red Sox vs Baltimore Orioles', odd:1.93, sport:'mlb'}
+  ]},
+  { id:'H2', tier:'hunter', sport:'mlb', title:'MLB Props Mix', confidence:5, totalOdds:12.2, couponCode:'', legs:[
+    {player:'Leody Taveras', prop:'Over 0.5 bases totales', match:'Boston Red Sox vs Baltimore Orioles', odd:1.5, sport:'mlb'},
+    {player:'Travis Bazzana', prop:'Over 0.5 bases totales', match:'New York Yankees vs Cleveland Guardians', odd:1.54, sport:'mlb'},
+    {player:'Jazz Chisholm Jr.', prop:'Over 0.5 bases totales', match:'New York Yankees vs Cleveland Guardians', odd:1.52, sport:'mlb'},
+    {player:'Austin Hedges', prop:'Over 0.5 bases totales', match:'New York Yankees vs Cleveland Guardians', odd:2.15, sport:'mlb'},
+    {player:'Andruw Monasterio', prop:'Over 1.5 bases totales', match:'Boston Red Sox vs Baltimore Orioles', odd:1.62, sport:'mlb'}
   ]},
 ];
 
