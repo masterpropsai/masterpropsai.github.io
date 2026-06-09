@@ -2129,6 +2129,49 @@ const TEAM_LOGOS = {
   'SAT-S6_1': 'won',   // (HOU vs) Athletics | HÁ Athletics +1
 };
 const NEEDS_BG = new Set(['NYY','COL','VGK','CLE','OKC','RIV','ATM','SD','BOS','CAR','MTL','JUV','INT','BOC']);
+// World Cup country flags → flagcdn.com ISO codes
+const WC_FLAGS = {
+  // By team abbreviation
+  USA:'us',MEX:'mx',CAN:'ca',BRA:'br',SUI:'ch',SCO:'gb-sct',QAT:'qa',BIH:'ba',
+  KOR:'kr',CZE:'cz',RSA:'za',MAR:'ma',PAR:'py',ARG:'ar',HAI:'ht',
+  // By Spanish country name
+  'EE.UU.':'us','México':'mx','Canadá':'ca','Brasil':'br','Suiza':'ch',
+  'Escocia':'gb-sct','Catar':'qa','Bosnia':'ba','Corea del Sur':'kr',
+  'Rep. Checa':'cz','Sudáfrica':'za','Marruecos':'ma','Paraguay':'py',
+  'Argentina':'ar','Haití':'ht','Uruguay':'uy','Colombia':'co','Chile':'cl',
+  'Perú':'pe','Ecuador':'ec','Venezuela':'ve','Bolivia':'bo',
+  'Francia':'fr','Alemania':'de','España':'es','Italia':'it','Inglaterra':'gb-eng',
+  'Portugal':'pt','Países Bajos':'nl','Holanda':'nl','Bélgica':'be','Croacia':'hr',
+  'Serbia':'rs','Polonia':'pl','Dinamarca':'dk','Suecia':'se','Noruega':'no',
+  'Gales':'gb-wls','Japón':'jp','Australia':'au','Irán':'ir','Arabia Saudita':'sa',
+  'Senegal':'sn','Ghana':'gh','Camerún':'cm','Nigeria':'ng','Túnez':'tn',
+  'Egipto':'eg','Argelia':'dz','Costa Rica':'cr','Honduras':'hn','Panamá':'pa',
+  'Jamaica':'jm','Trinidad y Tobago':'tt','El Salvador':'sv',
+  'Costa de Marfil':'ci','Mali':'ml','Uzbekistán':'uz','Irak':'iq',
+  'Nueva Zelanda':'nz','Canadá':'ca'
+};
+function getWcFlagCode(leg) {
+  // 1. Try team abbreviation
+  if (leg.team && WC_FLAGS[leg.team]) return WC_FLAGS[leg.team];
+  // 2. Parse player field "Country1 vs Country2" → try each part
+  if (leg.player) {
+    const parts = leg.player.split(' vs ');
+    for (const p of parts) {
+      const t = p.trim();
+      if (WC_FLAGS[t]) return WC_FLAGS[t];
+    }
+  }
+  // 3. Parse match field "Mundial · Country1 vs Country2"
+  if (leg.match) {
+    const m = leg.match.replace(/^Mundial\s*·\s*/, '');
+    const parts = m.split(' vs ');
+    for (const p of parts) {
+      const t = p.trim();
+      if (WC_FLAGS[t]) return WC_FLAGS[t];
+    }
+  }
+  return null;
+}
 function getTeamBadge(leg) {
   const fallback = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽',hockey:'🏒',tenis:'🎾',ufc:'🥊',mma:'🥊'}[leg.sport]||'🎯';
   // Sport-specific CSS class for background
@@ -2141,6 +2184,11 @@ function getTeamBadge(leg) {
   // 2. Use API logo from DBbet CDN
   if (leg.logo) {
     return `<img src="${leg.logo}" alt="${leg.team}" class="${sportClass}" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
+  }
+  // 3. World Cup matches: show country flag from flagcdn.com
+  if (leg.match && leg.match.startsWith('Mundial')) {
+    const fc = getWcFlagCode(leg);
+    if (fc) return `<img src="https://flagcdn.com/w40/${fc}.png" alt="${fc}" class="${sportClass}" style="border-radius:2px" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
   }
   return `<span class="emoji-badge">${fallback}</span>`;
 }
@@ -2165,9 +2213,11 @@ function getTicketHeroLogo(ticket) {
   const fallbackEmojis = {nba:'🏀',mlb:'⚾',nhl:'🏒',futbol:'⚽',hockey:'🏒',tenis:'🎾',ufc:'🥊',mma:'🥊'};
   let best = null, bestScore = -1;
   ticket.legs.forEach(leg => {
-    if (!leg.team && !leg.logo) return;
+    const hasTeamLogo = !!(leg.team && (TEAM_LOGOS[leg.team] || leg.logo));
+    const hasWcFlag = !!(leg.match && leg.match.startsWith('Mundial') && getWcFlagCode(leg));
+    if (!hasTeamLogo && !leg.logo && !hasWcFlag) return;
     const pop = TEAM_POPULARITY[leg.team] || 0;
-    const hasLogo = !!(TEAM_LOGOS[leg.team] || leg.logo);
+    const hasLogo = hasTeamLogo || !!leg.logo || hasWcFlag;
     const score = pop * 10 + (hasLogo ? 5 : 0);
     if (score > bestScore) { bestScore = score; best = leg; }
   });
@@ -2176,6 +2226,11 @@ function getTicketHeroLogo(ticket) {
     if (src) {
       const fb = fallbackEmojis[best.sport] || '🎯';
       return `<img src="${src}" alt="${best.team}" class="ticket-hero-logo" onerror="this.outerHTML='<div class=\\'ticket-hero-emoji\\'>${fb}</div>'" />`;
+    }
+    // WC flag fallback for hero logo
+    const fc = getWcFlagCode(best);
+    if (fc) {
+      return `<img src="https://flagcdn.com/w40/${fc}.png" alt="${fc}" class="ticket-hero-logo" style="border-radius:2px" onerror="this.outerHTML='<div class=\\'ticket-hero-emoji\\'>⚽</div>'" />`;
     }
   }
   // Fallback: emoji of the main sport
