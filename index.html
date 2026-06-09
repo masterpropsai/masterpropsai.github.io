@@ -437,6 +437,12 @@ body {
   border-radius: 0;
   padding: 0;
 }
+.leg-number img.flag-circle {
+  width: 29px; height: 29px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(212,165,32,0.25);
+}
 .leg-number img.logo-ufc {
   background: #c8102e;
   border-radius: 50%;
@@ -2185,10 +2191,10 @@ function getTeamBadge(leg) {
   if (leg.logo) {
     return `<img src="${leg.logo}" alt="${leg.team}" class="${sportClass}" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
   }
-  // 3. World Cup matches: show country flag from flagcdn.com
+  // 3. World Cup matches: show country flag from flagcdn.com (circular)
   if (leg.match && leg.match.startsWith('Mundial')) {
     const fc = getWcFlagCode(leg);
-    if (fc) return `<img src="https://flagcdn.com/w40/${fc}.png" alt="${fc}" class="${sportClass}" style="border-radius:2px" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
+    if (fc) return `<img src="https://flagcdn.com/w80/${fc}.png" alt="${fc}" class="flag-circle" onerror="this.parentElement.innerHTML='<span class=\\'emoji-badge\\'>${fallback}</span>'" />`;
   }
   return `<span class="emoji-badge">${fallback}</span>`;
 }
@@ -2230,7 +2236,7 @@ function getTicketHeroLogo(ticket) {
     // WC flag fallback for hero logo
     const fc = getWcFlagCode(best);
     if (fc) {
-      return `<img src="https://flagcdn.com/w40/${fc}.png" alt="${fc}" class="ticket-hero-logo" style="border-radius:2px" onerror="this.outerHTML='<div class=\\'ticket-hero-emoji\\'>⚽</div>'" />`;
+      return `<img src="https://flagcdn.com/w80/${fc}.png" alt="${fc}" class="ticket-hero-logo" style="border-radius:50%;object-fit:cover;border:1.5px solid rgba(212,165,32,0.25)" onerror="this.outerHTML='<div class=\\'ticket-hero-emoji\\'>⚽</div>'" />`;
     }
   }
   // Fallback: emoji of the main sport
