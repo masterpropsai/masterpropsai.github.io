@@ -856,6 +856,30 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
         lambdas = fit_match_lambdas(event)  # None for non-football
         t1 = event.get('opponent1NameLocalization', 'Team A')
         t2 = event.get('opponent2NameLocalization', 'Team B')
+
+        # ── FORM-ADJUSTED LAMBDAS ──
+        # If we have team form data from API-Football, adjust Poisson lambdas
+        # to incorporate recent performance (breaks the circular edge problem)
+        if lambdas and HAS_INTEL and hasattr(build_prop_pool, '_intel') and build_prop_pool._intel:
+            intel = build_prop_pool._intel
+            from market_intelligence import _norm
+            h_form = intel.team_form.get(_norm(t1))
+            a_form = intel.team_form.get(_norm(t2))
+            lam_h, lam_a = lambdas
+            # Blend: 70% bookmaker-derived lambda + 30% recent form average goals
+            # This breaks circularity — external data adjusts the model
+            if h_form and h_form.get('avg_gf') is not None:
+                lam_h = 0.70 * lam_h + 0.30 * h_form['avg_gf']
+            if a_form and a_form.get('avg_gf') is not None:
+                lam_a = 0.70 * lam_a + 0.30 * a_form['avg_gf']
+            # Also factor in defensive strength (goals conceded)
+            if h_form and h_form.get('avg_ga') is not None and a_form and a_form.get('avg_ga') is not None:
+                # Away team scores more if home team concedes a lot
+                def_factor_h = h_form['avg_ga'] / 1.3  # 1.3 is rough avg goals conceded
+                def_factor_a = a_form['avg_ga'] / 1.3
+                lam_a = lam_a * (0.85 + 0.15 * def_factor_h)  # Slight boost if home concedes
+                lam_h = lam_h * (0.85 + 0.15 * def_factor_a)  # Slight boost if away concedes
+            lambdas = (max(0.3, lam_h), max(0.3, lam_a))
         match = f"{t1} vs {t2}"
         tournament = event.get('tournamentNameLocalization', '')
         link = event.get('link', '')
@@ -1161,6 +1185,105 @@ def build_tickets(pool):
         base = e if (e is not None) else -1.0
         return -(base + random.uniform(-0.02, 0.02))
 
+    # ── Prop reliability scores for safe ticket selection ──
+    # Simpler props are more predictable and should be preferred in conservative tickets.
+    PROP_RELIABILITY = {
+        'total': 1.5,           # Total Over/Under — most predictable
+        'btts': 1.3,            # Both Teams To Score — binary, well-modeled
+        'winner': 1.2,          # Match winner (1X2) — fundamental market
+        'dnb': 1.2,             # Draw No Bet / Double Chance
+        'team_total': 1.0,      # Individual team totals
+        'handicap': 0.8,        # Asian handicap — more variance
+        'combined': 0.5,        # Combined markets — harder to hit
+        'other': 0.3,           # Exotic props
+    }
+
+    def _classify_prop_reliability(p):
+        """Classify a prop's type for reliability scoring."""
+        prop = p.get('prop', '').lower()
+        display = p.get('display', '').lower()
+        otype = p.get('type_id', 0)
+        # Total goals (match-level)
+        if re.search(r'(más|menos) de [\d.]+ goles$', prop):
+            return 'total'
+        if 'total' in display and 'individual' not in display:
+            return 'total'
+        # BTTS
+        if 'ambos anotan' in prop or 'both team' in display:
+            return 'btts'
+        # Individual team total
+        if re.search(r'(más|menos) de [\d.]+ goles de', prop):
+            return 'team_total'
+        if 'individual total' in display:
+            return 'team_total'
+        # Match winner
+        if re.search(r'gana\b', prop) and ' y ' not in prop:
+            return 'winner'
+        if any(kw in display for kw in ('w1', 'w2', 'to win')):
+            return 'winner'
+        # DNB / Double Chance
+        if 'no pierde' in prop and ' y ' not in prop:
+            return 'dnb'
+        if 'double chance' in display or 'not to lose' in display:
+            return 'dnb'
+        # Handicap
+        if 'há ' in prop or 'handicap' in display:
+            return 'handicap'
+        # Combined markets
+        if ' y ' in prop:
+            return 'combined'
+        return 'other'
+
+    def _safe_edge_sort_key(p):
+        """Sort for safe tickets: edge + reliability + source quality. Stricter than normal sort."""
+        e = p.get('edge')
+        # No edge data = highly penalized (we want model-backed picks only)
+        base = e if (e is not None) else -2.0
+        # Add reliability bonus based on prop type
+        ptype = _classify_prop_reliability(p)
+        reliability = PROP_RELIABILITY.get(ptype, 0.3)
+        # Bonus for sharp-edge source (non-circular, real market data)
+        source = p.get('edge_source')
+        source_bonus = 0.10 if source == 'sharp' else (0.0 if source == 'poisson' else -0.15)
+        # Small jitter for variety but much less than normal tickets
+        return -((base + source_bonus) * reliability + random.uniform(-0.005, 0.005))
+
+    def pick_safe_legs(pools_config, min_edge=-0.05):
+        """Pick legs for safe tickets — requires minimum edge and prioritizes reliable props.
+        Stricter than pick_legs: only model-backed props with reasonable edge."""
+        selected = []
+        matches_used = set()
+        for pool_list, count in pools_config:
+            available = [p for p in pool_list
+                         if prop_key(p) not in used_keys
+                         and p['match'] not in matches_used
+                         and (p.get('edge') is not None and p.get('edge', -1) >= min_edge)]
+            # Sort by edge × reliability — prefer predictable props with positive edge
+            available.sort(key=_safe_edge_sort_key)
+            picked = 0
+            for p in available:
+                if picked >= count:
+                    break
+                if p['match'] in matches_used:
+                    continue
+                # Anti-contradiction for safe tickets too
+                if p.get('is_winner') and p.get('match_key'):
+                    mk = p['match_key']
+                    committed = winner_side.get(mk)
+                    if committed and committed != p['side']:
+                        continue
+                selected.append(p)
+                matches_used.add(p['match'])
+                picked += 1
+        total_needed = sum(c for _, c in pools_config)
+        if len(selected) >= total_needed:
+            for s in selected:
+                used_keys.add(prop_key(s))
+                if s.get('is_winner') and s.get('match_key'):
+                    winner_side[s['match_key']] = s['side']
+            return selected
+        return None
+
     def pick_legs(pools_config, min_sports=1):
         """Pick legs enforcing MAX 1 leg per match + no contradictions.
         Prioriza picks de mayor edge (Modelo Poisson)."""
@@ -1417,16 +1540,17 @@ def build_tickets(pool):
         ]
 
     safe_tickets = []
-    SAFE_ATTEMPTS = 8
+    SAFE_ATTEMPTS = 10  # More attempts for safe tickets (stricter filters)
     for combo in safe_combos:
         pools_cfg = list(combo)
         for _ in range(SAFE_ATTEMPTS):
             for pl, _ in pools_cfg:
                 random.shuffle(pl)
-            legs = pick_legs(pools_cfg)
-            if legs and len(legs) >= 5:
+            # Use pick_safe_legs: requires edge ≥ -0.05 and prioritizes reliable props
+            legs = pick_safe_legs(pools_cfg, min_edge=-0.05)
+            if legs and len(legs) >= 4:
                 total = round(math.prod(l['odd'] for l in legs), 1)
-                if 3.0 <= total <= 9.0:
+                if 3.0 <= total <= 15.0:  # Wider range: x3-x15 for safe tickets
                     edges = [l.get('edge') for l in legs if l.get('edge') is not None]
                     if edges:
                         avg_edge = sum(edges) / len(edges)
@@ -1435,6 +1559,9 @@ def build_tickets(pool):
                         model_score = round(raw_score * coverage + 5 * (1 - coverage), 1)
                     else:
                         model_score = None
+                    # Calculate reliability score: what % of props are "reliable" types
+                    reliable_types = ('total', 'btts', 'winner', 'dnb', 'team_total')
+                    reliability = sum(1 for l in legs if _classify_prop_reliability(l) in reliable_types) / len(legs)
                     safe_tickets.append({
                         'tier': 'pending_safe',
                         'legs': legs,
@@ -1443,9 +1570,13 @@ def build_tickets(pool):
                         'model_score': model_score,
                         'avg_edge': round(avg_edge, 4) if edges else None,
                         'model_coverage': round(coverage, 2) if edges else 0.0,
+                        'reliability': round(reliability, 2),
                     })
 
     print(f"   🔒 Billetes seguros/confiables generados: {len(safe_tickets)}")
+    if safe_tickets:
+        avg_rel = sum(t.get('reliability', 0) for t in safe_tickets) / len(safe_tickets)
+        print(f"   📊 Reliability promedio: {avg_rel:.0%} (props predecibles)")
 
     # ── FILTRO DE CONFIANZA ──
     # Quitar billetes de baja confianza (confianza 1, 2). Sólo se publican medio+.
@@ -1471,9 +1602,12 @@ def build_tickets(pool):
         if t['total_odds'] <= 6.0:
             t['tier'] = 'segura'
             t['confidence'] = 6
-        else:
+        elif t['total_odds'] <= 15.0:
             t['tier'] = 'confiable'
             t['confidence'] = 5
+        else:
+            t['tier'] = 'confiable'
+            t['confidence'] = 4
 
     # ── CAP POR TIER ──
     # Limitar cantidad por tier — la página crasheaba con 350+ billetes.
@@ -1489,8 +1623,14 @@ def build_tickets(pool):
             by_tier[t['tier']].append(t)
     capped = []
     for tier, max_n in tier_caps.items():
-        # Ordenar por (confianza DESC, cuota DESC) y tomar los mejores
-        sorted_tier = sorted(by_tier[tier], key=lambda t: (-t['confidence'], -t['total_odds']))
+        # Safe tiers: sort by reliability + edge; other tiers: sort by confidence + odds
+        if tier in ('segura', 'confiable'):
+            sorted_tier = sorted(by_tier[tier], key=lambda t: (
+                -t.get('reliability', 0), -t['confidence'],
+                -(t.get('avg_edge') or -1), -t['total_odds']
+            ))
+        else:
+            sorted_tier = sorted(by_tier[tier], key=lambda t: (-t['confidence'], -t['total_odds']))
         kept = sorted_tier[:max_n]
         capped.extend(kept)
         if sorted_tier and len(sorted_tier) > max_n:
@@ -1652,7 +1792,12 @@ def main():
                 # Limit to avoid burning too many API calls
                 intel.fetch_team_stats(football_pairs[:50])
 
-            intel.fetch_all()  # Summary
+            # Print summary (don't call fetch_all again — it would duplicate API calls)
+            print(f"\n📈 Market Intelligence Summary:")
+            print(f"   Sharp odds: {len(intel.sharp_odds)} markets")
+            print(f"   Team form: {len(intel.team_form)} teams")
+            print(f"   Injuries: {sum(len(v) for v in intel.team_injuries.values())} players")
+            print(f"   H2H records: {len(intel.h2h)} matchups")
 
             # Attach intel to build_prop_pool so it can access sharp odds
             build_prop_pool._intel = intel
