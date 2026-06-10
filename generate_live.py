@@ -1585,7 +1585,24 @@ def generate_results_js(tickets):
 
 def update_html(tickets_js, results_js, filepath):
     content = filepath.read_text(encoding='utf-8')
-    pattern = r'const TICKETS = \[[\s\S]*?\];'
+    pattern = r'const TICKETS = \[([\s\S]*?)\];'
+
+    # Preserve existing WC tickets (id starts with 'WC')
+    m = re.search(pattern, content)
+    wc_blocks = []
+    if m:
+        wc_blocks = re.findall(r"  \{ id:'WC[^']*'.*?legs:\[.*?\]\}", m.group(1), re.DOTALL)
+
+    if wc_blocks:
+        wc_str = ",\n".join(wc_blocks)
+        inner = re.search(r'const TICKETS = \[([\s\S]*?)\];', tickets_js)
+        if inner and inner.group(1).strip():
+            merged = wc_str + ",\n" + inner.group(1)
+        else:
+            merged = wc_str
+        tickets_js = f"const TICKETS = [\n{merged}\n];"
+        print(f"  🏆 {len(wc_blocks)} WC tickets preserved in {filepath.name}")
+
     if re.search(pattern, content):
         content = re.sub(pattern, tickets_js, content, count=1)
     pattern2 = r'const LEG_RESULTS = \{[^}]*\};'
