@@ -1,10 +1,10 @@
 {
   "tickets": {},
-  "last_updated": "2026-06-10T11:32:03.661225+00:00",
+  "last_updated": "2026-06-10T21:51:39.554021+00:00",
   "generation": {
-    "timestamp": "2026-06-10T11:32:03.661209+00:00",
-    "total_props": 165,
-    "tickets_generated": 5
+    "timestamp": "2026-06-10T21:51:39.554010+00:00",
+    "total_props": 154,
+    "tickets_generated": 3
   },
-  "last_checked": "2026-06-10T11:32:04.656536+00:00"
+  "last_checked": "2026-06-10T21:51:40.463014+00:00"
 }
