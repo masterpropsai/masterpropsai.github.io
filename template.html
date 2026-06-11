@@ -1490,10 +1490,85 @@ body {
   .mpMundialPulse { animation: mpMundialGlow 2.2s ease-in-out infinite; }
   @keyframes mpMundialFloat { 0%,100% { transform:translateY(0) rotate(-3deg) } 50% { transform:translateY(-4px) rotate(3deg) } }
   .mpMundialTrophy { display:inline-block; animation: mpMundialFloat 3.5s ease-in-out infinite; }
+  /* === CELEBRACIÓN MUNDIAL === */
+  @keyframes mundialShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes mundialBounce {
+    0%, 100% { transform: scale(1) rotate(-3deg); }
+    25% { transform: scale(1.2) rotate(5deg); }
+    50% { transform: scale(1) rotate(-5deg); }
+    75% { transform: scale(1.15) rotate(3deg); }
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(calc(100% + 80px)) rotate(720deg); opacity: 0.3; }
+  }
+  @keyframes mundialRainbow {
+    0% { border-color: #d4a520; }
+    25% { border-color: #22c55e; }
+    50% { border-color: #3b82f6; }
+    75% { border-color: #ef4444; }
+    100% { border-color: #d4a520; }
+  }
+  @keyframes fireworkBurst {
+    0% { box-shadow: 0 0 0 0 rgba(212,165,32,0.5); }
+    50% { box-shadow: 0 0 30px 10px rgba(212,165,32,0.3), 0 0 60px 20px rgba(34,197,94,0.2); }
+    100% { box-shadow: 0 0 0 0 rgba(212,165,32,0); }
+  }
+  #mpMundialBanner.mundial-hoy {
+    background: linear-gradient(135deg, #1a1000 0%, #0d1b0d 30%, #0a0a1f 60%, #1a0a0a 100%) !important;
+    border-top: 2px solid #d4a520 !important;
+    border-bottom: 2px solid #d4a520 !important;
+    animation: mundialRainbow 4s linear infinite, fireworkBurst 3s ease-in-out infinite;
+    padding: 28px 20px !important;
+  }
+  #mpMundialBanner.mundial-hoy .mpMundialTrophy {
+    font-size: 3.5rem !important;
+    animation: mundialBounce 1.5s ease-in-out infinite !important;
+    filter: drop-shadow(0 4px 16px rgba(212,165,32,0.7)) !important;
+  }
+  .mundial-hoy-title {
+    font-size: 1.6rem !important;
+    font-weight: 900 !important;
+    background: linear-gradient(90deg, #d4a520, #fff, #22c55e, #fff, #d4a520);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: mundialShimmer 3s linear infinite;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+  .mundial-confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    animation: confettiFall linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .mundial-subtitle-hoy {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.88rem;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .mundial-subtitle-hoy a {
+    color: #d4a520 !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
   @media (max-width:560px) {
     #mpMundialBanner { padding:10px 12px; }
     #mpMundialBanner .mpMundialTrophy { font-size:1.6rem !important; }
     #mpMundialBanner .mpMundialSub { display:none; }
+    #mpMundialBanner.mundial-hoy { padding: 16px 12px !important; }
+    #mpMundialBanner.mundial-hoy .mpMundialTrophy { font-size: 2.2rem !important; }
+    .mundial-hoy-title { font-size: 1.1rem !important; }
+    .mundial-subtitle-hoy { font-size: 0.75rem; }
   }
 </style>
 <script>
@@ -1504,6 +1579,24 @@ body {
   var el      = document.getElementById('mpMundialDays');
   var row     = el ? el.parentElement : null;
   if (!el || !row) return;
+
+  function spawnConfetti() {
+    if (!banner) return;
+    var colors = ['#d4a520','#22c55e','#3b82f6','#ef4444','#fff','#a855f7','#f59e0b','#ec4899'];
+    for (var i = 0; i < 30; i++) {
+      var c = document.createElement('div');
+      c.className = 'mundial-confetti';
+      c.style.left = (Math.random() * 100) + '%';
+      c.style.top = '-10px';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.width = (4 + Math.random() * 8) + 'px';
+      c.style.height = (4 + Math.random() * 8) + 'px';
+      c.style.animationDuration = (2 + Math.random() * 4) + 's';
+      c.style.animationDelay = (Math.random() * 5) + 's';
+      c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      banner.appendChild(c);
+    }
+  }
 
   function update() {
     // Compare calendar dates only (no hours/minutes)
@@ -1518,7 +1611,19 @@ body {
     }
     if (todayDate >= startDate) {
       var dayNum = Math.round((todayDate - startDate) / 86400000) + 1;
-      row.innerHTML = 'Mundial 2026 <span style="color:#d4a520">EN VIVO</span> · Día ' + dayNum + ' 🔥';
+
+      // Día 1 = celebración especial
+      if (dayNum === 1) {
+        banner.classList.add('mundial-hoy');
+        var labelEl = document.getElementById('mpMundialLabel');
+        if (labelEl) labelEl.innerHTML = '🎉 ¡ARRANCA EL MUNDIAL! 🎉';
+        row.innerHTML = '<div class="mundial-hoy-title">¡HOY EMPIEZA EL MUNDIAL! 🏆⚽🔥</div>' +
+          '<div class="mundial-subtitle-hoy">USA 🇺🇸 · Canadá 🇨🇦 · México 🇲🇽 — ' +
+          '<a href="#tickets-all" onclick="document.getElementById(\'tickets-all\')?.scrollIntoView({behavior:\'smooth\'});return false">¡Apostá los billetes mundialistas! ↓</a></div>';
+        spawnConfetti();
+      } else {
+        row.innerHTML = 'Mundial 2026 <span style="color:#d4a520">EN VIVO</span> · Día ' + dayNum + ' 🔥';
+      }
       return;
     }
 
