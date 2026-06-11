@@ -253,11 +253,11 @@
       "tier": "hunter"
     }
   },
-  "last_updated": "2026-06-11T12:04:17.730648+00:00",
+  "last_updated": "2026-06-11T21:54:45.496660+00:00",
   "generation": {
-    "timestamp": "2026-06-11T12:04:15.028977+00:00",
-    "total_props": 236,
-    "tickets_generated": 2
+    "timestamp": "2026-06-11T21:54:42.830432+00:00",
+    "total_props": 162,
+    "tickets_generated": 0
   },
   "last_checked": "2026-06-10T11:32:04.656536+00:00",
   "legs": {},
