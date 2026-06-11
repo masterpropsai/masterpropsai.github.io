@@ -1222,6 +1222,218 @@ body {
 
   /* Footer links stack */
   .footer p { font-size: 0.65rem; }
+  .gp-grid { grid-template-columns: 1fr !important; }
+}
+
+/* === GAMBETA PICKS SECTION === */
+.gambeta-picks-section {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0d160d 50%, #0a1a0a 100%);
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin: 30px 2rem 20px;
+  position: relative;
+  overflow: hidden;
+}
+.gambeta-picks-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+}
+.gp-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.gp-header-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.3);
+}
+.gp-header-text h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.15rem;
+  color: #22c55e;
+  margin: 0;
+  letter-spacing: 1px;
+}
+.gp-header-text p {
+  color: #8a8578;
+  font-size: 0.78rem;
+  margin: 2px 0 0;
+}
+.gp-live-badge {
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.4);
+  color: #22c55e;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: gpPulse 2s infinite;
+}
+@keyframes gpPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.gp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.gp-card {
+  background: rgba(34,197,94,0.04);
+  border: 1px solid rgba(34,197,94,0.15);
+  border-radius: 14px;
+  padding: 16px;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: block;
+}
+.gp-card:hover {
+  border-color: rgba(34,197,94,0.45);
+  background: rgba(34,197,94,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(34,197,94,0.15);
+}
+.gp-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.gp-conf-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.gp-conf-maxima {
+  background: rgba(34,197,94,0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34,197,94,0.4);
+}
+.gp-conf-alta {
+  background: rgba(59,130,246,0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59,130,246,0.4);
+}
+.gp-card-time {
+  font-size: 0.7rem;
+  color: #8a8578;
+}
+.gp-match {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f0ece0;
+}
+.gp-vs {
+  color: #555;
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+.gp-rec {
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gp-rec-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+.gp-rec-odd {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #4ade80;
+  background: rgba(34,197,94,0.1);
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(34,197,94,0.3);
+}
+.gp-score {
+  display: flex;
+  gap: 3px;
+  margin-top: 10px;
+  justify-content: center;
+}
+.gp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(34,197,94,0.2);
+}
+.gp-dot.filled {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34,197,94,0.5);
+}
+.gp-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.gp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.gp-cta-primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.3);
+}
+.gp-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(34,197,94,0.4);
+}
+.gp-cta-secondary {
+  background: linear-gradient(135deg, rgba(198,40,40,0.2), rgba(139,26,26,0.3));
+  color: #ff6b6b;
+  border: 1px solid rgba(198,40,40,0.35);
+}
+.gp-cta-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(198,40,40,0.6);
+}
+
+@media (max-width: 600px) {
+  .gambeta-picks-section { margin: 20px 0.8rem 14px; padding: 20px 14px; }
+  .gp-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .gp-footer { flex-direction: column; }
+  .gp-cta { width: 100%; justify-content: center; text-align: center; }
 }
 </style>
 </head>
@@ -1433,6 +1645,23 @@ body {
   <div style="display:flex;gap:8px;flex-wrap:wrap">
     <a href="https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213" target="_blank" class="db-cta-btn">🎰 Registrarme →</a>
     <a href="https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213" target="_blank" class="db-cta-btn" style="background:linear-gradient(135deg,#1a1a2e,#16213e);font-size:0.75rem">📱 App Android</a>
+  </div>
+</div>
+
+<!-- GAMBETA.AI PICKS EMBEBIDOS -->
+<div class="gambeta-picks-section" id="gambeta-picks-section">
+  <div class="gp-header">
+    <div class="gp-header-icon">⚽</div>
+    <div class="gp-header-text">
+      <h3>PRONÓSTICOS GAMBETA.AI</h3>
+      <p>Picks del Mundial 2026 · Análisis IA en tiempo real</p>
+    </div>
+    <span class="gp-live-badge"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block"></span> EN VIVO</span>
+  </div>
+  <div class="gp-grid" id="gp-grid"></div>
+  <div class="gp-footer">
+    <a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=picks_embed&utm_campaign=mundial2026" target="_blank" class="gp-cta gp-cta-primary">⚽ Ver análisis completo en Gambeta.ai →</a>
+    <a href="https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213" target="_blank" class="gp-cta gp-cta-secondary">🎰 Apostar en DBbet →</a>
   </div>
 </div>
 
@@ -2947,6 +3176,45 @@ if (genTime) {
       el.style.display = 'block';
     })
     .catch(e => console.log('[gcp] fetch err:', e && e.message));
+})();
+
+// === GAMBETA PICKS EMBEBIDOS ===
+const GAMBETA_PICKS = [
+  { team1: "México", team2: "Sudáfrica", flag1: "🇲🇽", flag2: "🇿🇦", conf: "MÁXIMA", score: 6, rec: "Gana México", odd: "1.38", mejorOdd: "1.45", time: "Hoy · 13:00" },
+  { team1: "México", team2: "Arabia Saudita", flag1: "🇲🇽", flag2: "🇸🇦", conf: "MÁXIMA", score: 6, rec: "Gana México", odd: "1.42", mejorOdd: "1.50", time: "Hoy · 13:00" },
+  { team1: "España", team2: "Cabo Verde", flag1: "🇪🇸", flag2: "🇨🇻", conf: "MÁXIMA", score: 6, rec: "Gana España", odd: "1.09", mejorOdd: "1.15", time: "Hoy · 16:00" },
+  { team1: "Alemania", team2: "Curaçao", flag1: "🇩🇪", flag2: "🇨🇼", conf: "MÁXIMA", score: 6, rec: "Gana Alemania", odd: "1.12", mejorOdd: "1.18", time: "Hoy · 19:00" },
+  { team1: "Argentina", team2: "Grupo J", flag1: "🇦🇷", flag2: "🏆", conf: "MÁXIMA", score: 6, rec: "Argentina gana el Grupo J", odd: "1.33", mejorOdd: "1.40", time: "Hoy · 17:00" },
+  { team1: "España", team2: "Grupo H", flag1: "🇪🇸", flag2: "🏆", conf: "MÁXIMA", score: 6, rec: "España gana el Grupo H", odd: "1.23", mejorOdd: "1.30", time: "Hoy · 17:00" }
+];
+
+(function renderGambetaPicks() {
+  const grid = document.getElementById('gp-grid');
+  if (!grid || !GAMBETA_PICKS.length) return;
+
+  grid.innerHTML = GAMBETA_PICKS.map(p => {
+    const confClass = p.conf === 'MÁXIMA' ? 'gp-conf-maxima' : 'gp-conf-alta';
+    const dots = Array.from({length: 6}, (_, i) =>
+      `<span class="gp-dot${i < p.score ? ' filled' : ''}"></span>`
+    ).join('');
+    const isGroup = p.team2.includes('Grupo');
+    const matchDisplay = isGroup
+      ? `<span>${p.flag1} ${p.team1}</span><span class="gp-vs">🏆</span><span>${p.team2}</span>`
+      : `<span>${p.flag1} ${p.team1}</span><span class="gp-vs">VS</span><span>${p.flag2} ${p.team2}</span>`;
+
+    return `<a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=pick_card&utm_campaign=mundial2026" target="_blank" class="gp-card">
+      <div class="gp-card-top">
+        <span class="gp-conf-badge ${confClass}">🔥 ${p.conf} · ${p.score}/6</span>
+        <span class="gp-card-time">${p.time}</span>
+      </div>
+      <div class="gp-match">${matchDisplay}</div>
+      <div class="gp-rec">
+        <span class="gp-rec-text">🎯 ${p.rec}</span>
+        <span class="gp-rec-odd">${p.odd}</span>
+      </div>
+      <div class="gp-score">${dots}</div>
+    </a>`;
+  }).join('');
 })();
 </script>
 
