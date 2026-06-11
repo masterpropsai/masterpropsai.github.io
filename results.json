@@ -209,11 +209,11 @@
     },
     "S1": {
       "status": "pending",
-      "legs": 5,
+      "legs": 6,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 5,
+      "pending": 6,
       "tier": "shark"
     },
     "S2": {
@@ -227,11 +227,11 @@
     },
     "H1": {
       "status": "pending",
-      "legs": 6,
+      "legs": 4,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 6,
+      "pending": 4,
       "tier": "hunter"
     },
     "H2": {
@@ -253,11 +253,11 @@
       "tier": "hunter"
     }
   },
-  "last_updated": "2026-06-10T23:37:59.194386+00:00",
+  "last_updated": "2026-06-11T12:04:17.730648+00:00",
   "generation": {
-    "timestamp": "2026-06-10T11:32:03.661209+00:00",
-    "total_props": 165,
-    "tickets_generated": 5
+    "timestamp": "2026-06-11T12:04:15.028977+00:00",
+    "total_props": 236,
+    "tickets_generated": 2
   },
   "last_checked": "2026-06-10T11:32:04.656536+00:00",
   "legs": {},
