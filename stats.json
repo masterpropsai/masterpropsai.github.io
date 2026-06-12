@@ -1,0 +1,68 @@
+{
+  "total_resolved": 23,
+  "total_won": 10,
+  "total_lost": 13,
+  "total_push": 0,
+  "hit_rate": 43.5,
+  "by_prop_type": {
+    "btts": {
+      "won": 0,
+      "lost": 2,
+      "push": 0
+    },
+    "team_total": {
+      "won": 2,
+      "lost": 5,
+      "push": 0
+    },
+    "total": {
+      "won": 3,
+      "lost": 3,
+      "push": 0
+    },
+    "combined": {
+      "won": 3,
+      "lost": 3,
+      "push": 0
+    },
+    "winner": {
+      "won": 1,
+      "lost": 0,
+      "push": 0
+    },
+    "handicap": {
+      "won": 1,
+      "lost": 0,
+      "push": 0
+    }
+  },
+  "by_odds_range": {
+    "mid (1.80-2.30)": {
+      "won": 1,
+      "lost": 5,
+      "push": 0
+    },
+    "ultra (< 1.50)": {
+      "won": 5,
+      "lost": 3,
+      "push": 0
+    },
+    "very_high (3.00+)": {
+      "won": 1,
+      "lost": 3,
+      "push": 0
+    },
+    "low (1.50-1.80)": {
+      "won": 3,
+      "lost": 2,
+      "push": 0
+    }
+  },
+  "by_sport": {
+    "futbol": {
+      "won": 10,
+      "lost": 13,
+      "push": 0
+    }
+  }
+}
