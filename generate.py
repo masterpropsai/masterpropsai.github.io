@@ -475,6 +475,36 @@ def update_html(tickets_js):
             f'// === TICKET DATA ===\n{tickets_js}'
         )
 
+    # ── MEMORIA: archivar billetes terminados, conservar pendientes, inyectar HISTORIAL ──
+    try:
+        import history_lib
+        old_html = OUTPUT_FILE.read_text(encoding='utf-8') if OUTPUT_FILE.exists() else ''
+        if old_html:
+            # resultados conocidos (results.json) complementan LEG_RESULTS del HTML
+            extra = {}
+            prev = load_results()
+            for rk, info in prev.get('legs', {}).items():
+                r = info.get('result')
+                if r in ('won', 'lost', 'push'):
+                    extra[rk] = 'void' if r == 'push' else r
+            _, finished = history_lib.archive_finished(old_html, extra)
+            fresh_ids = set(re.findall(r"\{ id:'([^']+)'", tickets_js))
+            keep = history_lib.carryover_blocks(old_html, fresh_ids, finished)
+            if keep:
+                merged = ",\n".join(keep)
+                if re.search(r"const TICKETS = \[\s*\];", updated):
+                    updated = re.sub(r"const TICKETS = \[\s*\];",
+                                     lambda _m: f"const TICKETS = [\n{merged}\n];",
+                                     updated, count=1)
+                else:
+                    updated = updated.replace("const TICKETS = [",
+                                              "const TICKETS = [\n" + merged + ",", 1)
+                print(f"\u267b\ufe0f  {len(keep)} billetes pendientes conservados de la edici\u00f3n anterior")
+            updated = history_lib.carryover_leg_results(old_html, updated)
+        updated = history_lib.inject_history(updated)
+    except Exception as e:
+        print(f"\u26a0\ufe0f  Carryover de historial fall\u00f3 (se contin\u00faa sin memoria): {e}")
+
     # Update the generation timestamp
     now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     # Add/update a data attribute on body

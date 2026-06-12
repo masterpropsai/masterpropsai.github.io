@@ -1437,7 +1437,7 @@ body {
 }
 </style>
 </head>
-<body>
+<body data-generated="2026-06-11 21:54 UTC">
 
 <!-- SPONSOR BAR -->
 <div class="sponsor-bar">
@@ -1740,6 +1740,16 @@ body {
 <div id="tickets-whale" style="display:none"></div>
 <div id="tickets-shark" style="display:none"></div>
 <div id="tickets-hunter" style="display:none"></div>
+
+<!-- ═══ HISTORIAL ═══ -->
+<div id="historial-cta" style="text-align:center;margin:6px 2rem 26px;">
+  <button id="historialBtn" onclick="toggleHistorial()" style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(212,165,32,0.55);color:#d4a520;padding:13px 34px;border-radius:12px;font-weight:800;font-size:0.95rem;cursor:pointer;letter-spacing:0.5px;transition:all .2s;">📜 VER HISTORIAL <span id="historialCount" style="opacity:.75;font-weight:600"></span></button>
+</div>
+<section id="historial-section" style="display:none;max-width:1200px;margin:0 auto 30px;padding:0 2rem;">
+  <div class="section-header"><h2>📜 HISTORIAL</h2><span class="badge" id="historial-record"></span></div>
+  <div id="historial-stats" style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px;"></div>
+  <div class="tickets-grid" id="historial-grid"></div>
+</section>
 
 <!-- DBBET CTA -->
 <div class="db-cta">
@@ -2177,6 +2187,9 @@ function translateProp(propEs) {
 
 // === LIVE RESULTS ===
 const LEG_RESULTS = {};
+
+// === HISTORIAL (billetes terminados) ===
+const HISTORY = [];
 
 // === TEAM BADGES ===
 const TEAM_LOGOS = {
@@ -2968,6 +2981,73 @@ function renderTickets(filter = 'all') {
     tierTickets.forEach(tk => { mainGrid.innerHTML += tk._cardHTML; });
   });
 }
+
+// === HISTORIAL ===
+function historialStats() {
+  const hist = (typeof HISTORY !== 'undefined' && Array.isArray(HISTORY)) ? HISTORY : [];
+  let tw = 0, tl = 0, lw = 0, ll = 0;
+  hist.forEach(h => {
+    if (h.status === 'won') tw++; else if (h.status === 'lost') tl++;
+    (h.legs || []).forEach(l => { if (l.result === 'won') lw++; else if (l.result === 'lost') ll++; });
+  });
+  return { hist, tw, tl, lw, ll, hit: (lw + ll) > 0 ? Math.round(lw / (lw + ll) * 100) : 0 };
+}
+
+function renderHistorial() {
+  const grid = document.getElementById('historial-grid');
+  if (!grid) return;
+  const s = historialStats();
+  const recEl = document.getElementById('historial-record');
+  if (recEl) recEl.textContent = s.hist.length ? `${s.tw}W — ${s.tl}L` : '';
+  const chip = (label, val, color) => `<div style="background:rgba(255,255,255,0.04);border:1px solid ${color};border-radius:10px;padding:10px 16px;text-align:center;min-width:90px;"><div style="font-size:1.25rem;font-weight:800;color:${color}">${val}</div><div style="font-size:0.7rem;opacity:.7;text-transform:uppercase;letter-spacing:.5px">${label}</div></div>`;
+  const statsEl = document.getElementById('historial-stats');
+  if (statsEl) statsEl.innerHTML = s.hist.length
+    ? chip('Billetes \u2705', s.tw, '#22c55e') + chip('Billetes \u274c', s.tl, '#ef4444') + chip('Picks \u2705', s.lw, '#22c55e') + chip('Picks \u274c', s.ll, '#ef4444') + chip('Acierto picks', s.hit + '%', '#d4a520')
+    : `<div style="opacity:.7;padding:10px 4px;">Todav\u00eda no hay billetes resueltos \u2014 los billetes terminados se archivan ac\u00e1 autom\u00e1ticamente. \u23f3</div>`;
+  const sportEmoji = { nba:'\ud83c\udfc0', nfl:'\ud83c\udfc8', futbol:'\u26bd', tenis:'\ud83c\udfbe', mlb:'\u26be', mma:'\ud83e\udd4a' };
+  const tierClassMap = { megalodon:'tier-megalodon', whale:'tier-whale', shark:'tier-shark', hunter:'tier-hunter', confiable:'tier-confiable', segura:'tier-segura' };
+  const sorted = s.hist.slice().sort((a, b) => (b.resolvedAt || '').localeCompare(a.resolvedAt || ''));
+  grid.innerHTML = sorted.map(h => {
+    const won = h.status === 'won';
+    const badge = won ? '<div class="ticket-result-badge won">\ud83d\udcb0 \u00a1GANADOR! \ud83c\udf89</div>'
+      : h.status === 'lost' ? '<div class="ticket-result-badge lost">\u274c PERDIDO</div>'
+      : '<div class="ticket-result-badge" style="background:rgba(148,163,184,.2);color:#94a3b8">\ud83d\udd04 SIN ACCI\u00d3N</div>';
+    const legsHTML = (h.legs || []).map(l => {
+      const icon = l.result === 'won' ? '<span class="leg-result won">\u2705</span>' : l.result === 'lost' ? '<span class="leg-result lost">\u274c</span>' : '<span class="leg-result void">\ud83d\udd04</span>';
+      return `<div class="leg ${l.result === 'lost' ? 'leg-lost' : l.result === 'won' ? 'leg-won' : 'leg-void'}">
+        <div class="leg-number">${sportEmoji[l.sport] || '\ud83c\udfaf'}</div>
+        <div class="leg-info"><div class="leg-player">${l.player}</div><div class="leg-detail">${l.prop} \u00b7 ${l.match}${l.date ? ' \u00b7 ' + l.date : ''}</div></div>
+        <div class="leg-odd">${(l.odd || 0).toFixed(2)}</div>${icon}</div>`;
+    }).join('');
+    return `<div class="ticket ${won ? 'ticket-winner' : h.status === 'lost' ? 'ticket-dead' : ''}" data-sport="${h.sport}">
+      <div class="ticket-top-bar"><div class="tier-badge ${tierClassMap[h.tier] || 'tier-hunter'}">${t(h.tier) || h.tier}</div>${badge}</div>
+      <div class="ticket-header"><div class="ticket-header-left"><span style="font-weight:700;opacity:.85">${h.id}</span></div>
+        <div style="text-align:right"><div class="ticket-odds">x${h.totalOdds}</div><div style="font-size:0.7rem;opacity:.6">${h.resolvedAt || ''}</div></div></div>
+      <div class="ticket-legs">${legsHTML}</div></div>`;
+  }).join('');
+}
+
+function toggleHistorial() {
+  const sec = document.getElementById('historial-section');
+  const btn = document.getElementById('historialBtn');
+  if (!sec) return;
+  const open = sec.style.display === 'none';
+  sec.style.display = open ? 'block' : 'none';
+  if (open) {
+    renderHistorial();
+    btn.innerHTML = '\u25b2 OCULTAR HISTORIAL';
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    btn.innerHTML = '\ud83d\udcdc VER HISTORIAL <span id="historialCount" style="opacity:.75;font-weight:600"></span>';
+    updateHistorialCount();
+  }
+}
+
+function updateHistorialCount() {
+  const el = document.getElementById('historialCount');
+  if (el) { const n = (typeof HISTORY !== 'undefined' && HISTORY.length) || 0; el.textContent = n ? `(${n})` : ''; }
+}
+updateHistorialCount();
 
 // === DBBET DEEP LINK CONFIG ===
 const DBBET_AFFILIATE_BASE = 'https://refpa1800.com/L?tag=d_5208568m_11213c_&site=5208568&ad=11213';

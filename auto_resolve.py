@@ -443,6 +443,14 @@ def main():
         if results:
             new_content = inject_results(content, results, batch_label)
 
+            # \u2500\u2500 HISTORIAL: archivar billetes terminados e inyectar \u2500\u2500
+            try:
+                import history_lib
+                history_lib.archive_finished(new_content)
+                new_content = history_lib.inject_history(new_content)
+            except Exception as e:
+                print(f"\u26a0\ufe0f historial: {e}", file=sys.stderr)
+
             # Write updated index.html
             with open(INDEX_FILE, 'w', encoding='utf-8') as f:
                 f.write(new_content)

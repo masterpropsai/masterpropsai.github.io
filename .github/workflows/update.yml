@@ -37,6 +37,6 @@ jobs:
         run: |
           git config user.name "MasterProps Bot"
           git config user.email "bot@masterprops.ai"
-          git add index.html results.json
+          git add index.html template.html results.json history.json stats.json 2>/dev/null || git add index.html template.html results.json history.json
           git diff --staged --quiet || git commit -m "🎰 Update predictions $(date -u +%Y-%m-%d_%H:%M)"
           git push

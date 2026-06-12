@@ -919,6 +919,23 @@ def main():
     if TEMPLATE_FILE.exists():
         inject_results_into_html(results, TEMPLATE_FILE)
 
+    # ── HISTORIAL: archivar billetes terminados e inyectar en HTML ──
+    try:
+        import history_lib
+        extra = {}
+        for rk, info in results.get('legs', {}).items():
+            r = info.get('result')
+            if r in ('won', 'lost', 'push'):
+                extra[rk] = 'void' if r == 'push' else r
+        for fp in (INDEX_FILE, TEMPLATE_FILE):
+            if fp.exists():
+                html = fp.read_text(encoding='utf-8')
+                history_lib.archive_finished(html, extra)
+                fp.write_text(history_lib.inject_history(html), encoding='utf-8')
+        print("  \ud83d\udcdc HISTORIAL actualizado")
+    except Exception as e:
+        print(f"  \u26a0\ufe0f historial: {e}")
+
     # Compute and display stats
     stats = compute_stats(results)
     if stats and stats['total_resolved'] > 0:
