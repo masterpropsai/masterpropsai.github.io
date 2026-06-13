@@ -1,84 +1,84 @@
 {
   "tickets": {
     "WCM-W1": {
-      "status": "lost",
+      "status": "pending",
       "legs": 7,
       "won": 0,
-      "lost": 2,
+      "lost": 0,
       "push": 0,
-      "pending": 5,
+      "pending": 7,
       "tier": "whale"
     },
     "WCM-W2": {
-      "status": "lost",
+      "status": "pending",
       "legs": 7,
       "won": 0,
-      "lost": 2,
+      "lost": 0,
       "push": 0,
-      "pending": 5,
+      "pending": 7,
       "tier": "whale"
     },
     "WCM-W3": {
-      "status": "lost",
+      "status": "pending",
       "legs": 7,
-      "won": 1,
-      "lost": 1,
-      "push": 0,
-      "pending": 5,
-      "tier": "whale"
-    },
-    "WCM-W4": {
-      "status": "pending",
-      "legs": 6,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 6,
+      "pending": 7,
       "tier": "whale"
     },
-    "WCM-W5": {
+    "WC3-S1": {
       "status": "pending",
-      "legs": 6,
+      "legs": 2,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 6,
-      "tier": "whale"
+      "pending": 2,
+      "tier": "shark"
     },
     "WCM-S1": {
       "status": "pending",
       "legs": 6,
-      "won": 2,
+      "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 4,
+      "pending": 6,
       "tier": "shark"
     },
     "WCM-S2": {
-      "status": "lost",
+      "status": "pending",
       "legs": 6,
       "won": 0,
-      "lost": 1,
+      "lost": 0,
       "push": 0,
-      "pending": 5,
+      "pending": 6,
       "tier": "shark"
     },
     "WCM-S3": {
-      "status": "lost",
+      "status": "pending",
       "legs": 6,
-      "won": 1,
-      "lost": 1,
+      "won": 0,
+      "lost": 0,
       "push": 0,
-      "pending": 4,
+      "pending": 6,
       "tier": "shark"
     },
     "WCM-S4": {
-      "status": "lost",
+      "status": "pending",
       "legs": 6,
       "won": 0,
-      "lost": 1,
+      "lost": 0,
       "push": 0,
-      "pending": 5,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "WC3-S2": {
+      "status": "pending",
+      "legs": 2,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 2,
       "tier": "shark"
     },
     "WC2-S1": {
@@ -90,43 +90,16 @@
       "pending": 2,
       "tier": "segura"
     },
-    "WC2-S2": {
+    "WC2-H1": {
       "status": "pending",
       "legs": 2,
       "won": 0,
       "lost": 0,
       "push": 0,
       "pending": 2,
-      "tier": "segura"
+      "tier": "hunter"
     },
-    "WC1-S1": {
-      "status": "won",
-      "legs": 2,
-      "won": 2,
-      "lost": 0,
-      "push": 0,
-      "pending": 0,
-      "tier": "segura"
-    },
-    "WC1-S2": {
-      "status": "lost",
-      "legs": 2,
-      "won": 1,
-      "lost": 1,
-      "push": 0,
-      "pending": 0,
-      "tier": "segura"
-    },
-    "WC1-S3": {
-      "status": "pending",
-      "legs": 2,
-      "won": 1,
-      "lost": 0,
-      "push": 0,
-      "pending": 1,
-      "tier": "segura"
-    },
-    "WC2-H1": {
+    "WC3-H1": {
       "status": "pending",
       "legs": 2,
       "won": 0,
@@ -153,24 +126,6 @@
       "pending": 2,
       "tier": "hunter"
     },
-    "WC1-H1": {
-      "status": "lost",
-      "legs": 2,
-      "won": 1,
-      "lost": 1,
-      "push": 0,
-      "pending": 0,
-      "tier": "hunter"
-    },
-    "WC3-H1": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
     "WC3-H2": {
       "status": "pending",
       "legs": 2,
@@ -189,23 +144,32 @@
       "pending": 2,
       "tier": "hunter"
     },
-    "WC1-H2": {
-      "status": "lost",
-      "legs": 2,
-      "won": 1,
-      "lost": 1,
-      "push": 0,
-      "pending": 0,
-      "tier": "hunter"
-    },
-    "WC1-H3": {
-      "status": "lost",
+    "WC2-S2": {
+      "status": "pending",
       "legs": 2,
       "won": 0,
-      "lost": 2,
+      "lost": 0,
       "push": 0,
-      "pending": 0,
-      "tier": "hunter"
+      "pending": 2,
+      "tier": "segura"
+    },
+    "WC1-S3": {
+      "status": "pending",
+      "legs": 2,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 2,
+      "tier": "segura"
+    },
+    "WC2-S3": {
+      "status": "pending",
+      "legs": 2,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 2,
+      "tier": "segura"
     },
     "S1": {
       "status": "pending",
@@ -217,6 +181,33 @@
       "tier": "shark"
     },
     "S2": {
+      "status": "pending",
+      "legs": 5,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 5,
+      "tier": "shark"
+    },
+    "S3": {
+      "status": "pending",
+      "legs": 5,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 5,
+      "tier": "shark"
+    },
+    "S4": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "S5": {
       "status": "pending",
       "legs": 5,
       "won": 0,
@@ -252,60 +243,6 @@
       "pending": 4,
       "tier": "hunter"
     },
-    "WC3-S1": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "shark"
-    },
-    "WC3-S2": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "shark"
-    },
-    "WC2-S3": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "segura"
-    },
-    "S3": {
-      "status": "pending",
-      "legs": 5,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 5,
-      "tier": "shark"
-    },
-    "S4": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "S5": {
-      "status": "pending",
-      "legs": 5,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 5,
-      "tier": "shark"
-    },
     "H4": {
       "status": "pending",
       "legs": 4,
@@ -316,267 +253,12 @@
       "tier": "hunter"
     }
   },
-  "last_updated": "2026-06-12T21:25:33.168461+00:00",
+  "last_updated": "2026-06-13T10:22:27.284284+00:00",
   "generation": {
-    "timestamp": "2026-06-12T21:25:31.811049+00:00",
-    "total_props": 128,
-    "tickets_generated": 0
+    "timestamp": "2026-06-13T10:22:25.268328+00:00",
+    "total_props": 0,
+    "skipped": true
   },
-  "last_checked": "2026-06-10T11:32:04.656536+00:00",
-  "legs": {
-    "WCM-W1_1": {
-      "result": "lost",
-      "prop": "Ambos anotan - No",
-      "prop_type": "btts",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.86,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.769212+00:00"
-    },
-    "WCM-W1_5": {
-      "result": "lost",
-      "prop": "Menos de 1 goles de Sudáfrica",
-      "prop_type": "team_total",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.2,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.781433+00:00"
-    },
-    "WCM-W2_0": {
-      "result": "lost",
-      "prop": "Menos de 1 goles",
-      "prop_type": "total",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 6.75,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.786650+00:00"
-    },
-    "WCM-W2_1": {
-      "result": "lost",
-      "prop": "Menos de 2 goles",
-      "prop_type": "total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 2.16,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.786755+00:00"
-    },
-    "WCM-W3_0": {
-      "result": "lost",
-      "prop": "Menos de 1 goles",
-      "prop_type": "total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 6.0,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.807665+00:00"
-    },
-    "WCM-W3_4": {
-      "result": "won",
-      "prop": "Menos de 2.5 goles",
-      "prop_type": "total",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.7,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.820335+00:00"
-    },
-    "WCM-S1_4": {
-      "result": "won",
-      "prop": "Más de 1.75 goles",
-      "prop_type": "total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.49,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.853513+00:00"
-    },
-    "WCM-S1_5": {
-      "result": "won",
-      "prop": "México Gana y Menos de 5.5 goles - Sí",
-      "prop_type": "combined",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.48,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.854116+00:00"
-    },
-    "WCM-S2_3": {
-      "result": "lost",
-      "prop": "Sudáfrica No pierde y Menos de 4.5 goles - No",
-      "prop_type": "combined",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.36,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.862457+00:00"
-    },
-    "WC1-S1_0": {
-      "result": "won",
-      "prop": "Gana Sudáfrica",
-      "prop_type": "winner",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 8.45,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.871811+00:00"
-    },
-    "WC1-S1_1": {
-      "result": "won",
-      "prop": "Más de 0.5 goles de Corea del Sur",
-      "prop_type": "team_total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.38,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.871913+00:00"
-    },
-    "WCM-S3_2": {
-      "result": "won",
-      "prop": "México No pierde y Más de 1.5 goles - Sí",
-      "prop_type": "combined",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.47,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.880001+00:00"
-    },
-    "WCM-S3_4": {
-      "result": "lost",
-      "prop": "Rep. Checa Gana y Menos de 5.5 goles - No",
-      "prop_type": "combined",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.39,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.884345+00:00"
-    },
-    "WCM-S4_2": {
-      "result": "lost",
-      "prop": "Corea del Sur No pierde y Más de 1.5 goles - No",
-      "prop_type": "combined",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.7,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.896225+00:00"
-    },
-    "WC1-S2_0": {
-      "result": "lost",
-      "prop": "Más de 3.5 goles de México",
-      "prop_type": "team_total",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 7.5,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.911991+00:00"
-    },
-    "WC1-S2_1": {
-      "result": "won",
-      "prop": "Más de 0.5 goles de Rep. Checa",
-      "prop_type": "team_total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.38,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.912092+00:00"
-    },
-    "WC1-H1_0": {
-      "result": "lost",
-      "prop": "Menos de 1 goles de Corea del Sur",
-      "prop_type": "team_total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 2.02,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.937650+00:00"
-    },
-    "WC1-H1_1": {
-      "result": "won",
-      "prop": "HÁ Sudáfrica +1.5",
-      "prop_type": "handicap",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.64,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.937707+00:00"
-    },
-    "WC1-H2_0": {
-      "result": "lost",
-      "prop": "Ambos anotan - No",
-      "prop_type": "btts",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 1.86,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.946418+00:00"
-    },
-    "WC1-H2_1": {
-      "result": "won",
-      "prop": "Menos de 2.5 goles",
-      "prop_type": "total",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.7,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.946453+00:00"
-    },
-    "WC1-H3_0": {
-      "result": "lost",
-      "prop": "Menos de 1 goles de Rep. Checa",
-      "prop_type": "team_total",
-      "match": "Mundial · Corea del Sur vs Rep. Checa",
-      "odd": 2.0,
-      "sport": "futbol",
-      "score": "2-1",
-      "game_id": "384cbb5d76b535896a24fe65f93cfac8",
-      "resolved_at": "2026-06-12T11:37:30.946562+00:00"
-    },
-    "WC1-H3_1": {
-      "result": "lost",
-      "prop": "Menos de 2 goles de México",
-      "prop_type": "team_total",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.54,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.946596+00:00"
-    },
-    "WC1-S3_1": {
-      "result": "won",
-      "prop": "México Gana y Más de 1.5 goles - Sí",
-      "prop_type": "combined",
-      "match": "Mundial · México vs Sudáfrica",
-      "odd": 1.8,
-      "sport": "futbol",
-      "score": "2-0",
-      "game_id": "80d82d1113934bfbea4ce8daf37a2433",
-      "resolved_at": "2026-06-12T11:37:30.989094+00:00"
-    }
-  },
+  "legs": {},
   "history": []
 }
