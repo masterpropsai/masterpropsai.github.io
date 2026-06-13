@@ -2523,6 +2523,17 @@ const TEAM_LOGOS = {
   'WC1-S1_1': 'won',   // (REP vs) Corea del Sur | Más de 0.5 goles de Corea del Sur
   'WC1-S2_1': 'won',   // (COR vs) Rep. Checa | Más de 0.5 goles de Rep. Checa
   'WC1-S3_0': 'won',   // (REP vs) Corea del Sur | Ninguno Anota próximo gol (3)
+
+  // === AUTO-API 2026-06-13 01:30Z (9 legs: 6 won, 3 lost) ===
+  'WC1-S3_1': 'won',   // (SUD vs) México | México Gana y Más de 1.5 goles - Sí
+  'WC2-H1_0': 'lost',   // (BOS vs) Canadá | HÁ Canadá -1.5
+  'WC2-H2_0': 'lost',   // (BOS vs) Canadá | Más de 1.5 goles de Canadá
+  'WC2-S2_0': 'won',   // (BOS vs) Canadá | Canadá Gana y Menos de 4.5 goles - No
+  'WC2-S3_1': 'won',   // (BOS vs) Canadá | Ninguno Anota próximo gol (3)
+  'WCM-S1_1': 'won',   // (BOS vs) Canadá | Canadá No pierde y Más de 1.5 goles - Sí
+  'WCM-S2_4': 'won',   // (BOS vs) Canadá | Menos de 3.25 goles
+  'WCM-W1_6': 'won',   // (BOS vs) Canadá | Menos de 2 goles de Canadá
+  'WCM-W3_3': 'lost',   // (BOS vs) Canadá | Gana Canadá
 };
 const NEEDS_BG = new Set(['NYY','COL','VGK','CLE','OKC','RIV','ATM','SD','BOS','CAR','MTL','JUV','INT','BOC']);
 // World Cup country flags → flagcdn.com ISO codes
@@ -2683,10 +2694,6 @@ const TICKETS = [
     {player:'(BOS vs) Canadá', prop:'Menos de 3.25 goles', match:'Mundial · Canadá vs Bosnia', odd:1.26, sport:'futbol', team:'CAN', date:'Jun 12 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/d9d70e0f8a3c942936c29127d7eb2172.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319454548-Canada-Bosnia-and-Herzegovina'},
     {player:'(CAT vs) Suiza', prop:'HÁ Suiza -1.25', match:'Mundial · Catar vs Suiza', odd:1.48, sport:'futbol', team:'SUI', date:'Jun 13 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12399.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917079-Qatar-Switzerland'}
   ]},
-{ id:'WC1-S1', tier:'shark', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:3, totalOdds:11.7, modelScore:4.2, avgEdge:-0.0454, publishedAt:'2026-06-11T04:31:03Z', couponCode:'QCCY3', legs:[
-    {player:'(MÉX vs) Sudáfrica', prop:'Gana Sudáfrica', match:'Mundial · México vs Sudáfrica', odd:8.45, sport:'futbol', team:'RSA', date:'Jun 11 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12895.png', edge:-0.0467, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'},
-    {player:'(REP vs) Corea del Sur', prop:'Más de 0.5 goles de Corea del Sur', match:'Mundial · Corea del Sur vs Rep. Checa', odd:1.38, sport:'futbol', team:'KOR', date:'Jun 12 · 02:00', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png', edge:-0.044, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'}
-  ]},
 { id:'WCM-S3', tier:'shark', sport:'futbol', title:'🏆 Multi-Jornada · Fútbol Props Mix', confidence:4, totalOdds:11.4, modelScore:null, avgEdge:null, publishedAt:'2026-06-11T04:31:03Z', couponCode:'UACY3', legs:[
     {player:'(HAI vs) Escocia', prop:'Escocia Gana y Menos de 4.5 goles - Sí', match:'Mundial · Haití vs Escocia', odd:1.8, sport:'futbol', team:'SCO', date:'Jun 14 · 01:00', logo:'https://nimblecd.com/sfiles/logo_teams/12741.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142620-Haiti-Scotland'},
     {player:'(MAR vs) Brasil', prop:'HÁ Brasil -0.75', match:'Mundial · Brasil vs Marruecos', odd:1.8, sport:'futbol', team:'BRA', date:'Jun 13 · 22:00', logo:'https://nimblecd.com/sfiles/logo_teams/dde3733bfaa4da13ac79715b8ff79eaa.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917080-Brazil-Morocco'},
@@ -2707,10 +2714,6 @@ const TICKETS = [
     {player:'Brasil vs Marruecos', prop:'Menos de 1 goles', match:'Mundial · Brasil vs Marruecos', odd:7.3, sport:'futbol', team:'', date:'Jun 13 · 22:00', logo:'', edge:0.25, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917080-Brazil-Morocco'},
     {player:'Haití vs Escocia', prop:'Menos de 3 goles', match:'Mundial · Haití vs Escocia', odd:1.49, sport:'futbol', team:'', date:'Jun 14 · 01:00', logo:'', edge:0.0607, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142620-Haiti-Scotland'}
   ]},
-{ id:'WC1-S2', tier:'shark', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:3, totalOdds:10.3, modelScore:1.9, avgEdge:-0.1026, publishedAt:'2026-06-11T04:31:03Z', couponCode:'SCCY3', legs:[
-    {player:'(SUD vs) México', prop:'Más de 3.5 goles de México', match:'Mundial · México vs Sudáfrica', odd:7.5, sport:'futbol', team:'MEX', date:'Jun 11 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png', edge:-0.1482, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'},
-    {player:'(COR vs) Rep. Checa', prop:'Más de 0.5 goles de Rep. Checa', match:'Mundial · Corea del Sur vs Rep. Checa', odd:1.38, sport:'futbol', team:'CZE', date:'Jun 12 · 02:00', logo:'https://nimblecd.com/sfiles/logo_teams/fbb4d877e769ce92d4399466c5f2b0b0.png', edge:-0.057, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'}
-  ]},
 { id:'WC2-S1', tier:'shark', sport:'futbol', title:'🏆 Fri 12/06 · Fútbol Props Mix', confidence:3, totalOdds:10.1, modelScore:10.0, avgEdge:0.2005, publishedAt:'2026-06-11T04:31:03Z', couponCode:'KCCY3', legs:[
     {player:'Canadá vs Bosnia', prop:'Menos de 1 goles', match:'Mundial · Canadá vs Bosnia', odd:6.8, sport:'futbol', team:'', date:'Jun 12 · 19:00', logo:'', edge:0.25, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319454548-Canada-Bosnia-and-Herzegovina'},
     {player:'(EE. vs) Paraguay', prop:'Menos de 1 goles de Paraguay', match:'Mundial · EE.UU. vs Paraguay', odd:1.49, sport:'futbol', team:'PAR', date:'Jun 13 · 01:00', logo:'https://nimblecd.com/sfiles/logo_teams/12703.png', edge:0.151, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142519-USA-Paraguay'}
@@ -2723,21 +2726,9 @@ const TICKETS = [
     {player:'(MAR vs) Brasil', prop:'HÁ Brasil -1.5', match:'Mundial · Brasil vs Marruecos', odd:2.84, sport:'futbol', team:'BRA', date:'Jun 13 · 22:00', logo:'https://nimblecd.com/sfiles/logo_teams/dde3733bfaa4da13ac79715b8ff79eaa.png', edge:-0.0804, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917080-Brazil-Morocco'},
     {player:'Haití vs Escocia', prop:'Menos de 3.5 goles', match:'Mundial · Haití vs Escocia', odd:1.32, sport:'futbol', team:'', date:'Jun 14 · 01:00', logo:'', edge:-0.0603, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142620-Haiti-Scotland'}
   ]},
-{ id:'WC1-H1', tier:'hunter', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:6, totalOdds:3.3, modelScore:10.0, avgEdge:0.1137, publishedAt:'2026-06-11T04:31:03Z', couponCode:'PBCY3', legs:[
-    {player:'(REP vs) Corea del Sur', prop:'Menos de 1 goles de Corea del Sur', match:'Mundial · Corea del Sur vs Rep. Checa', odd:2.02, sport:'futbol', team:'KOR', date:'Jun 12 · 02:00', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png', edge:0.25, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'},
-    {player:'(MÉX vs) Sudáfrica', prop:'HÁ Sudáfrica +1.5', match:'Mundial · México vs Sudáfrica', odd:1.64, sport:'futbol', team:'RSA', date:'Jun 11 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12895.png', edge:-0.0226, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'}
-  ]},
 { id:'WC2-H2', tier:'hunter', sport:'futbol', title:'🏆 Fri 12/06 · Fútbol Props Mix', confidence:6, totalOdds:3.3, modelScore:4.0, avgEdge:-0.0506, publishedAt:'2026-06-11T04:31:03Z', couponCode:'SBCY3', legs:[
     {player:'(BOS vs) Canadá', prop:'Más de 1.5 goles de Canadá', match:'Mundial · Canadá vs Bosnia', odd:2.04, sport:'futbol', team:'CAN', date:'Jun 12 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/d9d70e0f8a3c942936c29127d7eb2172.png', edge:-0.0574, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319454548-Canada-Bosnia-and-Herzegovina'},
     {player:'EE.UU. vs Paraguay', prop:'Menos de 2.5 goles', match:'Mundial · EE.UU. vs Paraguay', odd:1.63, sport:'futbol', team:'', date:'Jun 13 · 01:00', logo:'', edge:-0.0438, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142519-USA-Paraguay'}
-  ]},
-{ id:'WC1-H2', tier:'hunter', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:6, totalOdds:3.2, modelScore:4.7, avgEdge:-0.0313, publishedAt:'2026-06-11T04:31:03Z', couponCode:'UBCY3', legs:[
-    {player:'Corea del Sur vs Rep. Checa', prop:'Ambos anotan - No', match:'Mundial · Corea del Sur vs Rep. Checa', odd:1.86, sport:'futbol', team:'', date:'Jun 12 · 02:00', logo:'', edge:-0.02, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'},
-    {player:'México vs Sudáfrica', prop:'Menos de 2.5 goles', match:'Mundial · México vs Sudáfrica', odd:1.7, sport:'futbol', team:'', date:'Jun 11 · 19:00', logo:'', edge:-0.0426, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'}
-  ]},
-{ id:'WC1-H3', tier:'hunter', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:6, totalOdds:3.1, modelScore:10.0, avgEdge:0.1814, publishedAt:'2026-06-11T04:31:03Z', couponCode:'8BCY3', legs:[
-    {player:'(COR vs) Rep. Checa', prop:'Menos de 1 goles de Rep. Checa', match:'Mundial · Corea del Sur vs Rep. Checa', odd:2, sport:'futbol', team:'CZE', date:'Jun 12 · 02:00', logo:'https://nimblecd.com/sfiles/logo_teams/fbb4d877e769ce92d4399466c5f2b0b0.png', edge:0.25, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'},
-    {player:'(SUD vs) México', prop:'Menos de 2 goles de México', match:'Mundial · México vs Sudáfrica', odd:1.54, sport:'futbol', team:'MEX', date:'Jun 11 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png', edge:0.1128, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'}
   ]},
 { id:'WC2-H3', tier:'hunter', sport:'futbol', title:'🏆 Fri 12/06 · Fútbol Props Mix', confidence:6, totalOdds:3.1, modelScore:2.9, avgEdge:-0.0779, publishedAt:'2026-06-11T04:31:03Z', couponCode:'1CCY3', legs:[
     {player:'Canadá vs Bosnia', prop:'Ambos anotan - Sí', match:'Mundial · Canadá vs Bosnia', odd:1.99, sport:'futbol', team:'', date:'Jun 12 · 19:00', logo:'', edge:-0.0933, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319454548-Canada-Bosnia-and-Herzegovina'},
@@ -2759,14 +2750,6 @@ const TICKETS = [
     {player:'(BOS vs) Canadá', prop:'Canadá Gana y Menos de 4.5 goles - No', match:'Mundial · Canadá vs Bosnia', odd:1.75, sport:'futbol', team:'CAN', date:'Jun 12 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/d9d70e0f8a3c942936c29127d7eb2172.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319454548-Canada-Bosnia-and-Herzegovina'},
     {player:'(EE. vs) Paraguay', prop:'Paraguay No pierde y Menos de 4.5 goles - No', match:'Mundial · EE.UU. vs Paraguay', odd:1.78, sport:'futbol', team:'PAR', date:'Jun 13 · 01:00', logo:'https://nimblecd.com/sfiles/logo_teams/12703.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142519-USA-Paraguay'}
   ]},
-{ id:'WC1-S1', tier:'segura', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:6, totalOdds:3.0, modelScore:null, avgEdge:null, publishedAt:'2026-06-11T04:31:03Z', couponCode:'QCCY3', legs:[
-    {player:'(REP vs) Corea del Sur', prop:'Corea del Sur No pierde y Menos de 3.5 goles - Sí', match:'Mundial · Corea del Sur vs Rep. Checa', odd:1.79, sport:'futbol', team:'KOR', date:'Jun 12 · 02:00', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'},
-    {player:'México vs Sudáfrica', prop:'Algún equipo gana sin goles en contra - Sí', match:'Mundial · México vs Sudáfrica', odd:1.7, sport:'futbol', team:'', date:'Jun 11 · 19:00', logo:'', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'}
-  ]},
-{ id:'WC1-S2', tier:'segura', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:6, totalOdds:3.0, modelScore:null, avgEdge:null, publishedAt:'2026-06-11T04:31:03Z', couponCode:'SCCY3', legs:[
-    {player:'(SUD vs) México', prop:'México Anota próximo gol (2)', match:'Mundial · México vs Sudáfrica', odd:1.7, sport:'futbol', team:'MEX', date:'Jun 11 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'},
-    {player:'Corea del Sur vs Rep. Checa', prop:'Total Par - Sí', match:'Mundial · Corea del Sur vs Rep. Checa', odd:1.78, sport:'futbol', team:'', date:'Jun 12 · 02:00', logo:'', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'}
-  ]},
 { id:'WC1-S3', tier:'segura', sport:'futbol', title:'🏆 Thu 11/06 · Fútbol Props Mix', confidence:6, totalOdds:3.0, modelScore:null, avgEdge:null, publishedAt:'2026-06-11T04:31:03Z', couponCode:'UCCY3', legs:[
     {player:'(REP vs) Corea del Sur', prop:'Ninguno Anota próximo gol (3)', match:'Mundial · Corea del Sur vs Rep. Checa', odd:1.66, sport:'futbol', team:'KOR', date:'Jun 12 · 02:00', logo:'https://nimblecd.com/sfiles/logo_teams/12673.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319474058-South-Korea-Czech-Republic'},
     {player:'(SUD vs) México', prop:'México Gana y Más de 1.5 goles - Sí', match:'Mundial · México vs Sudáfrica', odd:1.8, sport:'futbol', team:'MEX', date:'Jun 11 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/12701.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/290917081-Mexico-South-Africa'}
@@ -2775,7 +2758,7 @@ const TICKETS = [
     {player:'(PAR vs) EE.UU.', prop:'EE.UU. Gana y Menos de 5.5 goles - No', match:'Mundial · EE.UU. vs Paraguay', odd:1.78, sport:'futbol', team:'USA', date:'Jun 13 · 01:00', logo:'https://nimblecd.com/sfiles/logo_teams/5babdac793c016d303db8c90fa6925f5.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/291142519-USA-Paraguay'},
     {player:'(BOS vs) Canadá', prop:'Ninguno Anota próximo gol (3)', match:'Mundial · Canadá vs Bosnia', odd:1.7, sport:'futbol', team:'CAN', date:'Jun 12 · 19:00', logo:'https://nimblecd.com/sfiles/logo_teams/d9d70e0f8a3c942936c29127d7eb2172.png', edge:null, link:'https://refpa1800.com/es/line/Football/2708736-World-Cup-2026/319454548-Canada-Bosnia-and-Herzegovina'}
   ]},
-  { id:'S1', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:2, totalOdds:81.2, couponCode:'', legs:[
+{ id:'S1', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:2, totalOdds:81.2, couponCode:'', legs:[
     {player:'Liam Hicks', prop:'Over 1.5 bases totales', match:'Pittsburgh Pirates vs Miami Marlins', odd:1.52, sport:'mlb'},
     {player:'Mikal Bridges', prop:'Over 3.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.68, sport:'nba'},
     {player:'Jakob Marsee', prop:'Over 0.5 bases totales', match:'Pittsburgh Pirates vs Miami Marlins', odd:1.62, sport:'mlb'},
@@ -2783,21 +2766,21 @@ const TICKETS = [
     {player:'Jalen Brunson', prop:'Over 27.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.88, sport:'nba'},
     {player:'Brandon Lowe', prop:'Home Run: Sí', match:'Pittsburgh Pirates vs Miami Marlins', odd:4.79, sport:'mlb'}
   ]},
-  { id:'S2', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:69.7, couponCode:'', legs:[
+{ id:'S2', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:69.7, couponCode:'', legs:[
     {player:'Pete Alonso', prop:'Home Run: Sí', match:'Baltimore Orioles vs San Diego Padres', odd:1.14, sport:'mlb'},
     {player:'OG Anunoby', prop:'Over 1.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.87, sport:'nba'},
     {player:'Mikal Bridges', prop:'Over 11.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.81, sport:'nba'},
     {player:'Julio Rodriguez', prop:'Home Run: Sí', match:'Washington Nationals vs Seattle Mariners', odd:3.87, sport:'mlb'},
     {player:'Samuel Basallo', prop:'Home Run: Sí', match:'Baltimore Orioles vs San Diego Padres', odd:4.67, sport:'mlb'}
   ]},
-  { id:'S3', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:4, totalOdds:43.3, couponCode:'', legs:[
+{ id:'S3', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:4, totalOdds:43.3, couponCode:'', legs:[
     {player:'Jalen Brunson', prop:'Over 3.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.3, sport:'nba'},
     {player:'Mikal Bridges', prop:'Over 2.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:2.09, sport:'nba'},
     {player:'Manny Machado', prop:'Over 1.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:2.46, sport:'mlb'},
     {player:'Sandy Alcantara', prop:'Over 4.5 strikeouts', match:'Pittsburgh Pirates vs Miami Marlins', odd:1.71, sport:'mlb'},
     {player:'Gunnar Henderson', prop:'Over 1.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:2.14, sport:'mlb'}
   ]},
-  { id:'S4', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:39.2, couponCode:'', legs:[
+{ id:'S4', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:39.2, couponCode:'', legs:[
     {player:'Leody Taveras', prop:'Over 0.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:1.53, sport:'mlb'},
     {player:'Gunnar Henderson', prop:'Home Run: Sí', match:'Baltimore Orioles vs San Diego Padres', odd:1.15, sport:'mlb'},
     {player:'Bryan Reynolds', prop:'Over 1.5 bases totales', match:'Pittsburgh Pirates vs Miami Marlins', odd:1.75, sport:'mlb'},
@@ -2805,38 +2788,38 @@ const TICKETS = [
     {player:'Griffin Canning', prop:'Over 4.5 strikeouts', match:'Baltimore Orioles vs San Diego Padres', odd:1.98, sport:'mlb'},
     {player:'Landry Shamet', prop:'Over 1.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:3.15, sport:'nba'}
   ]},
-  { id:'S5', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:34.9, couponCode:'', legs:[
+{ id:'S5', tier:'shark', sport:'mlb', title:'NBA + MLB', confidence:3, totalOdds:34.9, couponCode:'', legs:[
     {player:'Kyle Stowers', prop:'Home Run: Sí', match:'Pittsburgh Pirates vs Miami Marlins', odd:1.14, sport:'mlb'},
     {player:'Jackson Holliday', prop:'Over 0.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:2.19, sport:'mlb'},
     {player:'Dylan Harper', prop:'Over 3.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.58, sport:'nba'},
     {player:'Joe Mack', prop:'Over 0.5 bases totales', match:'Pittsburgh Pirates vs Miami Marlins', odd:2.09, sport:'mlb'},
     {player:'James Wood', prop:'Home Run: Sí', match:'Washington Nationals vs Seattle Mariners', odd:4.23, sport:'mlb'}
   ]},
-  { id:'H1', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:4, totalOdds:16.1, couponCode:'', legs:[
+{ id:'H1', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:4, totalOdds:16.1, couponCode:'', legs:[
     {player:'Luke Raley', prop:'Home Run: Sí', match:'Washington Nationals vs Seattle Mariners', odd:1.17, sport:'mlb'},
     {player:'Fernando Tatis Jr.', prop:'Over 1.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:2.17, sport:'mlb'},
     {player:'Fernando Tatis Jr.', prop:'Over 1.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:1.64, sport:'mlb'},
     {player:'Victor Wembanyama', prop:'Over 11.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.94, sport:'nba'},
     {player:'De\'Aaron Fox', prop:'Over 3.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.99, sport:'nba'}
   ]},
-  { id:'H2', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:15.3, couponCode:'', legs:[
+{ id:'H2', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:15.3, couponCode:'', legs:[
     {player:'Spencer Horwitz', prop:'Over 1.5 bases totales', match:'Pittsburgh Pirates vs Miami Marlins', odd:1.78, sport:'mlb'},
     {player:'Keibert Ruiz', prop:'Over 0.5 bases totales', match:'Washington Nationals vs Seattle Mariners', odd:2.34, sport:'mlb'},
     {player:'Landry Shamet', prop:'Over 7.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:1.97, sport:'nba'},
     {player:'Karl-Anthony Towns', prop:'Over 3.5 asistencias', match:'San Antonio Spurs vs New York Knicks', odd:1.87, sport:'nba'}
   ]},
-  { id:'H3', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:14.0, couponCode:'', legs:[
+{ id:'H3', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:14.0, couponCode:'', legs:[
     {player:'Dylan Crews', prop:'Over 1.5 bases totales', match:'Washington Nationals vs Seattle Mariners', odd:1.5, sport:'mlb'},
     {player:'Julian Champagnie', prop:'Over 4.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:1.79, sport:'nba'},
     {player:'Colt Emerson', prop:'Over 1.5 bases totales', match:'Washington Nationals vs Seattle Mariners', odd:2.46, sport:'mlb'},
     {player:'Keldon Johnson', prop:'Over 2.5 rebotes', match:'San Antonio Spurs vs New York Knicks', odd:2.12, sport:'nba'}
   ]},
-  { id:'H4', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:12.8, couponCode:'', legs:[
+{ id:'H4', tier:'hunter', sport:'mlb', title:'NBA + MLB', confidence:5, totalOdds:12.8, couponCode:'', legs:[
     {player:'Taylor Ward', prop:'Over 1.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:1.51, sport:'mlb'},
     {player:'Stephon Castle', prop:'Over 15.5 puntos', match:'San Antonio Spurs vs New York Knicks', odd:2.09, sport:'nba'},
     {player:'Colton Cowser', prop:'Over 0.5 bases totales', match:'Baltimore Orioles vs San Diego Padres', odd:1.83, sport:'mlb'},
     {player:'Kyle Stowers', prop:'Over 1.5 bases totales', match:'Pittsburgh Pirates vs Miami Marlins', odd:2.21, sport:'mlb'}
-  ]},
+  ]}
 ];
 
 // === UPDATE ALL UI TEXT ===
