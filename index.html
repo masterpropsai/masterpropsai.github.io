@@ -1472,178 +1472,187 @@ body {
   </div>
 </nav>
 
-<!-- BANNER MUNDIAL 2026 — countdown dinámico -->
-<section id="mpMundialBanner" style="background:linear-gradient(135deg,#1f1611 0%,#0a0a0f 100%);border-top:1px solid rgba(212,165,32,0.45);border-bottom:1px solid rgba(212,165,32,0.45);padding:22px 20px;text-align:center;position:relative;overflow:hidden;margin:0">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,165,32,0.18) 0%,transparent 65%);pointer-events:none"></div>
-  <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,#d4a520 50%,transparent 100%);opacity:0.8"></div>
-  <div style="max-width:920px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap">
-    <div style="font-size:2.8rem;filter:drop-shadow(0 2px 8px rgba(212,165,32,0.55));flex-shrink:0" class="mpMundialTrophy">🏆</div>
-    <div style="text-align:left;min-width:240px">
-      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2.5px;color:#d4a520;text-transform:uppercase;line-height:1;margin-bottom:3px" class="mpMundialPulse" id="mpMundialLabel">⚡ Billetes Listos</div>
-      <div style="font-size:1.35rem;font-weight:900;color:#fff;letter-spacing:-0.3px;line-height:1.2">Mundial 2026 · <span id="mpMundialDays" style="color:#d4a520">—</span></div>
-      <div style="font-size:0.85rem;color:rgba(255,255,255,0.6);margin-top:4px;line-height:1.4" class="mpMundialSub">USA 🇺🇸 · Canadá 🇨🇦 · México 🇲🇽 — <a href="#tickets-all" onclick="document.getElementById('tickets-all')?.scrollIntoView({behavior:'smooth'});return false" style="color:#d4a520;text-decoration:underline;text-underline-offset:2px">ver billetes mundialistas ↓</a></div>
+<!-- BANNER PARTIDOS DEL DÍA — Mundial 2026 -->
+<section id="mpMatchdayBanner">
+  <div class="mp-md-glow"></div>
+  <div class="mp-md-topline"></div>
+  <div class="mp-md-inner">
+    <div class="mp-md-header">
+      <span class="mp-md-badge">⚡ PARTIDOS DEL DÍA</span>
+      <span class="mp-md-day" id="mpDayNum">Día 3</span>
+    </div>
+    <div class="mp-md-matches" id="mpMatchGrid"></div>
+    <div class="mp-md-cta">
+      <a href="#tickets-all" onclick="document.getElementById('tickets-all')?.scrollIntoView({behavior:'smooth'});return false">ver billetes mundialistas ↓</a>
     </div>
   </div>
 </section>
-<style>
-  @keyframes mpMundialGlow { 0%,100% { opacity:0.55; text-shadow:none } 50% { opacity:1; text-shadow:0 0 12px rgba(212,165,32,0.6) } }
-  .mpMundialPulse { animation: mpMundialGlow 2.2s ease-in-out infinite; }
-  @keyframes mpMundialFloat { 0%,100% { transform:translateY(0) rotate(-3deg) } 50% { transform:translateY(-4px) rotate(3deg) } }
-  .mpMundialTrophy { display:inline-block; animation: mpMundialFloat 3.5s ease-in-out infinite; }
-  /* === CELEBRACIÓN MUNDIAL === */
-  @keyframes mundialShimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-  @keyframes mundialBounce {
-    0%, 100% { transform: scale(1) rotate(-3deg); }
-    25% { transform: scale(1.2) rotate(5deg); }
-    50% { transform: scale(1) rotate(-5deg); }
-    75% { transform: scale(1.15) rotate(3deg); }
-  }
-  @keyframes confettiFall {
-    0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(calc(100% + 80px)) rotate(720deg); opacity: 0.3; }
-  }
-  @keyframes mundialRainbow {
-    0% { border-color: #d4a520; }
-    25% { border-color: #22c55e; }
-    50% { border-color: #3b82f6; }
-    75% { border-color: #ef4444; }
-    100% { border-color: #d4a520; }
-  }
-  @keyframes fireworkBurst {
-    0% { box-shadow: 0 0 0 0 rgba(212,165,32,0.5); }
-    50% { box-shadow: 0 0 30px 10px rgba(212,165,32,0.3), 0 0 60px 20px rgba(34,197,94,0.2); }
-    100% { box-shadow: 0 0 0 0 rgba(212,165,32,0); }
-  }
-  #mpMundialBanner.mundial-hoy {
-    background: linear-gradient(135deg, #1a1000 0%, #0d1b0d 30%, #0a0a1f 60%, #1a0a0a 100%) !important;
-    border-top: 2px solid #d4a520 !important;
-    border-bottom: 2px solid #d4a520 !important;
-    animation: mundialRainbow 4s linear infinite, fireworkBurst 3s ease-in-out infinite;
-    padding: 28px 20px !important;
-  }
-  #mpMundialBanner.mundial-hoy .mpMundialTrophy {
-    font-size: 3.5rem !important;
-    animation: mundialBounce 1.5s ease-in-out infinite !important;
-    filter: drop-shadow(0 4px 16px rgba(212,165,32,0.7)) !important;
-  }
-  .mundial-hoy-title {
-    font-size: 1.6rem !important;
-    font-weight: 900 !important;
-    background: linear-gradient(90deg, #d4a520, #fff, #22c55e, #fff, #d4a520);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: mundialShimmer 3s linear infinite;
-    letter-spacing: 1px;
-    line-height: 1.3;
-  }
-  .mundial-confetti {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-    animation: confettiFall linear infinite;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .mundial-subtitle-hoy {
-    color: rgba(255,255,255,0.75);
-    font-size: 0.88rem;
-    margin-top: 6px;
-    font-weight: 600;
-  }
-  .mundial-subtitle-hoy a {
-    color: #d4a520 !important;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  @media (max-width:560px) {
-    #mpMundialBanner { padding:10px 12px; }
-    #mpMundialBanner .mpMundialTrophy { font-size:1.6rem !important; }
-    #mpMundialBanner .mpMundialSub { display:none; }
-    #mpMundialBanner.mundial-hoy { padding: 16px 12px !important; }
-    #mpMundialBanner.mundial-hoy .mpMundialTrophy { font-size: 2.2rem !important; }
-    .mundial-hoy-title { font-size: 1.1rem !important; }
-    .mundial-subtitle-hoy { font-size: 0.75rem; }
-  }
-</style>
 <script>
+/* === PARTIDOS DEL DÍA — actualizar diariamente === */
+var MP_TODAYS_MATCHES = [
+  { home: "Suiza", away: "Catar", flag1: "🇨🇭", flag2: "🇶🇦", time: "13:00", featured: false },
+  { home: "Brasil", away: "Marruecos", flag1: "🇧🇷", flag2: "🇲🇦", time: "16:00", featured: true },
+  { home: "Haití", away: "Escocia", flag1: "🇭🇹", flag2: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", time: "19:00", featured: false }
+];
 (function(){
-  var wcStart = new Date('2026-06-11T00:00:00-03:00'); // 11 de junio Argentina
-  var wcEnd   = new Date('2026-07-19T22:00:00Z'); // Final
-  var banner  = document.getElementById('mpMundialBanner');
-  var el      = document.getElementById('mpMundialDays');
-  var row     = el ? el.parentElement : null;
-  if (!el || !row) return;
+  var startDate = new Date(2026, 5, 11);
+  var today = new Date();
+  var todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  var dayNum = Math.max(1, Math.round((todayDate - startDate) / 86400000) + 1);
+  var el = document.getElementById('mpDayNum');
+  if (el) el.textContent = 'Día ' + dayNum;
 
-  function spawnConfetti() {
-    if (!banner) return;
-    var colors = ['#d4a520','#22c55e','#3b82f6','#ef4444','#fff','#a855f7','#f59e0b','#ec4899'];
-    for (var i = 0; i < 30; i++) {
-      var c = document.createElement('div');
-      c.className = 'mundial-confetti';
-      c.style.left = (Math.random() * 100) + '%';
-      c.style.top = '-10px';
-      c.style.background = colors[Math.floor(Math.random() * colors.length)];
-      c.style.width = (4 + Math.random() * 8) + 'px';
-      c.style.height = (4 + Math.random() * 8) + 'px';
-      c.style.animationDuration = (2 + Math.random() * 4) + 's';
-      c.style.animationDelay = (Math.random() * 5) + 's';
-      c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-      banner.appendChild(c);
-    }
-  }
-
-  function update() {
-    // Compare calendar dates only (no hours/minutes)
-    var today = new Date();
-    var todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    var startDate = new Date(2026, 5, 11); // June 11 (month is 0-indexed)
-    var endDate = new Date(2026, 6, 19);   // July 19
-
-    if (todayDate > endDate) {
-      if (banner) banner.style.display = 'none';
-      return;
-    }
-    if (todayDate >= startDate) {
-      var dayNum = Math.round((todayDate - startDate) / 86400000) + 1;
-
-      // Día 1 = celebración especial
-      if (dayNum === 1) {
-        banner.classList.add('mundial-hoy');
-        var labelEl = document.getElementById('mpMundialLabel');
-        if (labelEl) labelEl.innerHTML = '🎉 ¡ARRANCA EL MUNDIAL! 🎉';
-        row.innerHTML = '<div class="mundial-hoy-title">¡HOY EMPIEZA EL MUNDIAL! 🏆⚽🔥</div>' +
-          '<div class="mundial-subtitle-hoy">USA 🇺🇸 · Canadá 🇨🇦 · México 🇲🇽 — ' +
-          '<a href="#tickets-all" onclick="document.getElementById(\'tickets-all\')?.scrollIntoView({behavior:\'smooth\'});return false">¡Apostá los billetes mundialistas! ↓</a></div>';
-        spawnConfetti();
-      } else {
-        row.innerHTML = 'Mundial 2026 <span style="color:#d4a520">EN VIVO</span> · Día ' + dayNum + ' 🔥';
-      }
-      return;
-    }
-
-    var d = Math.round((startDate - todayDate) / 86400000);
-    el.textContent = d;
-    var suffix = document.getElementById('mpMundialSuffix');
-    if (!suffix) {
-      suffix = document.createElement('span');
-      suffix.id = 'mpMundialSuffix';
-      suffix.style.cssText = 'color:rgba(255,255,255,0.85)';
-      el.parentNode.insertBefore(suffix, el.nextSibling);
-    }
-    suffix.textContent = d === 1 ? ' día' : ' días';
-  }
-  update();
-  // Update once at midnight (calculate ms until next 00:00)
-  var msToMidnight = new Date(new Date().toDateString()).getTime() + 86400000 - Date.now();
-  setTimeout(function tick() { update(); setTimeout(tick, 86400000); }, msToMidnight);
+  var grid = document.getElementById('mpMatchGrid');
+  if (!grid || !MP_TODAYS_MATCHES.length) return;
+  grid.innerHTML = MP_TODAYS_MATCHES.map(function(m) {
+    var cls = 'mp-md-card' + (m.featured ? ' mp-md-featured' : '');
+    return '<div class="' + cls + '">' +
+      '<div class="mp-md-time">' + m.time + ' ART</div>' +
+      '<div class="mp-md-teams">' +
+        '<span class="mp-md-team">' + m.flag1 + ' ' + m.home + '</span>' +
+        '<span class="mp-md-vs">VS</span>' +
+        '<span class="mp-md-team">' + m.flag2 + ' ' + m.away + '</span>' +
+      '</div>' +
+      (m.featured ? '<div class="mp-md-star">⭐ PARTIDO ESTELAR</div>' : '') +
+    '</div>';
+  }).join('');
 })();
 </script>
+<style>
+  #mpMatchdayBanner {
+    background: linear-gradient(135deg, #1a1000 0%, #0d0d18 50%, #0a0a0f 100%);
+    border-top: 2px solid #d4a520;
+    border-bottom: 2px solid #d4a520;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+  }
+  .mp-md-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212,165,32,0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .mp-md-topline {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a520, transparent);
+    opacity: 0.7;
+  }
+  .mp-md-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .mp-md-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .mp-md-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: #d4a520;
+    text-transform: uppercase;
+    animation: mpMdPulse 2.2s ease-in-out infinite;
+  }
+  .mp-md-day {
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: #fff;
+    background: rgba(212,165,32,0.2);
+    border: 1px solid rgba(212,165,32,0.4);
+    border-radius: 20px;
+    padding: 3px 14px;
+  }
+  @keyframes mpMdPulse {
+    0%,100% { opacity:0.6; text-shadow:none }
+    50% { opacity:1; text-shadow:0 0 10px rgba(212,165,32,0.5) }
+  }
+  .mp-md-matches {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .mp-md-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 20px;
+    min-width: 200px;
+    flex: 1;
+    max-width: 280px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .mp-md-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(212,165,32,0.4);
+  }
+  .mp-md-featured {
+    background: linear-gradient(135deg, rgba(212,165,32,0.12) 0%, rgba(212,165,32,0.04) 100%);
+    border: 1.5px solid rgba(212,165,32,0.5);
+    box-shadow: 0 0 20px rgba(212,165,32,0.15);
+    transform: scale(1.04);
+  }
+  .mp-md-featured:hover { transform: scale(1.06) translateY(-2px); }
+  .mp-md-time {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #d4a520;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .mp-md-teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .mp-md-team {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .mp-md-vs {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+  }
+  .mp-md-star {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #d4a520;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .mp-md-cta {
+    margin-top: 14px;
+  }
+  .mp-md-cta a {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mp-md-cta a:hover { color: #d4a520; }
+  @media (max-width:600px) {
+    #mpMatchdayBanner { padding: 14px 10px; }
+    .mp-md-matches { flex-direction: column; align-items: center; gap: 8px; }
+    .mp-md-card { min-width: 0; width: 100%; max-width: 320px; padding: 10px 14px; }
+    .mp-md-featured { transform: scale(1); }
+    .mp-md-featured:hover { transform: translateY(-2px); }
+    .mp-md-team { font-size: 0.88rem; }
+    .mp-md-header { margin-bottom: 10px; }
+  }
+</style>
 
 <!-- HERO -->
 <div class="hero">
