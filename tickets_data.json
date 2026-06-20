@@ -1,386 +1,4407 @@
 [
   {
-    "ticket_id": "WCM-W1",
+    "ticket_id": "WKD-M1",
     "events": [
       {
-        "GameId": 676858550,
+        "GameId": 730665961,
         "Type": 10,
-        "Coef": 8.6,
+        "Coef": 4.2,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 12,
+        "Coef": 2.89,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008004,
+        "Type": 10,
+        "Coef": 2.88,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 12,
+        "Coef": 1.95,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 12,
+        "Coef": 2.07,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 10,
+        "Coef": 2.26,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 14,
+        "Coef": 2,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 14,
+        "Coef": 1.55,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 14,
+        "Coef": 1.52,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 10,
+        "Coef": 1.75,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 10,
+        "Coef": 1.63,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 14,
+        "Coef": 1.33,
         "Param": 1.0,
         "PlayerId": 0
       },
       {
-        "GameId": 708622008,
+        "GameId": 730516767,
+        "Type": 10,
+        "Coef": 1.41,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730129196,
+        "Type": 10,
+        "Coef": 1.47,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 10,
+        "Coef": 1.3,
+        "Param": 5.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M1",
+    "events": [
+      {
+        "GameId": 729799524,
+        "Type": 10,
+        "Coef": 5.75,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 10,
+        "Coef": 2.49,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 12,
+        "Coef": 2.89,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 12,
+        "Coef": 1.85,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 10,
+        "Coef": 1.88,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 10,
+        "Coef": 2.05,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 11,
+        "Coef": 1.92,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 14,
+        "Coef": 1.52,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 14,
+        "Coef": 1.57,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079602,
+        "Type": 14,
+        "Coef": 1.57,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 8,
+        "Coef": 1.68,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 10,
+        "Coef": 1.41,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293579,
+        "Type": 14,
+        "Coef": 1.37,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 14,
+        "Coef": 1.47,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 12,
+        "Coef": 1.44,
+        "Param": 1.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-M2",
+    "events": [
+      {
+        "GameId": 730665961,
+        "Type": 10,
+        "Coef": 6.5,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730129196,
+        "Type": 10,
+        "Coef": 2.74,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611066,
+        "Type": 10,
+        "Coef": 2.45,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 10,
+        "Coef": 2,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 14,
+        "Coef": 1.84,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532077,
+        "Type": 12,
+        "Coef": 1.85,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 10,
+        "Coef": 1.98,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008001,
+        "Type": 10,
+        "Coef": 1.62,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293579,
+        "Type": 10,
+        "Coef": 1.53,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 10,
+        "Coef": 1.51,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 8,
+        "Coef": 1.51,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
+        "Type": 10,
+        "Coef": 1.5,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 10,
+        "Coef": 1.36,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 10,
+        "Coef": 1.41,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 8,
+        "Coef": 1.39,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-M3",
+    "events": [
+      {
+        "GameId": 729789278,
+        "Type": 12,
+        "Coef": 5,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321822,
+        "Type": 14,
+        "Coef": 2.35,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 12,
+        "Coef": 2.53,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 10,
+        "Coef": 2.1,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 14,
+        "Coef": 1.95,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 12,
+        "Coef": 1.93,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 14,
+        "Coef": 2.12,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 10,
+        "Coef": 1.59,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 10,
+        "Coef": 1.61,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 10,
+        "Coef": 1.74,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 12,
+        "Coef": 1.53,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 12,
+        "Coef": 1.44,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293579,
+        "Type": 14,
+        "Coef": 1.37,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 12,
+        "Coef": 1.33,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729579607,
+        "Type": 10,
+        "Coef": 1.48,
+        "Param": 3.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-M1",
+    "events": [
+      {
+        "GameId": 730379679,
+        "Type": 10,
+        "Coef": 3.78,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 8,
+        "Coef": 2.88,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 180,
+        "Coef": 2.62,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 12,
+        "Coef": 2.02,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 12,
+        "Coef": 1.82,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
         "Type": 181,
-        "Coef": 1.86,
+        "Coef": 2.08,
         "Param": 0,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 10,
-        "Coef": 2.19,
-        "Param": 2.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676685156,
-        "Type": 10,
-        "Coef": 1.78,
-        "Param": 2.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 10,
-        "Coef": 1.63,
-        "Param": 2.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
-        "Type": 14,
-        "Coef": 1.2,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 708606630,
-        "Type": 12,
-        "Coef": 1.33,
-        "Param": 2.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WCM-W2",
-    "events": [
-      {
-        "GameId": 676680497,
-        "Type": 10,
-        "Coef": 6.75,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 708622008,
-        "Type": 10,
-        "Coef": 2.16,
-        "Param": 2.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 708606630,
-        "Type": 10,
-        "Coef": 2.24,
-        "Param": 2.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676858550,
-        "Type": 7,
-        "Coef": 1.52,
-        "Param": 1.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676685156,
-        "Type": 1,
-        "Coef": 1.66,
+        "GameId": 730020110,
+        "Type": 3,
+        "Coef": 2.2,
         "Param": 0.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 14,
-        "Coef": 1.36,
-        "Param": 3.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 12,
-        "Coef": 1.24,
-        "Param": 2.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WCM-W3",
-    "events": [
-      {
-        "GameId": 708622008,
+        "GameId": 730321825,
         "Type": 10,
-        "Coef": 6,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 1,
-        "Coef": 1.94,
-        "Param": 0.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676858550,
-        "Type": 10,
-        "Coef": 1.94,
-        "Param": 2.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 708606630,
-        "Type": 1,
-        "Coef": 1.78,
-        "Param": 0.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
-        "Type": 10,
-        "Coef": 1.7,
-        "Param": 2.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676685156,
-        "Type": 10,
-        "Coef": 1.39,
-        "Param": 3.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676685955,
-        "Type": 14,
-        "Coef": 1.25,
-        "Param": 3.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC3-S1",
-    "events": [
-      {
-        "GameId": 676858550,
-        "Type": 10,
-        "Coef": 8.6,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676685156,
-        "Type": 12,
-        "Coef": 1.44,
-        "Param": 2.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WCM-S1",
-    "events": [
-      {
-        "GameId": 676857880,
-        "Type": 198,
         "Coef": 1.54,
-        "Param": 3.5,
+        "Param": 3.0,
         "PlayerId": 0
       },
       {
-        "GameId": 708606630,
-        "Type": 199,
-        "Coef": 1.63,
-        "Param": 1.5,
+        "GameId": 730438066,
+        "Type": 9,
+        "Coef": 1.75,
+        "Param": 2.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 3829,
-        "Coef": 1.53,
-        "Param": 2.25,
+        "GameId": 730624624,
+        "Type": 14,
+        "Coef": 1.66,
+        "Param": 6.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676858550,
-        "Type": 194,
+        "GameId": 730484508,
+        "Type": 10,
+        "Coef": 1.55,
+        "Param": 10.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532077,
+        "Type": 13,
         "Coef": 1.44,
-        "Param": 1.5,
+        "Param": 0.5,
         "PlayerId": 0
       },
       {
-        "GameId": 708622008,
-        "Type": 3827,
-        "Coef": 1.49,
-        "Param": 1.75,
+        "GameId": 730665091,
+        "Type": 212,
+        "Coef": 1.39,
+        "Param": 11.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676680497,
-        "Type": 196,
-        "Coef": 1.48,
-        "Param": 5.5,
+        "GameId": 728641467,
+        "Type": 3,
+        "Coef": 1.31,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730613863,
+        "Type": 7,
+        "Coef": 1.4,
+        "Param": 4.5,
         "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WCM-S2",
+    "ticket_id": "WKD-M4",
     "events": [
       {
-        "GameId": 676857880,
-        "Type": 206,
-        "Coef": 1.78,
-        "Param": 5.5,
+        "GameId": 730293579,
+        "Type": 10,
+        "Coef": 8.8,
+        "Param": 1.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676858550,
-        "Type": 755,
-        "Coef": 1.58,
+        "GameId": 730516767,
+        "Type": 10,
+        "Coef": 2.7,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 10,
+        "Coef": 2.85,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 12,
+        "Coef": 1.85,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 10,
+        "Coef": 1.92,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 13,
+        "Coef": 1.82,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611048,
+        "Type": 1,
+        "Coef": 1.51,
         "Param": 0.0,
         "PlayerId": 0
       },
       {
-        "GameId": 708622008,
-        "Type": 390,
-        "Coef": 1.66,
+        "GameId": 730058359,
+        "Type": 13,
+        "Coef": 1.62,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 14,
+        "Coef": 1.52,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730073638,
+        "Type": 7,
+        "Coef": 1.57,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 10,
+        "Coef": 1.5,
         "Param": 3.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676680497,
-        "Type": 213,
-        "Coef": 1.36,
+        "GameId": 729820143,
+        "Type": 14,
+        "Coef": 1.47,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 13,
+        "Coef": 1.45,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 10,
+        "Coef": 1.46,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M2",
+    "events": [
+      {
+        "GameId": 720168348,
+        "Type": 10,
+        "Coef": 8.9,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 12,
+        "Coef": 2.35,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 12,
+        "Coef": 2.64,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730649557,
+        "Type": 10,
+        "Coef": 1.87,
         "Param": 4.5,
         "PlayerId": 0
       },
       {
-        "GameId": 708606630,
+        "GameId": 730139983,
+        "Type": 7,
+        "Coef": 1.96,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 181,
+        "Coef": 2.05,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 12,
+        "Coef": 1.51,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 181,
+        "Coef": 1.75,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 12,
+        "Coef": 1.55,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 1,
+        "Coef": 1.63,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 9,
+        "Coef": 1.43,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 8,
+        "Coef": 1.44,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 7,
+        "Coef": 1.37,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 9,
+        "Coef": 1.42,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M3",
+    "events": [
+      {
+        "GameId": 716611054,
+        "Type": 10,
+        "Coef": 7.5,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 10,
+        "Coef": 2.38,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 10,
+        "Coef": 2.74,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 10,
+        "Coef": 1.85,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 10,
+        "Coef": 2,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 8,
+        "Coef": 1.84,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 10,
+        "Coef": 1.81,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 10,
+        "Coef": 1.52,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293579,
+        "Type": 10,
+        "Coef": 1.53,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 10,
+        "Coef": 1.61,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 14,
+        "Coef": 1.55,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 12,
+        "Coef": 1.3,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 10,
+        "Coef": 1.33,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729579607,
+        "Type": 10,
+        "Coef": 1.31,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 8,
+        "Coef": 1.34,
+        "Param": 1.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-M2",
+    "events": [
+      {
+        "GameId": 730058359,
+        "Type": 10,
+        "Coef": 4.55,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008001,
+        "Type": 14,
+        "Coef": 2.76,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730379679,
+        "Type": 10,
+        "Coef": 2.49,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
+        "Type": 14,
+        "Coef": 1.88,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 180,
+        "Coef": 1.86,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 14,
+        "Coef": 1.91,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 3,
+        "Coef": 1.92,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 11,
+        "Coef": 1.53,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 14,
+        "Coef": 1.55,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532077,
+        "Type": 7,
+        "Coef": 1.75,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 12,
+        "Coef": 1.63,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625989,
+        "Type": 8,
+        "Coef": 1.44,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 211,
+        "Coef": 1.32,
+        "Param": 9.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 728641467,
+        "Type": 9,
+        "Coef": 1.44,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730613863,
+        "Type": 211,
+        "Coef": 1.35,
+        "Param": 21.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-M5",
+    "events": [
+      {
+        "GameId": 730008001,
+        "Type": 10,
+        "Coef": 3.14,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 10,
+        "Coef": 2.95,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730320167,
+        "Type": 10,
+        "Coef": 2.92,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 10,
+        "Coef": 1.92,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 12,
+        "Coef": 1.85,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 10,
+        "Coef": 1.88,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 14,
+        "Coef": 1.92,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730379679,
+        "Type": 10,
+        "Coef": 1.7,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 10,
+        "Coef": 1.71,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 12,
+        "Coef": 1.6,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 10,
+        "Coef": 1.68,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 12,
+        "Coef": 1.35,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 12,
+        "Coef": 1.3,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 10,
+        "Coef": 1.32,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 12,
+        "Coef": 1.5,
+        "Param": 2.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-M6",
+    "events": [
+      {
+        "GameId": 730058359,
+        "Type": 12,
+        "Coef": 4.6,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079602,
+        "Type": 14,
+        "Coef": 2.4,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 10,
+        "Coef": 2.88,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 14,
+        "Coef": 1.87,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 10,
+        "Coef": 2.08,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070463,
+        "Type": 14,
+        "Coef": 1.85,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 12,
+        "Coef": 1.83,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 10,
+        "Coef": 1.77,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 10,
+        "Coef": 1.68,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 10,
+        "Coef": 1.56,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 10,
+        "Coef": 1.55,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 12,
+        "Coef": 1.3,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 12,
+        "Coef": 1.3,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 10,
+        "Coef": 1.38,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 8,
+        "Coef": 1.34,
+        "Param": 5.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M4",
+    "events": [
+      {
+        "GameId": 730024890,
+        "Type": 10,
+        "Coef": 6.05,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611054,
+        "Type": 8,
+        "Coef": 2.8,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730078982,
+        "Type": 14,
+        "Coef": 2.32,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 180,
+        "Coef": 2.16,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 12,
+        "Coef": 1.85,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730129196,
+        "Type": 181,
+        "Coef": 1.94,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 8,
+        "Coef": 1.59,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 13,
+        "Coef": 1.65,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 13,
+        "Coef": 1.55,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 8,
+        "Coef": 1.56,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 7,
+        "Coef": 1.48,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 180,
+        "Coef": 1.39,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 13,
+        "Coef": 1.41,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 11,
+        "Coef": 1.44,
+        "Param": 1.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M5",
+    "events": [
+      {
+        "GameId": 729825647,
+        "Type": 10,
+        "Coef": 3.88,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730649557,
+        "Type": 10,
+        "Coef": 2.35,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 10,
+        "Coef": 2.43,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611045,
+        "Type": 10,
+        "Coef": 2.05,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 12,
+        "Coef": 1.92,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 12,
+        "Coef": 1.83,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 10,
+        "Coef": 1.92,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 12,
+        "Coef": 1.73,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 10,
+        "Coef": 1.56,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 10,
+        "Coef": 1.55,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 12,
+        "Coef": 1.57,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 7,
+        "Coef": 1.36,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 10,
+        "Coef": 1.43,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 12,
+        "Coef": 1.44,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729579607,
+        "Type": 14,
+        "Coef": 1.41,
+        "Param": 1.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M6",
+    "events": [
+      {
+        "GameId": 730070463,
+        "Type": 10,
+        "Coef": 3.14,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 8,
+        "Coef": 2.83,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 10,
+        "Coef": 2.49,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079602,
+        "Type": 10,
+        "Coef": 1.85,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 14,
+        "Coef": 1.92,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 10,
+        "Coef": 1.98,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 10,
+        "Coef": 1.95,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611066,
+        "Type": 14,
+        "Coef": 1.57,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 10,
+        "Coef": 1.71,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 10,
+        "Coef": 1.57,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730073638,
+        "Type": 7,
+        "Coef": 1.57,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 12,
+        "Coef": 1.44,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 10,
+        "Coef": 1.49,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 10,
+        "Coef": 1.38,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730129196,
+        "Type": 10,
+        "Coef": 1.31,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M7",
+    "events": [
+      {
+        "GameId": 730649557,
+        "Type": 10,
+        "Coef": 4.75,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 14,
+        "Coef": 2.7,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 181,
+        "Coef": 2.9,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079602,
+        "Type": 12,
+        "Coef": 1.97,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070463,
+        "Type": 12,
+        "Coef": 2.2,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611048,
+        "Type": 11,
+        "Coef": 1.81,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 14,
+        "Coef": 1.65,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 14,
+        "Coef": 1.53,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 181,
+        "Coef": 1.72,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 3,
+        "Coef": 1.54,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 12,
+        "Coef": 1.46,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 8,
+        "Coef": 1.38,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730073638,
+        "Type": 12,
+        "Coef": 1.35,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 9,
+        "Coef": 1.36,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-M7",
+    "events": [
+      {
+        "GameId": 729841777,
+        "Type": 10,
+        "Coef": 3.88,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 10,
+        "Coef": 2.42,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 10,
+        "Coef": 2.49,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 10,
+        "Coef": 2.17,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 12,
+        "Coef": 1.92,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 12,
+        "Coef": 1.83,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 10,
+        "Coef": 1.98,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 12,
+        "Coef": 1.51,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 10,
+        "Coef": 1.68,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 10,
+        "Coef": 1.64,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 10,
+        "Coef": 1.52,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611054,
+        "Type": 12,
+        "Coef": 1.35,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 10,
+        "Coef": 1.31,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 10,
+        "Coef": 1.3,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 10,
+        "Coef": 1.36,
+        "Param": 3.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-M8",
+    "events": [
+      {
+        "GameId": 730078982,
+        "Type": 10,
+        "Coef": 3.34,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730073638,
+        "Type": 11,
+        "Coef": 2.79,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 12,
+        "Coef": 2.65,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 13,
+        "Coef": 2.16,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611054,
+        "Type": 9,
+        "Coef": 2.12,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293579,
+        "Type": 181,
+        "Coef": 2.08,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070463,
+        "Type": 10,
+        "Coef": 1.53,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 10,
+        "Coef": 1.52,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008004,
+        "Type": 14,
+        "Coef": 1.6,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 14,
+        "Coef": 1.73,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 10,
+        "Coef": 1.43,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 10,
+        "Coef": 1.48,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 12,
+        "Coef": 1.48,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
+        "Type": 10,
+        "Coef": 1.33,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-M8",
+    "events": [
+      {
+        "GameId": 729799524,
+        "Type": 14,
+        "Coef": 4.9,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611048,
+        "Type": 7,
+        "Coef": 2.46,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 1,
+        "Coef": 2.6,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 181,
+        "Coef": 1.98,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 181,
+        "Coef": 1.91,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 10,
+        "Coef": 1.81,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070463,
+        "Type": 10,
+        "Coef": 1.53,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 11,
+        "Coef": 1.52,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 11,
+        "Coef": 1.77,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729579607,
+        "Type": 9,
+        "Coef": 1.8,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079602,
+        "Type": 12,
+        "Coef": 1.47,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 10,
+        "Coef": 1.43,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 7,
+        "Coef": 1.32,
+        "Param": -3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 9,
+        "Coef": 1.35,
+        "Param": 3.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-M3",
+    "events": [
+      {
+        "GameId": 730321825,
+        "Type": 14,
+        "Coef": 3.5,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 7,
+        "Coef": 2.49,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 8,
+        "Coef": 2.38,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 10,
+        "Coef": 1.94,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 11,
+        "Coef": 1.85,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730624624,
+        "Type": 14,
+        "Coef": 1.81,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 11,
+        "Coef": 1.6,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 190,
+        "Coef": 1.77,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484532,
+        "Type": 10,
+        "Coef": 1.79,
+        "Param": 11.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730379679,
+        "Type": 7,
+        "Coef": 1.3,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665099,
+        "Type": 207,
+        "Coef": 1.3,
+        "Param": 11.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
         "Type": 3828,
-        "Coef": 1.26,
+        "Coef": 1.45,
+        "Param": 3.75,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W1",
+    "events": [
+      {
+        "GameId": 729840529,
+        "Type": 13,
+        "Coef": 3.28,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 10,
+        "Coef": 2.62,
+        "Param": 8.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 7,
+        "Coef": 2.57,
+        "Param": -2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730624624,
+        "Type": 14,
+        "Coef": 2.03,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 757,
+        "Coef": 1.83,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 10,
+        "Coef": 1.68,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730613863,
+        "Type": 732,
+        "Coef": 1.58,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 214,
+        "Coef": 1.64,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 7,
+        "Coef": 1.47,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532077,
+        "Type": 3829,
+        "Coef": 1.3,
+        "Param": -0.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 578,
+        "Coef": 1.44,
+        "Param": 3.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W2",
+    "events": [
+      {
+        "GameId": 729840532,
+        "Type": 12,
+        "Coef": 3.2,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 389,
+        "Coef": 2.7,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484520,
+        "Type": 13,
+        "Coef": 2.8,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008004,
+        "Type": 8,
+        "Coef": 1.83,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730613863,
+        "Type": 7,
+        "Coef": 2.1,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665095,
+        "Type": 9,
+        "Coef": 1.67,
+        "Param": 12.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730624591,
+        "Type": 9,
+        "Coef": 1.51,
+        "Param": 12.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 389,
+        "Coef": 1.56,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 14,
+        "Coef": 1.33,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 3830,
+        "Coef": 1.46,
         "Param": 3.25,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 3830,
-        "Coef": 1.48,
-        "Param": -1.25,
+        "GameId": 716611060,
+        "Type": 578,
+        "Coef": 1.3,
+        "Param": 2.0,
         "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WC1-S1",
+    "ticket_id": "SUN-W1",
     "events": [
       {
-        "GameId": 676680497,
-        "Type": 3,
-        "Coef": 8.45,
+        "GameId": 730665964,
+        "Type": 1,
+        "Coef": 4.43,
         "Param": 0.0,
         "PlayerId": 0
       },
       {
-        "GameId": 708622008,
-        "Type": 11,
-        "Coef": 1.38,
-        "Param": 0.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WCM-S3",
-    "events": [
-      {
-        "GameId": 676858550,
-        "Type": 191,
-        "Coef": 1.8,
-        "Param": 4.5,
+        "GameId": 730682797,
+        "Type": 10,
+        "Coef": 2.11,
+        "Param": 7.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676685156,
-        "Type": 3829,
-        "Coef": 1.8,
-        "Param": -0.75,
+        "GameId": 729579607,
+        "Type": 194,
+        "Coef": 2.15,
+        "Param": 1.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676680497,
-        "Type": 199,
+        "GameId": 730598662,
+        "Type": 212,
+        "Coef": 2.02,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611045,
+        "Type": 9,
+        "Coef": 1.71,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 3828,
+        "Coef": 1.53,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680205,
+        "Type": 13,
+        "Coef": 1.79,
+        "Param": 12.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730466007,
+        "Type": 8,
         "Coef": 1.47,
         "Param": 1.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 3829,
-        "Coef": 1.3,
-        "Param": 2.75,
+        "GameId": 730667858,
+        "Type": 8,
+        "Coef": 1.44,
+        "Param": 5.0,
         "PlayerId": 0
       },
       {
-        "GameId": 708622008,
-        "Type": 211,
-        "Coef": 1.39,
-        "Param": 5.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 198,
-        "Coef": 1.33,
-        "Param": 4.5,
+        "GameId": 730657253,
+        "Type": 1,
+        "Coef": 1.43,
+        "Param": 0.0,
         "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WCM-S4",
+    "ticket_id": "WKD-W1",
     "events": [
       {
-        "GameId": 676685955,
+        "GameId": 730073638,
+        "Type": 10,
+        "Coef": 4.25,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 8,
+        "Coef": 2.19,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 8,
+        "Coef": 2.07,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 7,
+        "Coef": 2.26,
+        "Param": -3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 3,
+        "Coef": 1.69,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 7,
+        "Coef": 1.8,
+        "Param": -2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 9,
+        "Coef": 1.65,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 7,
+        "Coef": 1.31,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 13,
+        "Coef": 1.34,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 7,
+        "Coef": 1.45,
+        "Param": -2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W3",
+    "events": [
+      {
+        "GameId": 730321822,
+        "Type": 11,
+        "Coef": 4.35,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594105,
+        "Type": 3,
+        "Coef": 1.96,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 192,
+        "Coef": 2.3,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 390,
+        "Coef": 2.19,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 14,
+        "Coef": 1.59,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008004,
+        "Type": 10,
+        "Coef": 1.54,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 15,
+        "Coef": 1.53,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 12,
+        "Coef": 1.48,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484508,
+        "Type": 206,
+        "Coef": 1.39,
+        "Param": 9.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 9,
+        "Coef": 1.49,
+        "Param": 8.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W2",
+    "events": [
+      {
+        "GameId": 730516767,
+        "Type": 10,
+        "Coef": 4.05,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729841777,
+        "Type": 7,
+        "Coef": 2,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 7,
+        "Coef": 2.16,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 7,
+        "Coef": 2.05,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 9,
+        "Coef": 1.72,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611054,
+        "Type": 7,
+        "Coef": 1.78,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 7,
+        "Coef": 1.64,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 8,
+        "Coef": 1.32,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
+        "Type": 7,
+        "Coef": 1.47,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293579,
+        "Type": 9,
+        "Coef": 1.33,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W2",
+    "events": [
+      {
+        "GameId": 730649557,
+        "Type": 12,
+        "Coef": 4.3,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730657253,
+        "Type": 12,
+        "Coef": 2.21,
+        "Param": 13.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730689945,
+        "Type": 10,
+        "Coef": 1.87,
+        "Param": 21.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730659574,
+        "Type": 182,
+        "Coef": 1.86,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611066,
+        "Type": 8,
+        "Coef": 1.78,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730689184,
+        "Type": 10,
+        "Coef": 1.59,
+        "Param": 22.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 206,
+        "Coef": 1.71,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682785,
+        "Type": 207,
+        "Coef": 1.36,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680658,
+        "Type": 206,
+        "Coef": 1.47,
+        "Param": 23.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629504,
+        "Type": 207,
+        "Coef": 1.41,
+        "Param": 19.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W3",
+    "events": [
+      {
+        "GameId": 730058365,
+        "Type": 10,
+        "Coef": 5.7,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 9,
+        "Coef": 1.83,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665958,
+        "Type": 7,
+        "Coef": 1.84,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 8,
+        "Coef": 1.81,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 9,
+        "Coef": 1.6,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 9,
+        "Coef": 1.51,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 9,
+        "Coef": 1.75,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 7,
+        "Coef": 1.46,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079602,
+        "Type": 13,
+        "Coef": 1.48,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 11,
+        "Coef": 1.35,
+        "Param": 1.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W4",
+    "events": [
+      {
+        "GameId": 730379679,
+        "Type": 10,
+        "Coef": 3.78,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 8,
+        "Coef": 2.03,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 8,
+        "Coef": 1.98,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 8,
+        "Coef": 2.17,
+        "Param": -2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730320167,
+        "Type": 9,
+        "Coef": 1.72,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 7,
+        "Coef": 1.58,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611045,
+        "Type": 9,
+        "Coef": 1.71,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 7,
+        "Coef": 1.41,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 11,
+        "Coef": 1.34,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 9,
+        "Coef": 1.44,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W5",
+    "events": [
+      {
+        "GameId": 716611066,
+        "Type": 1,
+        "Coef": 8.15,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 7,
+        "Coef": 1.88,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665958,
+        "Type": 9,
+        "Coef": 1.83,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 9,
+        "Coef": 1.84,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 13,
+        "Coef": 1.72,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 7,
+        "Coef": 1.65,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663970,
+        "Type": 7,
+        "Coef": 1.38,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730667858,
+        "Type": 12,
+        "Coef": 1.44,
+        "Param": 13.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730613863,
+        "Type": 13,
+        "Coef": 1.41,
+        "Param": 12.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W3",
+    "events": [
+      {
+        "GameId": 716611045,
+        "Type": 12,
+        "Coef": 4.4,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730674624,
+        "Type": 14,
+        "Coef": 1.95,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 198,
+        "Coef": 1.9,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730689184,
+        "Type": 183,
+        "Coef": 1.84,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730320167,
+        "Type": 12,
+        "Coef": 1.65,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730667858,
+        "Type": 9,
+        "Coef": 1.61,
+        "Param": 20.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730650312,
+        "Type": 212,
+        "Coef": 1.75,
+        "Param": 19.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730660093,
+        "Type": 207,
+        "Coef": 1.38,
+        "Param": 20.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730695429,
+        "Type": 10,
+        "Coef": 1.44,
+        "Param": 20.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730466008,
+        "Type": 10,
+        "Coef": 1.33,
+        "Param": 25.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W6",
+    "events": [
+      {
+        "GameId": 729820143,
+        "Type": 10,
+        "Coef": 3.14,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070463,
+        "Type": 7,
+        "Coef": 2.03,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730078982,
+        "Type": 7,
+        "Coef": 1.89,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611066,
+        "Type": 7,
+        "Coef": 2.07,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 13,
+        "Coef": 1.78,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 11,
+        "Coef": 1.76,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 13,
+        "Coef": 1.78,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 9,
+        "Coef": 1.33,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 7,
+        "Coef": 1.35,
+        "Param": -2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 13,
+        "Coef": 1.45,
+        "Param": 1.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W4",
+    "events": [
+      {
+        "GameId": 730008004,
+        "Type": 12,
+        "Coef": 3.56,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730624591,
+        "Type": 10,
+        "Coef": 2.08,
+        "Param": 12.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730613863,
+        "Type": 10,
+        "Coef": 1.94,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
+        "Type": 196,
+        "Coef": 2.24,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730379679,
+        "Type": 3830,
+        "Coef": 1.63,
+        "Param": 2.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665095,
+        "Type": 11,
+        "Coef": 1.53,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 390,
+        "Coef": 1.57,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 11,
+        "Coef": 1.35,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 211,
+        "Coef": 1.42,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 3829,
+        "Coef": 1.35,
+        "Param": 1.25,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W4",
+    "events": [
+      {
+        "GameId": 716611066,
+        "Type": 13,
+        "Coef": 3.3,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 9,
+        "Coef": 2.12,
+        "Param": 5.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629079,
+        "Type": 182,
+        "Coef": 1.86,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598666,
+        "Type": 12,
+        "Coef": 2.02,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663964,
+        "Type": 8,
+        "Coef": 1.71,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
+        "Type": 578,
+        "Coef": 1.59,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 766,
+        "Coef": 1.64,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730466008,
+        "Type": 10,
+        "Coef": 1.41,
+        "Param": 24.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730689945,
+        "Type": 206,
+        "Coef": 1.34,
+        "Param": 20.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730684664,
+        "Type": 1,
+        "Coef": 1.43,
+        "Param": 0.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W5",
+    "events": [
+      {
+        "GameId": 729825647,
+        "Type": 14,
+        "Coef": 3.6,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665958,
+        "Type": 11,
+        "Coef": 2.11,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730667858,
+        "Type": 9,
+        "Coef": 2.05,
+        "Param": 22.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680658,
+        "Type": 8,
+        "Coef": 1.9,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611045,
+        "Type": 7,
+        "Coef": 1.56,
+        "Param": -2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 198,
+        "Coef": 1.59,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730581287,
+        "Type": 209,
+        "Coef": 1.65,
+        "Param": 6.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730657253,
+        "Type": 7,
+        "Coef": 1.31,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663967,
+        "Type": 212,
+        "Coef": 1.43,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730635428,
+        "Type": 207,
+        "Coef": 1.38,
+        "Param": 20.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W6",
+    "events": [
+      {
+        "GameId": 716611054,
+        "Type": 13,
+        "Coef": 3.66,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 3828,
+        "Coef": 2.23,
+        "Param": 2.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629504,
+        "Type": 10,
+        "Coef": 1.98,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730659574,
+        "Type": 3,
+        "Coef": 2.19,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663955,
+        "Type": 212,
+        "Coef": 1.52,
+        "Param": 6.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730290443,
+        "Type": 182,
+        "Coef": 1.79,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 208,
+        "Coef": 1.47,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 208,
+        "Coef": 1.42,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730657253,
+        "Type": 7,
+        "Coef": 1.5,
+        "Param": -1.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W7",
+    "events": [
+      {
+        "GameId": 730024890,
+        "Type": 181,
+        "Coef": 3.12,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 9,
+        "Coef": 2.28,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 3830,
+        "Coef": 1.84,
+        "Param": -0.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730454587,
+        "Type": 3,
+        "Coef": 2.1,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 7,
+        "Coef": 1.69,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598666,
+        "Type": 7,
+        "Coef": 1.52,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663955,
+        "Type": 8,
+        "Coef": 1.6,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 3827,
+        "Coef": 1.34,
+        "Param": 1.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730079599,
+        "Type": 197,
+        "Coef": 1.49,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680205,
+        "Type": 206,
+        "Coef": 1.32,
+        "Param": 22.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W5",
+    "events": [
+      {
+        "GameId": 729965103,
+        "Type": 10,
+        "Coef": 4.1,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730681071,
+        "Type": 1703,
+        "Coef": 2.24,
+        "Param": 0.0,
+        "PlayerId": 15636651
+      },
+      {
+        "GameId": 730484532,
+        "Type": 192,
+        "Coef": 2.3,
+        "Param": 10.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625993,
+        "Type": 14,
+        "Coef": 2.21,
+        "Param": 6.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 10,
+        "Coef": 1.6,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 12,
+        "Coef": 1.51,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 9,
+        "Coef": 1.32,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 208,
+        "Coef": 1.37,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321825,
+        "Type": 390,
+        "Coef": 1.35,
+        "Param": 4.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W8",
+    "events": [
+      {
+        "GameId": 730532065,
+        "Type": 14,
+        "Coef": 5.6,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730657253,
+        "Type": 182,
+        "Coef": 1.83,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680655,
+        "Type": 206,
+        "Coef": 2.13,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729799524,
+        "Type": 192,
+        "Coef": 1.85,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 9,
+        "Coef": 1.55,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611048,
+        "Type": 196,
+        "Coef": 1.6,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680658,
+        "Type": 206,
+        "Coef": 1.33,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 193,
+        "Coef": 1.43,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730581287,
+        "Type": 3830,
+        "Coef": 1.44,
+        "Param": 1.25,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W6",
+    "events": [
+      {
+        "GameId": 729840532,
+        "Type": 7,
+        "Coef": 4.5,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665075,
+        "Type": 10,
+        "Coef": 2.15,
+        "Param": 8.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730681071,
+        "Type": 1703,
+        "Coef": 2.02,
+        "Param": 0.0,
+        "PlayerId": 5883691
+      },
+      {
+        "GameId": 730438066,
+        "Type": 197,
+        "Coef": 2.05,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008004,
+        "Type": 14,
+        "Coef": 1.6,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625997,
+        "Type": 183,
+        "Coef": 1.56,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 8,
+        "Coef": 1.3,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 213,
+        "Coef": 1.49,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 12,
+        "Coef": 1.4,
+        "Param": 6.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W7",
+    "events": [
+      {
+        "GameId": 730532077,
+        "Type": 9,
+        "Coef": 3.92,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 388,
+        "Coef": 2.25,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730321822,
+        "Type": 3827,
+        "Coef": 1.89,
+        "Param": 3.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 207,
+        "Coef": 2.24,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 12,
+        "Coef": 1.73,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 9,
+        "Coef": 1.57,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 7,
+        "Coef": 1.33,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 11,
+        "Coef": 1.49,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665075,
+        "Type": 211,
+        "Coef": 1.33,
+        "Param": 9.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W9",
+    "events": [
+      {
+        "GameId": 730649557,
+        "Type": 10,
+        "Coef": 5,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682789,
+        "Type": 10,
+        "Coef": 2.26,
+        "Param": 7.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598662,
+        "Type": 766,
+        "Coef": 1.85,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 767,
+        "Coef": 1.83,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 755,
+        "Coef": 1.65,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 580,
+        "Coef": 1.53,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611048,
+        "Type": 12,
+        "Coef": 1.46,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 3830,
+        "Coef": 1.36,
+        "Param": 2.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629504,
+        "Type": 212,
+        "Coef": 1.37,
+        "Param": 19.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W7",
+    "events": [
+      {
+        "GameId": 716611045,
+        "Type": 10,
+        "Coef": 4.3,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 11,
+        "Coef": 1.83,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 8,
+        "Coef": 2.1,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730078982,
+        "Type": 13,
+        "Coef": 1.9,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730516767,
+        "Type": 7,
+        "Coef": 1.56,
+        "Param": -3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729579607,
+        "Type": 13,
+        "Coef": 1.73,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682797,
+        "Type": 10,
+        "Coef": 1.42,
+        "Param": 10.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 3827,
+        "Coef": 1.41,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730689184,
+        "Type": 14,
+        "Coef": 1.46,
+        "Param": 13.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W10",
+    "events": [
+      {
+        "GameId": 730532065,
+        "Type": 12,
+        "Coef": 3.74,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
         "Type": 23,
+        "Coef": 2.25,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680655,
+        "Type": 10,
+        "Coef": 2.11,
+        "Param": 18.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 183,
+        "Coef": 1.83,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 11,
+        "Coef": 1.53,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682797,
+        "Type": 1,
+        "Coef": 1.78,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 14,
+        "Coef": 1.33,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730454587,
+        "Type": 733,
+        "Coef": 1.43,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680205,
+        "Type": 13,
+        "Coef": 1.47,
+        "Param": 11.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W11",
+    "events": [
+      {
+        "GameId": 716611048,
+        "Type": 11,
+        "Coef": 8.7,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 182,
+        "Coef": 1.81,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680205,
+        "Type": 10,
+        "Coef": 1.93,
+        "Param": 20.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730657253,
+        "Type": 206,
+        "Coef": 1.64,
+        "Param": 27.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730650312,
+        "Type": 10,
+        "Coef": 1.66,
+        "Param": 24.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 14,
+        "Coef": 1.43,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730692059,
+        "Type": 9,
+        "Coef": 1.4,
+        "Param": 6.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730659574,
+        "Type": 13,
+        "Coef": 1.48,
+        "Param": 11.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W8",
+    "events": [
+      {
+        "GameId": 716611048,
+        "Type": 12,
+        "Coef": 3.4,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 7,
+        "Coef": 1.81,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 7,
+        "Coef": 1.84,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 9,
+        "Coef": 1.96,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 9,
+        "Coef": 1.77,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 11,
+        "Coef": 1.6,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730129196,
+        "Type": 7,
+        "Coef": 1.56,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 13,
+        "Coef": 1.3,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729818927,
+        "Type": 9,
+        "Coef": 1.35,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730293576,
+        "Type": 13,
+        "Coef": 1.4,
+        "Param": 1.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-W12",
+    "events": [
+      {
+        "GameId": 730285617,
+        "Type": 14,
+        "Coef": 3.2,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598662,
+        "Type": 388,
+        "Coef": 2.25,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611066,
+        "Type": 182,
+        "Coef": 1.89,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665600,
+        "Type": 13,
+        "Coef": 2.26,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730320167,
+        "Type": 13,
+        "Coef": 1.53,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730073638,
+        "Type": 3827,
+        "Coef": 1.66,
+        "Param": 1.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729062226,
+        "Type": 3830,
+        "Coef": 1.45,
+        "Param": 1.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730548808,
+        "Type": 13,
+        "Coef": 1.32,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629079,
+        "Type": 207,
+        "Coef": 1.33,
+        "Param": 21.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W9",
+    "events": [
+      {
+        "GameId": 729841777,
+        "Type": 181,
+        "Coef": 4.41,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611048,
+        "Type": 11,
+        "Coef": 2.75,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 7,
+        "Coef": 1.82,
+        "Param": -4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 7,
+        "Coef": 1.89,
+        "Param": -3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840520,
+        "Type": 7,
+        "Coef": 1.63,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594101,
+        "Type": 10,
+        "Coef": 1.52,
+        "Param": 9.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730635428,
+        "Type": 12,
+        "Coef": 1.36,
+        "Param": 13.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729762402,
+        "Type": 207,
+        "Coef": 1.34,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W10",
+    "events": [
+      {
+        "GameId": 729825647,
+        "Type": 181,
+        "Coef": 3.79,
+        "Param": 0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611054,
+        "Type": 9,
+        "Coef": 2.95,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665958,
+        "Type": 13,
+        "Coef": 1.9,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532077,
+        "Type": 11,
+        "Coef": 1.83,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 3829,
+        "Coef": 1.58,
+        "Param": 0.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 3828,
+        "Coef": 1.71,
+        "Param": 3.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730635428,
+        "Type": 207,
+        "Coef": 1.3,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682789,
+        "Type": 13,
+        "Coef": 1.32,
+        "Param": 2.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W8",
+    "events": [
+      {
+        "GameId": 716611060,
+        "Type": 10,
+        "Coef": 4.8,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730681071,
+        "Type": 1703,
+        "Coef": 2.02,
+        "Param": 0.0,
+        "PlayerId": 15636487
+      },
+      {
+        "GameId": 729840538,
+        "Type": 4850,
+        "Coef": 2.24,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 9,
+        "Coef": 1.77,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730624591,
+        "Type": 8,
+        "Coef": 1.74,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665075,
+        "Type": 8,
+        "Coef": 1.37,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484532,
+        "Type": 8,
+        "Coef": 1.49,
+        "Param": -1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 214,
+        "Coef": 1.3,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W11",
+    "events": [
+      {
+        "GameId": 730649557,
+        "Type": 10,
+        "Coef": 5,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484520,
+        "Type": 10,
+        "Coef": 1.9,
+        "Param": 8.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 196,
+        "Coef": 1.84,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730680205,
+        "Type": 183,
+        "Coef": 1.84,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594100,
+        "Type": 9,
+        "Coef": 1.57,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730466007,
+        "Type": 8,
+        "Coef": 1.73,
+        "Param": -2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611045,
+        "Type": 9,
+        "Coef": 1.44,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663750,
+        "Type": 7,
+        "Coef": 1.32,
+        "Param": 2.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "WKD-W12",
+    "events": [
+      {
+        "GameId": 729825647,
+        "Type": 10,
+        "Coef": 4.33,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 11,
+        "Coef": 2.17,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598670,
+        "Type": 12,
+        "Coef": 1.95,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 3828,
+        "Coef": 1.84,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730691200,
+        "Type": 211,
+        "Coef": 1.58,
+        "Param": 22.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730667858,
+        "Type": 9,
+        "Coef": 1.61,
+        "Param": 20.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 10,
+        "Coef": 1.36,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 206,
+        "Coef": 1.4,
+        "Param": 5.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W9",
+    "events": [
+      {
+        "GameId": 730060856,
+        "Type": 14,
+        "Coef": 5.15,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 3830,
+        "Coef": 2.3,
+        "Param": 0.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611060,
+        "Type": 580,
+        "Coef": 1.95,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 14,
+        "Coef": 1.55,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 180,
+        "Coef": 1.67,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 212,
+        "Coef": 1.42,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665099,
+        "Type": 206,
+        "Coef": 1.34,
+        "Param": 11.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594101,
+        "Type": 7,
+        "Coef": 1.4,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-W10",
+    "events": [
+      {
+        "GameId": 729965103,
+        "Type": 7,
+        "Coef": 3.68,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594101,
+        "Type": 13,
+        "Coef": 1.98,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484520,
+        "Type": 9,
+        "Coef": 2.28,
+        "Param": 9.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730379679,
+        "Type": 3828,
+        "Coef": 1.84,
+        "Param": 4.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 9,
+        "Coef": 1.6,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665091,
+        "Type": 183,
         "Coef": 1.6,
         "Param": 0.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676685156,
-        "Type": 390,
-        "Coef": 1.78,
-        "Param": 3.0,
+        "GameId": 730058365,
+        "Type": 207,
+        "Coef": 1.31,
+        "Param": 3.5,
         "PlayerId": 0
       },
       {
-        "GameId": 708622008,
-        "Type": 209,
-        "Coef": 1.7,
-        "Param": 1.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 1831,
-        "Coef": 1.21,
-        "Param": 2.003,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
-        "Type": 1829,
-        "Coef": 1.28,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676858550,
-        "Type": 389,
+        "GameId": 730060856,
+        "Type": 4851,
         "Coef": 1.48,
         "Param": 1.0,
         "PlayerId": 0
@@ -388,342 +4409,1209 @@
     ]
   },
   {
-    "ticket_id": "WC3-S2",
+    "ticket_id": "SAT-W11",
     "events": [
       {
-        "GameId": 676685156,
-        "Type": 10,
-        "Coef": 7.3,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676858550,
-        "Type": 10,
-        "Coef": 1.49,
-        "Param": 3.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-S2",
-    "events": [
-      {
-        "GameId": 676680497,
-        "Type": 11,
-        "Coef": 7.5,
-        "Param": 3.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 708622008,
-        "Type": 13,
-        "Coef": 1.38,
-        "Param": 0.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC2-S1",
-    "events": [
-      {
-        "GameId": 708606630,
-        "Type": 10,
-        "Coef": 6.8,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 14,
-        "Coef": 1.49,
-        "Param": 1.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC2-H1",
-    "events": [
-      {
-        "GameId": 708606630,
+        "GameId": 730321825,
         "Type": 7,
-        "Coef": 3.31,
+        "Coef": 9.2,
         "Param": -1.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676857880,
-        "Type": 14,
-        "Coef": 1.24,
-        "Param": 1.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC3-H1",
-    "events": [
-      {
-        "GameId": 676685156,
-        "Type": 7,
-        "Coef": 2.84,
-        "Param": -1.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676858550,
-        "Type": 10,
-        "Coef": 1.32,
-        "Param": 3.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-H1",
-    "events": [
-      {
-        "GameId": 708622008,
-        "Type": 12,
-        "Coef": 2.02,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
-        "Type": 8,
-        "Coef": 1.64,
-        "Param": 1.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC2-H2",
-    "events": [
-      {
-        "GameId": 708606630,
-        "Type": 11,
-        "Coef": 2.04,
-        "Param": 1.5,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 10,
-        "Coef": 1.63,
-        "Param": 2.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-H2",
-    "events": [
-      {
-        "GameId": 708622008,
-        "Type": 181,
-        "Coef": 1.86,
-        "Param": 0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
-        "Type": 10,
-        "Coef": 1.7,
-        "Param": 2.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-H3",
-    "events": [
-      {
-        "GameId": 708622008,
-        "Type": 14,
-        "Coef": 2,
-        "Param": 1.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
-        "Type": 12,
-        "Coef": 1.54,
-        "Param": 2.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC2-H3",
-    "events": [
-      {
-        "GameId": 708606630,
+        "GameId": 730008004,
         "Type": 180,
-        "Coef": 1.99,
+        "Coef": 1.59,
         "Param": 0.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676857880,
-        "Type": 13,
-        "Coef": 1.58,
-        "Param": 0.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC3-H2",
-    "events": [
-      {
-        "GameId": 676858550,
-        "Type": 181,
-        "Coef": 1.82,
-        "Param": 0,
+        "GameId": 729840529,
+        "Type": 8,
+        "Coef": 1.72,
+        "Param": 1.0,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 9,
-        "Coef": 1.7,
-        "Param": 2.5,
+        "GameId": 730624624,
+        "Type": 12,
+        "Coef": 1.76,
+        "Param": 6.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 206,
+        "Coef": 1.32,
+        "Param": 10.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 1809,
+        "Coef": 1.36,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 3827,
+        "Coef": 1.38,
+        "Param": 3.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 206,
+        "Coef": 1.37,
+        "Param": 7.5,
         "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WC3-H3",
+    "ticket_id": "SAT-W12",
     "events": [
       {
-        "GameId": 676685156,
-        "Type": 11,
-        "Coef": 1.88,
+        "GameId": 730060856,
+        "Type": 10,
+        "Coef": 4.7,
         "Param": 1.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676685955,
-        "Type": 8,
-        "Coef": 1.67,
-        "Param": -1.5,
+        "GameId": 730379679,
+        "Type": 3827,
+        "Coef": 2.25,
+        "Param": 4.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594100,
+        "Type": 10,
+        "Coef": 1.88,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 9,
+        "Coef": 1.61,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 9,
+        "Coef": 1.62,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 7,
+        "Coef": 1.35,
+        "Param": -2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 207,
+        "Coef": 1.38,
+        "Param": 6.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665091,
+        "Type": 207,
+        "Coef": 1.37,
+        "Param": 9.5,
         "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WC2-S1",
+    "ticket_id": "SUN-S1",
     "events": [
       {
-        "GameId": 708606630,
+        "GameId": 729941380,
+        "Type": 14,
+        "Coef": 7.1,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729789278,
+        "Type": 766,
+        "Coef": 1.72,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 212,
+        "Coef": 1.69,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730667858,
+        "Type": 8,
+        "Coef": 1.72,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730320167,
+        "Type": 11,
+        "Coef": 1.4,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730024890,
+        "Type": 1831,
+        "Coef": 1.49,
+        "Param": 1.002,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730581287,
+        "Type": 212,
+        "Coef": 1.33,
+        "Param": 6.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S1",
+    "events": [
+      {
+        "GameId": 729840538,
+        "Type": 10,
+        "Coef": 3.5,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 183,
+        "Coef": 1.82,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625985,
+        "Type": 13,
+        "Coef": 1.92,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008001,
+        "Type": 12,
+        "Coef": 1.6,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 11,
+        "Coef": 1.7,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 13,
+        "Coef": 1.5,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665075,
+        "Type": 206,
+        "Coef": 1.44,
+        "Param": 9.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
         "Type": 3830,
-        "Coef": 1.78,
+        "Coef": 1.34,
+        "Param": 0.25,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S2",
+    "events": [
+      {
+        "GameId": 730285617,
+        "Type": 7,
+        "Coef": 5.65,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730673761,
+        "Type": 10,
+        "Coef": 1.83,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730454587,
+        "Type": 10,
+        "Coef": 1.99,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532065,
+        "Type": 3827,
+        "Coef": 1.53,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730660093,
+        "Type": 8,
+        "Coef": 1.55,
+        "Param": 5.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730649557,
+        "Type": 7,
+        "Coef": 1.44,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729820143,
+        "Type": 3830,
+        "Coef": 1.3,
         "Param": 0.75,
         "PlayerId": 0
-      },
-      {
-        "GameId": 676857880,
-        "Type": 755,
-        "Coef": 1.78,
-        "Param": 0.0,
-        "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WC2-S2",
+    "ticket_id": "SUN-S3",
     "events": [
       {
-        "GameId": 708606630,
-        "Type": 206,
-        "Coef": 1.75,
+        "GameId": 730290443,
+        "Type": 12,
+        "Coef": 7.9,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 211,
+        "Coef": 1.52,
         "Param": 4.5,
         "PlayerId": 0
       },
       {
-        "GameId": 676857880,
-        "Type": 213,
-        "Coef": 1.78,
-        "Param": 4.5,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-S1",
-    "events": [
-      {
-        "GameId": 708622008,
-        "Type": 198,
-        "Coef": 1.79,
-        "Param": 3.5,
+        "GameId": 729789278,
+        "Type": 3827,
+        "Coef": 1.67,
+        "Param": 3.25,
         "PlayerId": 0
       },
       {
-        "GameId": 676680497,
-        "Type": 1808,
-        "Coef": 1.7,
-        "Param": 0.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-S2",
-    "events": [
-      {
-        "GameId": 676680497,
-        "Type": 388,
-        "Coef": 1.7,
-        "Param": 2.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 708622008,
-        "Type": 182,
-        "Coef": 1.78,
-        "Param": 0.0,
-        "PlayerId": 0
-      }
-    ]
-  },
-  {
-    "ticket_id": "WC1-S3",
-    "events": [
-      {
-        "GameId": 708622008,
-        "Type": 390,
-        "Coef": 1.66,
-        "Param": 3.0,
-        "PlayerId": 0
-      },
-      {
-        "GameId": 676680497,
+        "GameId": 730660093,
         "Type": 197,
-        "Coef": 1.8,
+        "Coef": 1.78,
+        "Param": 17.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629504,
+        "Type": 13,
+        "Coef": 1.42,
+        "Param": 11.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682801,
+        "Type": 207,
+        "Coef": 1.31,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730548808,
+        "Type": 207,
+        "Coef": 1.36,
+        "Param": 8.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S4",
+    "events": [
+      {
+        "GameId": 730665964,
+        "Type": 10,
+        "Coef": 3.58,
         "Param": 1.5,
         "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 757,
+        "Coef": 2.4,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 757,
+        "Coef": 1.86,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729825647,
+        "Type": 767,
+        "Coef": 1.82,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730548808,
+        "Type": 388,
+        "Coef": 1.63,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730078982,
+        "Type": 3830,
+        "Coef": 1.3,
+        "Param": -0.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730659574,
+        "Type": 207,
+        "Coef": 1.42,
+        "Param": 21.5,
+        "PlayerId": 0
       }
     ]
   },
   {
-    "ticket_id": "WC2-S3",
+    "ticket_id": "SUN-S5",
     "events": [
       {
-        "GameId": 676857880,
+        "GameId": 730293576,
+        "Type": 8,
+        "Coef": 3.78,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598670,
+        "Type": 389,
+        "Coef": 1.87,
+        "Param": 4.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730043369,
         "Type": 206,
-        "Coef": 1.78,
+        "Coef": 2.2,
         "Param": 5.5,
         "PlayerId": 0
       },
       {
-        "GameId": 708606630,
-        "Type": 390,
+        "GameId": 730548808,
+        "Type": 182,
+        "Coef": 1.79,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663971,
+        "Type": 13,
+        "Coef": 1.61,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730320167,
+        "Type": 9,
+        "Coef": 1.31,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629079,
+        "Type": 7,
+        "Coef": 1.43,
+        "Param": -2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S6",
+    "events": [
+      {
+        "GameId": 729818927,
+        "Type": 12,
+        "Coef": 4.35,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730070460,
+        "Type": 3830,
+        "Coef": 2.14,
+        "Param": 0.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730581283,
+        "Type": 1,
+        "Coef": 1.97,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729641006,
+        "Type": 3828,
+        "Coef": 1.6,
+        "Param": 3.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729941380,
+        "Type": 580,
+        "Coef": 1.56,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 9,
+        "Coef": 1.37,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730129196,
+        "Type": 580,
+        "Coef": 1.32,
+        "Param": 3.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S2",
+    "events": [
+      {
+        "GameId": 730058365,
+        "Type": 7,
+        "Coef": 4.85,
+        "Param": -2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840538,
+        "Type": 388,
+        "Coef": 1.67,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730532077,
+        "Type": 197,
+        "Coef": 1.73,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 10,
+        "Coef": 1.77,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 10,
+        "Coef": 1.5,
+        "Param": 3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625985,
+        "Type": 7,
+        "Coef": 1.44,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665099,
+        "Type": 207,
+        "Coef": 1.38,
+        "Param": 10.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S7",
+    "events": [
+      {
+        "GameId": 730285617,
+        "Type": 8,
+        "Coef": 5.3,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 192,
+        "Coef": 1.73,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730598670,
+        "Type": 3828,
+        "Coef": 1.8,
+        "Param": 9.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729637956,
+        "Type": 206,
+        "Coef": 1.76,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665964,
+        "Type": 9,
+        "Coef": 1.33,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611045,
+        "Type": 3829,
+        "Coef": 1.42,
+        "Param": -1.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730652244,
+        "Type": 207,
+        "Coef": 1.32,
+        "Param": 22.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S3",
+    "events": [
+      {
+        "GameId": 729840538,
+        "Type": 11,
+        "Coef": 3.82,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625997,
+        "Type": 12,
+        "Coef": 1.94,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 192,
+        "Coef": 2.1,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 7,
+        "Coef": 1.57,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 10,
+        "Coef": 1.53,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 211,
+        "Coef": 1.35,
+        "Param": 4.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 199,
+        "Coef": 1.36,
+        "Param": 3.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S8",
+    "events": [
+      {
+        "GameId": 720168348,
+        "Type": 12,
+        "Coef": 6.5,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730139983,
+        "Type": 3830,
+        "Coef": 1.9,
+        "Param": -1.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 767,
+        "Coef": 1.95,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730466008,
+        "Type": 7,
+        "Coef": 1.53,
+        "Param": -3.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663955,
+        "Type": 211,
+        "Coef": 1.34,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730650312,
+        "Type": 14,
+        "Coef": 1.39,
+        "Param": 14.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S9",
+    "events": [
+      {
+        "GameId": 730293579,
+        "Type": 14,
+        "Coef": 4.55,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665961,
+        "Type": 3828,
+        "Coef": 1.74,
+        "Param": 5.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629079,
+        "Type": 207,
+        "Coef": 1.65,
+        "Param": 18.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 716611066,
+        "Type": 212,
+        "Coef": 1.53,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730287097,
+        "Type": 207,
+        "Coef": 1.41,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730682797,
+        "Type": 211,
+        "Coef": 1.39,
+        "Param": 9.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730466007,
+        "Type": 212,
+        "Coef": 1.33,
+        "Param": 21.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730581287,
+        "Type": 14,
+        "Coef": 1.3,
+        "Param": 5.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SUN-S10",
+    "events": [
+      {
+        "GameId": 730532065,
+        "Type": 8,
+        "Coef": 3.42,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730285617,
+        "Type": 755,
         "Coef": 1.7,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730689945,
+        "Type": 7,
+        "Coef": 1.61,
+        "Param": -1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730454585,
+        "Type": 13,
+        "Coef": 1.8,
+        "Param": 8.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730649557,
+        "Type": 14,
+        "Coef": 1.47,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 720168348,
+        "Type": 10,
+        "Coef": 1.36,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730663955,
+        "Type": 207,
+        "Coef": 1.33,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730629079,
+        "Type": 12,
+        "Coef": 1.44,
+        "Param": 13.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S4",
+    "events": [
+      {
+        "GameId": 730058359,
+        "Type": 8,
+        "Coef": 5.3,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625985,
+        "Type": 7,
+        "Coef": 1.6,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 13,
+        "Coef": 1.55,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008004,
+        "Type": 3828,
+        "Coef": 1.78,
+        "Param": 2.75,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 10,
+        "Coef": 1.43,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665075,
+        "Type": 212,
+        "Coef": 1.32,
+        "Param": 8.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 209,
+        "Coef": 1.4,
+        "Param": 2.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S5",
+    "events": [
+      {
+        "GameId": 730058365,
+        "Type": 13,
+        "Coef": 4.5,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 766,
+        "Coef": 1.78,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730592540,
+        "Type": 9,
+        "Coef": 1.67,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730438066,
+        "Type": 3827,
+        "Coef": 1.56,
+        "Param": 2.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730008001,
+        "Type": 10,
+        "Coef": 1.42,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 8,
+        "Coef": 1.42,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484512,
+        "Type": 7,
+        "Coef": 1.44,
+        "Param": 1.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S6",
+    "events": [
+      {
+        "GameId": 730060856,
+        "Type": 13,
+        "Coef": 3.05,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730353788,
+        "Type": 3827,
+        "Coef": 2.03,
+        "Param": 4.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 1,
+        "Coef": 2.07,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 13,
+        "Coef": 1.53,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 11,
+        "Coef": 1.6,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 15,
+        "Coef": 1.36,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594105,
+        "Type": 7,
+        "Coef": 1.37,
+        "Param": 2.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S7",
+    "events": [
+      {
+        "GameId": 730532077,
+        "Type": 10,
+        "Coef": 4.7,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665099,
+        "Type": 9,
+        "Coef": 1.67,
+        "Param": 10.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 728640489,
+        "Type": 9,
+        "Coef": 1.58,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484520,
+        "Type": 8,
+        "Coef": 1.76,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 12,
+        "Coef": 1.36,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 14,
+        "Coef": 1.48,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730060856,
+        "Type": 3829,
+        "Coef": 1.32,
+        "Param": 1.25,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S8",
+    "events": [
+      {
+        "GameId": 729840520,
+        "Type": 13,
+        "Coef": 4.8,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730624624,
+        "Type": 13,
+        "Coef": 1.99,
+        "Param": 6.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730528318,
+        "Type": 8,
+        "Coef": 1.97,
+        "Param": 1.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665071,
+        "Type": 10,
+        "Coef": 1.52,
+        "Param": 11.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729060746,
+        "Type": 10,
+        "Coef": 1.32,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 206,
+        "Coef": 1.43,
+        "Param": 4.5,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S9",
+    "events": [
+      {
+        "GameId": 730008001,
+        "Type": 13,
+        "Coef": 4.25,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730594100,
+        "Type": 9,
+        "Coef": 1.57,
+        "Param": 7.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730020110,
+        "Type": 182,
+        "Coef": 1.79,
+        "Param": 0.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840529,
+        "Type": 207,
+        "Coef": 1.53,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665091,
+        "Type": 212,
+        "Coef": 1.49,
+        "Param": 10.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058365,
+        "Type": 214,
+        "Coef": 1.3,
+        "Param": 2.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484532,
+        "Type": 7,
+        "Coef": 1.48,
+        "Param": 4.0,
+        "PlayerId": 0
+      }
+    ]
+  },
+  {
+    "ticket_id": "SAT-S10",
+    "events": [
+      {
+        "GameId": 730020110,
+        "Type": 14,
+        "Coef": 4.5,
+        "Param": 0.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729965103,
+        "Type": 208,
+        "Coef": 1.66,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730484532,
+        "Type": 7,
+        "Coef": 1.6,
+        "Param": 3.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730665095,
+        "Type": 7,
+        "Coef": 1.59,
+        "Param": 2.0,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 729840532,
+        "Type": 14,
+        "Coef": 1.31,
+        "Param": 1.5,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730058359,
+        "Type": 3828,
+        "Coef": 1.5,
+        "Param": 5.25,
+        "PlayerId": 0
+      },
+      {
+        "GameId": 730625985,
+        "Type": 7,
+        "Coef": 1.32,
         "Param": 3.0,
         "PlayerId": 0
       }
