@@ -119,136 +119,201 @@ TEAM_ABBREVS = {
     'Acereros de Monclova': 'MON', 'Algodoneros': 'ALG',
 }
 
-# ── Tournament filtering ──
-# Exclude friendlies — too unpredictable, low motivation
-EXCLUDED_TOURNAMENT_KEYWORDS = [
-    'friendl',          # Friendlies. National Teams / Friendlies U19
-    'amistos',          # Spanish variants if any
-    'club friendl',
-    'mls+',             # MLS+ — formato corto poco confiable, mucha duplicación
-    # ── Esports / gaming / simulación ──
-    'esoccer',
-    'e-soccer',
-    'efootball',
-    'e-football',
-    'efighting',
-    'cyber ',           # Cyber League, Cyber Cup
-    'cyber.',
-    'cyber-',
-    'simulator',
-    'simulated',
-    'virtual ',
-    'fifa league',
-    'fifa cup',
-    'fifa club',
-    'volta ',
-    'e-series',
-    'eseries',
-    'esports ',
-    'e-sports',
-    # ── Amateur / niche russian tournaments con equipos joke-name ──
-    'magnitka',
-    # ── Ligas menores / formatos chicos / regiones de bajo nivel ──
-    'k3/k4',                                # South Korea Championship K3/K4
-    'wk-league', 'wk league',               # South Korea WK-League (femenino menor)
-    'australia cup',                        # Australia Cup
-    'nsw cup',                              # Australia NSW Cup Women
-    'china. second league', 'china second',
-    'kazakhstan. premier',                  # Kazakhstan Premier League
-    '6x6', 'mini euro',                     # Minifootball 6 vs 6
-    'czech republic. qualification',
-    'czech republic. 3 liga',
-    'finnish cup',
-    'philippines. ufl',
-    'kenya. super league', 'kenya super',
-    'vietnam',                              # Vietnam 2nd Division + Cup Women
-    'utr pro',                              # UTR Pro Tennis Series (no pro real)
-    'nhl',                                  # NHL (sólo 1 evento Stanley Cup final, descartado por pedido)
-    'japan. npb', 'japan npb',              # NPB + Reserve + Winners
-    'kbo',                                  # KBO South Korea + Winner
-    # ── Reservas / Mujeres / Sub-20 — sin cobertura en The Odds API ──
-    'u20', 'u19', 'u21', 'u23',            # Youth categories
-    'sub 20', 'sub 19', 'sub 21', 'sub-20', 'sub-19', 'sub-21',
-    'reserve', 'reserva',                   # Reserve leagues
-    'women', 'femenin', 'female', 'mujeres',  # Women's leagues
-    'youth', 'juvenil', 'junior',           # Youth/junior
-    'primavera',                            # Italian youth league
-    'opg',                                  # Torneio OPG U20
-    # ── Ligas menores sin cobertura en The Odds API ──
-    'série d', 'serie d',                   # Brazilian Serie D
-    'série c', 'serie c',                   # Brazilian Serie C
-    'sul-sudeste', 'suleste',               # Brazilian regional cups
-    'copa paulista', 'gaucho u',            # Brazilian state youth
-    'carioca c', 'carioca b',              # Campeonato Carioca C/B (regional BR)
-    'campeonato carioca c', 'campeonato carioca b',
-    'promocional amateur',                  # Torneo Promocional Amateur (ARG minor)
-    'primera c ', 'primera c,',            # Primera C Metropolitana (ARG 4th)
-    'primera b metropolitana',              # Primera B Metro (ARG 3rd)
-    'primera b nacional',                   # Primera B Nacional
-    'intermedia',                           # División Intermedia (Paraguay 2nd)
-    # ── Divisiones 3ra/4ta/5ta de cualquier país ──
-    'segunda b', 'tercera division',        # Spanish lower divisions
-    'third league', 'third division',       # Generic 3rd division
-    'fourth league', 'fourth division',     # Generic 4th
-    'fifth league', 'fifth division',       # Generic 5th
-    '3. liga', '4. liga', '5. liga',       # Czech/German 3rd-5th
-    '3 liga', '4 liga',                    # Polish etc.
-    '3. deild', '4. deild',               # Icelandic lower divisions
-    '2 deild', '2. deild',                # Icelandic 2nd
-    'division 1,', 'division 2', 'division 3',  # Scandinavian lower
-    'esiliiga',                             # Estonian 2nd division
-    'league two', 'usl league two',        # USL League Two (US amateur)
-    # ── Campeonatos regionales (Brasil y otros) ──
-    'campeonato mineiro', 'campeonato carioca',    # Brazilian state championships
-    'campeonato gaucho', 'campeonato paranaense',
-    'campeonato paulista', 'campeonato baiano',
-    'campeonato catarinense', 'campeonato goiano',
-    'campeonato capixaba', 'campeonato sergipano',
-    'campeonato maranhense', 'campeonato piauiense',
-    'campeonato paraibano', 'campeonato potiguar',
-    'campeonato pernambucano', 'campeonato alagoano',
-    'campeonato acreano', 'campeonato amapaense',
-    'campeonato amazonense', 'campeonato matogrossense',
-    'campeonato rondoniense', 'campeonato roraimense',
-    'campeonato tocantinense', 'campeonato brasiliense',
-    'liga gaucho', 'copa paulista',
-    'simon bolivar',                        # Copa Simon Bolivar (Bolivia regional)
-    # ── Ligas amateur / semi-pro ──
-    'ahl',                                  # American Hockey League (minor)
-    'latvian cup',                          # Latvia minor
-    'silver league',                        # Minor volleyball/handball
-    'liga 2',                               # Romanian/other 2nd division
-    'ncaa',                                 # US college
-    'qualification',                        # Qualification rounds
-    'league cup',                           # Minor domestic cups
-    'regionalliga',                         # German regional leagues
-    'oberliga',                             # German amateur
-    'landesliga',                           # German state leagues
-    'kreisliga',                            # German district leagues
-    'botola',                               # Morocco minor
-    'stars league',                         # Qatar Stars League minor
-    # ── Más islandesas/nórdicas menores ──
-    'deild', 'delid',                       # Icelandic all lower divisions
-    # ── Tenis circuitos menores (Challenger/ITF/Futures) ──
-    'challenger', 'itf ',                   # ITF/Challenger circuits
-    'birmingham', 'caltanissetta', 'heilbronn',  # Minor tour cities
-    'tyler', 'harmon', 'perugia',          # Minor tour cities
-    'santo domingo', 'prostejov', 'surbiton',
-    # ── Primera B (genérica, no primera división) ──
-    'primera b',                            # 2nd division Argentina/Chile/etc.
-    # ── Apuestas a largo plazo / especiales (sin fecha de resolución) ──
-    'special bet', 'special bets',          # DBbet "Special bets" category
-    'outright', 'outrights',                # Season outrights (winner of league etc.)
-    'ballon d', 'balon de oro',             # Ballon d'Or
+# ── Tournament filtering — WHITELIST approach ──
+# Solo se permiten torneos de primer nivel. Todo lo que no matchee la
+# lista blanca se descarta automáticamente. Mucho más robusto que una
+# lista negra que siempre deja escapar ligas amateurs/regionales.
+ALLOWED_TOURNAMENT_PATTERNS = [
+    # ══════════════════════════════════════════════════════
+    # FÚTBOL — Selecciones
+    # ══════════════════════════════════════════════════════
+    'world cup',                            # Mundial FIFA
+    'copa america', 'copa américa',         # Copa América
+    'nations league',                       # UEFA/CONMEBOL Nations League
+    'gold cup',                             # CONCACAF Gold Cup
+    'concacaf',                             # Cualquier torneo CONCACAF
+    'euro 202',                             # UEFA Euro 2024/2026/etc.
+    'uefa euro',
+    'afcon', 'africa cup',                  # Copa Africana
+    'asian cup',                            # Copa Asiática
+    # ══════════════════════════════════════════════════════
+    # FÚTBOL — Clubes internacionales
+    # ══════════════════════════════════════════════════════
+    'champions league',
+    'europa league',
+    'conference league',
+    'uefa super cup',
+    'libertadores',
+    'sudamericana',
+    'recopa',
+    # ══════════════════════════════════════════════════════
+    # FÚTBOL — Ligas nacionales (solo primera división)
+    # ══════════════════════════════════════════════════════
+    # Argentina
+    'argentina. liga profesional',
+    'argentina. primera',
+    'argentina. superliga',
+    'copa argentina',
+    # Brasil
+    'brazil. campeonato brasileiro. serie a',
+    'brazil. campeonato brasileiro. serie b',
+    'brazil. copa do brasil',
+    # Uruguay
+    'uruguay championship',
+    'uruguay. primera',
+    # Perú
+    'peru. liga 1',
+    'peru. copa de la liga',
+    # Chile
+    'chile. primera',
+    # Colombia
+    'colombia. liga',
+    'colombia. primera',
+    # Paraguay
+    'paraguay. primera',
+    # Ecuador
+    'ecuador. serie a',
+    'ecuador. ligapro',
+    # México
+    'mexico. liga mx',
+    'mexico. liga bbva',
+    # Costa Rica
+    'costa rica championship',
+    # Inglaterra
+    'england. premier league',
+    'england. championship',                # 2da de Inglaterra (nivel alto)
+    'england. fa cup',
+    'england. fa community shield',
+    'england. efl cup',
+    # España
+    'spain. laliga',
+    'spain. la liga',
+    'spain. primera',
+    'spain. copa del rey',
+    'spain. supercopa',
+    # Italia
+    'italy. serie a',
+    'italy. coppa italia',
+    'italy. supercoppa',
+    # Alemania
+    'germany. bundesliga',
+    'germany. 2. bundesliga',
+    'germany. dfb',
+    'germany dfl',
+    # Francia
+    'france. ligue 1',
+    'france. coupe',
+    'france super cup',
+    # Holanda
+    'netherlands. eredivisie',
+    # Portugal
+    'portugal. primeira liga',
+    'portugal. liga portugal',
+    # Turquía
+    'turkey. super lig',
+    # Bélgica
+    'belgium. jupiler',
+    'belgium. pro league',
+    'belgium. first division',
+    # Escocia
+    'scotland. premier',
+    # Suecia
+    'sweden. allsvenskan',
+    # Finlandia
+    'finland. veikkausliiga',
+    # Noruega
+    'norway. eliteserien',
+    # Dinamarca
+    'denmark. superligaen',
+    # Suiza
+    'switzerland. super league',
+    # Austria
+    'austria. bundesliga',
+    # Grecia
+    'greece. super league',
+    'greece super cup',
+    # Rumanía
+    'romania. liga 1',
+    'romanian super cup',
+    # Rusia (solo primera)
+    'russia. premier',
+    'russian super cup',
+    # Japón
+    'japan. j-league', 'japan. j1', 'japan. j league',
+    # Corea del Sur
+    'south korea. k league 1',
+    # China
+    'china. super league',
+    'chinese super league',
+    # Arabia Saudita
+    'saudi. pro league',
+    'saudi pro league',
+    # ══════════════════════════════════════════════════════
+    # USA — Ligas principales
+    # ══════════════════════════════════════════════════════
+    'usa. mlb',
+    'usa. major league',                    # MLS
+    'usa. mls',
+    'nba.',                                 # NBA (con punto para evitar falsos positivos)
+    # ══════════════════════════════════════════════════════
+    # TENIS — Solo circuitos principales ATP/WTA
+    # ══════════════════════════════════════════════════════
+    'atp.',                                 # ATP tour (con punto: matchea "ATP. Halle" etc.)
+    'wta.',                                 # WTA tour
+    # ══════════════════════════════════════════════════════
+    # UFC/MMA
+    # ══════════════════════════════════════════════════════
+    'ufc ',
+    'ufc.',
+    # ══════════════════════════════════════════════════════
+    # Fórmula 1
+    # ══════════════════════════════════════════════════════
+    'formula 1', 'f1 ',
+    'austria grand prix',                   # GP races
+    'grand prix',
+]
+
+# ── Exclusión adicional: incluso si matchea la whitelist, estos se bloquean ──
+# Previene falsos positivos como "World Cup 2026. Winner" (apuesta a largo plazo)
+ALWAYS_BLOCKED_KEYWORDS = [
+    'winner',                               # Apuestas outright "Winner" / "2026. Winner"
+    'results',                              # "Results of the championship" — futuros
+    'qualification',                        # Rondas de clasificación
+    'special bet', 'special bets',
+    'outright', 'outrights',
+    'ballon d', 'balon de oro',
     'golden boot', 'golden ball', 'golden glove',
     'mvp', 'most valuable',
     'before retirement', 'retire',
     'transfer', 'next club',
     'top scorer', 'goleador',
     'best player', 'mejor jugador',
-    'season winner', 'winner 202',          # "Winner 2025/26" etc.
-    'champion 202',                         # "Champion 2025/26"
+    'season winner',
+    'champion 202',
+    'women', 'femenin', 'female', 'mujeres',
+    'u20', 'u19', 'u21', 'u23',
+    'sub 20', 'sub 19', 'sub 21',
+    'reserve', 'reserva',
+    'youth', 'juvenil', 'junior',
+    'primavera',
+    'friendl', 'amistos',
+    'mls next',                             # MLS Next Pro (liga de desarrollo)
+    'doubles',                              # Tenis dobles (no queremos)
 ]
+
+
+def is_tournament_allowed(tournament_name, team1='', team2=''):
+    """Check if a tournament passes the whitelist + blocklist filter."""
+    tlow = tournament_name.lower()
+    combined = f"{tlow} {team1.lower()} {team2.lower()}"
+    # Step 1: Always-blocked keywords override everything
+    if any(kw in combined for kw in ALWAYS_BLOCKED_KEYWORDS):
+        return False
+    # Step 2: Must match at least one allowed pattern
+    if any(pattern in tlow for pattern in ALLOWED_TOURNAMENT_PATTERNS):
+        return True
+    # Not in whitelist → blocked
+    return False
 # Boost factor for preferred tournaments (Conmebol focus)
 PREFERRED_TOURNAMENT_KEYWORDS = {
     'libertadores': 8,      # Copa Libertadores → 8x weight
@@ -883,13 +948,10 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
         match = f"{t1} vs {t2}"
         tournament = event.get('tournamentNameLocalization', '')
         link = event.get('link', '')
-        # Skip excluded tournaments AND team names (friendlies, reserves, U20, etc.)
-        tlow = tournament.lower()
-        t1low = t1.lower()
-        t2low = t2.lower()
-        combined = f"{tlow} {t1low} {t2low}"
-        if any(kw in combined for kw in EXCLUDED_TOURNAMENT_KEYWORDS):
+        # Skip tournaments not in whitelist (only top-tier leagues allowed)
+        if not is_tournament_allowed(tournament, t1, t2):
             continue
+        tlow = tournament.lower()
         # Compute boost weight for preferred tournaments
         boost_weight = 1
         for kw, w in PREFERRED_TOURNAMENT_KEYWORDS.items():
