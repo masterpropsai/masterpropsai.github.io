@@ -1,159 +1,6 @@
 {
   "tickets": {
-    "SUN-W1": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
     "WKD-W1": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "SUN-W2": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "SUN-W3": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "WKD-W2": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "WKD-W3": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "SUN-W4": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "SUN-W5": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "WKD-W4": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "WKD-W5": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "WKD-W6": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "SUN-W6": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "WKD-W7": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "SUN-W7": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "SUN-W8": {
-      "status": "pending",
-      "legs": 10,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 10,
-      "tier": "whale"
-    },
-    "WKD-W8": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "SUN-W9": {
-      "status": "pending",
-      "legs": 9,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 9,
-      "tier": "whale"
-    },
-    "WKD-W9": {
       "status": "pending",
       "legs": 8,
       "won": 0,
@@ -162,7 +9,70 @@
       "pending": 8,
       "tier": "whale"
     },
-    "SUN-W10": {
+    "WKD-W2": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W3": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W4": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W5": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W6": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W7": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W8": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W9": {
       "status": "pending",
       "legs": 8,
       "won": 0,
@@ -189,7 +99,7 @@
       "pending": 8,
       "tier": "whale"
     },
-    "SUN-W11": {
+    "WKD-W12": {
       "status": "pending",
       "legs": 8,
       "won": 0,
@@ -198,37 +108,244 @@
       "pending": 8,
       "tier": "whale"
     },
-    "WKD-W12": {
+    "SAT-S1": {
       "status": "pending",
-      "legs": 9,
+      "legs": 6,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 9,
-      "tier": "whale"
+      "pending": 6,
+      "tier": "shark"
     },
-    "SUN-W12": {
+    "SAT-S2": {
       "status": "pending",
-      "legs": 9,
+      "legs": 6,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 9,
-      "tier": "whale"
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S3": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S4": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S5": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S6": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S7": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
     },
     "SUN-S1": {
       "status": "pending",
-      "legs": 8,
+      "legs": 4,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 8,
+      "pending": 4,
       "tier": "shark"
+    },
+    "SUN-S2": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S3": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SAT-S8": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S9": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SAT-S10": {
+      "status": "pending",
+      "legs": 6,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 6,
+      "tier": "shark"
+    },
+    "SUN-S4": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S5": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S6": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S7": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S8": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S9": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-S10": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "shark"
+    },
+    "SUN-H1": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "hunter"
+    },
+    "SUN-H2": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "hunter"
+    },
+    "SUN-H3": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "hunter"
+    },
+    "SUN-H4": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "hunter"
+    },
+    "SUN-H5": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "hunter"
+    },
+    "SUN-H6": {
+      "status": "pending",
+      "legs": 4,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 4,
+      "tier": "hunter"
     }
   },
-  "last_updated": "2026-06-21T11:10:57.392524+00:00",
+  "last_updated": "2026-06-21T21:06:16.996326+00:00",
   "generation": {
-    "timestamp": "2026-06-21T11:10:54.990099+00:00",
+    "timestamp": "2026-06-21T21:06:14.735789+00:00",
     "total_props": 0,
     "skipped": true
   },
