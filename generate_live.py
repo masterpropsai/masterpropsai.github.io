@@ -1066,6 +1066,30 @@ def build_prop_pool(data, start_ts_min=None, start_ts_max=None, day_label=None):
             personalized = _re_subst.sub(r'Hándicap (.+?) \((-?\d+(?:\.\d+)?)\)( Sets)?', _fmt_handicap, personalized)
             # 5) Limpieza: doble espacio
             personalized = _re_subst.sub(r'\s+', ' ', personalized).strip()
+            # 6) "Más de X - No" → "Menos de X" / "Más de X - Sí" → "Más de X"
+            #    "Menos de X - No" → "Más de X" / "Menos de X - Sí" → "Menos de X"
+            #    Handles units (goles/puntos/carreras) and compound phrases
+            personalized = _re_subst.sub(
+                r'Más de (\d+(?:\.\d+)?\s*\S*(?:\s+de\s+\S+(?:\s+\S+)*)?)\s*-\s*No',
+                r'Menos de \1', personalized)
+            personalized = _re_subst.sub(
+                r'Menos de (\d+(?:\.\d+)?\s*\S*(?:\s+de\s+\S+(?:\s+\S+)*)?)\s*-\s*No',
+                r'Más de \1', personalized)
+            personalized = _re_subst.sub(
+                r'Más de (\d+(?:\.\d+)?\s*\S*(?:\s+de\s+\S+(?:\s+\S+)*)?)\s*-\s*Sí',
+                r'Más de \1', personalized)
+            personalized = _re_subst.sub(
+                r'Menos de (\d+(?:\.\d+)?\s*\S*(?:\s+de\s+\S+(?:\s+\S+)*)?)\s*-\s*Sí',
+                r'Menos de \1', personalized)
+            # Also handle "Total Par - No" → "Total Impar" and vice versa
+            personalized = personalized.replace('Total Par - No', 'Total Impar')
+            personalized = personalized.replace('Total Impar - No', 'Total Par')
+            personalized = personalized.replace('Total Par - Sí', 'Total Par')
+            personalized = personalized.replace('Total Impar - Sí', 'Total Impar')
+            # Clean up any remaining standalone "- No" / "- Sí" at end
+            personalized = _re_subst.sub(r'\s*-\s*Sí\s*$', '', personalized)
+            personalized = _re_subst.sub(r'\s*-\s*No\s*$', '', personalized)
+            personalized = _re_subst.sub(r'\s+', ' ', personalized).strip()
             # ── EDGE CALCULATION ──
             # Priority: Sharp market edge (The Odds API) > Poisson model edge
             edge_val = None
