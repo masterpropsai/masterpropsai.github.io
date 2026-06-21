@@ -10,9 +10,11 @@ import random
 import math
 import re
 import json
+import time
 import urllib.request
 import urllib.parse
 import os
+import requests
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -2017,31 +2019,55 @@ def main():
     TICKETS_DATA_FILE.write_text(json.dumps(tickets_data, indent=2), encoding='utf-8')
     print(f"\n📋 tickets_data.json saved ({len(tickets_data)} tickets)")
 
-    # 5b. Generate coupon codes via Playwright (if available)
+    # 5b. Generate coupon codes via SaveCoupon API (direct HTTP — no Playwright needed)
     coupons = {}
-    try:
-        from generate_coupons import generate_coupon_codes
-        print("\n🎫 Generating coupon codes via Playwright...")
-        coupons = generate_coupon_codes(tickets_data)
-        print(f"✅ Generated {len(coupons)} coupon codes")
-    except ImportError:
-        print("\n⚠️  Playwright not available — skipping coupon generation")
-        print("   Run: pip install playwright && playwright install chromium")
-        print("   Then: python generate_coupons.py")
-        if COUPONS_FILE.exists():
-            try:
-                coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
-                print(f"   📋 Loaded {len(coupons)} existing coupon codes")
-            except Exception:
-                pass
-    except Exception as e:
-        print(f"\n⚠️  Coupon generation failed: {e}")
-        if COUPONS_FILE.exists():
-            try:
-                coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
-                print(f"   📋 Loaded {len(coupons)} existing coupon codes")
-            except Exception:
-                pass
+    SAVE_COUPON_URL = 'https://db-bet.com/service-api/LiveBet/Open/SaveCoupon'
+    PARTNER_ID = 164
+    print(f"\n🎫 Generating coupon codes via SaveCoupon API ({len(tickets_data)} tickets)...")
+    success_count = 0
+    fail_count = 0
+    for td in tickets_data:
+        tid = td['ticket_id']
+        body = {
+            'notWait': True, 'CheckCf': 1, 'partner': PARTNER_ID,
+            'AntiExpressCoef': 2, 'Summ': 100,
+            'Events': [{
+                'GameId': ev['GameId'], 'Type': ev['Type'], 'Coef': ev['Coef'],
+                'Param': ev.get('Param', 0), 'PV': None,
+                'PlayerId': ev.get('PlayerId', 0), 'Kind': 3,
+                'InstrumentId': 0, 'Seconds': 0, 'Price': 0,
+                'Expired': 0, 'PlayersDuel': []
+            } for ev in td['events']],
+            'Vid': 0
+        }
+        try:
+            resp = requests.post(SAVE_COUPON_URL, json=body, headers={
+                'content-type': 'application/json',
+                'accept': 'application/json, text/plain, */*',
+                'origin': 'https://db-bet.com',
+                'referer': 'https://db-bet.com/es'
+            }, timeout=15)
+            result = resp.json()
+            if result.get('Success') and result.get('Value'):
+                coupons[tid] = result['Value']
+                success_count += 1
+            else:
+                print(f"   ⚠️  {tid}: API error — {result.get('Error', 'unknown')}")
+                fail_count += 1
+        except Exception as e:
+            print(f"   ⚠️  {tid}: request failed — {e}")
+            fail_count += 1
+        time.sleep(0.3)  # rate limit courtesy
+    print(f"✅ Coupon codes: {success_count} generated, {fail_count} failed")
+    if fail_count > 0 and COUPONS_FILE.exists():
+        try:
+            old_coupons = json.loads(COUPONS_FILE.read_text(encoding='utf-8'))
+            for tid, code in old_coupons.items():
+                if tid not in coupons and code:
+                    coupons[tid] = code
+            print(f"   📋 Merged with {len(old_coupons)} existing codes as fallback")
+        except Exception:
+            pass
 
     for t in tickets:
         t['coupon_code'] = coupons.get(t['id'], '')
