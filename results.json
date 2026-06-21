@@ -1,261 +1,234 @@
 {
   "tickets": {
-    "WCM-W1": {
+    "SUN-W1": {
       "status": "pending",
-      "legs": 7,
+      "legs": 10,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 7,
+      "pending": 10,
       "tier": "whale"
     },
-    "WCM-W2": {
+    "WKD-W1": {
       "status": "pending",
-      "legs": 7,
+      "legs": 10,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 7,
+      "pending": 10,
       "tier": "whale"
     },
-    "WCM-W3": {
+    "SUN-W2": {
       "status": "pending",
-      "legs": 7,
+      "legs": 10,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 7,
+      "pending": 10,
       "tier": "whale"
     },
-    "WC3-S1": {
+    "SUN-W3": {
       "status": "pending",
-      "legs": 2,
+      "legs": 10,
       "won": 0,
       "lost": 0,
       "push": 0,
-      "pending": 2,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "WKD-W2": {
+      "status": "pending",
+      "legs": 10,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "WKD-W3": {
+      "status": "pending",
+      "legs": 10,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "SUN-W4": {
+      "status": "pending",
+      "legs": 10,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "SUN-W5": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "WKD-W4": {
+      "status": "pending",
+      "legs": 10,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "WKD-W5": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "WKD-W6": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "SUN-W6": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "WKD-W7": {
+      "status": "pending",
+      "legs": 10,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "SUN-W7": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "SUN-W8": {
+      "status": "pending",
+      "legs": 10,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 10,
+      "tier": "whale"
+    },
+    "WKD-W8": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "SUN-W9": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "WKD-W9": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "SUN-W10": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W10": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W11": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "SUN-W11": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
+      "tier": "whale"
+    },
+    "WKD-W12": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "SUN-W12": {
+      "status": "pending",
+      "legs": 9,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 9,
+      "tier": "whale"
+    },
+    "SUN-S1": {
+      "status": "pending",
+      "legs": 8,
+      "won": 0,
+      "lost": 0,
+      "push": 0,
+      "pending": 8,
       "tier": "shark"
-    },
-    "WCM-S1": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "WCM-S2": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "WCM-S3": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "WCM-S4": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "WC3-S2": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "shark"
-    },
-    "WC2-S1": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "segura"
-    },
-    "WC2-H1": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
-    "WC3-H1": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
-    "WC2-H2": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
-    "WC2-H3": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
-    "WC3-H2": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
-    "WC3-H3": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "hunter"
-    },
-    "WC2-S2": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "segura"
-    },
-    "WC1-S3": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "segura"
-    },
-    "WC2-S3": {
-      "status": "pending",
-      "legs": 2,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 2,
-      "tier": "segura"
-    },
-    "S1": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "S2": {
-      "status": "pending",
-      "legs": 5,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 5,
-      "tier": "shark"
-    },
-    "S3": {
-      "status": "pending",
-      "legs": 5,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 5,
-      "tier": "shark"
-    },
-    "S4": {
-      "status": "pending",
-      "legs": 6,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 6,
-      "tier": "shark"
-    },
-    "S5": {
-      "status": "pending",
-      "legs": 5,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 5,
-      "tier": "shark"
-    },
-    "H1": {
-      "status": "pending",
-      "legs": 5,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 5,
-      "tier": "hunter"
-    },
-    "H2": {
-      "status": "pending",
-      "legs": 4,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 4,
-      "tier": "hunter"
-    },
-    "H3": {
-      "status": "pending",
-      "legs": 4,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 4,
-      "tier": "hunter"
-    },
-    "H4": {
-      "status": "pending",
-      "legs": 4,
-      "won": 0,
-      "lost": 0,
-      "push": 0,
-      "pending": 4,
-      "tier": "hunter"
     }
   },
-  "last_updated": "2026-06-20T21:06:56.124446+00:00",
+  "last_updated": "2026-06-21T11:10:57.392524+00:00",
   "generation": {
-    "timestamp": "2026-06-20T21:06:54.314993+00:00",
+    "timestamp": "2026-06-21T11:10:54.990099+00:00",
     "total_props": 0,
     "skipped": true
   },
