@@ -37,7 +37,7 @@ API_BASE = "https://cpservm.com/gateway/marketing/datafeed/prematch/api/v2"
 CLIENT_ID = os.environ.get("DBBET_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("DBBET_CLIENT_SECRET", "")
 REF = "164"
-PARTNER_LINK = "refpa1800.com"
+PARTNER_LINK = "refpa96317.com"
 LOGO_BASE = "https://nimblecd.com/sfiles/logo_teams/"
 
 # ── Sport config ──

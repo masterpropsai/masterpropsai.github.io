@@ -22,7 +22,7 @@ API_BASE = "https://cpservm.com/gateway/marketing/datafeed/prematch/api/v2"
 CLIENT_ID = os.environ.get("DBBET_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("DBBET_CLIENT_SECRET", "")
 REF = "164"
-PARTNER_LINK = "refpa1800.com"
+PARTNER_LINK = "refpa96317.com"
 
 # ── Sport config ──
 SPORT_MAP = {
