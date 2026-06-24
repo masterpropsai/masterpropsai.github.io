@@ -7,6 +7,7 @@ that generate_offline.py can consume.
 """
 
 import json
+import os
 import sys
 import time
 import urllib.request
@@ -18,8 +19,8 @@ from pathlib import Path
 # ── API Config ──
 TOKEN_URL = "https://cpservm.com/gateway/token"
 API_BASE = "https://cpservm.com/gateway/marketing/datafeed/prematch/api/v2"
-CLIENT_ID = "partners-3151f4df3df18d1d17e3eae7a6c43792"
-CLIENT_SECRET = "LDnyHnPGpVdar!gId431qn&YQRAZg!D5A1R010T5rk0F3ciWT1CHreULFN2Ly3Ck"
+CLIENT_ID = os.environ.get("DBBET_CLIENT_ID", "")
+CLIENT_SECRET = os.environ.get("DBBET_CLIENT_SECRET", "")
 REF = "164"
 PARTNER_LINK = "refpa1800.com"
 
