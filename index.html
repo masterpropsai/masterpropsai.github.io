@@ -3580,5 +3580,218 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
+<!-- 🆕 (25-jun-2026 ETAPA 3 MP) Microsoft Clarity placeholder -->
+<!-- TODO: Mauro debe crear project en clarity.microsoft.com y reemplazar PLACEHOLDER -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "MP_CLARITY_PLACEHOLDER");
+</script>
+
+<!-- 🆕 (25-jun-2026 ETAPA 3 MP) Lead capture popup -->
+<style>
+#mp-leadpop{position:fixed;inset:0;background:rgba(10,10,15,0.88);display:none;align-items:center;justify-content:center;z-index:9998;backdrop-filter:blur(8px);animation:mpFadeIn .3s ease}
+#mp-leadpop.show{display:flex}
+@keyframes mpFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes mpSlideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+#mp-leadpop-card{background:linear-gradient(135deg,#111118,#1a1a25);border:1.5px solid #d4a520;border-radius:18px;padding:32px 26px;max-width:420px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6);animation:mpSlideUp .35s ease;font-family:'Inter',sans-serif;position:relative}
+#mp-leadpop-close{position:absolute;top:10px;right:14px;background:none;border:none;color:#8a8578;font-size:1.4rem;cursor:pointer;line-height:1;padding:4px 8px;border-radius:6px;transition:color .2s}
+#mp-leadpop-close:hover{color:#d4a520}
+#mp-leadpop h3{font-family:'Orbitron',sans-serif;color:#d4a520;font-size:1.35rem;font-weight:900;margin-bottom:8px;letter-spacing:.5px}
+#mp-leadpop p{color:#e8e4d8;font-size:.95rem;margin-bottom:18px;line-height:1.55}
+#mp-leadpop input{width:100%;padding:13px 16px;border:1.5px solid rgba(212,165,32,0.3);background:rgba(0,0,0,0.4);color:#f0ece0;border-radius:10px;font-size:1rem;font-family:inherit;outline:none;transition:border-color .2s;margin-bottom:12px}
+#mp-leadpop input:focus{border-color:#d4a520}
+#mp-leadpop button.submit{width:100%;background:linear-gradient(135deg,#d4a520,#f0c850);color:#000;font-weight:800;padding:13px;border:none;border-radius:10px;font-size:1rem;cursor:pointer;font-family:inherit;letter-spacing:.5px;transition:transform .2s}
+#mp-leadpop button.submit:hover{transform:translateY(-2px)}
+#mp-leadpop button.submit:disabled{opacity:0.6;cursor:wait;transform:none}
+#mp-leadpop .small{font-size:.72rem;color:#8a8578;margin-top:14px;line-height:1.4}
+#mp-leadpop .ok{color:#22c55e;font-weight:700;margin-top:10px}
+#mp-leadpop .err{color:#ef4444;font-weight:700;margin-top:10px;font-size:.85rem}
+</style>
+<div id="mp-leadpop" role="dialog" aria-modal="true" aria-label="Suscribirse a billetes diarios">
+  <div id="mp-leadpop-card">
+    <button id="mp-leadpop-close" aria-label="Cerrar">×</button>
+    <h3>💰 Billetes en tu mail</h3>
+    <p>Te avisamos cuando publicamos un ticket x10+ con edge real. Gratis, sin spam, baja en 1 click.</p>
+    <form id="mp-leadpop-form" autocomplete="email">
+      <input type="email" name="email" placeholder="tu@email.com" required>
+      <button type="submit" class="submit">RECIBIR BILLETES GRATIS</button>
+    </form>
+    <div id="mp-leadpop-msg"></div>
+    <div class="small">Al suscribirte aceptás recibir mails diarios. +18. Apuestas con responsabilidad.</div>
+  </div>
+</div>
+
+<!-- 🆕 (25-jun-2026 ETAPA 3 MP) Push notifications opt-in (banner sutil) -->
+<style>
+#mp-pushbanner{position:fixed;bottom:14px;left:14px;right:14px;max-width:480px;margin:0 auto;background:linear-gradient(135deg,#111118,#1a1a25);border:1px solid rgba(212,165,32,0.4);border-radius:14px;padding:14px 18px;display:none;align-items:center;gap:12px;z-index:9997;box-shadow:0 8px 28px rgba(0,0,0,0.5);font-family:'Inter',sans-serif;animation:mpSlideUp .4s ease}
+#mp-pushbanner.show{display:flex}
+#mp-pushbanner .pb-icon{font-size:1.6rem;flex-shrink:0}
+#mp-pushbanner .pb-text{flex:1;font-size:.85rem;color:#e8e4d8;line-height:1.4}
+#mp-pushbanner .pb-text b{color:#d4a520}
+#mp-pushbanner .pb-buttons{display:flex;gap:6px;flex-shrink:0}
+#mp-pushbanner button{padding:7px 12px;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .2s}
+#mp-pushbanner button.yes{background:#d4a520;color:#000}
+#mp-pushbanner button.no{background:rgba(255,255,255,0.08);color:#8a8578}
+#mp-pushbanner button:hover{transform:translateY(-1px)}
+@media(max-width:480px){#mp-pushbanner{flex-direction:column;text-align:center;padding:14px}#mp-pushbanner .pb-buttons{width:100%;justify-content:center}}
+</style>
+<div id="mp-pushbanner" role="dialog" aria-label="Activar notificaciones">
+  <div class="pb-icon">🔔</div>
+  <div class="pb-text"><b>Avisos en tu celu</b><br>Te pingueamos cuando salga billete del día.</div>
+  <div class="pb-buttons">
+    <button class="yes" id="mp-push-yes">SÍ</button>
+    <button class="no" id="mp-push-no">Después</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ===== LEAD CAPTURE =====
+  var LS_LEAD_SHOWN = 'mp_lead_shown_v1';
+  var LS_LEAD_DONE = 'mp_lead_done_v1';
+  var LS_LEAD_LATER = 'mp_lead_later_v1';
+  var pop = document.getElementById('mp-leadpop');
+  var form = document.getElementById('mp-leadpop-form');
+  var msg = document.getElementById('mp-leadpop-msg');
+  var closeBtn = document.getElementById('mp-leadpop-close');
+
+  function showLead() {
+    if (localStorage.getItem(LS_LEAD_DONE)) return;
+    var later = parseInt(localStorage.getItem(LS_LEAD_LATER) || '0');
+    if (later && Date.now() - later < 7 * 24 * 3600 * 1000) return; // 7 días
+    pop.classList.add('show');
+    localStorage.setItem(LS_LEAD_SHOWN, String(Date.now()));
+    if (window.clarity) window.clarity('event', 'mp_lead_shown');
+  }
+  function hideLead(reason) {
+    pop.classList.remove('show');
+    if (reason === 'later') localStorage.setItem(LS_LEAD_LATER, String(Date.now()));
+    if (window.clarity) window.clarity('event', 'mp_lead_closed_' + (reason || 'x'));
+  }
+  closeBtn.addEventListener('click', function() { hideLead('later'); });
+  pop.addEventListener('click', function(e) { if (e.target === pop) hideLead('later'); });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var email = form.email.value.trim().toLowerCase();
+    if (!email || email.indexOf('@') < 0) return;
+    var btn = form.querySelector('button.submit');
+    btn.disabled = true; btn.textContent = 'ENVIANDO...';
+    msg.innerHTML = '';
+    try {
+      var res = await fetch('https://api.accesoia.app/mp/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: location.pathname || 'home' }),
+      });
+      var data = await res.json();
+      if (data.ok) {
+        msg.innerHTML = '<div class="ok">✓ Listo. Revisá tu inbox.</div>';
+        localStorage.setItem(LS_LEAD_DONE, '1');
+        if (window.clarity) window.clarity('event', 'mp_lead_converted');
+        setTimeout(function() { hideLead('done'); }, 2200);
+      } else {
+        msg.innerHTML = '<div class="err">Error: ' + (data.error || 'no se pudo guardar') + '. Probá de nuevo.</div>';
+        btn.disabled = false; btn.textContent = 'RECIBIR BILLETES GRATIS';
+      }
+    } catch (err) {
+      msg.innerHTML = '<div class="err">Sin conexión. Probá más tarde.</div>';
+      btn.disabled = false; btn.textContent = 'RECIBIR BILLETES GRATIS';
+    }
+  });
+
+  // Triggers: 25s en página + scroll 40%
+  var scrolled = false;
+  var SCROLL_THRESHOLD = 0.4;
+  function onScroll() {
+    if (scrolled) return;
+    var d = document.documentElement;
+    var ratio = (d.scrollTop + d.clientHeight) / d.scrollHeight;
+    if (ratio >= SCROLL_THRESHOLD) {
+      scrolled = true;
+      window.removeEventListener('scroll', onScroll);
+      setTimeout(showLead, 1200);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  setTimeout(function() {
+    if (!scrolled) showLead();
+  }, 25000);
+
+  // ===== PUSH NOTIFICATIONS =====
+  if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return;
+
+  var LS_PUSH_DONE = 'mp_push_done_v1';
+  var LS_PUSH_LATER = 'mp_push_later_v1';
+  var banner = document.getElementById('mp-pushbanner');
+  var btnYes = document.getElementById('mp-push-yes');
+  var btnNo = document.getElementById('mp-push-no');
+
+  // VAPID public key (compartida con Gambeta — mismo backend)
+  var VAPID_PUB = 'BEFve5dHpprXm4_8XprLJsyFz6yOHDAGPrEUtfMeuho9NPv_mxlgX6oKepYb0omlDprkieAH8lBRe91HRVkRN1s';
+  function b64ToUint8(b64) {
+    var pad = '='.repeat((4 - b64.length % 4) % 4);
+    var raw = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
+    var arr = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+    return arr;
+  }
+
+  function showPushBanner() {
+    if (localStorage.getItem(LS_PUSH_DONE)) return;
+    var later = parseInt(localStorage.getItem(LS_PUSH_LATER) || '0');
+    if (later && Date.now() - later < 7 * 24 * 3600 * 1000) return;
+    if (Notification.permission === 'denied') return;
+    banner.classList.add('show');
+    if (window.clarity) window.clarity('event', 'mp_push_banner_shown');
+  }
+  function hidePush() { banner.classList.remove('show'); }
+
+  btnNo.addEventListener('click', function() {
+    localStorage.setItem(LS_PUSH_LATER, String(Date.now()));
+    hidePush();
+    if (window.clarity) window.clarity('event', 'mp_push_later');
+  });
+
+  btnYes.addEventListener('click', async function() {
+    btnYes.disabled = true; btnYes.textContent = '...';
+    try {
+      var perm = await Notification.requestPermission();
+      if (perm !== 'granted') {
+        hidePush();
+        localStorage.setItem(LS_PUSH_LATER, String(Date.now()));
+        return;
+      }
+      var reg = await navigator.serviceWorker.ready;
+      var sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: b64ToUint8(VAPID_PUB),
+      });
+      await fetch('https://api.accesoia.app/mp/push/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sub.toJSON()),
+      });
+      localStorage.setItem(LS_PUSH_DONE, '1');
+      hidePush();
+      if (window.clarity) window.clarity('event', 'mp_push_subscribed');
+    } catch (err) {
+      console.warn('[mp-push]', err);
+      hidePush();
+    }
+  });
+
+  // Mostrar después de 45s (no antes que el lead capture)
+  setTimeout(function() {
+    if (Notification.permission === 'default' && !localStorage.getItem(LS_PUSH_DONE)) {
+      showPushBanner();
+    }
+  }, 45000);
+})();
+</script>
+
 </body>
 </html>
