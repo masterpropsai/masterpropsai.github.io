@@ -1,0 +1,16 @@
+{
+  "name": "MasterProps — Billetes Largos con IA",
+  "short_name": "MasterProps",
+  "description": "Billetes largos x10+ armados por IA con sharp odds Pinnacle y edge verificado. Apostá en 1 click en DBbet.",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#d4a520",
+  "orientation": "portrait-primary",
+  "categories": ["sports", "finance", "lifestyle"],
+  "lang": "es-AR",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
