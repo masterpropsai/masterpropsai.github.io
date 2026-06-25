@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kelly Criterion Aplicado a Parlays: Cómo Optimizar Stake | MasterProps</title>
+<meta name="description" content="El Kelly Criterion da la fracción óptima de bankroll para apostar según tu edge. Adaptado para parlays con ejemplos numéricos y la versión &quot;Kelly fraccional&quot; segura.">
+<link rel="canonical" href="https://masterprops.ai/blog/kelly-criterion-parlay-billetes-largos">
+<meta property="og:title" content="Kelly Criterion Aplicado a Parlays: Cómo Optimizar Stake | MasterProps">
+<meta property="og:description" content="El Kelly Criterion da la fracción óptima de bankroll para apostar según tu edge. Adaptado para parlays con ejemplos numéricos y la versión &quot;Kelly fraccional&quot; segura.">
+<meta property="og:url" content="https://masterprops.ai/blog/kelly-criterion-parlay-billetes-largos">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="https://masterprops.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kelly Criterion Aplicado a Parlays: Cómo Optimizar Stake | MasterProps">
+<meta name="twitter:description" content="El Kelly Criterion da la fracción óptima de bankroll para apostar según tu edge. Adaptado para parlays con ejemplos numéricos y la versión &quot;Kelly fraccional&quot; segura.">
+<meta name="twitter:image" content="https://masterprops.ai/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#d4a520">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@700;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Kelly Criterion Aplicado a Parlays: Cómo Optimizar Stake | MasterProps","description":"El Kelly Criterion da la fracción óptima de bankroll para apostar según tu edge. Adaptado para parlays con ejemplos numéricos y la versión \"Kelly fraccional\" segura.","datePublished":"2026-06-25","author":{"@type":"Organization","name":"MasterProps"},"publisher":{"@type":"Organization","name":"MasterProps","logo":{"@type":"ImageObject","url":"https://masterprops.ai/icon-512.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://masterprops.ai/blog/kelly-criterion-parlay-billetes-largos"},"image":"https://masterprops.ai/og-image.png","inLanguage":"es-AR"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué Kelly fraccional y no completo?","acceptedAnswer":{"@type":"Answer","text":"Porque Kelly completo asume estimación perfecta de probabilidad. En la realidad hay error en la estimación — un error del 10% en la prob lleva a sobreapostar 30%+. Kelly fraccional (1/4 o 1/2) protege contra esos errores sin perder mucho del crecimiento óptimo."}},{"@type":"Question","name":"¿Qué pasa si mi probabilidad estimada está mal?","acceptedAnswer":{"@type":"Answer","text":"Si sobreestimás la probabilidad real (más confianza de la justificada), Kelly te hace apostar de más y vas a perder bankroll a largo plazo. Por eso siempre usá Kelly 1/4 — protege contra ese error."}},{"@type":"Question","name":"¿Sirve Kelly si mi edge es muy chico (1-2%)?","acceptedAnswer":{"@type":"Answer","text":"Sí, pero el stake va a ser ínfimo (1/4 de Kelly con edge 1% son ~0.05% del bankroll). En la práctica, edges menores a 3% no justifican el esfuerzo de seguir su apuesta — el margen de error en la estimación es mayor al edge."}},{"@type":"Question","name":"¿Puedo apostar más que Kelly si \"tengo cuota linda\"?","acceptedAnswer":{"@type":"Answer","text":"No matemáticamente. Lo que percibís como \"cuota linda\" puede ser un sesgo cognitivo. Si la fórmula te dice 2% del bankroll, apostar 5% reduce tu EV a largo plazo y aumenta la varianza. El que ignora Kelly tiende a explotar el bankroll en algún momento."}},{"@type":"Question","name":"¿Kelly funciona si ya estoy en racha negativa?","acceptedAnswer":{"@type":"Answer","text":"Sí, y especialmente ahí. Kelly da el stake como % del bankroll actual, así que se ajusta automáticamente cuando perdés. Apostar más para \"recuperar\" (martingala inversa) es la receta de la quiebra. Kelly te obliga a respetar el bankroll actual."}}]}
+</script>
+<style>
+:root{--bg:#0a0a0f;--card:#111118;--gold:#d4a520;--gold-l:#f0c850;--gold-d:#a07d18;--text:#f0ece0;--text-s:#8a8578;--green:#22c55e;--red:#ef4444;--border:rgba(212,165,32,0.18);--pink:#ff335c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.nav{position:sticky;top:0;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 24px;z-index:10}
+.nav-inner{max-width:780px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.15rem;color:var(--gold);text-decoration:none;letter-spacing:1px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{color:var(--text-s);text-decoration:none;font-size:.9rem;font-weight:600;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.container{max-width:780px;margin:0 auto;padding:36px 24px 80px}
+.crumb{font-size:.8rem;color:var(--text-s);margin-bottom:18px}
+.crumb a{color:var(--gold);text-decoration:none}
+.badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#000;font-weight:800;font-size:.7rem;padding:4px 12px;border-radius:30px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:900;line-height:1.18;color:var(--text);margin-bottom:18px;letter-spacing:-.5px}
+.meta{display:flex;gap:16px;font-size:.82rem;color:var(--text-s);margin-bottom:30px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.hero{background:linear-gradient(135deg,rgba(212,165,32,0.08),rgba(212,165,32,0.02));border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:28px;font-size:1.05rem}
+.hero b{color:var(--gold)}
+h2{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:800;color:var(--text);margin-top:38px;margin-bottom:14px;line-height:1.3}
+h3{font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:700;color:var(--gold-l);margin-top:24px;margin-bottom:10px}
+p{margin-bottom:16px;font-size:1.02rem;color:#e8e4d8}
+ul,ol{margin:0 0 18px 22px}
+li{margin-bottom:8px;color:#e8e4d8}
+strong{color:var(--gold-l);font-weight:700}
+em{color:var(--text);font-style:normal;background:rgba(212,165,32,0.08);padding:1px 6px;border-radius:4px}
+blockquote{border-left:3px solid var(--gold);padding:8px 16px;margin:18px 0;background:rgba(212,165,32,0.05);color:var(--text-s);font-style:italic}
+table{width:100%;border-collapse:collapse;margin:18px 0;background:var(--card);border-radius:10px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:.92rem}
+th{background:rgba(212,165,32,0.12);color:var(--gold);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+td{color:#e8e4d8}
+.cta-box{background:linear-gradient(135deg,var(--card),rgba(212,165,32,0.04));border:1.5px solid var(--gold);border-radius:14px;padding:24px;margin:30px 0;text-align:center}
+.cta-box h3{font-family:'Orbitron',sans-serif;color:var(--gold);margin-top:0;font-size:1.2rem;margin-bottom:8px}
+.cta-box p{margin-bottom:14px;font-size:.95rem}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#000;font-weight:800;padding:12px 26px;border-radius:30px;text-decoration:none;font-size:.95rem;letter-spacing:.5px;transition:transform .2s}
+.cta-btn:hover{transform:scale(1.04)}
+.related{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-top:36px}
+.related h3{margin-top:0;color:var(--gold);font-family:'Orbitron',sans-serif;font-size:1rem;letter-spacing:.5px;text-transform:uppercase}
+.related-list{list-style:none;margin:0;padding:0}
+.related-list li{margin:8px 0;padding:0}
+.related-list a{color:#e8e4d8;text-decoration:none;font-size:.95rem;display:block;padding:6px 0;border-bottom:1px solid rgba(212,165,32,0.06);transition:color .2s}
+.related-list a:hover{color:var(--gold)}
+.related-list a::before{content:"→ ";color:var(--gold);font-weight:700}
+.footer{text-align:center;padding:30px 20px;color:var(--text-s);font-size:.85rem;border-top:1px solid var(--border);margin-top:50px}
+.footer a{color:var(--gold);text-decoration:none}
+@media(max-width:600px){h1{font-size:1.6rem}h2{font-size:1.25rem}.container{padding:24px 18px 60px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav-inner">
+<a href="/" class="logo">💰 MASTERPROPS</a>
+<div class="nav-links">
+<a href="/">Inicio</a>
+<a href="/blog/">Blog</a>
+<a href="/#aciertos">Aciertos</a>
+</div>
+</div>
+</nav>
+<article class="container">
+<div class="crumb"><a href="/">MasterProps</a> · <a href="/blog/">Blog</a> · BANKROLL</div>
+<span class="badge">BANKROLL</span>
+<h1>Kelly Criterion aplicado a parlays: el cálculo de stake matemáticamente óptimo</h1>
+<div class="meta">
+<span>📅 25 jun 2026</span>
+<span>⏱️ Lectura ~6 min</span>
+<span>🤖 MasterProps IA</span>
+</div>
+<div class="hero">En 1956 el matemático <b>John Kelly</b> publicó una fórmula que da la fracción óptima del bankroll para apostar según el edge. Es la base matemática del crecimiento exponencial sin quiebra. Adaptarla a parlays requiere algunos ajustes — acá los explicamos con números reales.</div>
+
+<h2>🧮 La fórmula básica</h2>
+<p>Para una apuesta simple:</p>
+<p><strong>Kelly% = (cuota × probabilidad - 1) / (cuota - 1)</strong></p>
+<p>Donde:</p>
+<ul>
+<li><strong>cuota</strong>: cuota decimal (ej. 2.10).</li>
+<li><strong>probabilidad</strong>: tu estimación real de éxito (0 a 1).</li>
+</ul>
+<blockquote>Ejemplo: cuota 2.10, probabilidad real 55% (0.55). Kelly% = (2.10 × 0.55 - 1) / (2.10 - 1) = (1.155 - 1) / 1.10 = 0.155 / 1.10 = 14.1%. Es decir, debés apostar el 14% del bankroll.</blockquote>
+
+<h2>⚠️ Por qué Kelly completo es peligroso</h2>
+<p>Kelly asume que conocés la probabilidad real con precisión. En la realidad, tu estimación tiene error — y un error del 5% en la prob puede llevar a sobreapostar 30-40% del bankroll óptimo.</p>
+<p>La práctica profesional es usar <strong>Kelly fraccional</strong>: apostar 1/4 o 1/2 del Kelly que da la fórmula. Esto:</p>
+<ul>
+<li>Reduce la varianza brutalmente.</li>
+<li>Da resiliencia ante errores de estimación.</li>
+<li>Sigue maximizando el crecimiento a largo plazo si tu edge es real.</li>
+</ul>
+
+<h2>📊 Kelly aplicado a parlays</h2>
+<p>Para un ticket con N piernas independientes:</p>
+<p><strong>Kelly% parlay = (cuota_total × prob_total - 1) / (cuota_total - 1)</strong></p>
+<p>Donde prob_total = prob_pierna_1 × prob_pierna_2 × ... × prob_pierna_N (asumiendo independencia).</p>
+
+<h2>🎯 Ejemplo concreto: parlay x10</h2>
+<p>4 piernas con cuotas y probabilidades estimadas:</p>
+<table>
+<thead><tr><th>Pierna</th><th>Cuota</th><th>Prob estimada</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1.80</td><td>60%</td></tr>
+<tr><td>2</td><td>1.85</td><td>58%</td></tr>
+<tr><td>3</td><td>1.65</td><td>65%</td></tr>
+<tr><td>4</td><td>1.95</td><td>56%</td></tr>
+</tbody>
+</table>
+<p>Cuota total: 1.80 × 1.85 × 1.65 × 1.95 = <em>10.71</em></p>
+<p>Prob total: 0.60 × 0.58 × 0.65 × 0.56 = <em>12.66%</em></p>
+<p>Kelly% = (10.71 × 0.1266 - 1) / (10.71 - 1) = (1.356 - 1) / 9.71 = <strong>3.66%</strong></p>
+<p>Kelly fraccional (1/4): <strong>0.92%</strong> del bankroll. Para un bankroll de $50.000, eso es $460.</p>
+
+<h2>🚨 Cuándo Kelly da negativo (NO apostar)</h2>
+<p>Si tu prob estimada es <em>menor</em> a 1/cuota, Kelly da negativo. Eso significa que la cuota no te paga lo suficiente — la apuesta tiene EV negativo. Pasarse de listo y apostar igual porque "tengo corazonada" es exactamente lo que separa al apostador profesional del recreativo.</p>
+
+<h2>💡 Tabla de Kelly fraccional rápida</h2>
+<p>Para parlays con edge total estimado en X%:</p>
+<table>
+<thead><tr><th>Edge estimado</th><th>Kelly completo</th><th>Kelly 1/4 (recomendado)</th></tr></thead>
+<tbody>
+<tr><td>+5%</td><td>~5%</td><td>~1.25%</td></tr>
+<tr><td>+10%</td><td>~10%</td><td>~2.5%</td></tr>
+<tr><td>+20%</td><td>~20%</td><td>~5%</td></tr>
+<tr><td>+30%</td><td>~30%</td><td>~7.5%</td></tr>
+</tbody>
+</table>
+
+<h2>⚖️ La regla de oro</h2>
+<p>Más allá de Kelly, hay una regla práctica que aplican todos los pros:</p>
+<blockquote><strong>Nunca apuestes más del 5% del bankroll a un solo ticket, sin importar lo que diga Kelly.</strong> La protección contra el "ruina del jugador" (perder todo por una racha mala) requiere stakes pequeños incluso cuando matemáticamente podrías apostar más.</blockquote>
+
+<h2>🤖 Cómo lo usa MasterProps</h2>
+<p>El sistema calcula Kelly fraccional (1/4) para cada ticket que arma y publica el stake sugerido. Vos podés ajustarlo según tu propia gestión de riesgo, pero usar el dato como referencia evita los dos errores más comunes: apostar muy poco cuando hay edge alto (no aprovechás) y apostar mucho cuando el edge es débil (te exponés a varianza).</p>
+
+<h2>❓ Preguntas frecuentes</h2>
+<h3>¿Por qué Kelly fraccional y no completo?</h3>
+<p>Porque Kelly completo asume estimación perfecta de probabilidad. En la realidad hay error en la estimación — un error del 10% en la prob lleva a sobreapostar 30%+. Kelly fraccional (1/4 o 1/2) protege contra esos errores sin perder mucho del crecimiento óptimo.</p>
+<h3>¿Qué pasa si mi probabilidad estimada está mal?</h3>
+<p>Si sobreestimás la probabilidad real (más confianza de la justificada), Kelly te hace apostar de más y vas a perder bankroll a largo plazo. Por eso siempre usá Kelly 1/4 — protege contra ese error.</p>
+<h3>¿Sirve Kelly si mi edge es muy chico (1-2%)?</h3>
+<p>Sí, pero el stake va a ser ínfimo (1/4 de Kelly con edge 1% son ~0.05% del bankroll). En la práctica, edges menores a 3% no justifican el esfuerzo de seguir su apuesta — el margen de error en la estimación es mayor al edge.</p>
+<h3>¿Puedo apostar más que Kelly si &quot;tengo cuota linda&quot;?</h3>
+<p>No matemáticamente. Lo que percibís como &quot;cuota linda&quot; puede ser un sesgo cognitivo. Si la fórmula te dice 2% del bankroll, apostar 5% reduce tu EV a largo plazo y aumenta la varianza. El que ignora Kelly tiende a explotar el bankroll en algún momento.</p>
+<h3>¿Kelly funciona si ya estoy en racha negativa?</h3>
+<p>Sí, y especialmente ahí. Kelly da el stake como % del bankroll actual, así que se ajusta automáticamente cuando perdés. Apostar más para &quot;recuperar&quot; (martingala inversa) es la receta de la quiebra. Kelly te obliga a respetar el bankroll actual.</p>
+<div class="cta-box">
+<h3>🎯 ¿Querés ver los billetes en acción?</h3>
+<p>Tickets x10+ armados por IA cada día. Gratis, sin registro. Apuesta en 1 click en DBbet.</p>
+<a href="/" class="cta-btn">VER BILLETES DE HOY →</a>
+</div>
+<div class="related">
+<h3>Posts relacionados</h3>
+<ul class="related-list"><li><a href="/blog/edge-apuestas-deportivas-secreto-matematico">El edge: el secreto matemático</a></li>
+<li><a href="/blog/como-armar-combinada-x10-valor-matematico">Cómo armar combinada x10</a></li>
+<li><a href="/blog/que-es-billete-largo-parlay-2026">Qué es un billete largo</a></li>
+</ul>
+</div>
+</article>
+<div class="footer">
+<p><a href="/">masterprops.ai</a> · Billetes largos con IA · Apuestá con disciplina · +18</p>
+</div>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}))}
+</script>
+</body>
+</html>
