@@ -22,23 +22,33 @@ p{font-size:14px;opacity:.7;margin:0}
   var params = new URLSearchParams(window.location.search);
   var code = params.get('c') || params.get('code');
   var affiliate = 'https://refpa96317.com/L?tag=d_5597863m_11213c_&site=5597863&ad=11213';
+  var tag = 'd_5597863m_11213c_';
   var direct = 'https://db-bet.com/es';
 
   if (!code) {
+    // Sin cupón — redirigir directamente al link de afiliado
     window.location.replace(affiliate);
     return;
   }
 
-  // Step 1: Hit the affiliate link in a hidden iframe to set the cookie
-  var iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  iframe.src = affiliate;
-  document.body.appendChild(iframe);
+  // --- FIX: el enfoque anterior usaba un iframe oculto para el affiliate ---
+  // Los navegadores modernos (Chrome 80+, Safari, Firefox) bloquean cookies
+  // de terceros en iframes (SameSite=Lax por defecto), rompiendo el tracking.
+  //
+  // Nuevo enfoque:
+  // 1. Registrar el click del afiliado via tracking pixel (server-side)
+  // 2. Redirigir al usuario con tag de afiliado + cupón en la misma URL
 
-  // Step 2: After a short delay for the cookie to set, redirect to the deep link
+  // Step 1: Tracking pixel — registra el click en el servidor de refpa
+  var img = new Image();
+  img.src = affiliate;
+
+  // Step 2: Redirigir con tag de afiliado Y código de cupón
+  // El tag asegura que DBbet atribuya este usuario al afiliado
+  // El load pre-carga el boleto de apuestas
   setTimeout(function() {
-    window.location.replace(direct + '?load=' + encodeURIComponent(code));
-  }, 1500);
+    window.location.replace(direct + '?tag=' + encodeURIComponent(tag) + '&load=' + encodeURIComponent(code));
+  }, 800);
 })();
 </script>
 </body>
