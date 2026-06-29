@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /go.html
 Sitemap: https://masterprops.ai/sitemap.xml
-
