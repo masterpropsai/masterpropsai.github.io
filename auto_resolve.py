@@ -646,9 +646,9 @@ def resolve_prop_v2(prop, local_goals, visitor_goals, total, ht_local, ht_visito
         return 'won' if (condition and si == 'Sí') or (not condition and si == 'No') else 'lost'
 
     # --- TEAM NO PIERDE Y MÁS/MENOS DE X GOLES/PUNTOS/CARRERAS - SÍ/NO ---
-    m = re.match(r'(.+?) No pierde y (Más|Menos) de ([\d.]+) (?:goles|puntos|carreras) - (Sí|No)$', p)
+    m = re.match(r'(.+?) No pierde y (Más|Menos) de ([\d.]+) (?:goles|puntos|carreras)(?: - (Sí|No))?$', p)
     if m:
-        team, op_word, line, si = m.group(1).strip(), m.group(2), float(m.group(3)), m.group(4)
+        team, op_word, line, si = m.group(1).strip(), m.group(2), float(m.group(3)), m.group(4) or 'Sí'
         side = _team_side(team, local_name, visitor_name)
         if side is None:
             return 'SKIP'
