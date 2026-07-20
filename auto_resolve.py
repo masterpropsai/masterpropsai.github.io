@@ -633,9 +633,9 @@ def resolve_prop_v2(prop, local_goals, visitor_goals, total, ht_local, ht_visito
             return _asian_handicap(visitor_goals, local_goals, h)
 
     # --- TEAM GANA Y MÁS/MENOS DE X GOLES/PUNTOS/CARRERAS - SÍ/NO ---
-    m = re.match(r'(.+?) Gana y (Más|Menos) de ([\d.]+) (?:goles|puntos|carreras) - (Sí|No)$', p)
+    m = re.match(r'(.+?) Gana y (Más|Menos) de ([\d.]+) (?:goles|puntos|carreras)(?: - (Sí|No))?$', p)
     if m:
-        team, op_word, line, si = m.group(1).strip(), m.group(2), float(m.group(3)), m.group(4)
+        team, op_word, line, si = m.group(1).strip(), m.group(2), float(m.group(3)), m.group(4) or 'Sí'
         side = _team_side(team, local_name, visitor_name)
         if side is None:
             return 'SKIP'
@@ -683,6 +683,8 @@ def resolve_prop_v2(prop, local_goals, visitor_goals, total, ht_local, ht_visito
         if side is None:
             return 'SKIP'
         if not goal_sequence:
+            if total == 0:
+                return 'lost'  # 0-0 final: goal N never happened
             return 'SKIP'
         if n > len(goal_sequence):
             return 'lost'  # team's goal N never happened
