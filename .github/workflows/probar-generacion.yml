@@ -22,7 +22,8 @@ jobs:
         env:
           DBBET_CLIENT_ID: ${{ secrets.DBBET_CLIENT_ID }}
           DBBET_CLIENT_SECRET: ${{ secrets.DBBET_CLIENT_SECRET }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
-          python mp_build.py | grep -E 'ESPN|resolubles|Total:|mp_build'
+          python mp_build.py | grep -E 'ESPN|resolubles|Total:|mp_build|Odds API|ligas activas|precio justo|datos sharp|descartados|Market'
           python mp_publish_coupons.py | tail -1
           python -c "import history_lib as h;t=h.parse_tickets(open('index.html',encoding='utf-8').read());print(len(t),'billetes');assert len(t)>=5"

@@ -45,6 +45,7 @@ jobs:
         env:
           DBBET_CLIENT_ID: ${{ secrets.DBBET_CLIENT_ID }}
           DBBET_CLIENT_SECRET: ${{ secrets.DBBET_CLIENT_SECRET }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           if python mp_diario.py hoy; then
             echo "Ya hay billetes de hoy: no se regeneran."

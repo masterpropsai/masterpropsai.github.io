@@ -45,6 +45,17 @@ ODDS_SPORT_MAP = {
     'soccer_france_ligue_one': 'futbol',
     'soccer_uefa_champs_league': 'futbol',
     'soccer_uefa_europa_league': 'futbol',
+    'soccer_uefa_europa_conference_league': 'futbol',
+    'soccer_efl_champ': 'futbol',
+    'soccer_germany_bundesliga2': 'futbol',
+    'soccer_spain_segunda_division': 'futbol',
+    'soccer_italy_serie_b': 'futbol',
+    'soccer_france_ligue_two': 'futbol',
+    'soccer_austria_bundesliga': 'futbol',
+    'soccer_greece_super_league': 'futbol',
+    'soccer_denmark_superliga': 'futbol',
+    'soccer_switzerland_superleague': 'futbol',
+    'soccer_poland_ekstraklasa': 'futbol',
     'soccer_copa_libertadores': 'futbol',
     'soccer_copa_sudamericana': 'futbol',
     'soccer_conmebol_copa_america': 'futbol',
@@ -97,6 +108,8 @@ class MarketIntel:
         self.standings = {}        # key: team_name → {rank, points, played, gd}
 
         self._odds_api_calls = 0
+        self._eventos = {}         # id del evento -> (local, visitante) segun The Odds API
+        self._cruce = {}           # (t1, t2) del feed -> (id, invertido) | None
         self._football_api_calls = 0
 
     # ════════════════════════════════════════════
@@ -140,93 +153,95 @@ class MarketIntel:
             return None
 
     def fetch_sharp_odds(self):
-        """Fetch odds from sharp bookmakers for all upcoming events."""
+        """Precio justo por evento (26-nov-2026, lo aprendido en gambeta.ai):
+        * solo futbol y solo ligas activas (la lista /sports no gasta creditos);
+        * 10 casas como mucho y 2 mercados (1X2 y goles) -> 2 creditos por liga. Los handicaps
+          quedan afuera hasta confirmar la convencion de signos entre el feed y la API;
+        * la probabilidad justa sale de QUITAR EL MARGEN a cada casa (antes era 1/cuota,
+          que infla la probabilidad y hace ver ventaja donde no la hay);
+        * manda Pinnacle / exchanges; sin ellos, consenso de las demas, tambien sin margen.
+        """
         if not self.odds_api_key:
             print("   ⚠️  No Odds API key — skipping sharp odds")
             return
 
         print("📊 Fetching sharp odds from The Odds API...")
-
-        # Get list of available sports
-        sports_to_fetch = list(ODDS_SPORT_MAP.keys())
+        activos = self._odds_api_get("/sports", {})
+        if not activos:
+            print("   ⚠️  The Odds API no responde o la llave no sirve: se sigue sin precio justo")
+            return
+        vivos = {x.get('key') for x in activos if x.get('active')}
+        sports_to_fetch = [k for k, v in ODDS_SPORT_MAP.items() if v == 'futbol' and k in vivos]
+        print(f"   {len(sports_to_fetch)} ligas activas (~{2 * len(sports_to_fetch)} creditos)")
+        books = (SHARP_BOOKS + SOFT_BOOKS)[:10]
 
         for sport_key in sports_to_fetch:
             data = self._odds_api_get(f"/sports/{sport_key}/odds", {
-                'regions': 'eu',
-                'markets': 'h2h,totals,spreads',
+                'markets': 'h2h,totals',
                 'oddsFormat': 'decimal',
-                'bookmakers': ','.join(SHARP_BOOKS + SOFT_BOOKS),
+                'bookmakers': ','.join(books),
             })
-
             if not data:
                 continue
 
             for event in data:
                 home = event.get('home_team', '')
                 away = event.get('away_team', '')
-
                 if not home or not away:
                     continue
 
                 for bookmaker in event.get('bookmakers', []):
-                    book_key = bookmaker.get('key', '')
-                    is_sharp = book_key in SHARP_BOOKS
-
+                    is_sharp = bookmaker.get('key', '') in SHARP_BOOKS
                     for market in bookmaker.get('markets', []):
                         market_key = market.get('key', '')  # h2h, totals, spreads
-
+                        # Un "juego" = los resultados que se excluyen entre si: 1X2 completo,
+                        # Over/Under de una linea, o los dos lados de un handicap (|linea| igual).
+                        juegos = {}
                         for outcome in market.get('outcomes', []):
-                            name = outcome.get('name', '')
                             price = outcome.get('price', 0)
                             point = outcome.get('point', None)
-
-                            if price <= 1.0:
+                            if not price or price <= 1.0:
                                 continue
+                            gk = '' if market_key == 'h2h' else str(abs(point)) if point is not None else ''
+                            juegos.setdefault(gk, []).append((outcome.get('name', ''), point, price))
+                        for outs in juegos.values():
+                            esperado = 3 if market_key == 'h2h' else 2
+                            if len(outs) != esperado:
+                                continue
+                            total = sum(1.0 / pr for _, _, pr in outs)
+                            if not (1.0 <= total <= 1.25):
+                                continue
+                            for name, point, price in outs:
+                                if market_key == 'h2h':
+                                    rol = 'home' if name == home else 'away' if name == away else 'draw'
+                                    linea = ''
+                                else:
+                                    rol = name.strip().lower()          # over / under
+                                    linea = '%g' % float(point)
+                                lookup = f"{event.get('id')}|{market_key}|{rol}|{linea}"
+                                self._eventos.setdefault(event.get('id'), (home, away))
+                                entry = self.sharp_odds.setdefault(lookup, {
+                                    'sharp_probs': [], 'soft_probs': [], 'sharp_prices': [], 'soft_prices': [],
+                                    'home': home, 'away': away, 'market': market_key,
+                                    'outcome': name, 'param': point,
+                                })
+                                justa = (1.0 / price) / total
+                                entry['sharp_probs' if is_sharp else 'soft_probs'].append(justa)
+                                entry['sharp_prices' if is_sharp else 'soft_prices'].append(price)
 
-                            # Normalize the lookup key
-                            param_str = str(point) if point is not None else ''
-                            lookup = f"{_norm(home)}|{_norm(away)}|{market_key}|{name}|{param_str}"
-
-                            if lookup not in self.sharp_odds:
-                                self.sharp_odds[lookup] = {
-                                    'sharp_prices': [],
-                                    'soft_prices': [],
-                                    'home': home,
-                                    'away': away,
-                                    'market': market_key,
-                                    'outcome': name,
-                                    'param': point,
-                                }
-
-                            entry = self.sharp_odds[lookup]
-                            if is_sharp:
-                                entry['sharp_prices'].append(price)
-                            else:
-                                entry['soft_prices'].append(price)
-
-        # Calculate consensus probabilities
-        for key, entry in self.sharp_odds.items():
-            sharp = entry['sharp_prices']
-            soft = entry['soft_prices']
-
-            if sharp:
-                # Use sharp bookmaker average as the "true" probability
-                avg_price = sum(sharp) / len(sharp)
-                entry['sharp_prob'] = 1.0 / avg_price
-                entry['sharp_price'] = avg_price
-            elif soft:
-                # Fallback: use soft book consensus (less reliable but better than nothing)
-                avg_price = sum(soft) / len(soft)
-                # Apply margin correction (~5% overround for soft books)
-                entry['sharp_prob'] = min(0.98, (1.0 / avg_price) * 0.95)
-                entry['sharp_price'] = avg_price
+        for entry in self.sharp_odds.values():
+            probs = entry['sharp_probs'] or entry['soft_probs']
+            if probs:
+                entry['sharp_prob'] = sum(probs) / len(probs)
+                entry['sharp_price'] = 1.0 / entry['sharp_prob']
+                entry['fuente'] = 'sharp' if entry['sharp_probs'] else 'consenso'
             else:
                 entry['sharp_prob'] = None
                 entry['sharp_price'] = None
 
         n_events = len(set(f"{v['home']}|{v['away']}" for v in self.sharp_odds.values()))
-        n_markets = len(self.sharp_odds)
-        print(f"   ✅ {n_events} eventos, {n_markets} mercados con odds sharp cargados")
+        n_sharp = sum(1 for v in self.sharp_odds.values() if v.get('fuente') == 'sharp')
+        print(f"   ✅ {n_events} eventos, {len(self.sharp_odds)} mercados con precio justo ({n_sharp} con Pinnacle/exchange)")
 
     # ════════════════════════════════════════════
     # API-FOOTBALL — Team stats, form, injuries
@@ -382,30 +397,49 @@ class MarketIntel:
     # EDGE & CONFIDENCE CALCULATIONS
     # ════════════════════════════════════════════
 
+    def _evento(self, t1, t2):
+        """Cruza el partido del feed con el de The Odds API: los DOS nombres tienen que parecerse."""
+        k = (t1, t2)
+        if k not in self._cruce:
+            from mp_diario import parecido
+            mejor = None
+            for eid, (h, a) in self._eventos.items():
+                for inv, (x, y) in ((False, (h, a)), (True, (a, h))):
+                    s1, s2 = parecido(t1, x), parecido(t2, y)
+                    if min(s1, s2) >= 0.6 and (mejor is None or s1 + s2 > mejor[0]):
+                        mejor = (s1 + s2, eid, inv)
+            self._cruce[k] = (mejor[1], mejor[2]) if mejor else None
+        return self._cruce[k]
+
     def true_edge(self, home, away, market_type, outcome_name, param, dbbet_odds):
-        """Calculate true edge comparing DBbet odds vs sharp market.
-
-        Returns:
-            float or None: edge as fraction (0.05 = 5% edge). None if no sharp data.
-        """
-        param_str = str(param) if param is not None else ''
-
-        # Try exact match first
-        lookup = f"{_norm(home)}|{_norm(away)}|{market_type}|{outcome_name}|{param_str}"
-        entry = self.sharp_odds.get(lookup)
-
-        if not entry or entry.get('sharp_prob') is None:
-            # Try fuzzy matching
-            entry = self._fuzzy_find_odds(home, away, market_type, outcome_name, param_str)
-
+        """Ventaja de la cuota de la casa contra el precio justo (sin margen).
+        Solo 1X2 y goles, con el resultado y la linea EXACTOS: sin dato seguro -> None."""
+        if market_type not in ('h2h', 'totals'):
+            return None
+        ev = self._evento(home, away)
+        if not ev:
+            return None
+        eid, inv = ev
+        if market_type == 'h2h':
+            if outcome_name == 'Draw':
+                rol = 'draw'
+            elif outcome_name == home:
+                rol = 'away' if inv else 'home'
+            elif outcome_name == away:
+                rol = 'home' if inv else 'away'
+            else:
+                return None
+            linea = ''
+        else:
+            rol = (outcome_name or '').lower()
+            try:
+                linea = '%g' % float(param)
+            except (TypeError, ValueError):
+                return None
+        entry = self.sharp_odds.get(f"{eid}|{market_type}|{rol}|{linea}")
         if not entry or entry.get('sharp_prob') is None:
             return None
-
-        sharp_prob = entry['sharp_prob']
-        # Edge = sharp_prob × dbbet_odds - 1
-        # Positive = DBbet is paying MORE than the sharp market thinks it should
-        edge = (sharp_prob * dbbet_odds) - 1.0
-        return round(edge, 4)
+        return round(entry['sharp_prob'] * dbbet_odds - 1.0, 4)
 
     def team_confidence(self, home, away, sport='futbol'):
         """Calculate confidence score (1-6) based on team stats.
