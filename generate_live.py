@@ -278,6 +278,10 @@ ALLOWED_TOURNAMENT_PATTERNS = [
 # ── Exclusión adicional: incluso si matchea la whitelist, estos se bloquean ──
 # Previene falsos positivos como "World Cup 2026. Winner" (apuesta a largo plazo)
 ALWAYS_BLOCKED_KEYWORDS = [
+    # Partidos virtuales / eSports (26-nov-2026): se colaban como "Europa League" o
+    # "Copa Libertadores" porque el nombre del torneo los contiene. No son partidos reales.
+    'esport', 'e-sport', 'virtual', 'ecomp', 'cyber', 'efootball', 'simulated',
+    'fc 24', 'fc 25', 'fc 26', 'fc 27', 'fc 28', 'fifa 2',
     'winner',                               # Apuestas outright "Winner" / "2026. Winner"
     'results',                              # "Results of the championship" — futuros
     'qualification',                        # Rondas de clasificación
@@ -310,6 +314,9 @@ def is_tournament_allowed(tournament_name, team1='', team2=''):
     combined = f"{tlow} {team1.lower()} {team2.lower()}"
     # Step 1: Always-blocked keywords override everything
     if any(kw in combined for kw in ALWAYS_BLOCKED_KEYWORDS):
+        return False
+    # Los dos equipos con apodo entre paréntesis = jugadores de eSports ("Roma (Paka)")
+    if '(' in team1 and '(' in team2:
         return False
     # Step 2: Must match at least one allowed pattern
     if any(pattern in tlow for pattern in ALLOWED_TOURNAMENT_PATTERNS):

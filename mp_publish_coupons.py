@@ -56,15 +56,11 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
         if code:
             codes[tid] = code
 
-# Fallback: keep any prior code for tickets that failed this run
+# Sin respaldo de codigos anteriores: los ids se repiten cada dia y un codigo
+# viejo abriria un billete distinto en DBbet. Al que falla se le deja el cupon vacio.
 cf = REPO / 'coupons.json'
-if cf.exists():
-    try:
-        for tid, code in json.loads(cf.read_text(encoding='utf-8')).items():
-            if code and tid not in codes:
-                codes[tid] = code
-    except Exception:
-        pass
+for td in TD:
+    codes.setdefault(td['ticket_id'], '')
 
 cf.write_text(json.dumps(codes, indent=2), encoding='utf-8')
 
@@ -76,4 +72,5 @@ for fn in ('index.html', 'template.html'):
             lambda m: m.group(1) + code + m.group(2), txt)
     p.write_text(txt, encoding='utf-8')
 
-print('mp_publish_coupons OK: %d/%d codes in %.1fs' % (len(codes), len(TD), time.time() - t0))
+ok = sum(1 for c in codes.values() if c)
+print('mp_publish_coupons OK: %d/%d codes in %.1fs' % (ok, len(TD), time.time() - t0))

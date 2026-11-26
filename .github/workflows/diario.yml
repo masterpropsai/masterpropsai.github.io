@@ -1,0 +1,79 @@
+name: MasterProps diario
+
+# Reemplaza a las tareas programadas que corrian en la Mac de Mauro y se frenaron el
+# 20-jul-2026. Cada corrida hace lo mismo y es segura de repetir:
+#   1) resuelve lo pendiente con ESPN (gratis, sin llave)
+#   2) si todavia no hay billetes de hoy (hora Argentina), los genera UNA sola vez
+#   3) publica y verifica produccion
+# Varios horarios a proposito: GitHub a veces se saltea un cron.
+on:
+  schedule:
+    - cron: '20 9 * * *'    # 06:20 ART  billetes del dia
+    - cron: '20 11 * * *'   # 08:20 ART  respaldo
+    - cron: '20 14 * * *'   # 11:20 ART  respaldo
+    - cron: '40 17 * * *'   # resolver
+    - cron: '40 20 * * *'   # resolver
+    - cron: '40 23 * * *'   # resolver
+    - cron: '40 2 * * *'    # resolver
+    - cron: '40 5 * * *'    # resolver (partidos de la noche americana)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: masterprops-diario
+  cancel-in-progress: false
+
+jobs:
+  diario:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests
+
+      - name: Resolver pendientes (ESPN)
+        run: python mp_diario.py resolver
+
+      - name: Generar billetes de hoy (una sola vez por dia)
+        env:
+          DBBET_CLIENT_ID: ${{ secrets.DBBET_CLIENT_ID }}
+          DBBET_CLIENT_SECRET: ${{ secrets.DBBET_CLIENT_SECRET }}
+        run: |
+          if python mp_diario.py hoy; then
+            echo "Ya hay billetes de hoy: no se regeneran."
+          else
+            python mp_build.py
+            python mp_publish_coupons.py
+            python mp_diario.py guardar
+            python mp_diario.py resolver
+          fi
+
+      - name: Publicar
+        id: pub
+        run: |
+          git config user.name "MasterProps Bot"
+          git config user.email "bot@masterprops.ai"
+          git add index.html template.html coupons.json tickets_data.json history.json stats.json ledger
+          if git diff --staged --quiet; then
+            echo "Sin cambios."
+            echo "cambio=0" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Auto: billetes y resultados $(date -u +%Y-%m-%d_%H:%M)"
+            git pull --rebase origin main
+            git push
+            echo "cambio=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Esperar a GitHub Pages
+        if: steps.pub.outputs.cambio == '1'
+        run: sleep 150
+
+      - name: Verificar produccion
+        run: python scripts/verify_site.py
