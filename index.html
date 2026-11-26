@@ -1267,7 +1267,7 @@ body {
   font-size: 24px;
   box-shadow: 0 4px 16px rgba(34,197,94,0.3);
 }
-.gp-header-text h3 {
+.gp-header-text h2, .gp-header-text h3 {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.15rem;
   color: #22c55e;
@@ -1443,6 +1443,11 @@ body {
   .gp-footer { flex-direction: column; }
   .gp-cta { width: 100%; justify-content: center; text-align: center; }
 }
+
+/* a11y etapa 2 */
+.leg-odd { color: #7a5600; }
+.sponsor-bar .db-register { background: #d6173f; }
+.last-updated { color: #a8a294; opacity: 1; }
 </style>
 
 <!-- 🆕 (25-jun-2026 ETAPA 1 SEO) Schemas JSON-LD para rich snippets -->
@@ -1497,7 +1502,7 @@ body {
 <body data-generated="2026-06-11 21:54 UTC">
 
 <!-- SPONSOR BAR -->
-<div class="sponsor-bar">
+<div class="sponsor-bar" role="complementary" aria-label="Sponsor">
   <div class="sponsor-marquee" aria-hidden="true">
     <div class="sponsor-marquee-track">
       <span>⚽ FÚTBOL</span><span>🏀 BASKET</span><span>🎾 TENIS</span><span>🏈 NFL</span><span>🥊 BOX</span><span>⚾ MLB</span><span>🏉 RUGBY</span><span>🎯 PROPS</span>
@@ -1505,7 +1510,7 @@ body {
     </div>
   </div>
   <div class="sponsor-inner">
-    <a href="https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213" target="_blank" class="db-logo"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 152 26"><path fill="#FF345C" d="M36 25h21.59a16.8 16.8 0 0 0 4.35-.5 9.75 9.75 0 0 0 3.64-1.75c1.09-.87 1.94-2 2.49-3.28.6-1.34.91-2.6.91-3.78a5.08 5.08 0 0 0-.87-2.91 4.07 4.07 0 0 0-2.32-1.61v-.07a5.92 5.92 0 0 0 3.05-2.53A7.37 7.37 0 0 0 70 4.47c0-1.5-.56-2.62-1.61-3.35C67.29.38 65.79 0 63.86 0H41.2L36 25ZM49.6 6.1h7.5c.54-.02 1.07.06 1.58.24a.88.88 0 0 1 .52.83c0 .7-.2 1.26-.63 1.61-.42.36-1.12.53-2.14.53h-7.5l.67-3.22Zm-1.86 8.88h8.1c.87 0 1.5.14 1.93.35a1.13 1.13 0 0 1 .63 1.09 2.32 2.32 0 0 1-.74 1.79c-.49.49-1.19.7-2.17.7h-8.55l.8-3.93ZM36 8.26c0 1.4-.15 2.78-.43 4.14-.3 1.42-.72 2.81-1.28 4.16-2.36 5.64-7.1 8.45-14.2 8.44H0l2.65-12.5.57-2.82h10.13L11.4 18.7h5.94c2.65 0 4.62-.77 5.9-2.38a9.08 9.08 0 0 0 1.98-5.77c0-2.8-1.76-4.24-5.23-4.24H.35L1.67.01h23.49c1.6-.03 3.2.14 4.76.48 1.36.35 2.47.84 3.36 1.47C35.07 3.3 36 5.4 36 8.26Z"/><path fill="#fff" d="M71 25.23h8.51l.42-2.05H80a4.98 4.98 0 0 0 2.64 2.11c1.2.5 2.74.7 4.64.7 2.5 0 4.78-.53 6.86-1.66a12.08 12.08 0 0 0 4.78-4.62 13.01 13.01 0 0 0 1.73-6.61c0-2.4-.81-4.28-2.43-5.65-1.62-1.38-3.83-2.09-6.65-2.09-3.58 0-6.33.92-8.2 2.72h-.06L84.99 0h-8.8L71 25.23ZM87.42 11.3a4.7 4.7 0 0 1 3.03.84c.7.56 1.05 1.38 1.05 2.44.02 1.43-.5 2.8-1.47 3.85-.98 1.1-2.43 1.63-4.36 1.63-1.4 0-2.47-.25-3.1-.78-.63-.5-.95-1.24-.95-2.23a8.2 8.2 0 0 1 .35-2.15c.22-.75.6-1.44 1.12-2.02a4.84 4.84 0 0 1 1.87-1.2 7.4 7.4 0 0 1 2.46-.38Zm23.68 6.32h19.34c.26-1.22.4-2.46.42-3.7 0-2.94-1.02-5.13-3.06-6.62-2.04-1.44-5.13-2.19-9.35-2.19-3.52 0-6.54.64-9.04 1.84a12.06 12.06 0 0 0-5.45 4.8 12.43 12.43 0 0 0-1.68 6.22 6.65 6.65 0 0 0 3.16 5.97c1.06.7 2.4 1.2 3.94 1.55 1.55.35 3.38.5 5.52.5 3.8 0 6.96-.53 9.5-1.66a11.46 11.46 0 0 0 5.59-4.91h-9.37c-.52.56-1.17 1-1.9 1.27-.73.28-1.75.42-3.02.42a6.04 6.04 0 0 1-3.41-.81 2.55 2.55 0 0 1-1.23-2.26l.04-.42Zm11.4-4.45H112a4.68 4.68 0 0 1 2.18-2.58 7.87 7.87 0 0 1 3.73-.81c1.49 0 2.6.28 3.41.8a2.5 2.5 0 0 1 1.2 2.16l-.04.43Zm25.78 12.05 1.05-5.16c-.7.07-1.65.07-2.81.07-.7 0-1.2-.07-1.48-.25-.28-.14-.42-.42-.42-.84.03-.37.09-.74.17-1.1l1.34-6.54h4.75L152 5.9h-4.75L148.5 0h-8.8l-1.23 5.9h-4.08l-1.12 5.5h4.08l-1.66 8c-.2.83-.3 1.68-.31 2.54 0 .98.2 1.73.7 2.25a3.6 3.6 0 0 0 1.82 1.13c.78.21 2.08.32 3.9.32 1.38 0 2.6-.04 3.7-.11a25.5 25.5 0 0 0 2.79-.3Z"/></svg></a>
+    <a href="https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213" target="_blank" class="db-logo" aria-label="DBbet"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 152 26"><path fill="#FF345C" d="M36 25h21.59a16.8 16.8 0 0 0 4.35-.5 9.75 9.75 0 0 0 3.64-1.75c1.09-.87 1.94-2 2.49-3.28.6-1.34.91-2.6.91-3.78a5.08 5.08 0 0 0-.87-2.91 4.07 4.07 0 0 0-2.32-1.61v-.07a5.92 5.92 0 0 0 3.05-2.53A7.37 7.37 0 0 0 70 4.47c0-1.5-.56-2.62-1.61-3.35C67.29.38 65.79 0 63.86 0H41.2L36 25ZM49.6 6.1h7.5c.54-.02 1.07.06 1.58.24a.88.88 0 0 1 .52.83c0 .7-.2 1.26-.63 1.61-.42.36-1.12.53-2.14.53h-7.5l.67-3.22Zm-1.86 8.88h8.1c.87 0 1.5.14 1.93.35a1.13 1.13 0 0 1 .63 1.09 2.32 2.32 0 0 1-.74 1.79c-.49.49-1.19.7-2.17.7h-8.55l.8-3.93ZM36 8.26c0 1.4-.15 2.78-.43 4.14-.3 1.42-.72 2.81-1.28 4.16-2.36 5.64-7.1 8.45-14.2 8.44H0l2.65-12.5.57-2.82h10.13L11.4 18.7h5.94c2.65 0 4.62-.77 5.9-2.38a9.08 9.08 0 0 0 1.98-5.77c0-2.8-1.76-4.24-5.23-4.24H.35L1.67.01h23.49c1.6-.03 3.2.14 4.76.48 1.36.35 2.47.84 3.36 1.47C35.07 3.3 36 5.4 36 8.26Z"/><path fill="#fff" d="M71 25.23h8.51l.42-2.05H80a4.98 4.98 0 0 0 2.64 2.11c1.2.5 2.74.7 4.64.7 2.5 0 4.78-.53 6.86-1.66a12.08 12.08 0 0 0 4.78-4.62 13.01 13.01 0 0 0 1.73-6.61c0-2.4-.81-4.28-2.43-5.65-1.62-1.38-3.83-2.09-6.65-2.09-3.58 0-6.33.92-8.2 2.72h-.06L84.99 0h-8.8L71 25.23ZM87.42 11.3a4.7 4.7 0 0 1 3.03.84c.7.56 1.05 1.38 1.05 2.44.02 1.43-.5 2.8-1.47 3.85-.98 1.1-2.43 1.63-4.36 1.63-1.4 0-2.47-.25-3.1-.78-.63-.5-.95-1.24-.95-2.23a8.2 8.2 0 0 1 .35-2.15c.22-.75.6-1.44 1.12-2.02a4.84 4.84 0 0 1 1.87-1.2 7.4 7.4 0 0 1 2.46-.38Zm23.68 6.32h19.34c.26-1.22.4-2.46.42-3.7 0-2.94-1.02-5.13-3.06-6.62-2.04-1.44-5.13-2.19-9.35-2.19-3.52 0-6.54.64-9.04 1.84a12.06 12.06 0 0 0-5.45 4.8 12.43 12.43 0 0 0-1.68 6.22 6.65 6.65 0 0 0 3.16 5.97c1.06.7 2.4 1.2 3.94 1.55 1.55.35 3.38.5 5.52.5 3.8 0 6.96-.53 9.5-1.66a11.46 11.46 0 0 0 5.59-4.91h-9.37c-.52.56-1.17 1-1.9 1.27-.73.28-1.75.42-3.02.42a6.04 6.04 0 0 1-3.41-.81 2.55 2.55 0 0 1-1.23-2.26l.04-.42Zm11.4-4.45H112a4.68 4.68 0 0 1 2.18-2.58 7.87 7.87 0 0 1 3.73-.81c1.49 0 2.6.28 3.41.8a2.5 2.5 0 0 1 1.2 2.16l-.04.43Zm25.78 12.05 1.05-5.16c-.7.07-1.65.07-2.81.07-.7 0-1.2-.07-1.48-.25-.28-.14-.42-.42-.42-.84.03-.37.09-.74.17-1.1l1.34-6.54h4.75L152 5.9h-4.75L148.5 0h-8.8l-1.23 5.9h-4.08l-1.12 5.5h4.08l-1.66 8c-.2.83-.3 1.68-.31 2.54 0 .98.2 1.73.7 2.25a3.6 3.6 0 0 0 1.82 1.13c.78.21 2.08.32 3.9.32 1.38 0 2.6-.04 3.7-.11a25.5 25.5 0 0 0 2.79-.3Z"/></svg></a>
     <span class="sponsor-divider"></span>
     <span class="db-text">Única casa con todos los mercados!</span>
     <a href="https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213" target="_blank" class="db-register">🎰 Apostá nuestros billetes largos en 1 click!</a>
@@ -1529,190 +1534,8 @@ body {
   </div>
 </nav>
 
-<!-- BANNER PARTIDOS DEL DÍA — Mundial 2026 -->
-<section id="mpMatchdayBanner">
-  <div class="mp-md-glow"></div>
-  <div class="mp-md-topline"></div>
-  <div class="mp-md-inner">
-    <div class="mp-md-header">
-      <span class="mp-md-badge">⚡ PARTIDOS DEL DÍA</span>
-      <span class="mp-md-day" id="mpDayNum">Día 3</span>
-    </div>
-    <div class="mp-md-matches" id="mpMatchGrid"></div>
-    <div class="mp-md-cta">
-      <a href="#tickets-all" onclick="document.getElementById('tickets-all')?.scrollIntoView({behavior:'smooth'});return false">ver billetes mundialistas ↓</a>
-    </div>
-  </div>
-</section>
-<script>
-/* === PARTIDOS DEL DÍA — actualizar diariamente === */
-var MP_TODAYS_MATCHES = [
-  { home: "Francia", away: "Noruega", flag1: "🇫🇷", flag2: "🇳🇴", time: "16:00", featured: true },
-  { home: "Senegal", away: "Irán", flag1: "🇸🇳", flag2: "🇮🇷", time: "16:00", featured: false },
-  { home: "España", away: "Uruguay", flag1: "🇪🇸", flag2: "🇺🇾", time: "21:00", featured: true },
-  { home: "Arabia Saudita", away: "Cabo Verde", flag1: "🇸🇦", flag2: "🇨🇻", time: "21:00", featured: false }
-];
-(function(){
-  var startDate = new Date(2026, 5, 11);
-  var today = new Date();
-  var todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  var dayNum = Math.max(1, Math.round((todayDate - startDate) / 86400000) + 1);
-  var el = document.getElementById('mpDayNum');
-  if (el) el.textContent = 'Día ' + dayNum;
-
-  var grid = document.getElementById('mpMatchGrid');
-  if (!grid || !MP_TODAYS_MATCHES.length) return;
-  grid.innerHTML = MP_TODAYS_MATCHES.map(function(m) {
-    var cls = 'mp-md-card' + (m.featured ? ' mp-md-featured' : '');
-    return '<div class="' + cls + '">' +
-      '<div class="mp-md-time">' + m.time + ' ART</div>' +
-      '<div class="mp-md-teams">' +
-        '<span class="mp-md-team">' + m.flag1 + ' ' + m.home + '</span>' +
-        '<span class="mp-md-vs">VS</span>' +
-        '<span class="mp-md-team">' + m.flag2 + ' ' + m.away + '</span>' +
-      '</div>' +
-      (m.featured ? '<div class="mp-md-star">⭐ PARTIDO ESTELAR</div>' : '') +
-    '</div>';
-  }).join('');
-})();
-</script>
-<style>
-  #mpMatchdayBanner {
-    background: linear-gradient(135deg, #1a1000 0%, #0d0d18 50%, #0a0a0f 100%);
-    border-top: 2px solid #d4a520;
-    border-bottom: 2px solid #d4a520;
-    padding: 20px 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    margin: 0;
-  }
-  .mp-md-glow {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(212,165,32,0.15) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .mp-md-topline {
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, #d4a520, transparent);
-    opacity: 0.7;
-  }
-  .mp-md-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .mp-md-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .mp-md-badge {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 2.5px;
-    color: #d4a520;
-    text-transform: uppercase;
-    animation: mpMdPulse 2.2s ease-in-out infinite;
-  }
-  .mp-md-day {
-    font-size: 0.85rem;
-    font-weight: 900;
-    color: #fff;
-    background: rgba(212,165,32,0.2);
-    border: 1px solid rgba(212,165,32,0.4);
-    border-radius: 20px;
-    padding: 3px 14px;
-  }
-  @keyframes mpMdPulse {
-    0%,100% { opacity:0.6; text-shadow:none }
-    50% { opacity:1; text-shadow:0 0 10px rgba(212,165,32,0.5) }
-  }
-  .mp-md-matches {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .mp-md-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 12px 20px;
-    min-width: 200px;
-    flex: 1;
-    max-width: 280px;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-  .mp-md-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(212,165,32,0.4);
-  }
-  .mp-md-featured {
-    background: linear-gradient(135deg, rgba(212,165,32,0.12) 0%, rgba(212,165,32,0.04) 100%);
-    border: 1.5px solid rgba(212,165,32,0.5);
-    box-shadow: 0 0 20px rgba(212,165,32,0.15);
-    transform: scale(1.04);
-  }
-  .mp-md-featured:hover { transform: scale(1.06) translateY(-2px); }
-  .mp-md-time {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #d4a520;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .mp-md-teams {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .mp-md-team {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #fff;
-    white-space: nowrap;
-  }
-  .mp-md-vs {
-    font-size: 0.7rem;
-    font-weight: 900;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 1px;
-  }
-  .mp-md-star {
-    font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #d4a520;
-    margin-top: 6px;
-    text-transform: uppercase;
-  }
-  .mp-md-cta {
-    margin-top: 14px;
-  }
-  .mp-md-cta a {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.78rem;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .mp-md-cta a:hover { color: #d4a520; }
-  @media (max-width:600px) {
-    #mpMatchdayBanner { padding: 14px 10px; }
-    .mp-md-matches { flex-direction: column; align-items: center; gap: 8px; }
-    .mp-md-card { min-width: 0; width: 100%; max-width: 320px; padding: 10px 14px; }
-    .mp-md-featured { transform: scale(1); }
-    .mp-md-featured:hover { transform: translateY(-2px); }
-    .mp-md-team { font-size: 0.88rem; }
-    .mp-md-header { margin-bottom: 10px; }
-  }
-</style>
-
 <!-- HERO -->
+<main id="contenido">
 <div class="hero">
   <div class="hero-icon">💰</div>
   <h1>BILLETES LARGOS</h1>
@@ -1759,7 +1582,7 @@ var MP_TODAYS_MATCHES = [
 
 <!-- FILTERS -->
 <div class="filters">
-  <select class="filter-dropdown" id="sportFilter">
+  <select class="filter-dropdown" id="sportFilter" aria-label="Deporte">
     <option value="all">🎯 Todos los deportes</option>
     <option value="futbol">⚽ Fútbol</option>
     <option value="nba">🏀 NBA</option>
@@ -1769,7 +1592,7 @@ var MP_TODAYS_MATCHES = [
     <option value="mma">🥊 MMA</option>
     <option value="hockey">🏒 NHL</option>
   </select>
-  <select class="filter-dropdown" id="tierFilter">
+  <select class="filter-dropdown" id="tierFilter" aria-label="Categoría">
     <option value="all">🏆 Todas las categorías</option>
     <option value="tier:megalodon">🐋 Megalodón · x1000+</option>
     <option value="tier:whale">🐳 Ballena · x100-x999</option>
@@ -1778,20 +1601,20 @@ var MP_TODAYS_MATCHES = [
     <option value="tier:confiable">✅ Confiable · x5-x9</option>
     <option value="tier:segura">🔒 Segura · x3-x6</option>
   </select>
-  <select class="filter-dropdown" id="statusFilter">
+  <select class="filter-dropdown" id="statusFilter" aria-label="Estado">
     <option value="alive" selected>🟢 Apuestas vivas</option>
     <option value="all">📊 Todas las apuestas</option>
     <option value="won">💰 Apuestas acertadas</option>
     <option value="dead">💀 Apuestas muertas</option>
   </select>
-  <select class="filter-dropdown" id="confFilter">
+  <select class="filter-dropdown" id="confFilter" aria-label="Confianza">
     <option value="all">⭐ Toda confianza</option>
     <option value="6">🟢 6/6 · Altísima</option>
     <option value="5">🟢 5/6 · Alta</option>
     <option value="4">🟡 4/6 · Buena</option>
     <option value="3">🟡 3/6 · Media</option>
   </select>
-  <select class="filter-dropdown" id="sortFilter">
+  <select class="filter-dropdown" id="sortFilter" aria-label="Orden">
     <option value="default">📋 Orden por defecto</option>
     <option value="hot">🔥 Más caliente primero</option>
     <option value="cold">❄️ Más frío primero</option>
@@ -1835,14 +1658,14 @@ var MP_TODAYS_MATCHES = [
   <div class="gp-header">
     <div class="gp-header-icon">⚽</div>
     <div class="gp-header-text">
-      <h3>PRONÓSTICOS GAMBETA.AI</h3>
-      <p>Picks del Mundial 2026 · Análisis IA en tiempo real</p>
+      <h2>PRONÓSTICOS GAMBETA.AI</h2>
+      <p>Picks de fútbol de hoy · Análisis IA en tiempo real</p>
     </div>
     <span class="gp-live-badge"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block"></span> EN VIVO</span>
   </div>
   <div class="gp-grid" id="gp-grid"></div>
   <div class="gp-footer">
-    <a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=picks_embed&utm_campaign=mundial2026" target="_blank" class="gp-cta gp-cta-primary">⚽ Ver análisis completo en Gambeta.ai →</a>
+    <a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=picks_embed&utm_campaign=masterprops" target="_blank" class="gp-cta gp-cta-primary">⚽ Ver análisis completo en Gambeta.ai →</a>
     <a href="https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213" target="_blank" class="gp-cta gp-cta-secondary">🎰 Apostar en DBbet →</a>
   </div>
 </div>
@@ -1934,7 +1757,7 @@ var MP_TODAYS_MATCHES = [
       <div class="channel-title" style="color:#f0ece0;font-weight:700;font-size:0.95rem;">Apuestas LATAM</div>
       <div style="color:#22c55e;font-size:0.78rem;margin:4px 0;">+15.000 miembros</div>
       <div class="channel-desc" style="color:#8a8578;font-size:0.78rem;line-height:1.4;">Picks diarios, análisis IA, alertas en vivo. Gratis siempre.</div>
-      <div style="margin-top:10px;background:#22c55e;color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;display:inline-block;">✈ Abrir en Telegram</div>
+      <div style="margin-top:10px;background:#15803d;color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;display:inline-block;">✈ Abrir en Telegram</div>
     </a>
     <!-- Club de Ganadores -->
     <a href="https://t.me/clubdewinners" target="_blank" style="background:rgba(212,165,32,0.08);border:1px solid rgba(212,165,32,0.2);border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:all 0.3s;">
@@ -1950,7 +1773,7 @@ var MP_TODAYS_MATCHES = [
       <div class="channel-title" style="color:#f0ece0;font-weight:700;font-size:0.95rem;">Destraba Bonos</div>
       <div style="color:#22c55e;font-size:0.78rem;margin:4px 0;">@canaldestrababonos</div>
       <div class="channel-desc" style="color:#8a8578;font-size:0.78rem;line-height:1.4;">Apuestas diarias para destrabar bonos de bienvenida y semanales.</div>
-      <div style="margin-top:10px;background:#22c55e;color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;display:inline-block;">✈ Abrir en Telegram</div>
+      <div style="margin-top:10px;background:#15803d;color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;display:inline-block;">✈ Abrir en Telegram</div>
     </a>
     <!-- YouTube -->
     <a href="https://youtube.com/@apuestaslatam" target="_blank" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:all 0.3s;">
@@ -1958,29 +1781,8 @@ var MP_TODAYS_MATCHES = [
       <div class="channel-title" style="color:#f0ece0;font-weight:700;font-size:0.95rem;">Apuestas LATAM</div>
       <div style="color:#ef4444;font-size:0.78rem;margin:4px 0;">YouTube · @apuestaslatam</div>
       <div class="channel-desc" style="color:#8a8578;font-size:0.78rem;line-height:1.4;">Análisis de partidos, picks explicados y estrategias en video.</div>
-      <div style="margin-top:10px;background:#ef4444;color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;display:inline-block;">▶ Suscribirse en YouTube</div>
+      <div style="margin-top:10px;background:#dc2626;color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;display:inline-block;">▶ Suscribirse en YouTube</div>
     </a>
-  </div>
-</div>
-
-<!-- DROPSHOT AI -->
-<div class="dropshot-section" style="background:linear-gradient(135deg, #1a0d1a 0%, #111118 50%, #0d1a1a 100%);border:1px solid rgba(168,85,247,0.25);border-radius:16px;padding:28px 24px;margin:0 2rem 30px;">
-  <div class="dropshot-header" style="display:flex;align-items:center;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
-    <span style="font-size:32px">🎾</span>
-    <div>
-      <h3 style="font-family:'Orbitron',sans-serif;font-size:1.3rem;color:#a855f7;margin:0;">DROPSHOT AI</h3>
-      <p style="color:#8a8578;font-size:0.82rem;margin:2px 0 0;">IA de Tenis · ATP · WTA · Predicciones por partido</p>
-    </div>
-    <a href="https://dropshot-ai-web.netlify.app/" target="_blank" class="dropshot-visit-btn" style="margin-left:auto;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;padding:8px 18px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.85rem;white-space:nowrap;">Visitar DropShot AI →</a>
-  </div>
-  <p style="color:#c4b5a0;font-size:0.88rem;line-height:1.5;margin-top:12px;">
-    Nuestra IA especializada en tenis analiza datos de ATP y WTA para generar predicciones por partido. Estadísticas de superficie, H2H, forma reciente y más.
-  </p>
-  <div class="dropshot-tags" style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-    <span style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">🎾 Predicciones ATP/WTA</span>
-    <span style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">📊 Stats por superficie</span>
-    <span style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">🤖 Análisis IA</span>
-    <span style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;">🆓 100% Gratis</span>
   </div>
 </div>
 
@@ -1999,9 +1801,10 @@ var MP_TODAYS_MATCHES = [
 </div>
 
 <!-- FOOTER -->
-<div class="footer">
+</main>
+<div class="footer" role="contentinfo">
   <p>💰 <strong>MasterProps</strong> — Billetes Largos · No es asesoramiento financiero · Apostá responsablemente</p>
-  <p style="margin-top:8px">Main Sponsor: <a href="https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213" target="_blank" style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 152 26" style="height:14px;width:auto"><path fill="#FF345C" d="M36 25h21.59a16.8 16.8 0 0 0 4.35-.5 9.75 9.75 0 0 0 3.64-1.75c1.09-.87 1.94-2 2.49-3.28.6-1.34.91-2.6.91-3.78a5.08 5.08 0 0 0-.87-2.91 4.07 4.07 0 0 0-2.32-1.61v-.07a5.92 5.92 0 0 0 3.05-2.53A7.37 7.37 0 0 0 70 4.47c0-1.5-.56-2.62-1.61-3.35C67.29.38 65.79 0 63.86 0H41.2L36 25ZM49.6 6.1h7.5c.54-.02 1.07.06 1.58.24a.88.88 0 0 1 .52.83c0 .7-.2 1.26-.63 1.61-.42.36-1.12.53-2.14.53h-7.5l.67-3.22Zm-1.86 8.88h8.1c.87 0 1.5.14 1.93.35a1.13 1.13 0 0 1 .63 1.09 2.32 2.32 0 0 1-.74 1.79c-.49.49-1.19.7-2.17.7h-8.55l.8-3.93ZM36 8.26c0 1.4-.15 2.78-.43 4.14-.3 1.42-.72 2.81-1.28 4.16-2.36 5.64-7.1 8.45-14.2 8.44H0l2.65-12.5.57-2.82h10.13L11.4 18.7h5.94c2.65 0 4.62-.77 5.9-2.38a9.08 9.08 0 0 0 1.98-5.77c0-2.8-1.76-4.24-5.23-4.24H.35L1.67.01h23.49c1.6-.03 3.2.14 4.76.48 1.36.35 2.47.84 3.36 1.47C35.07 3.3 36 5.4 36 8.26Z"/><path fill="#D4A520" d="M71 25.23h8.51l.42-2.05H80a4.98 4.98 0 0 0 2.64 2.11c1.2.5 2.74.7 4.64.7 2.5 0 4.78-.53 6.86-1.66a12.08 12.08 0 0 0 4.78-4.62 13.01 13.01 0 0 0 1.73-6.61c0-2.4-.81-4.28-2.43-5.65-1.62-1.38-3.83-2.09-6.65-2.09-3.58 0-6.33.92-8.2 2.72h-.06L84.99 0h-8.8L71 25.23ZM87.42 11.3a4.7 4.7 0 0 1 3.03.84c.7.56 1.05 1.38 1.05 2.44.02 1.43-.5 2.8-1.47 3.85-.98 1.1-2.43 1.63-4.36 1.63-1.4 0-2.47-.25-3.1-.78-.63-.5-.95-1.24-.95-2.23a8.2 8.2 0 0 1 .35-2.15c.22-.75.6-1.44 1.12-2.02a4.84 4.84 0 0 1 1.87-1.2 7.4 7.4 0 0 1 2.46-.38Zm23.68 6.32h19.34c.26-1.22.4-2.46.42-3.7 0-2.94-1.02-5.13-3.06-6.62-2.04-1.44-5.13-2.19-9.35-2.19-3.52 0-6.54.64-9.04 1.84a12.06 12.06 0 0 0-5.45 4.8 12.43 12.43 0 0 0-1.68 6.22 6.65 6.65 0 0 0 3.16 5.97c1.06.7 2.4 1.2 3.94 1.55 1.55.35 3.38.5 5.52.5 3.8 0 6.96-.53 9.5-1.66a11.46 11.46 0 0 0 5.59-4.91h-9.37c-.52.56-1.17 1-1.9 1.27-.73.28-1.75.42-3.02.42a6.04 6.04 0 0 1-3.41-.81 2.55 2.55 0 0 1-1.23-2.26l.04-.42Zm11.4-4.45H112a4.68 4.68 0 0 1 2.18-2.58 7.87 7.87 0 0 1 3.73-.81c1.49 0 2.6.28 3.41.8a2.5 2.5 0 0 1 1.2 2.16l-.04.43Zm25.78 12.05 1.05-5.16c-.7.07-1.65.07-2.81.07-.7 0-1.2-.07-1.48-.25-.28-.14-.42-.42-.42-.84.03-.37.09-.74.17-1.1l1.34-6.54h4.75L152 5.9h-4.75L148.5 0h-8.8l-1.23 5.9h-4.08l-1.12 5.5h4.08l-1.66 8c-.2.83-.3 1.68-.31 2.54 0 .98.2 1.73.7 2.25a3.6 3.6 0 0 0 1.82 1.13c.78.21 2.08.32 3.9.32 1.38 0 2.6-.04 3.7-.11a25.5 25.5 0 0 0 2.79-.3Z"/></svg></a></p>
+  <p style="margin-top:8px">Main Sponsor: <a href="https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213" target="_blank" style="display:inline-flex;align-items:center;vertical-align:middle" aria-label="DBbet"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 152 26" style="height:14px;width:auto"><path fill="#FF345C" d="M36 25h21.59a16.8 16.8 0 0 0 4.35-.5 9.75 9.75 0 0 0 3.64-1.75c1.09-.87 1.94-2 2.49-3.28.6-1.34.91-2.6.91-3.78a5.08 5.08 0 0 0-.87-2.91 4.07 4.07 0 0 0-2.32-1.61v-.07a5.92 5.92 0 0 0 3.05-2.53A7.37 7.37 0 0 0 70 4.47c0-1.5-.56-2.62-1.61-3.35C67.29.38 65.79 0 63.86 0H41.2L36 25ZM49.6 6.1h7.5c.54-.02 1.07.06 1.58.24a.88.88 0 0 1 .52.83c0 .7-.2 1.26-.63 1.61-.42.36-1.12.53-2.14.53h-7.5l.67-3.22Zm-1.86 8.88h8.1c.87 0 1.5.14 1.93.35a1.13 1.13 0 0 1 .63 1.09 2.32 2.32 0 0 1-.74 1.79c-.49.49-1.19.7-2.17.7h-8.55l.8-3.93ZM36 8.26c0 1.4-.15 2.78-.43 4.14-.3 1.42-.72 2.81-1.28 4.16-2.36 5.64-7.1 8.45-14.2 8.44H0l2.65-12.5.57-2.82h10.13L11.4 18.7h5.94c2.65 0 4.62-.77 5.9-2.38a9.08 9.08 0 0 0 1.98-5.77c0-2.8-1.76-4.24-5.23-4.24H.35L1.67.01h23.49c1.6-.03 3.2.14 4.76.48 1.36.35 2.47.84 3.36 1.47C35.07 3.3 36 5.4 36 8.26Z"/><path fill="#D4A520" d="M71 25.23h8.51l.42-2.05H80a4.98 4.98 0 0 0 2.64 2.11c1.2.5 2.74.7 4.64.7 2.5 0 4.78-.53 6.86-1.66a12.08 12.08 0 0 0 4.78-4.62 13.01 13.01 0 0 0 1.73-6.61c0-2.4-.81-4.28-2.43-5.65-1.62-1.38-3.83-2.09-6.65-2.09-3.58 0-6.33.92-8.2 2.72h-.06L84.99 0h-8.8L71 25.23ZM87.42 11.3a4.7 4.7 0 0 1 3.03.84c.7.56 1.05 1.38 1.05 2.44.02 1.43-.5 2.8-1.47 3.85-.98 1.1-2.43 1.63-4.36 1.63-1.4 0-2.47-.25-3.1-.78-.63-.5-.95-1.24-.95-2.23a8.2 8.2 0 0 1 .35-2.15c.22-.75.6-1.44 1.12-2.02a4.84 4.84 0 0 1 1.87-1.2 7.4 7.4 0 0 1 2.46-.38Zm23.68 6.32h19.34c.26-1.22.4-2.46.42-3.7 0-2.94-1.02-5.13-3.06-6.62-2.04-1.44-5.13-2.19-9.35-2.19-3.52 0-6.54.64-9.04 1.84a12.06 12.06 0 0 0-5.45 4.8 12.43 12.43 0 0 0-1.68 6.22 6.65 6.65 0 0 0 3.16 5.97c1.06.7 2.4 1.2 3.94 1.55 1.55.35 3.38.5 5.52.5 3.8 0 6.96-.53 9.5-1.66a11.46 11.46 0 0 0 5.59-4.91h-9.37c-.52.56-1.17 1-1.9 1.27-.73.28-1.75.42-3.02.42a6.04 6.04 0 0 1-3.41-.81 2.55 2.55 0 0 1-1.23-2.26l.04-.42Zm11.4-4.45H112a4.68 4.68 0 0 1 2.18-2.58 7.87 7.87 0 0 1 3.73-.81c1.49 0 2.6.28 3.41.8a2.5 2.5 0 0 1 1.2 2.16l-.04.43Zm25.78 12.05 1.05-5.16c-.7.07-1.65.07-2.81.07-.7 0-1.2-.07-1.48-.25-.28-.14-.42-.42-.42-.84.03-.37.09-.74.17-1.1l1.34-6.54h4.75L152 5.9h-4.75L148.5 0h-8.8l-1.23 5.9h-4.08l-1.12 5.5h4.08l-1.66 8c-.2.83-.3 1.68-.31 2.54 0 .98.2 1.73.7 2.25a3.6 3.6 0 0 0 1.82 1.13c.78.21 2.08.32 3.9.32 1.38 0 2.6-.04 3.7-.11a25.5 25.5 0 0 0 2.79-.3Z"/></svg></a></p>
   <p style="margin-top:6px"><a href="#">Contacto</a> · <a href="#">Términos</a> · <a href="https://gambeta.ai">⚽ Gambeta</a> · <a href="#">🎯 MasterProps</a></p>
   <p class="last-updated" id="last-updated"></p>
 </div>
@@ -3940,7 +3743,7 @@ const GAMBETA_PICKS = [
       ? `<span>${p.flag1} ${p.team1}</span><span class="gp-vs">🏆</span><span>${p.team2}</span>`
       : `<span>${p.flag1} ${p.team1}</span><span class="gp-vs">VS</span><span>${p.flag2} ${p.team2}</span>`;
 
-    return `<a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=pick_card&utm_campaign=mundial2026" target="_blank" class="gp-card">
+    return `<a href="https://gambeta.ai/?utm_source=masterprops&utm_medium=pick_card&utm_campaign=masterprops" target="_blank" class="gp-card">
       <div class="gp-card-top">
         <span class="gp-conf-badge ${confClass}">🔥 ${p.conf} · ${p.score}/6</span>
         <span class="gp-card-time">${p.time}</span>

@@ -74,6 +74,9 @@ td{color:#e8e4d8}
 .footer{text-align:center;padding:30px 20px;color:var(--text-s);font-size:.85rem;border-top:1px solid var(--border);margin-top:50px}
 .footer a{color:var(--gold);text-decoration:none}
 @media(max-width:600px){h1{font-size:1.6rem}h2{font-size:1.25rem}.container{padding:24px 18px 60px}}
+
+/* a11y */
+.crumb a, .footer a, .container p a, .container li a, .hero-blog a { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -87,6 +90,7 @@ td{color:#e8e4d8}
 </div>
 </div>
 </nav>
+<main>
 <article class="container">
 <div class="crumb"><a href="/">MasterProps</a> · <a href="/blog/">Blog</a> · GUÍA · NIVEL 2</div>
 <span class="badge">GUÍA · NIVEL 2</span>
@@ -164,7 +168,8 @@ td{color:#e8e4d8}
 </ul>
 </div>
 </article>
-<div class="footer">
+</main>
+<div class="footer" role="contentinfo">
 <p><a href="/">masterprops.ai</a> · Billetes largos con IA · Apuestá con disciplina · +18</p>
 </div>
 <script>

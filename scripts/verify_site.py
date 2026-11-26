@@ -44,6 +44,8 @@ con = sum(1 for c in cup if c)
 check('billetes con cupon de DBbet', cup and con >= 0.8 * len(cup), f'{con}/{len(cup)}')
 
 check('historial presente', 'const HISTORY = ' in html and 'const HISTORY_TOTALS = ' in html)
+check('sin restos del Mundial ni links muertos', 'mpMatchdayBanner' not in html and 'dropshot-ai-web' not in html)
+check('landmarks de accesibilidad', '<main id="contenido">' in html and 'role="contentinfo"' in html)
 check('afiliado de DBbet presente', 'refpa96317.com' in html)
 
 try:
