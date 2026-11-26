@@ -571,11 +571,12 @@ def resolver(solo_cruce=False):
     if solo_cruce:
         print(json.dumps(resumen, ensure_ascii=False, indent=1))
         return 0
-    hl.save_history(hist)
     hoy = hoy_ar(now)
     publicar_html(hist, leer(hoy) if os.path.exists(ruta(hoy)) else None)
-    with open(os.path.join(BASE, 'stats.json'), 'w', encoding='utf-8') as f:
-        json.dump(dict(totales(hist), actualizado=now.isoformat(timespec='seconds'), fuente='ESPN'), f, indent=1)
+    if toco:      # sin novedades no se reescribe nada: evita un commit vacio por corrida
+        hl.save_history(hist)
+        with open(os.path.join(BASE, 'stats.json'), 'w', encoding='utf-8') as f:
+            json.dump(dict(totales(hist), actualizado=now.isoformat(timespec='seconds'), fuente='ESPN'), f, indent=1)
     print(json.dumps({'cambios': toco, 'historial': totales(hist), 'dias': resumen}, ensure_ascii=False, indent=1))
     return 0
 
