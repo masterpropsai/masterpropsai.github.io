@@ -4,7 +4,7 @@ Runs generate_live.main() but stubs the SaveCoupon network so the run finishes
 well within the Cowork 45s shell budget. Coupon codes are filled in afterwards
 by mp_publish_coupons.py. Writes index.html, template.html, tickets_data.json.
 """
-import json, time
+import json, sys, time
 import generate_live as g
 
 class _Resp:
@@ -26,8 +26,11 @@ time.sleep = lambda *a, **k: None
 import os
 from datetime import datetime, timedelta, timezone
 import mp_diario
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts'))
+import escudos
 
 _fetch = g.fetch_events
+_por_logo = {}        # logo de la casa -> (nombre del equipo en el feed, liga)
 
 def _fetch_verificable(token):
     data = _fetch(token)
@@ -48,6 +51,10 @@ def _fetch_verificable(token):
         if eid:
             keep.append(e)
             ids.add(eid)
+            liga = e.get('tournamentNameLocalization', '')
+            for nombre, img in ((t1, e.get('imageOpponent1') or []), (t2, e.get('imageOpponent2') or [])):
+                if img:
+                    _por_logo[g.LOGO_BASE + img[0]] = (nombre, liga)
     print('ESPN: %d partidos verificables de %d eventos del feed' % (len(keep), len(items)))
     json.dump(sorted(ids), open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '.espn_ok.json'), 'w'))
     if isinstance(data, dict):
@@ -64,6 +71,19 @@ _pool = g.build_prop_pool
 def _pool_resoluble(*a, **k):
     props = _pool(*a, **k)
     ok = [p for p in props if mp_diario.resoluble(p.get('player', ''), p.get('prop', ''))]
+    # Escudos de gambeta.ai (curados y optimizados) en lugar del logo de la casa, cuando el
+    # equipo se reconoce con certeza; si no, queda el de la casa (27-nov-2026, Mauro).
+    n = 0
+    for p in ok:
+        if not p.get('logo'):
+            continue
+        crudo, liga = _por_logo.get(p['logo'], ('', p.get('match', '')))
+        eq = mp_diario.equipos(p.get('player', ''))
+        u = escudos.escudo([crudo, eq[1] if eq and eq[0] == 'paren' else ''], liga)
+        if u:
+            p['logo'] = u
+            n += 1
+    print('     escudos de gambeta: %d de %d con logo' % (n, sum(1 for p in ok if p.get('logo'))))
     print('     resolubles: %d de %d' % (len(ok), len(props)))
     return ok
 

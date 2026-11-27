@@ -58,6 +58,7 @@ jobs:
 
       - name: Versiones por idioma, sitemap y gates
         run: |
+          python scripts/test_escudos.py
           python scripts/build_langs.py
           python scripts/test_i18n.py
           python scripts/seo.py --sitemap
