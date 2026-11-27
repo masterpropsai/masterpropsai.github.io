@@ -2058,6 +2058,92 @@ function translateProp(propEs) {
 
 // === LIVE RESULTS ===
 const LEG_RESULTS = {
+
+  // === ESPN 2026-11-27 02:04Z (84 legs: 44 won, 40 lost) ===
+  'SAT-H1_0': 'lost',   // (NOR vs) Panathinaikos | Menos de 1 goles de Panathinaikos
+  'SAT-H1_1': 'lost',   // OFI Crete vs Anderlecht | Menos de 3 goles
+  'SAT-H1_2': 'lost',   // Sao Paulo vs Clube do Remo | Primero en (3) goles - Ninguno
+  'SAT-H2_0': 'lost',   // (SPA vs) AZ Alkmaar | Menos de 1 goles de AZ Alkmaar
+  'SAT-H2_1': 'won',   // Hajduk Split vs Sint-Truidense | Menos de 3 goles
+  'SAT-H2_2': 'won',   // (CLU vs) Sao Paulo | Más de 1.75 goles
+  'SAT-H3_0': 'won',   // Gent vs Crvena Zvezda | Menos de 2 goles
+  'SAT-H3_1': 'lost',   // Sparta Prague vs AZ Alkmaar | Menos de 3 goles
+  'SAT-H3_2': 'won',   // (CLU vs) Sao Paulo | Sao Paulo Anota próximo gol (1)
+  'SAT-H4_0': 'lost',   // TSG 1899 Hoffenheim vs Sturm Graz | Menos de 3 goles
+  'SAT-H4_1': 'won',   // Freiburg vs Twente | Menos de 3 goles
+  'SAT-H4_2': 'won',   // (CLU vs) Sao Paulo | Sao Paulo No pierde y Más de 1.5 goles
+  'SAT-H5_0': 'won',   // (CEL vs) Ferencvarosi | Menos de 2 goles de Ferencvarosi
+  'SAT-H5_1': 'won',   // Inter Club d'Escaldes vs Copenhagen | Menos de 3 goles
+  'SAT-H5_2': 'won',   // (CLU vs) Sao Paulo | Sao Paulo Gana y Menos de 5.5 goles
+  'SAT-H6_0': 'won',   // (CRV vs) Gent | Menos de 1 goles de Gent
+  'SAT-H6_1': 'won',   // (LIL vs) Lyon | Menos de 3 goles de Lyon
+  'SAT-H6_2': 'lost',   // (CLU vs) Sao Paulo | Ninguno Anota próximo gol (4)
+  'SAT-S10_0': 'lost',   // Nordsjaelland vs Panathinaikos | Menos de 2 goles
+  'SAT-S10_1': 'lost',   // (OMO vs) Juventus | Menos de 3 goles de Juventus
+  'SAT-S10_2': 'won',   // (CLU vs) Sao Paulo | Más de 1.5 goles de Sao Paulo
+  'SAT-S1_0': 'lost',   // S.C.U. Torreense vs Celtic | Menos de 1 goles
+  'SAT-S1_1': 'lost',   // Nordsjaelland vs Panathinaikos | Menos de 3 goles
+  'SAT-S1_3': 'lost',   // (CLU vs) Sao Paulo | Menos de 2.5 goles de Sao Paulo
+  'SAT-S2_0': 'won',   // (CEL vs) Ferencvarosi | Menos de 1 goles de Ferencvarosi
+  'SAT-S2_1': 'lost',   // (HAJ vs) Sint-Truidense | Menos de 1 goles de Sint-Truidense
+  'SAT-S2_2': 'lost',   // (SAO vs) Clube do Remo | Clube do Remo Total Par
+  'SAT-S3_0': 'lost',   // Crystal Palace vs Sociedad | Menos de 1 goles
+  'SAT-S3_2': 'won',   // (SIN vs) Hajduk Split | Menos de 2 goles de Hajduk Split
+  'SAT-S3_3': 'won',   // (CLU vs) Sao Paulo | Sao Paulo Gana y Más de 2.5 goles
+  'SAT-S4_0': 'won',   // (LIL vs) Lyon | Menos de 1 goles de Lyon
+  'SAT-S4_1': 'won',   // (TRA vs) CSKA Sofia | Menos de 1 goles de CSKA Sofia
+  'SAT-S4_2': 'won',   // Sao Paulo vs Clube do Remo | Más de 2 goles
+  'SAT-S5_1': 'lost',   // (ATA vs) Borac Banja Luka | Menos de 1 goles de Borac Banja Luka
+  'SAT-S5_2': 'won',   // (SOC vs) Crystal Palace | Menos de 2 goles de Crystal Palace
+  'SAT-S5_3': 'lost',   // Sao Paulo vs Clube do Remo | Menos de 3 goles
+  'SAT-S6_0': 'lost',   // (OFI vs) Anderlecht | Menos de 1 goles de Anderlecht
+  'SAT-S6_1': 'won',   // (GEN vs) Crvena Zvezda | Menos de 1 goles de Crvena Zvezda
+  'SAT-S6_2': 'won',   // (CLU vs) Sao Paulo | Gana Sao Paulo
+  'SAT-S7_0': 'lost',   // S.C.U. Torreense vs Celtic | Menos de 2 goles
+  'SAT-S7_1': 'won',   // (INT vs) Copenhagen | Menos de 2 goles de Copenhagen
+  'SAT-S7_2': 'won',   // (SAO vs) Clube do Remo | HÁ Clube do Remo +2
+  'SAT-S8_0': 'lost',   // Braga vs Kuopion Palloseura | Menos de 2 goles
+  'SAT-S8_1': 'won',   // (TSG vs) Sturm Graz | Menos de 1 goles de Sturm Graz
+  'SAT-S8_2': 'lost',   // (CLU vs) Sao Paulo | Menos de 2 goles de Sao Paulo
+  'SAT-S9_0': 'won',   // Sunderland vs Jagiellonia Bialystok | Menos de 2 goles
+  'SAT-S9_1': 'won',   // (CSK vs) Trabzonspor | Menos de 2 goles de Trabzonspor
+  'SAT-S9_3': 'lost',   // Sao Paulo vs Clube do Remo | Menos de 3.5 goles
+  'WKD-M1_0': 'lost',   // N.E.C. vs Stade Rennais | Menos de 1 goles
+  'WKD-M1_1': 'lost',   // Braga vs Kuopion Palloseura | Menos de 3 goles
+  'WKD-M1_4': 'won',   // (CLU vs) Sao Paulo | Más de 1.5 goles de Sao Paulo
+  'WKD-W10_1': 'lost',   // (SOC vs) Crystal Palace | Menos de 1.5 goles de Crystal Palace
+  'WKD-W10_2': 'lost',   // Nordsjaelland vs Panathinaikos | Menos de 2.5 goles
+  'WKD-W10_5': 'lost',   // (CLU vs) Sao Paulo | Sao Paulo Gana y Menos de 2.5 goles
+  'WKD-W11_1': 'won',   // (FER vs) Celje | HÁ Celje +1.5
+  'WKD-W11_2': 'lost',   // (INT vs) Copenhagen | HÁ Copenhagen -1.5
+  'WKD-W11_4': 'won',   // (CLU vs) Sao Paulo | Sao Paulo No pierde y Más de 2.5 goles
+  'WKD-W12_1': 'won',   // (SUN vs) Jagiellonia Bialystok | HÁ Jagiellonia Bialystok +1.5
+  'WKD-W12_2': 'lost',   // Gent vs Crvena Zvezda | Más de 2.5 goles
+  'WKD-W1_0': 'lost',   // Sao Paulo vs Clube do Remo | Menos de 1 goles
+  'WKD-W1_1': 'won',   // (JAG vs) Sunderland | Menos de 2 goles de Sunderland
+  'WKD-W1_2': 'lost',   // Borac Banja Luka vs Atalanta | Menos de 3 goles
+  'WKD-W2_0': 'lost',   // (CSK vs) Trabzonspor | Menos de 1 goles de Trabzonspor
+  'WKD-W2_1': 'won',   // S.C.U. Torreense vs Celtic | Menos de 3 goles
+  'WKD-W2_3': 'lost',   // Sao Paulo vs Clube do Remo | Menos de 2.5 goles
+  'WKD-W3_1': 'won',   // Crystal Palace vs Sociedad | Menos de 3 goles
+  'WKD-W3_2': 'won',   // CSKA Sofia vs Trabzonspor | Menos de 3 goles
+  'WKD-W3_3': 'won',   // Sao Paulo vs Clube do Remo | Más de 2.5 goles
+  'WKD-W4_0': 'won',   // Inter Club d'Escaldes vs Copenhagen | Menos de 2 goles
+  'WKD-W4_1': 'won',   // Lyon vs Lillestrom | Menos de 3 goles
+  'WKD-W4_4': 'lost',   // (SAO vs) Clube do Remo | Menos de 0.5 goles de Clube do Remo
+  'WKD-W5_1': 'won',   // Ferencvarosi vs Celje | Menos de 3 goles
+  'WKD-W5_2': 'won',   // (KUO vs) Braga | Más de 2.5 goles de Braga
+  'WKD-W6_1': 'lost',   // N.E.C. vs Stade Rennais | Menos de 3 goles
+  'WKD-W6_2': 'won',   // (INT vs) Copenhagen | Menos de 2 goles de Copenhagen
+  'WKD-W6_7': 'lost',   // Sao Paulo vs Clube do Remo | Menos de 3 goles
+  'WKD-W7_1': 'lost',   // Juventus vs Omonia | Menos de 3 goles
+  'WKD-W7_2': 'lost',   // (TWE vs) Freiburg | Menos de 1.5 goles de Freiburg
+  'WKD-W8_1': 'won',   // Sunderland vs Jagiellonia Bialystok | Menos de 3 goles
+  'WKD-W8_2': 'won',   // (COP vs) Inter Club d'Escaldes | HÁ Inter Club d'Escaldes +1.5
+  'WKD-W8_5': 'won',   // (CLU vs) Sao Paulo | HÁ Sao Paulo -1
+  'WKD-W9_0': 'lost',   // Gent vs Crvena Zvezda | Menos de 1 goles
+  'WKD-W9_1': 'lost',   // TSG 1899 Hoffenheim vs Sturm Graz | Menos de 3.5 goles
+  'WKD-W9_5': 'won',   // (CLU vs) Sao Paulo | Sao Paulo Gana y Menos de 5.5 goles
 };
 
 // === HISTORIAL (billetes terminados) ===
