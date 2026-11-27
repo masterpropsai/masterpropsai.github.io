@@ -216,7 +216,807 @@
           "result": "won"
         }
       ]
+    },
+    {
+      "id": "SAT-S1 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 44.1,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "S.C.U. Torreense vs Celtic",
+          "prop": "Menos de 1 goles",
+          "match": "UEFA Europa League",
+          "odd": 9.85,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Nordsjaelland vs Panathinaikos",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Conference League",
+          "odd": 1.76,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Pachuca vs Guadalajara",
+          "prop": "Menos de 2.5 goles",
+          "match": "Liga MX",
+          "odd": 1.79,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Menos de 2.5 goles de Sao Paulo",
+          "match": "Serie A",
+          "odd": 1.42,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S2 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 38.9,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(CEL vs) Ferencvarosi",
+          "prop": "Menos de 1 goles de Ferencvarosi",
+          "match": "UEFA Europa League",
+          "odd": 8.4,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(HAJ vs) Sint-Truidense",
+          "prop": "Menos de 1 goles de Sint-Truidense",
+          "match": "UEFA Conference League",
+          "odd": 2.16,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(SAO vs) Clube do Remo",
+          "prop": "Clube do Remo Total Par",
+          "match": "Serie A",
+          "odd": 1.47,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Pachuca No pierde y Más de 2.5 goles",
+          "match": "Liga MX",
+          "odd": 1.46,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S3 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 38.4,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Crystal Palace vs Sociedad",
+          "prop": "Menos de 1 goles",
+          "match": "UEFA Europa League",
+          "odd": 9.9,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Menos de 1 goles de Pachuca",
+          "match": "Liga MX",
+          "odd": 2.1,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(SIN vs) Hajduk Split",
+          "prop": "Menos de 2 goles de Hajduk Split",
+          "match": "UEFA Conference League",
+          "odd": 1.41,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Sao Paulo Gana y Más de 2.5 goles",
+          "match": "Serie A",
+          "odd": 1.31,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S4 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 34.1,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(LIL vs) Lyon",
+          "prop": "Menos de 1 goles de Lyon",
+          "match": "UEFA Europa League",
+          "odd": 8.0,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(TRA vs) CSKA Sofia",
+          "prop": "Menos de 1 goles de CSKA Sofia",
+          "match": "UEFA Conference League",
+          "odd": 1.96,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Más de 2 goles",
+          "match": "Serie A",
+          "odd": 1.45,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Guadalajara No pierde y Más de 2.5 goles",
+          "match": "Liga MX",
+          "odd": 1.5,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S5 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 27.9,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Pachuca vs Guadalajara",
+          "prop": "Menos de 1 goles",
+          "match": "Liga MX",
+          "odd": 7.4,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(ATA vs) Borac Banja Luka",
+          "prop": "Menos de 1 goles de Borac Banja Luka",
+          "match": "UEFA Conference League",
+          "odd": 1.58,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(SOC vs) Crystal Palace",
+          "prop": "Menos de 2 goles de Crystal Palace",
+          "match": "UEFA Europa League",
+          "odd": 1.59,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Menos de 3 goles",
+          "match": "Serie A",
+          "odd": 1.5,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S6 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 18.5,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(OFI vs) Anderlecht",
+          "prop": "Menos de 1 goles de Anderlecht",
+          "match": "UEFA Europa League",
+          "odd": 4.2,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(GEN vs) Crvena Zvezda",
+          "prop": "Menos de 1 goles de Crvena Zvezda",
+          "match": "UEFA Conference League",
+          "odd": 2.23,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Gana Sao Paulo",
+          "match": "Serie A",
+          "odd": 1.38,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Pachuca vs Guadalajara",
+          "prop": "Más de 2 goles",
+          "match": "Liga MX",
+          "odd": 1.43,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S7 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 18.0,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "S.C.U. Torreense vs Celtic",
+          "prop": "Menos de 2 goles",
+          "match": "UEFA Europa League",
+          "odd": 5.0,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(INT vs) Copenhagen",
+          "prop": "Menos de 2 goles de Copenhagen",
+          "match": "UEFA Conference League",
+          "odd": 2.03,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(SAO vs) Clube do Remo",
+          "prop": "HÁ Clube do Remo +2",
+          "match": "Serie A",
+          "odd": 1.34,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "HÁ Pachuca +0.75",
+          "match": "Liga MX",
+          "odd": 1.32,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S8 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 4,
+      "totalOdds": 17.8,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Braga vs Kuopion Palloseura",
+          "prop": "Menos de 2 goles",
+          "match": "UEFA Conference League",
+          "odd": 4.38,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(TSG vs) Sturm Graz",
+          "prop": "Menos de 1 goles de Sturm Graz",
+          "match": "UEFA Europa League",
+          "odd": 1.69,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Menos de 2 goles de Sao Paulo",
+          "match": "Serie A",
+          "odd": 1.73,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Pachuca vs Guadalajara",
+          "prop": "Menos de 3 goles",
+          "match": "Liga MX",
+          "odd": 1.39,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S9 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 13.8,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Sunderland vs Jagiellonia Bialystok",
+          "prop": "Menos de 2 goles",
+          "match": "UEFA Europa League",
+          "odd": 3.7,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CSK vs) Trabzonspor",
+          "prop": "Menos de 2 goles de Trabzonspor",
+          "match": "UEFA Conference League",
+          "odd": 1.78,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Menos de 1.5 goles de Guadalajara",
+          "match": "Liga MX",
+          "odd": 1.57,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Menos de 3.5 goles",
+          "match": "Serie A",
+          "odd": 1.33,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S10 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 11.0,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Nordsjaelland vs Panathinaikos",
+          "prop": "Menos de 2 goles",
+          "match": "UEFA Conference League",
+          "odd": 3.4,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(OMO vs) Juventus",
+          "prop": "Menos de 3 goles de Juventus",
+          "match": "UEFA Europa League",
+          "odd": 1.6,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Más de 1.5 goles de Sao Paulo",
+          "match": "Serie A",
+          "odd": 1.53,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Más de 0.5 goles de Pachuca",
+          "match": "Liga MX",
+          "odd": 1.32,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-H1 · 26/11",
+      "tier": "hunter",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 9.4,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(NOR vs) Panathinaikos",
+          "prop": "Menos de 1 goles de Panathinaikos",
+          "match": "UEFA Conference League",
+          "odd": 2.61,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "OFI Crete vs Anderlecht",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 1.72,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Primero en (3) goles - Ninguno",
+          "match": "Serie A",
+          "odd": 1.41,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "HÁ Guadalajara +0.25",
+          "match": "Liga MX",
+          "odd": 1.49,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-H2 · 26/11",
+      "tier": "hunter",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 8.5,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(SPA vs) AZ Alkmaar",
+          "prop": "Menos de 1 goles de AZ Alkmaar",
+          "match": "UEFA Europa League",
+          "odd": 2.85,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Hajduk Split vs Sint-Truidense",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Conference League",
+          "odd": 1.68,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Más de 1.75 goles",
+          "match": "Serie A",
+          "odd": 1.34,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Más de 1.75 goles",
+          "match": "Liga MX",
+          "odd": 1.33,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-H3 · 26/11",
+      "tier": "hunter",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 8.4,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Gent vs Crvena Zvezda",
+          "prop": "Menos de 2 goles",
+          "match": "UEFA Conference League",
+          "odd": 2.85,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Sparta Prague vs AZ Alkmaar",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 1.67,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Sao Paulo Anota próximo gol (1)",
+          "match": "Serie A",
+          "odd": 1.31,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Pachuca Gana y Más de 5.5 goles",
+          "match": "Liga MX",
+          "odd": 1.35,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-H4 · 26/11",
+      "tier": "hunter",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 8.2,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "TSG 1899 Hoffenheim vs Sturm Graz",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 2.7,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Freiburg vs Twente",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Conference League",
+          "odd": 1.7,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Sao Paulo No pierde y Más de 1.5 goles",
+          "match": "Serie A",
+          "odd": 1.36,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Guadalajara No pierde y Menos de 2.5 goles",
+          "match": "Liga MX",
+          "odd": 1.31,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-H5 · 26/11",
+      "tier": "hunter",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 6,
+      "totalOdds": 8.0,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(CEL vs) Ferencvarosi",
+          "prop": "Menos de 2 goles de Ferencvarosi",
+          "match": "UEFA Europa League",
+          "odd": 2.27,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Inter Club d'Escaldes vs Copenhagen",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Conference League",
+          "odd": 1.65,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Sao Paulo Gana y Menos de 5.5 goles",
+          "match": "Serie A",
+          "odd": 1.48,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Guadalajara Gana y Más de 5.5 goles",
+          "match": "Liga MX",
+          "odd": 1.45,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SAT-H6 · 26/11",
+      "tier": "hunter",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 5,
+      "totalOdds": 7.4,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(CRV vs) Gent",
+          "prop": "Menos de 1 goles de Gent",
+          "match": "UEFA Conference League",
+          "odd": 2.65,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(LIL vs) Lyon",
+          "prop": "Menos de 3 goles de Lyon",
+          "match": "UEFA Europa League",
+          "odd": 1.55,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Ninguno Anota próximo gol (4)",
+          "match": "Serie A",
+          "odd": 1.33,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Guadalajara Gana y Más de 4.5 goles",
+          "match": "Liga MX",
+          "odd": 1.36,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
     }
   ],
-  "updated_at": "2026-11-27T02:05:00.714956+00:00"
+  "updated_at": "2026-11-27T03:16:21.706858+00:00"
 }
