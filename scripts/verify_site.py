@@ -54,5 +54,11 @@ try:
 except Exception as e:
     check('tickets_data.json valido (lo lee el banner de gambeta.ai)', False, type(e).__name__)
 
+try:
+    c, t = get('/contacto'), get('/terminos')
+    check('paginas legales: contacto y terminos', '<h1>Contacto</h1>' in c and 'enlaces de afiliado' in t and 'href="/terminos"' in html)
+except Exception as e:
+    check('paginas legales: contacto y terminos', False, type(e).__name__)
+
 print(f"\n{len(oks)} pass / {len(fails)} fail")
 sys.exit(1 if fails else 0)

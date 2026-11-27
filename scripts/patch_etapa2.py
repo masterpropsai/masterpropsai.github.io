@@ -73,6 +73,19 @@ def patch(s):
     a = 'target="_blank" style="display:inline-flex;align-items:center;vertical-align:middle"><svg'
     if a in s:
         s = s.replace(a, a.replace('><svg', ' aria-label="DBbet"><svg')); log.append('logo pie')
+    # 9) Estados que aparecen cuando hay resultados (27-nov): rojo sobre rojo oscuro no llegaba
+    #    a 4,5:1 y el billete perdido se atenuaba con opacity .55 (texto ilegible).
+    if '/* a11y estados */' not in s:
+        css = """
+/* a11y estados */
+.ticket-heat-badge.fire, .ticket-result-badge.lost { color: #ff9a9a; }
+.ticket-heat-badge.hot { color: #ffa25c; }
+.ticket.ticket-dead { opacity: .88; filter: grayscale(.55); }
+.ticket.ticket-dead:hover { opacity: 1; }
+"""
+        i = s.rfind('</style>', 0, s.find('<body'))
+        s = s[:i] + css + s[i:]
+        log.append('css estados')
     return s, log
 
 for fn in ('template.html', 'index.html'):

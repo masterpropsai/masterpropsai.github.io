@@ -192,6 +192,7 @@ def sitemap(solo_home=False):
     fecha = (lambda f: previas.get(url(f), hoy())) if solo_home else fecha_git
     filas = [('index.html', hoy(), 'daily', '1.0'), ('blog/index.html', fecha('blog/index.html'), 'weekly', '0.9')]
     filas += [(f, fecha(f), 'monthly', '0.8') for f in notas()]
+    filas += [(f, fecha(f), 'yearly', '0.3') for f in ('contacto.html', 'terminos.html') if os.path.exists(f)]
     x = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for f, mod, freq, pri in filas:
         x += ['  <url>', f'    <loc>{url(f)}</loc>', f'    <lastmod>{mod}</lastmod>',

@@ -6,7 +6,7 @@ import glob, html, os, re, sys
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 SITIO = 'https://masterprops.ai'
 fallas = []
-paginas = ['index.html'] + sorted(glob.glob('blog/*.html'))
+paginas = ['index.html', 'contacto.html', 'terminos.html'] + sorted(glob.glob('blog/*.html'))
 
 
 def url(f):
@@ -54,6 +54,10 @@ for f in paginas:
             fallas.append(f'{f}: solo {n} enlaces internos entrantes (min 3)')
 if 'href="/blog/"' not in open('index.html', encoding='utf-8').read():
     fallas.append('index.html: la home no enlaza al blog')
+
+home = open('index.html', encoding='utf-8').read()
+if 'href="/contacto"' not in home or 'href="/terminos"' not in home:
+    fallas.append('index.html: el pie tiene que enlazar a /contacto y /terminos')
 
 for x in fallas:
     print('  ❌', x)
