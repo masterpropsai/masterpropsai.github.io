@@ -1935,13 +1935,15 @@ def main():
     if intel and intel.sharp_odds:
         for pool_name, pool in [('HOY', pool_sat), ('MAÑANA', pool_sun), ('COMBINADO', pool_weekend)]:
             before = len(pool)
-            # Remove picks where sharp bookmakers say edge is clearly negative (< -5%)
-            filtered = [p for p in pool if p.get('sharp_edge') is None or p['sharp_edge'] > -0.05]
+            # Donde hay precio justo de Pinnacle, la seleccion entra solo si la cuota de la casa
+            # no paga menos que ese precio (tolerancia 2% por ruido). Antes el corte era -5%
+            # y casi todo lo medido entraba igual con ventaja negativa (27-nov-2026).
+            filtered = [p for p in pool if p.get('sharp_edge') is None or p['sharp_edge'] > -0.02]
             removed = before - len(filtered)
             if removed > 0:
                 pool.clear()
                 pool.extend(filtered)
-                print(f"  🚫 {pool_name}: {removed} picks descartados (edge sharp < -5%)")
+                print(f"  🚫 {pool_name}: {removed} picks descartados (pagan menos que el precio justo)")
 
         # Stats
         for pool_name, pool in [('HOY', pool_sat), ('MAÑANA', pool_sun)]:
