@@ -1788,6 +1788,8 @@ def generate_ticket_js(tickets):
                 f"odd:{leg['odd']}, sport:'{leg['sport']}', "
                 f"team:'{_esc(leg['team'])}', date:'{leg.get('date', '')}', "
                 f"logo:'{_esc(leg.get('logo', ''))}', "
+                + (f"logoA:'{_esc(leg['logoA'])}', logoB:'{_esc(leg['logoB'])}', "
+                   if leg.get('logoA') and leg.get('logoB') else '') +
                 f"edge:{edge_js}, "
                 f"link:'{_esc(leg_link)}'}}"
             )

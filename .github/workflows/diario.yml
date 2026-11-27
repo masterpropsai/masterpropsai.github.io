@@ -47,8 +47,13 @@ jobs:
           DBBET_CLIENT_SECRET: ${{ secrets.DBBET_CLIENT_SECRET }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
+          HORA=$(TZ=America/Argentina/Buenos_Aires date +%H)
           if python mp_diario.py hoy; then
             echo "Ya hay billetes de hoy: no se regeneran."
+          elif [ "$HORA" -lt 6 ]; then
+            # El 27-nov una corrida de resultados de las 00:18 genero los billetes del dia
+            # apenas cambio la fecha: salian 6 horas antes, con cuotas mas viejas.
+            echo "Son las $HORA h en Argentina: los billetes del dia salen desde las 06:00."
           else
             python mp_build.py
             python mp_publish_coupons.py

@@ -30,6 +30,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scr
 import escudos
 
 _fetch = g.fetch_events
+_por_link = {}        # link del evento -> (local, visitante, liga, logo1, logo2)
 _por_logo = {}        # logo de la casa -> (nombre del equipo en el feed, liga)
 
 def _fetch_verificable(token):
@@ -52,6 +53,7 @@ def _fetch_verificable(token):
             keep.append(e)
             ids.add(eid)
             liga = e.get('tournamentNameLocalization', '')
+            _por_link[e.get('link', '')] = (t1, t2, liga, (e.get('imageOpponent1') or [''])[0], (e.get('imageOpponent2') or [''])[0])
             for nombre, img in ((t1, e.get('imageOpponent1') or []), (t2, e.get('imageOpponent2') or [])):
                 if img:
                     _por_logo[g.LOGO_BASE + img[0]] = (nombre, liga)
@@ -76,6 +78,14 @@ def _pool_resoluble(*a, **k):
     n = 0
     for p in ok:
         if not p.get('logo'):
+            # Seleccion "de partido" (Mas de 2.5 goles en A vs B): los dos escudos
+            ev = _por_link.get(p.get('link', ''))
+            if ev:
+                t1, t2, liga, i1, i2 = ev
+                a = escudos.escudo(t1, liga) or (g.LOGO_BASE + i1 if i1 else '')
+                b = escudos.escudo(t2, liga) or (g.LOGO_BASE + i2 if i2 else '')
+                if a and b:
+                    p['logoA'], p['logoB'] = a, b
             continue
         crudo, liga = _por_logo.get(p['logo'], ('', p.get('match', '')))
         eq = mp_diario.equipos(p.get('player', ''))

@@ -572,7 +572,10 @@ def resolver(solo_cruce=False):
         print(json.dumps(resumen, ensure_ascii=False, indent=1))
         return 0
     hoy = hoy_ar(now)
-    publicar_html(hist, leer(hoy) if os.path.exists(ruta(hoy)) else None)
+    # Los billetes en pantalla son los del ultimo dia guardado (de 00:00 a 06:00 de Argentina
+    # todavia son los de ayer): sus resultados se siguen mostrando en la pagina.
+    ultimos = dias()
+    publicar_html(hist, leer(ultimos[-1]) if ultimos else None)
     if toco:      # sin novedades no se reescribe nada: evita un commit vacio por corrida
         hl.save_history(hist)
         with open(os.path.join(BASE, 'stats.json'), 'w', encoding='utf-8') as f:

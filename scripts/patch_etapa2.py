@@ -93,6 +93,23 @@ def patch(s):
         s = s.replace(a, '<div class="gambeta-picks-section" id="gambeta-picks-section" hidden style="display:none">')
         s = re.sub(r"const GAMBETA_PICKS = \[.*?\n\];", "const GAMBETA_PICKS = [];", s, count=1, flags=re.S)
         log.append('picks fijos del Mundial fuera')
+    # 11) El billete perdido se atenuaba con opacity: el texto chico caia a 4,2:1. Se marca
+    #     solo con escala de grises (no baja el contraste del texto).
+    if '/* a11y estados 3 */' not in s:
+        css = """
+/* a11y estados 3 */
+.ticket.ticket-dead, .ticket.ticket-dead:hover { opacity: 1; filter: grayscale(.75); }
+.conf-label { color: #b0aa9c; opacity: 1; }
+"""
+        i = s.rfind('</style>', 0, s.find('<body'))
+        s = s[:i] + css + s[i:]
+        log.append('css estados 2')
+    # 12) Con 50+ billetes la entrada escalonada (0,08 s por billete) tardaba mas de 4 s:
+    #     los ultimos seguian semitransparentes un buen rato. Tope de 0,6 s.
+    a = 'style="animation-delay: ${i * 0.08}s"'
+    if a in s:
+        s = s.replace(a, 'style="animation-delay: ${Math.min(i * 0.05, 0.6)}s"')
+        log.append('tope de animacion')
     return s, log
 
 for fn in ('template.html', 'index.html'):
