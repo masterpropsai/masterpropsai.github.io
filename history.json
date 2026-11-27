@@ -1016,7 +1016,1351 @@
           "result": "lost"
         }
       ]
+    },
+    {
+      "id": "WKD-W2 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 578.9,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(CSK vs) Trabzonspor",
+          "prop": "Menos de 1 goles de Trabzonspor",
+          "match": "UEFA Conference League",
+          "odd": 5.45,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "S.C.U. Torreense vs Celtic",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 2.23,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(DAR vs) VfL Bochum",
+          "prop": "Menos de 1.5 goles de VfL Bochum",
+          "match": "Bundesliga",
+          "odd": 2.18,
+          "date": "Nov 27 · 17:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Menos de 2.5 goles",
+          "match": "Serie A",
+          "odd": 1.9,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(LEO vs) Cruz Azul",
+          "prop": "Menos de 1.5 goles de Cruz Azul",
+          "match": "Liga MX",
+          "odd": 1.78,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(MID vs) Southampton",
+          "prop": "Menos de 1.5 goles de Southampton",
+          "match": "Championship",
+          "odd": 1.68,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Oud-Heverlee Leuven vs Kortrijk",
+          "prop": "Más de 2.5 goles",
+          "match": "Jupiler League",
+          "odd": 1.66,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Stade Brestois 29 vs Paris",
+          "prop": "Menos de 3.5 goles",
+          "match": "Ligue 1",
+          "odd": 1.35,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GRO vs) Willem II",
+          "prop": "HÁ Willem II +2.5",
+          "match": "Eredivisie",
+          "odd": 1.3,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(LEV vs) Racing de Santander",
+          "prop": "HÁ Racing de Santander +1.5",
+          "match": "La Liga",
+          "odd": 1.32,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SUN-W5 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Mañ · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 520.7,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Stade Brestois 29 vs Paris",
+          "prop": "Menos de 1 goles",
+          "match": "Ligue 1",
+          "odd": 8.95,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Werder Bremen vs Borussia Monchengladbach",
+          "prop": "Más de 3.5 goles",
+          "match": "Bundesliga",
+          "odd": 2.3,
+          "date": "Nov 27 · 19:30",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(UNI vs) Bologna",
+          "prop": "Bologna No pierde y Más de 1.5 goles",
+          "match": "Serie A",
+          "odd": 1.82,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "Groningen Gana y Menos de 2.5 goles",
+          "match": "Eredivisie",
+          "odd": 1.87,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CHE vs) Nott. Forest",
+          "prop": "HÁ Nott. Forest +0.25",
+          "match": "Premier League",
+          "odd": 1.63,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(MID vs) Southampton",
+          "prop": "Más de 2.75 goles",
+          "match": "Championship",
+          "odd": 1.65,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Levante vs Racing de Santander",
+          "prop": "Más de 2.5 goles",
+          "match": "La Liga",
+          "odd": 1.42,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(LEO vs) Cruz Azul",
+          "prop": "HÁ Cruz Azul +0.25",
+          "match": "Liga MX",
+          "odd": 1.4,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Oud-Heverlee Leuven No pierde y Más de 2.5 goles",
+          "match": "Jupiler League",
+          "odd": 1.39,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W3 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 500.7,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(BOR vs) Werder Bremen",
+          "prop": "Menos de 1 goles de Werder Bremen",
+          "match": "Bundesliga",
+          "odd": 6.1,
+          "date": "Nov 27 · 19:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Crystal Palace vs Sociedad",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 2.06,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "CSKA Sofia vs Trabzonspor",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Conference League",
+          "odd": 1.98,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Más de 2.5 goles",
+          "match": "Serie A",
+          "odd": 1.9,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(RAC vs) Levante",
+          "prop": "Más de 1.5 goles de Levante",
+          "match": "La Liga",
+          "odd": 1.58,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Southampton vs Middlesbrough",
+          "prop": "Más de 2.5 goles",
+          "match": "Championship",
+          "odd": 1.52,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Más de 1.5 goles de Oud-Heverlee Leuven",
+          "match": "Jupiler League",
+          "odd": 1.73,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Marítimo vs Nacional da Madeira",
+          "prop": "Más de 1.5 goles",
+          "match": "Primeira Liga",
+          "odd": 1.36,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "Gana Groningen",
+          "match": "Eredivisie",
+          "odd": 1.42,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Más de 0.5 goles de Pachuca",
+          "match": "Liga MX",
+          "odd": 1.32,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W5 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 373.5,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Marítimo vs Nacional da Madeira",
+          "prop": "Menos de 1 goles",
+          "match": "Primeira Liga",
+          "odd": 6.66,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Ferencvarosi vs Celje",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 1.97,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(KUO vs) Braga",
+          "prop": "Más de 2.5 goles de Braga",
+          "match": "UEFA Conference League",
+          "odd": 1.88,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Grazer AK vs Rheindorf Altach",
+          "prop": "Más de 2.5 goles",
+          "match": "Bundesliga",
+          "odd": 1.89,
+          "date": "Nov 27 · 18:30",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(UNI vs) Bologna",
+          "prop": "HÁ Bologna 0",
+          "match": "Serie A",
+          "odd": 1.66,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GUA vs) Pachuca",
+          "prop": "Más de 1 goles de Pachuca",
+          "match": "Liga MX",
+          "odd": 1.64,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GRO vs) Willem II",
+          "prop": "HÁ Willem II +2",
+          "match": "Eredivisie",
+          "odd": 1.43,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(OUD vs) Kortrijk",
+          "prop": "HÁ Kortrijk +1",
+          "match": "Jupiler League",
+          "odd": 1.47,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Nott. Forest vs Chelsea",
+          "prop": "Más de 2 goles",
+          "match": "Premier League",
+          "odd": 1.4,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W6 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 369.0,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(HEI vs) Nurnberg",
+          "prop": "Menos de 1 goles de Nurnberg",
+          "match": "Bundesliga",
+          "odd": 3.32,
+          "date": "Nov 27 · 17:30",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "N.E.C. vs Stade Rennais",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 2.12,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(INT vs) Copenhagen",
+          "prop": "Menos de 2 goles de Copenhagen",
+          "match": "UEFA Conference League",
+          "odd": 2.03,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Gana Oud-Heverlee Leuven",
+          "match": "Jupiler League",
+          "odd": 1.94,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Southampton vs Middlesbrough",
+          "prop": "Menos de 3.5 goles",
+          "match": "Championship",
+          "odd": 1.53,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Pachuca vs Guadalajara",
+          "prop": "Menos de 2.5 goles",
+          "match": "Liga MX",
+          "odd": 1.79,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Marítimo vs Nacional da Madeira",
+          "prop": "Menos de 2.5 goles",
+          "match": "Primeira Liga",
+          "odd": 1.74,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Sao Paulo vs Clube do Remo",
+          "prop": "Menos de 3 goles",
+          "match": "Serie A",
+          "odd": 1.5,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Nott. Forest vs Chelsea",
+          "prop": "Menos de 3.5 goles",
+          "match": "Premier League",
+          "odd": 1.39,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Levante vs Racing de Santander",
+          "prop": "Menos de 4.5 goles",
+          "match": "La Liga",
+          "odd": 1.34,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W7 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 281.3,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(NUR vs) 1. Heidenheim",
+          "prop": "Menos de 1 goles de 1. Heidenheim",
+          "match": "Bundesliga",
+          "odd": 5.0,
+          "date": "Nov 27 · 17:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Juventus vs Omonia",
+          "prop": "Menos de 3 goles",
+          "match": "UEFA Europa League",
+          "odd": 2.08,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(TWE vs) Freiburg",
+          "prop": "Menos de 1.5 goles de Freiburg",
+          "match": "UEFA Conference League",
+          "odd": 2.2,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(SOU vs) Middlesbrough",
+          "prop": "Más de 1.5 goles de Middlesbrough",
+          "match": "Championship",
+          "odd": 1.82,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "HÁ Groningen -1",
+          "match": "Eredivisie",
+          "odd": 1.6,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Más de 1 goles de Guadalajara",
+          "match": "Liga MX",
+          "odd": 1.52,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(BOL vs) Unione Venezia",
+          "prop": "Menos de 1.5 goles de Unione Venezia",
+          "match": "Serie A",
+          "odd": 1.39,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(LEV vs) Racing de Santander",
+          "prop": "HÁ Racing de Santander +1",
+          "match": "La Liga",
+          "odd": 1.48,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(PSG vs) Stade Brestois 29",
+          "prop": "HÁ Stade Brestois 29 +1",
+          "match": "Ligue 1",
+          "odd": 1.35,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W9 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 265.8,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Gent vs Crvena Zvezda",
+          "prop": "Menos de 1 goles",
+          "match": "UEFA Conference League",
+          "odd": 9.1,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "TSG 1899 Hoffenheim vs Sturm Graz",
+          "prop": "Menos de 3.5 goles",
+          "match": "UEFA Europa League",
+          "odd": 1.98,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(MID vs) Southampton",
+          "prop": "HÁ Southampton 0",
+          "match": "Championship",
+          "odd": 2.12,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(GRA vs) Rheindorf Altach",
+          "prop": "Menos de 1.5 goles de Rheindorf Altach",
+          "match": "Bundesliga",
+          "odd": 1.69,
+          "date": "Nov 27 · 18:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "Más de 2.75 goles",
+          "match": "Eredivisie",
+          "odd": 1.55,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Sao Paulo Gana y Menos de 5.5 goles",
+          "match": "Serie A",
+          "odd": 1.48,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CRU vs) Leon",
+          "prop": "Leon No pierde y Más de 2.5 goles",
+          "match": "Liga MX",
+          "odd": 1.32,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(OUD vs) Kortrijk",
+          "prop": "HÁ Kortrijk +1.25",
+          "match": "Jupiler League",
+          "odd": 1.36,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W10 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 245.9,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "VfL Bochum vs Darmstadt 98",
+          "prop": "Menos de 2 goles",
+          "match": "Bundesliga",
+          "odd": 3.56,
+          "date": "Nov 27 · 17:30",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(SOC vs) Crystal Palace",
+          "prop": "Menos de 1.5 goles de Crystal Palace",
+          "match": "UEFA Europa League",
+          "odd": 2.14,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Nordsjaelland vs Panathinaikos",
+          "prop": "Menos de 2.5 goles",
+          "match": "UEFA Conference League",
+          "odd": 2.21,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(MID vs) Southampton",
+          "prop": "Más de 1.5 goles de Southampton",
+          "match": "Championship",
+          "odd": 2.07,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(MAR vs) Nacional da Madeira",
+          "prop": "HÁ Nacional da Madeira +0.75",
+          "match": "Primeira Liga",
+          "odd": 1.55,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CLU vs) Sao Paulo",
+          "prop": "Sao Paulo Gana y Menos de 2.5 goles",
+          "match": "Serie A",
+          "odd": 1.59,
+          "date": "Nov 26 · 23:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Pachuca vs Guadalajara",
+          "prop": "Más de 2 goles",
+          "match": "Liga MX",
+          "odd": 1.43,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CHE vs) Nott. Forest",
+          "prop": "Más de 1 goles de Nott. Forest",
+          "match": "Premier League",
+          "odd": 1.43,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(STA vs) Paris",
+          "prop": "Más de 1 goles de Paris",
+          "match": "Ligue 1",
+          "odd": 1.4,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "WKD-W12 · 26/11",
+      "tier": "whale",
+      "sport": "futbol",
+      "title": "Wkd · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 205.9,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Grazer AK vs Rheindorf Altach",
+          "prop": "Menos de 1 goles",
+          "match": "Bundesliga",
+          "odd": 7.1,
+          "date": "Nov 27 · 18:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(SUN vs) Jagiellonia Bialystok",
+          "prop": "HÁ Jagiellonia Bialystok +1.5",
+          "match": "UEFA Europa League",
+          "odd": 2.03,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Gent vs Crvena Zvezda",
+          "prop": "Más de 2.5 goles",
+          "match": "UEFA Conference League",
+          "odd": 1.86,
+          "date": "Nov 26 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(SOU vs) Middlesbrough",
+          "prop": "Middlesbrough No pierde y Más de 3.5 goles",
+          "match": "Championship",
+          "odd": 1.59,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(BOL vs) Unione Venezia",
+          "prop": "Menos de 2.75 goles",
+          "match": "Serie A",
+          "odd": 1.62,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(PSG vs) Stade Brestois 29",
+          "prop": "Stade Brestois 29 No pierde y Más de 2.5 goles",
+          "match": "Ligue 1",
+          "odd": 1.38,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "HÁ Groningen -0.75",
+          "match": "Eredivisie",
+          "odd": 1.49,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(PAC vs) Guadalajara",
+          "prop": "Guadalajara Gana y Más de 5.5 goles",
+          "match": "Liga MX",
+          "odd": 1.45,
+          "date": "Nov 27 · 01:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SUN-S2 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Mañ · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 94.5,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(SOU vs) Middlesbrough",
+          "prop": "Menos de 0.5 goles de Middlesbrough",
+          "match": "Championship",
+          "odd": 4.6,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Werder Bremen vs Borussia Monchengladbach",
+          "prop": "Menos de 3.5 goles",
+          "match": "Bundesliga",
+          "odd": 1.72,
+          "date": "Nov 27 · 19:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(NAC vs) Marítimo",
+          "prop": "Ninguno Anota próximo gol (3)",
+          "match": "Primeira Liga",
+          "odd": 1.77,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CRU vs) Leon",
+          "prop": "Leon No pierde y Más de 4.5 goles",
+          "match": "Liga MX",
+          "odd": 1.8,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(STA vs) Paris",
+          "prop": "Paris Gana y Más de 4.5 goles",
+          "match": "Ligue 1",
+          "odd": 1.48,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CHE vs) Nott. Forest",
+          "prop": "Nott. Forest Gana y Menos de 1.5 goles",
+          "match": "Premier League",
+          "odd": 1.36,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Menos de 3.75 goles",
+          "match": "Jupiler League",
+          "odd": 1.35,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(RAC vs) Levante",
+          "prop": "Menos de 4.25 goles",
+          "match": "La Liga",
+          "odd": 1.38,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SUN-S3 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Mañ · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 88.1,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Nott. Forest vs Chelsea",
+          "prop": "Menos de 1.5 goles",
+          "match": "Premier League",
+          "odd": 3.85,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(RHE vs) Grazer AK",
+          "prop": "HÁ Grazer AK 0",
+          "match": "Bundesliga",
+          "odd": 2.27,
+          "date": "Nov 27 · 18:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(MID vs) Southampton",
+          "prop": "Menos de 2.75 goles",
+          "match": "Championship",
+          "odd": 2.0,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(MAR vs) Nacional da Madeira",
+          "prop": "Nacional da Madeira No pierde y Más de 3.5 goles",
+          "match": "Primeira Liga",
+          "odd": 1.63,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(UNI vs) Bologna",
+          "prop": "Bologna No pierde y Más de 2.5 goles",
+          "match": "Serie A",
+          "odd": 1.59,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(LEO vs) Cruz Azul",
+          "prop": "Cruz Azul Gana y Menos de 1.5 goles",
+          "match": "Liga MX",
+          "odd": 1.43,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(STA vs) Paris",
+          "prop": "Paris Gana y Más de 3.5 goles",
+          "match": "Ligue 1",
+          "odd": 1.36,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SUN-S5 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Mañ · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 72.0,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "Stade Brestois 29 vs Paris",
+          "prop": "Más de 3.5 goles",
+          "match": "Ligue 1",
+          "odd": 3.21,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(HEI vs) Nurnberg",
+          "prop": "HÁ Nurnberg 0",
+          "match": "Bundesliga",
+          "odd": 2.25,
+          "date": "Nov 27 · 17:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "Menos de 3.25 goles",
+          "match": "Eredivisie",
+          "odd": 1.89,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Oud-Heverlee Leuven Anota próximo gol (1)",
+          "match": "Jupiler League",
+          "odd": 1.63,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CRU vs) Leon",
+          "prop": "Leon No pierde y Menos de 1.5 goles",
+          "match": "Liga MX",
+          "odd": 1.63,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CHE vs) Nott. Forest",
+          "prop": "Nott. Forest Gana y Más de 5.5 goles",
+          "match": "Premier League",
+          "odd": 1.45,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(LEV vs) Racing de Santander",
+          "prop": "Racing de Santander No pierde y Menos de 2.5 goles",
+          "match": "La Liga",
+          "odd": 1.37,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        }
+      ]
+    },
+    {
+      "id": "SUN-S6 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Mañ · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 68.3,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(BOR vs) Werder Bremen",
+          "prop": "HÁ Werder Bremen -2.5",
+          "match": "Bundesliga",
+          "odd": 5.24,
+          "date": "Nov 27 · 19:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(CRU vs) Leon",
+          "prop": "Menos de 2.75 goles",
+          "match": "Liga MX",
+          "odd": 1.8,
+          "date": "Nov 27 · 03:10",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(NOT vs) Chelsea",
+          "prop": "Chelsea No pierde y Más de 3.5 goles",
+          "match": "Premier League",
+          "odd": 1.61,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(LEV vs) Racing de Santander",
+          "prop": "Racing de Santander No pierde y Más de 5.5 goles",
+          "match": "La Liga",
+          "odd": 1.73,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(OUD vs) Kortrijk",
+          "prop": "HÁ Kortrijk +1.25",
+          "match": "Jupiler League",
+          "odd": 1.36,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "Stade Brestois 29 vs Paris",
+          "prop": "Primero en (3) goles - Ninguno",
+          "match": "Ligue 1",
+          "odd": 1.31,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(UNI vs) Bologna",
+          "prop": "Bologna No pierde y Menos de 4.5 goles",
+          "match": "Serie A",
+          "odd": 1.46,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SUN-S7 · 26/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Mañ · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 67.2,
+      "publishedAt": "2026-11-26T18:44:17Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-26",
+      "legs": [
+        {
+          "player": "(RAC vs) Levante",
+          "prop": "HÁ Levante -1.5",
+          "match": "La Liga",
+          "odd": 3.38,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(NUR vs) 1. Heidenheim",
+          "prop": "Menos de 2 goles de 1. Heidenheim",
+          "match": "Bundesliga",
+          "odd": 1.71,
+          "date": "Nov 27 · 17:30",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(MID vs) Southampton",
+          "prop": "HÁ Southampton +0.25",
+          "match": "Championship",
+          "odd": 1.77,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(BOL vs) Unione Venezia",
+          "prop": "Unione Venezia No pierde y Menos de 4.5 goles",
+          "match": "Serie A",
+          "odd": 1.78,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(CHE vs) Nott. Forest",
+          "prop": "HÁ Nott. Forest +0.75",
+          "match": "Premier League",
+          "odd": 1.32,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Más de 2.25 goles",
+          "match": "Jupiler League",
+          "odd": 1.47,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(NAC vs) Marítimo",
+          "prop": "Marítimo No pierde y Menos de 4.5 goles",
+          "match": "Primeira Liga",
+          "odd": 1.42,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(GRO vs) Willem II",
+          "prop": "HÁ Willem II +2.25",
+          "match": "Eredivisie",
+          "odd": 1.34,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
+    },
+    {
+      "id": "SAT-S1 · 27/11",
+      "tier": "shark",
+      "sport": "futbol",
+      "title": "Hoy · Fútbol Props Mix",
+      "confidence": 3,
+      "totalOdds": 98.6,
+      "publishedAt": "2026-11-27T03:16:49Z",
+      "status": "lost",
+      "resolvedAt": "2026-11-27",
+      "dia": "2026-11-27",
+      "legs": [
+        {
+          "player": "(CHE vs) Nott. Forest",
+          "prop": "HÁ Nott. Forest -1.5",
+          "match": "Premier League",
+          "odd": 4.88,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "(WER vs) Borussia Monchengladbach",
+          "prop": "Borussia Monchengladbach Total Impar",
+          "match": "Bundesliga",
+          "odd": 2.0,
+          "date": "Nov 27 · 19:30",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(MAR vs) Nacional da Madeira",
+          "prop": "Nacional da Madeira No pierde y Menos de 3.5 goles",
+          "match": "Primeira Liga",
+          "odd": 2.08,
+          "date": "Nov 27 · 20:15",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(RAC vs) Levante",
+          "prop": "Levante Anota próximo gol (1)",
+          "match": "La Liga",
+          "odd": 1.7,
+          "date": "Nov 27 · 20:00",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(KOR vs) Oud-Heverlee Leuven",
+          "prop": "Oud-Heverlee Leuven Gana y Más de 5.5 goles",
+          "match": "Jupiler League",
+          "odd": 1.64,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "lost"
+        },
+        {
+          "player": "Stade Brestois 29 vs Paris",
+          "prop": "Primero en (3) goles - Ninguno",
+          "match": "Ligue 1",
+          "odd": 1.31,
+          "date": "Nov 27 · 19:45",
+          "sport": "futbol",
+          "result": "won"
+        },
+        {
+          "player": "(WIL vs) Groningen",
+          "prop": "Menos de 4.25 goles",
+          "match": "Eredivisie",
+          "odd": 1.33,
+          "date": "Nov 27 · 19:00",
+          "sport": "futbol",
+          "result": "won"
+        }
+      ]
     }
   ],
-  "updated_at": "2026-11-27T20:02:12.486476+00:00"
+  "updated_at": "2026-11-27T22:46:32.398958+00:00"
 }
