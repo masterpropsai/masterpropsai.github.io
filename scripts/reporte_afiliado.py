@@ -6,7 +6,8 @@ MasterProps. SE CORRE SOLO EN LA MAC: el repo y sus Actions son publicos y esto 
 plata; el script no guarda nada en el repo, solo imprime.
 
 Necesita tres variables de entorno (las define Mauro en su Mac, nunca en el repo ni en el chat):
-    AFF_API_DOMAIN   dominio del panel de partners (el PDF pone "domain.com" de ejemplo)
+    AFF_API_DOMAIN   dominio del panel de partners (por defecto partnersdbbet.com, verificado el
+                     27-nov-2026: la API responde ahi; el PDF pone "domain.com" de ejemplo)
     AFF_API_TOKEN    token del gabinete de afiliado
     AFF_MERCHANT_ID  moneda del reporte: 3 = rublos, 6 = dolares (por defecto 6)
 
@@ -29,13 +30,16 @@ def pedir(dominio, token, merchant, ini, fin, subid):
     req = urllib.request.Request(f'https://{dominio}/API/GetPostbackSubId?{q}', headers={'User-Agent': 'reporte'})
     with urllib.request.urlopen(req, timeout=40) as r:
         d = json.loads(r.read().decode())
+    if isinstance(d, str):                      # ej. "The token parameter is not correct."
+        raise ValueError(d)
     return d[0] if isinstance(d, list) and d else (d if isinstance(d, dict) else {})
 
 
 def main():
-    dominio, token = os.environ.get('AFF_API_DOMAIN', '').strip(), os.environ.get('AFF_API_TOKEN', '').strip()
-    if not dominio or not token:
-        print('Faltan AFF_API_DOMAIN y/o AFF_API_TOKEN (ver el comentario al principio del archivo).')
+    dominio = os.environ.get('AFF_API_DOMAIN', '').strip() or 'partnersdbbet.com'
+    token = os.environ.get('AFF_API_TOKEN', '').strip()
+    if not token:
+        print('Falta AFF_API_TOKEN (ver el comentario al principio del archivo).')
         return 2
     merchant = os.environ.get('AFF_MERCHANT_ID', '6')
     dias = int(sys.argv[1]) if len(sys.argv) > 1 else 7
@@ -49,6 +53,9 @@ def main():
     for sub, nombre in subs:
         try:
             d = pedir(dominio, token, merchant, ini, fin, sub)
+        except ValueError as e:
+            print(f'La API contesto: {e}\nRevisa el token (se saca del panel de partners).')
+            return 1
         except Exception as e:
             print(f'{nombre:38s} error: {type(e).__name__}')
             continue
