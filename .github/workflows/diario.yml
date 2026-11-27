@@ -56,8 +56,10 @@ jobs:
             python mp_diario.py resolver
           fi
 
-      - name: Sitemap al dia y gate de SEO
+      - name: Versiones por idioma, sitemap y gates
         run: |
+          python scripts/build_langs.py
+          python scripts/test_i18n.py
           python scripts/seo.py --sitemap
           python scripts/test_seo.py
 
@@ -66,7 +68,7 @@ jobs:
         run: |
           git config user.name "MasterProps Bot"
           git config user.email "bot@masterprops.ai"
-          git add index.html template.html coupons.json tickets_data.json history.json stats.json ledger sitemap.xml
+          git add index.html template.html coupons.json tickets_data.json history.json stats.json ledger sitemap.xml en pt it fr ru
           if git diff --staged --quiet; then
             echo "Sin cambios."
             echo "cambio=0" >> "$GITHUB_OUTPUT"

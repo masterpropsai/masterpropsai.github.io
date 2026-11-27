@@ -1,0 +1,44 @@
+[
+ {
+  "id": "html.6b94e5cf23",
+  "severity": "minor",
+  "problem": "False friend: 'édité' in French primarily means 'published', so 'ni édité' reads as 'nor published' and is redundant with 'modifié'; source 'no se edita' = not retouched.",
+  "current": "🔐 <strong>Ce qui est publié ne bouge plus.</strong> Une fois un ticket publié, il n'est ni modifié, ni supprimé, ni édité. C'est notre engagement de transparence.",
+  "suggested": "🔐 <strong>Ce qui est publié ne bouge plus.</strong> Une fois un ticket publié, il n'est ni modifié, ni supprimé, ni retouché. C'est notre engagement de transparence."
+ },
+ {
+  "id": "html.c8c20a6521",
+  "severity": "minor",
+  "problem": "'Parier' does not take the ticket as direct object in French (on parie sur qqch / on joue un ticket); 'Parie nos tickets' is a calque of 'Apostá nuestros billetes'.",
+  "current": "🎰 Parie nos tickets longs en 1 clic !",
+  "suggested": "🎰 Joue nos tickets longs en 1 clic !"
+ },
+ {
+  "id": "key.sponsorBtn",
+  "severity": "minor",
+  "problem": "Same calque as html.c8c20a6521: 'Parie nos tickets' is ungrammatical; use 'Joue nos tickets'.",
+  "current": "Parie nos tickets longs en 1 clic !",
+  "suggested": "Joue nos tickets longs en 1 clic !"
+ },
+ {
+  "id": "html.e77c047aed",
+  "severity": "minor",
+  "problem": "As a filter option 'Toute confiance' reads like 'en toute confiance' (fully trusted) instead of 'all confidence levels' (source: Toda confianza = no filter).",
+  "current": "⭐ Toute confiance",
+  "suggested": "⭐ Tous les niveaux"
+ },
+ {
+  "id": "html.989b1fdd53",
+  "severity": "minor",
+  "problem": "Reflexive future 's'enregistreront' is unnatural here; passive is the idiomatic form.",
+  "current": "<span style=\"font-size:2rem;display:block;margin-bottom:10px;\">⏳</span>\n        Les gagnants s'enregistreront automatiquement une fois les résultats des matchs vérifiés.",
+  "suggested": "<span style=\"font-size:2rem;display:block;margin-bottom:10px;\">⏳</span>\n        Les gagnants seront enregistrés automatiquement une fois les résultats des matchs vérifiés."
+ },
+ {
+  "id": "html.fe38e88524",
+  "severity": "minor",
+  "problem": "'Aussi de l'équipe Latam' is a word-for-word calque and sounds truncated in French.",
+  "current": "🧠 Aussi de l'équipe Latam",
+  "suggested": "🧠 Également par l'équipe Latam"
+ }
+]

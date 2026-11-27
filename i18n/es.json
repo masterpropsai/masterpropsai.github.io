@@ -1,0 +1,737 @@
+{
+ "html.8a641ef9c9": {
+  "tipo": "html",
+  "es": "⚽ FÚTBOL"
+ },
+ "html.30c82ec843": {
+  "tipo": "html",
+  "es": "🏀 BASKET"
+ },
+ "html.2837e413dd": {
+  "tipo": "html",
+  "es": "🎾 TENIS"
+ },
+ "html.eb832662e7": {
+  "tipo": "html",
+  "es": "🏈 NFL"
+ },
+ "html.8cfb707186": {
+  "tipo": "html",
+  "es": "🥊 BOX"
+ },
+ "html.2301670802": {
+  "tipo": "html",
+  "es": "⚾ MLB"
+ },
+ "html.41b9a375fb": {
+  "tipo": "html",
+  "es": "🏉 RUGBY"
+ },
+ "html.b067601fb4": {
+  "tipo": "html",
+  "es": "🎯 PROPS"
+ },
+ "html.cd02a3df27": {
+  "tipo": "html",
+  "es": "Única casa con todos los mercados!"
+ },
+ "html.c8c20a6521": {
+  "tipo": "html",
+  "es": "🎰 Apostá nuestros billetes largos en 1 click!"
+ },
+ "html.e4905da2b4": {
+  "tipo": "html",
+  "es": "💰 MASTERPROPS<span>.ai</span>"
+ },
+ "html.ef0df2f093": {
+  "tipo": "html",
+  "es": "Billetes"
+ },
+ "html.0fbbfe2377": {
+  "tipo": "html",
+  "es": "📚 Blog"
+ },
+ "html.401b687200": {
+  "tipo": "html",
+  "es": "BILLETES LARGOS"
+ },
+ "html.bd55d087c7": {
+  "tipo": "html",
+  "es": "La primera IA especializada en <strong>props de alto rendimiento</strong>. Usa el link directo a cada Billete para evitar equivocarte."
+ },
+ "html.335042f882": {
+  "tipo": "html",
+  "es": "Cuota mínima"
+ },
+ "html.492af833f1": {
+  "tipo": "html",
+  "es": "Billetes hoy"
+ },
+ "html.bdcb2fb155": {
+  "tipo": "html",
+  "es": "Mayor cuota"
+ },
+ "html.e2e169d976": {
+  "tipo": "html",
+  "es": "⚡ ¿Cómo funciona?"
+ },
+ "html.4267eca601": {
+  "tipo": "html",
+  "es": "Nuestra IA ya analizó los partidos y armó billetes con <strong>selecciones reales y cuotas actualizadas</strong>. Solo elegí el que más te guste, tocá <span class=\"highlight\">\"Apostar en DBbet\"</span> y se carga completo en tu cupón. Sin buscar nada, sin armar nada: <span class=\"db-pink\">listo para apostar</span>."
+ },
+ "html.0b1f3d27a7": {
+  "tipo": "html",
+  "es": "La IA arma el billete con <strong>selecciones reales</strong>"
+ },
+ "html.6189f0a1d3": {
+  "tipo": "html",
+  "es": "Tocás <strong>\"Apostar en DBbet\"</strong> y se carga solo"
+ },
+ "html.e63aa5db27": {
+  "tipo": "html",
+  "es": "Elegís el monto y <strong>apostás al instante</strong>"
+ },
+ "html.6578645e83": {
+  "tipo": "html",
+  "es": "🎰 Registrate en DBbet — Apostá en 1 click"
+ },
+ "html.264009b84b": {
+  "tipo": "html",
+  "es": "🎯 Todos los deportes"
+ },
+ "html.34b0e75782": {
+  "tipo": "html",
+  "es": "⚽ Fútbol"
+ },
+ "html.67f90e3f81": {
+  "tipo": "html",
+  "es": "🏀 NBA"
+ },
+ "html.74727cf276": {
+  "tipo": "html",
+  "es": "🎾 Tenis"
+ },
+ "html.bd56fec595": {
+  "tipo": "html",
+  "es": "🥊 MMA"
+ },
+ "html.f3a9c9a5dc": {
+  "tipo": "html",
+  "es": "🏒 NHL"
+ },
+ "html.5f86d63ce6": {
+  "tipo": "html",
+  "es": "🏆 Todas las categorías"
+ },
+ "html.7a08df6833": {
+  "tipo": "html",
+  "es": "🐋 Megalodón · x1000+"
+ },
+ "html.174252a0a8": {
+  "tipo": "html",
+  "es": "🐳 Ballena · x100-x999"
+ },
+ "html.8f1a31d7a6": {
+  "tipo": "html",
+  "es": "🦈 Tiburón · x30-x99"
+ },
+ "html.ba87bcdcbb": {
+  "tipo": "html",
+  "es": "🎯 Cazador · x10-x29"
+ },
+ "html.d87c8d1cbb": {
+  "tipo": "html",
+  "es": "✅ Confiable · x5-x9"
+ },
+ "html.468c77e7dc": {
+  "tipo": "html",
+  "es": "🔒 Segura · x3-x6"
+ },
+ "html.e31f8f0f82": {
+  "tipo": "html",
+  "es": "🟢 Apuestas vivas"
+ },
+ "html.98b4ddbac5": {
+  "tipo": "html",
+  "es": "📊 Todas las apuestas"
+ },
+ "html.b021cc5091": {
+  "tipo": "html",
+  "es": "💰 Apuestas acertadas"
+ },
+ "html.5c8f53fba6": {
+  "tipo": "html",
+  "es": "💀 Apuestas muertas"
+ },
+ "html.e77c047aed": {
+  "tipo": "html",
+  "es": "⭐ Toda confianza"
+ },
+ "html.42a97a6059": {
+  "tipo": "html",
+  "es": "🟢 6/6 · Altísima"
+ },
+ "html.94b432674f": {
+  "tipo": "html",
+  "es": "🟢 5/6 · Alta"
+ },
+ "html.85b206c9d1": {
+  "tipo": "html",
+  "es": "🟡 4/6 · Buena"
+ },
+ "html.7b63b89370": {
+  "tipo": "html",
+  "es": "🟡 3/6 · Media"
+ },
+ "html.2131797e8a": {
+  "tipo": "html",
+  "es": "📋 Orden por defecto"
+ },
+ "html.fbc4c60cf6": {
+  "tipo": "html",
+  "es": "🔥 Más caliente primero"
+ },
+ "html.f9d82cfda3": {
+  "tipo": "html",
+  "es": "❄️ Más frío primero"
+ },
+ "html.1c2b2f4fbd": {
+  "tipo": "html",
+  "es": "📜 VER HISTORIAL <span id=\"historialCount\" style=\"opacity:.75;font-weight:600\"></span>"
+ },
+ "html.0bef4c8d99": {
+  "tipo": "html",
+  "es": "📜 HISTORIAL"
+ },
+ "html.6366cadaf8": {
+  "tipo": "html",
+  "es": "🎰 Cargá estos billetes en DBbet · <strong>Duplicá tu 1er depósito</strong>"
+ },
+ "html.b7bfb74392": {
+  "tipo": "html",
+  "es": "🎰 Registrarme →"
+ },
+ "html.d923a38804": {
+  "tipo": "html",
+  "es": "📱 App Android"
+ },
+ "html.0e80f8e105": {
+  "tipo": "html",
+  "es": "PRONÓSTICOS GAMBETA.AI"
+ },
+ "html.0559f3ad6b": {
+  "tipo": "html",
+  "es": "Picks de fútbol de hoy · Análisis IA en tiempo real"
+ },
+ "html.6f8b82efa7": {
+  "tipo": "html",
+  "es": "<span style=\"width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block\"></span> EN VIVO"
+ },
+ "html.7ee9a7f833": {
+  "tipo": "html",
+  "es": "⚽ Ver análisis completo en Gambeta.ai →"
+ },
+ "html.773a140e4a": {
+  "tipo": "html",
+  "es": "🎰 Apostar en DBbet →"
+ },
+ "html.a7f85a90e8": {
+  "tipo": "html",
+  "es": "🔒 Nuestro pacto con vos"
+ },
+ "html.1941e19e5f": {
+  "tipo": "html",
+  "es": "⏰ <strong>Todo en 24 horas.</strong> Cada billete se resuelve dentro del día. Mañana hay nuevos — sin esperar semanas."
+ },
+ "html.6b94e5cf23": {
+  "tipo": "html",
+  "es": "🔐 <strong>Lo publicado no se toca.</strong> Una vez que un billete se publica, no se modifica, no se borra, no se edita. Es nuestro compromiso de transparencia."
+ },
+ "html.2e7509bcc3": {
+  "tipo": "html",
+  "es": "🏆 ACIERTOS"
+ },
+ "html.934119c926": {
+  "tipo": "html",
+  "es": "RENDIMIENTO DEL MES"
+ },
+ "html.c44819971f": {
+  "tipo": "html",
+  "es": "MAYO 2026"
+ },
+ "html.e9b24d93d2": {
+  "tipo": "html",
+  "es": "Aciertos"
+ },
+ "html.695bb8960b": {
+  "tipo": "html",
+  "es": "Tickets emitidos"
+ },
+ "html.9d225bc716": {
+  "tipo": "html",
+  "es": "Mejor racha"
+ },
+ "html.127602b544": {
+  "tipo": "html",
+  "es": "<span>✅</span> Últimos aciertos"
+ },
+ "html.989b1fdd53": {
+  "tipo": "html",
+  "es": "<span style=\"font-size:2rem;display:block;margin-bottom:10px;\">⏳</span>\n        Los aciertos se registrarán automáticamente cuando se verifiquen los resultados de los partidos."
+ },
+ "html.3e456c8b37": {
+  "tipo": "html",
+  "es": "🤖 NUESTRAS IAs"
+ },
+ "html.f6e06534b1": {
+  "tipo": "html",
+  "es": "Canales & Comunidad"
+ },
+ "html.17ce0f7ee5": {
+  "tipo": "html",
+  "es": "IA de Fútbol · Pronósticos · Análisis en tiempo real"
+ },
+ "html.d354bc2751": {
+  "tipo": "html",
+  "es": "Visitar Gambeta.ai →"
+ },
+ "html.93ef06f249": {
+  "tipo": "html",
+  "es": "Apuestas LATAM"
+ },
+ "html.b791be6c90": {
+  "tipo": "html",
+  "es": "+15.000 miembros"
+ },
+ "html.1d8e21ea14": {
+  "tipo": "html",
+  "es": "Picks diarios, análisis IA, alertas en vivo. Gratis siempre."
+ },
+ "html.56b2056854": {
+  "tipo": "html",
+  "es": "✈ Abrir en Telegram"
+ },
+ "html.4faca84ca9": {
+  "tipo": "html",
+  "es": "Club de Ganadores"
+ },
+ "html.2726500798": {
+  "tipo": "html",
+  "es": "Promociones en casas de apuestas + Pronósticos VIP."
+ },
+ "html.3f934b9423": {
+  "tipo": "html",
+  "es": "Destraba Bonos"
+ },
+ "html.dc722f3730": {
+  "tipo": "html",
+  "es": "Apuestas diarias para destrabar bonos de bienvenida y semanales."
+ },
+ "html.03a605f4b4": {
+  "tipo": "html",
+  "es": "Análisis de partidos, picks explicados y estrategias en video."
+ },
+ "html.31410f90bb": {
+  "tipo": "html",
+  "es": "▶ Suscribirse en YouTube"
+ },
+ "html.fe38e88524": {
+  "tipo": "html",
+  "es": "🧠 También del equipo Latam"
+ },
+ "html.75d46ffa07": {
+  "tipo": "html",
+  "es": "Cargando último pick acertado…"
+ },
+ "html.a37928665e": {
+  "tipo": "html",
+  "es": "Ver pronósticos IA →"
+ },
+ "html.bbccc0ed87": {
+  "tipo": "html",
+  "es": "💰 <strong>MasterProps</strong> — Billetes Largos · No es asesoramiento financiero · Apostá responsablemente · +18"
+ },
+ "html.d8a53e1f6d": {
+  "tipo": "html",
+  "es": "Contacto"
+ },
+ "html.bc11609925": {
+  "tipo": "html",
+  "es": "Términos"
+ },
+ "html.a9e42ccd80": {
+  "tipo": "html",
+  "es": "🎯 MasterProps"
+ },
+ "html.3ccfbce7cb": {
+  "tipo": "html",
+  "es": "💰 Billetes en tu mail"
+ },
+ "html.61e3ce60c1": {
+  "tipo": "html",
+  "es": "Te avisamos cuando publicamos un ticket x10+ con edge real. Gratis, sin spam, baja en 1 click."
+ },
+ "html.509e0949af": {
+  "tipo": "html",
+  "es": "RECIBIR BILLETES GRATIS"
+ },
+ "html.3454519058": {
+  "tipo": "html",
+  "es": "Al suscribirte aceptás recibir mails diarios. +18. Apuestas con responsabilidad."
+ },
+ "html.fc1e22d3e4": {
+  "tipo": "html",
+  "es": "<b>Avisos en tu celu</b><br>Te pingueamos cuando salga billete del día."
+ },
+ "html.26c707591a": {
+  "tipo": "html",
+  "es": "Después"
+ },
+ "attr.fd0b743b62": {
+  "tipo": "attr",
+  "es": "Sponsor"
+ },
+ "attr.1d425da646": {
+  "tipo": "attr",
+  "es": "Deporte"
+ },
+ "attr.e8149c028c": {
+  "tipo": "attr",
+  "es": "Categoría"
+ },
+ "attr.87cf2a843e": {
+  "tipo": "attr",
+  "es": "Estado"
+ },
+ "attr.075f67c24f": {
+  "tipo": "attr",
+  "es": "Confianza"
+ },
+ "attr.3f35583538": {
+  "tipo": "attr",
+  "es": "Orden"
+ },
+ "attr.cc10e72db4": {
+  "tipo": "attr",
+  "es": "Suscribirse a billetes diarios"
+ },
+ "attr.4b0816bbd5": {
+  "tipo": "attr",
+  "es": "Cerrar"
+ },
+ "attr.2373baf225": {
+  "tipo": "attr",
+  "es": "Activar notificaciones"
+ },
+ "key.title": {
+  "tipo": "key",
+  "es": "BILLETES LARGOS"
+ },
+ "key.subtitle": {
+  "tipo": "key",
+  "es": "La primera IA especializada en <strong>props de alto rendimiento</strong>. Usa el link directo a cada Billete para evitar equivocarte."
+ },
+ "key.sponsorText": {
+  "tipo": "key",
+  "es": "Única casa con todos los mercados!"
+ },
+ "key.sponsorBtn": {
+  "tipo": "key",
+  "es": "Apostá nuestros billetes largos en 1 click!"
+ },
+ "key.navTickets": {
+  "tipo": "key",
+  "es": "Billetes"
+ },
+ "key.navHistory": {
+  "tipo": "key",
+  "es": "Historial"
+ },
+ "key.minOdds": {
+  "tipo": "key",
+  "es": "Cuota mínima"
+ },
+ "key.sports": {
+  "tipo": "key",
+  "es": "Deportes"
+ },
+ "key.ticketsToday": {
+  "tipo": "key",
+  "es": "Billetes hoy"
+ },
+ "key.maxOdds": {
+  "tipo": "key",
+  "es": "Mayor cuota"
+ },
+ "key.filterAll": {
+  "tipo": "key",
+  "es": "🎯 Todos"
+ },
+ "key.filterFootball": {
+  "tipo": "key",
+  "es": "⚽ Fútbol"
+ },
+ "key.filterTennis": {
+  "tipo": "key",
+  "es": "🎾 Tenis"
+ },
+ "key.megalodon": {
+  "tipo": "key",
+  "es": "🐋 MEGALODÓN"
+ },
+ "key.whale": {
+  "tipo": "key",
+  "es": "🐳 BALLENA"
+ },
+ "key.shark": {
+  "tipo": "key",
+  "es": "🦈 TIBURÓN"
+ },
+ "key.hunter": {
+  "tipo": "key",
+  "es": "🎯 CAZADOR"
+ },
+ "key.confiable": {
+  "tipo": "key",
+  "es": "✅ CONFIABLE"
+ },
+ "key.segura": {
+  "tipo": "key",
+  "es": "🔒 SEGURA"
+ },
+ "key.megalodonRange": {
+  "tipo": "key",
+  "es": "x1000+ · 4 Cifras"
+ },
+ "key.whaleRange": {
+  "tipo": "key",
+  "es": "x100 — x999 · 3 Cifras"
+ },
+ "key.sharkRange": {
+  "tipo": "key",
+  "es": "x30 — x99"
+ },
+ "key.hunterRange": {
+  "tipo": "key",
+  "es": "x10 — x29"
+ },
+ "key.confiableRange": {
+  "tipo": "key",
+  "es": "x5 — x9 · Alta Confianza"
+ },
+ "key.seguraRange": {
+  "tipo": "key",
+  "es": "x3 — x6 · Máxima Confianza"
+ },
+ "key.confLabel": {
+  "tipo": "key",
+  "es": "Confianza IA"
+ },
+ "key.selections": {
+  "tipo": "key",
+  "es": "selecciones"
+ },
+ "key.betBtn": {
+  "tipo": "key",
+  "es": "🎰 Apostar en DBbet"
+ },
+ "key.ctaText": {
+  "tipo": "key",
+  "es": "🎰 Cargá estos billetes en DBbet · <strong>Duplicá tu 1er depósito</strong>"
+ },
+ "key.ctaBtn": {
+  "tipo": "key",
+  "es": "Registrarme →"
+ },
+ "key.footerMain": {
+  "tipo": "key",
+  "es": "💰 <strong>MasterProps</strong> — Billetes Largos · No es asesoramiento financiero · Apostá responsablemente · +18"
+ },
+ "key.copyTotal": {
+  "tipo": "key",
+  "es": "Cuota total"
+ },
+ "key.copyConf": {
+  "tipo": "key",
+  "es": "Confianza IA"
+ },
+ "key.copySlogan": {
+  "tipo": "key",
+  "es": "Billetes Largos"
+ },
+ "key.confLevels": {
+  "tipo": "key",
+  "es": "Baja|Media|Media-Alta|Alta|Muy Alta|Máxima",
+  "nota": "6 niveles de confianza separados por |, de menor a mayor"
+ },
+ "js.bafb56e3bd": {
+  "tipo": "js",
+  "es": "Abrí el boleto"
+ },
+ "js.7e3740a99b": {
+  "tipo": "js",
+  "es": "Código copiado al portapapeles"
+ },
+ "js.baf6618e2d": {
+  "tipo": "js",
+  "es": "Tocá el código si necesitás copiarlo de nuevo"
+ },
+ "js.19dcd15ddc": {
+  "tipo": "js",
+  "es": "Sin conexión. Probá más tarde."
+ },
+ "js.66b3550411": {
+  "tipo": "js",
+  "es": "no se pudo guardar"
+ },
+ "js.d53348d1c5": {
+  "tipo": "js",
+  "es": "ENVIANDO..."
+ },
+ "js.509e0949af": {
+  "tipo": "js",
+  "es": "RECIBIR BILLETES GRATIS"
+ },
+ "js.a9201c2fc5": {
+  "tipo": "js",
+  "es": "✓ Listo. Revisá tu inbox."
+ },
+ "js.4e2a5ad565": {
+  "tipo": "js",
+  "es": "💰 ¡GANADOR! 🎉"
+ },
+ "js.b55d2bc774": {
+  "tipo": "js",
+  "es": "❌ PERDIDO"
+ },
+ "js.b3a2c4ba54": {
+  "tipo": "js",
+  "es": "🔄 SIN ACCIÓN"
+ },
+ "js.be1dc5a1c9": {
+  "tipo": "js",
+  "es": "▲ OCULTAR HISTORIAL"
+ },
+ "js.a781978339": {
+  "tipo": "js",
+  "es": "— INFERNO"
+ },
+ "js.d568dff0f5": {
+  "tipo": "js",
+  "es": "— EN FUEGO"
+ },
+ "js.d5e479712c": {
+  "tipo": "js",
+  "es": "— CALIENTE"
+ },
+ "js.4cb2e39903": {
+  "tipo": "js",
+  "es": "— VAMOS"
+ },
+ "js.b73fdaa4bb": {
+  "tipo": "js",
+  "es": "📜 VER HISTORIAL"
+ },
+ "js.20b0d9ca2c": {
+  "tipo": "js",
+  "es": "Billetes ✅"
+ },
+ "js.c257af7390": {
+  "tipo": "js",
+  "es": "Billetes ❌"
+ },
+ "js.a0838d2e2b": {
+  "tipo": "js",
+  "es": "Picks ✅"
+ },
+ "js.11c72b5f4a": {
+  "tipo": "js",
+  "es": "Picks ❌"
+ },
+ "js.a999315864": {
+  "tipo": "js",
+  "es": "Acierto picks"
+ },
+ "js.73fd3465cb": {
+  "tipo": "js",
+  "es": "Todavía no hay billetes resueltos — los billetes terminados se archivan acá automáticamente. ⏳"
+ },
+ "prop.under_team": {
+  "tipo": "prop",
+  "es": "Menos de {n} goles de {team}"
+ },
+ "prop.over_team": {
+  "tipo": "prop",
+  "es": "Más de {n} goles de {team}"
+ },
+ "prop.under": {
+  "tipo": "prop",
+  "es": "Menos de {n} goles"
+ },
+ "prop.over": {
+  "tipo": "prop",
+  "es": "Más de {n} goles"
+ },
+ "prop.win": {
+  "tipo": "prop",
+  "es": "Gana {team}"
+ },
+ "prop.win_over": {
+  "tipo": "prop",
+  "es": "{team} Gana y Más de {n} goles"
+ },
+ "prop.win_under": {
+  "tipo": "prop",
+  "es": "{team} Gana y Menos de {n} goles"
+ },
+ "prop.dc_over": {
+  "tipo": "prop",
+  "es": "{team} No pierde y Más de {n} goles"
+ },
+ "prop.dc_under": {
+  "tipo": "prop",
+  "es": "{team} No pierde y Menos de {n} goles"
+ },
+ "prop.next_goal": {
+  "tipo": "prop",
+  "es": "{team} Anota próximo gol ({n})"
+ },
+ "prop.next_goal_none": {
+  "tipo": "prop",
+  "es": "Ninguno Anota próximo gol ({n})"
+ },
+ "prop.team_even": {
+  "tipo": "prop",
+  "es": "{team} Total Par"
+ },
+ "prop.team_odd": {
+  "tipo": "prop",
+  "es": "{team} Total Impar"
+ },
+ "prop.even": {
+  "tipo": "prop",
+  "es": "Total Par"
+ },
+ "prop.odd": {
+  "tipo": "prop",
+  "es": "Total Impar"
+ },
+ "prop.handicap": {
+  "tipo": "prop",
+  "es": "HÁ {team} {n}"
+ },
+ "prop.race_none": {
+  "tipo": "prop",
+  "es": "Primero en ({n}) goles - Ninguno"
+ },
+ "meta.title": {
+  "tipo": "meta",
+  "es": "💰 MasterProps — Billetes Largos x10+ con IA y Sharp Odds Pinnacle",
+  "nota": "max 65 caracteres, empieza con el emoji"
+ },
+ "meta.description": {
+  "tipo": "meta",
+  "es": "🏆 Billetes largos x10+ armados por IA. Sharp odds de Pinnacle, edge matemático verificado y track record público. Gratis, sin registro. Apostá en 1 click en DBbet con 100% bonus.",
+  "nota": "max 160 caracteres"
+ }
+}

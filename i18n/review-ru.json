@@ -1,0 +1,30 @@
+[
+ {
+  "id": "key.selections",
+  "severity": "error",
+  "problem": "Goes after a number ('8 …'): the genitive plural 'событий' is only correct after 5-20, 25-30…; '2 событий', '3 событий', '21 событий' are ungrammatical. Use the invariable abbreviation common on Russian bookmaker slips.",
+  "current": "событий",
+  "suggested": "соб."
+ },
+ {
+  "id": "key.megalodonRange",
+  "severity": "minor",
+  "problem": "'4 Cifras' means four-digit odds; '4 знака' is ambiguous in Russian (reads as '4 signs/characters', or decimal places) and does not say what has four digits.",
+  "current": "x1000+ · 4 знака",
+  "suggested": "x1000+ · 4-значный коэф."
+ },
+ {
+  "id": "key.whaleRange",
+  "severity": "minor",
+  "problem": "Same as key.megalodonRange: '3 знака' is ambiguous; it should say three-digit odds.",
+  "current": "x100 — x999 · 3 знака",
+  "suggested": "x100 — x999 · 3-значный коэф."
+ },
+ {
+  "id": "js.4cb2e39903",
+  "severity": "minor",
+  "problem": "Badge 'VAMOS' (first heat level, 'here we go'): 'ВПЕРЁД' reads as a command/slogan ('forward!') and sounds stiff as a status badge on a ticket; 'ПОЕХАЛИ' is the natural Russian equivalent and fits the scale ПОЕХАЛИ < ГОРЯЧО < В ОГНЕ < ПЕКЛО.",
+  "current": "— ВПЕРЁД",
+  "suggested": "— ПОЕХАЛИ"
+ }
+]

@@ -1,0 +1,9 @@
+[
+ {
+  "id": "html.6b94e5cf23",
+  "severity": "minor",
+  "problem": "Regencia: en portugués es 'mexer EM algo'; 'O que foi publicado não se mexe' suena agramatical/calcado del español 'no se toca'. El resto de la frase está bien.",
+  "current": "🔐 <strong>O que foi publicado não se mexe.</strong> Depois que um bilhete é publicado, ele não é modificado, não é apagado, não é editado. É o nosso compromisso de transparência.",
+  "suggested": "🔐 <strong>No que foi publicado ninguém mexe.</strong> Depois que um bilhete é publicado, ele não é modificado, não é apagado, não é editado. É o nosso compromisso de transparência."
+ }
+]

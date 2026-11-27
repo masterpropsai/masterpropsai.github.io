@@ -1,0 +1,51 @@
+[
+ {
+  "id": "js.b3a2c4ba54",
+  "severity": "minor",
+  "problem": "'No action' is US sportsbook jargon; in international English the settled status of a cancelled/refunded bet is 'Void' (what DBbet-type books show).",
+  "current": "🔄 NO ACTION",
+  "suggested": "🔄 VOID"
+ },
+ {
+  "id": "prop.next_goal_none",
+  "severity": "minor",
+  "problem": "'No next goal' is not a bookmaker selection name and is inconsistent with prop.race_none, which uses 'Neither' for the same 'Ninguno' outcome.",
+  "current": "No next goal ({n})",
+  "suggested": "Next goal ({n}) - Neither"
+ },
+ {
+  "id": "html.468c77e7dc",
+  "severity": "minor",
+  "problem": "Compliance: calling a bet tier 'Safe' implies a risk-free bet (inherited from source 'Segura'); regulators treat 'safe bet' as misleading. Keep in sync with key.segura.",
+  "current": "🔒 Safe · x3-x6",
+  "suggested": "🔒 Solid · x3-x6"
+ },
+ {
+  "id": "key.segura",
+  "severity": "minor",
+  "problem": "Compliance: 'SAFE' as a bet tier implies no risk (inherited from source 'SEGURA'); use a non-guarantee word, same as html.468c77e7dc.",
+  "current": "🔒 SAFE",
+  "suggested": "🔒 SOLID"
+ },
+ {
+  "id": "html.5b89ddbd8a",
+  "severity": "minor",
+  "problem": "Inherited from the source, not a translation fault: the filter says Shark x10-x99, which overlaps Hunter x10-x29 and contradicts key.sharkRange (x30 — x99).",
+  "current": "🦈 Shark · x10-x99",
+  "suggested": "🦈 Shark · x30-x99"
+ },
+ {
+  "id": "html.7990669739",
+  "severity": "minor",
+  "problem": "Compliance: the footer responsible-gambling line has no 18+ (the Spanish source lacks it too); the age notice only appears in the subscribe form.",
+  "current": "💰 <strong>MasterProps</strong> — Long-Shot Tickets · Not financial advice · Bet responsibly",
+  "suggested": "💰 <strong>MasterProps</strong> — Long-Shot Tickets · Not financial advice · 18+ · Bet responsibly"
+ },
+ {
+  "id": "key.footerMain",
+  "severity": "minor",
+  "problem": "Same as html.7990669739: footer responsible-gambling line without 18+ (also missing in source).",
+  "current": "💰 <strong>MasterProps</strong> — Long-Shot Tickets · Not financial advice · Bet responsibly",
+  "suggested": "💰 <strong>MasterProps</strong> — Long-Shot Tickets · Not financial advice · 18+ · Bet responsibly"
+ }
+]

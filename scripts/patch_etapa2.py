@@ -86,6 +86,13 @@ def patch(s):
         i = s.rfind('</style>', 0, s.find('<body'))
         s = s[:i] + css + s[i:]
         log.append('css estados')
+    # 10) "Pronosticos Gambeta.ai · EN VIVO" mostraba 4 picks FIJOS del Mundial (Francia-Noruega,
+    #     "Gana España") como si fueran de hoy (27-nov). Se oculta y se vacia la lista.
+    a = '<div class="gambeta-picks-section" id="gambeta-picks-section">'
+    if a in s:
+        s = s.replace(a, '<div class="gambeta-picks-section" id="gambeta-picks-section" hidden style="display:none">')
+        s = re.sub(r"const GAMBETA_PICKS = \[.*?\n\];", "const GAMBETA_PICKS = [];", s, count=1, flags=re.S)
+        log.append('picks fijos del Mundial fuera')
     return s, log
 
 for fn in ('template.html', 'index.html'):

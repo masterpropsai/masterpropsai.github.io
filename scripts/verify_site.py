@@ -60,5 +60,16 @@ try:
 except Exception as e:
     check('paginas legales: contacto y terminos', False, type(e).__name__)
 
+try:
+    mal = []
+    for l in ('en', 'pt', 'it', 'fr', 'ru'):
+        h = get(f'/{l}/')
+        n = len(hl.parse_tickets(h))
+        if n != len(tks) or f'window.MP_LANG="{l}"' not in h or 'hreflang="x-default"' not in h:
+            mal.append(f'{l}:{n}')
+    check('versiones por idioma con los mismos billetes', not mal, ', '.join(mal))
+except Exception as e:
+    check('versiones por idioma con los mismos billetes', False, type(e).__name__)
+
 print(f"\n{len(oks)} pass / {len(fails)} fail")
 sys.exit(1 if fails else 0)

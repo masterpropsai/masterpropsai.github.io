@@ -1,0 +1,23 @@
+[
+  {
+    "id": "html.fe38e88524",
+    "severity": "minor",
+    "problem": "\"Sempre dal team\" is ambiguous: it reads first as \"always from the Latam team\"; the source says \"También del equipo Latam\" (also from).",
+    "current": "🧠 Sempre dal team Latam",
+    "suggested": "🧠 Anche dal team Latam"
+  },
+  {
+    "id": "html.3454519058",
+    "severity": "minor",
+    "problem": "Age marker written the Spanish way (+18); Italian gambling notices use \"18+\".",
+    "current": "Iscrivendoti accetti di ricevere email quotidiane. +18. Gioca responsabilmente.",
+    "suggested": "Iscrivendoti accetti di ricevere email quotidiane. 18+. Gioca responsabilmente."
+  },
+  {
+    "id": "prop.race_none",
+    "severity": "minor",
+    "problem": "\"Primo a ({n}) gol\" lacks the verb and is not how Italian bookmakers label the race-to-n-goals market (\"Primo a segnare n gol\").",
+    "current": "Primo a ({n}) gol - Nessuno",
+    "suggested": "Primo a segnare ({n}) gol - Nessuno"
+  }
+]

@@ -6,11 +6,14 @@ import glob, html, os, re, sys
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 SITIO = 'https://masterprops.ai'
 fallas = []
-paginas = ['index.html', 'contacto.html', 'terminos.html'] + sorted(glob.glob('blog/*.html'))
+IDIOMAS = [f'{l}/index.html' for l in ('en', 'pt', 'it', 'fr', 'ru') if os.path.exists(f'{l}/index.html')]
+paginas = ['index.html', 'contacto.html', 'terminos.html'] + IDIOMAS + sorted(glob.glob('blog/*.html'))
 
 
 def url(f):
-    return SITIO + '/' if f == 'index.html' else SITIO + '/blog/' if f == 'blog/index.html' else f"{SITIO}/{f[:-5]}"
+    if f.endswith('/index.html'):
+        return f"{SITIO}/{f[:-10]}"
+    return SITIO + '/' if f == 'index.html' else f"{SITIO}/{f[:-5]}"
 
 
 sm = open('sitemap.xml', encoding='utf-8').read()
@@ -58,6 +61,12 @@ if 'href="/blog/"' not in open('index.html', encoding='utf-8').read():
 home = open('index.html', encoding='utf-8').read()
 if 'href="/contacto"' not in home or 'href="/terminos"' not in home:
     fallas.append('index.html: el pie tiene que enlazar a /contacto y /terminos')
+
+for f in ['index.html'] + IDIOMAS:
+    s = open(f, encoding='utf-8').read()
+    alt = set(re.findall(r'<link rel="alternate" hreflang="([^"]+)"', s))
+    if alt != {'es', 'en', 'pt', 'it', 'fr', 'ru', 'x-default'}:
+        fallas.append(f'{f}: hreflang incompleto {sorted(alt)}')
 
 for x in fallas:
     print('  ❌', x)
