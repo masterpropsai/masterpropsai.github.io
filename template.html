@@ -1838,6 +1838,37 @@ body {
 
 <script>
 // === i18n TRANSLATIONS ===
+
+// === SubID de afiliado (27-nov-2026): separa de donde viene cada jugador ===
+// El link de DBbet termina en "..._11213c_": lo que sigue es el SubID. Formato: mp + idioma +
+// lugar (mpestop, mpenhero, mpptcupon...). Solo letras y numeros. Sin JavaScript el link
+// sale sin SubID y se atribuye igual a la cuenta. Reporte: scripts/reporte_afiliado.py
+(function () {
+  var BASE = 'tag=d_5777587m_11213c_';
+  function sub(lugar) { return 'mp' + (window.MP_LANG || 'es') + lugar; }
+  window.mpSub = sub;
+  function lugar(a) {
+    if (a.closest('.sponsor-bar')) return 'top';
+    if (a.closest('.hero')) return 'hero';
+    if (a.closest('.db-cta')) return 'cta';
+    if (a.closest('.footer')) return 'pie';
+    return 'otro';
+  }
+  function fix(a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf(BASE);
+    if (i < 0) return;
+    var j = i + BASE.length;
+    if (j < h.length && h.charAt(j) !== '&') return;      // ya tiene SubID
+    a.setAttribute('href', h.slice(0, j) + sub(lugar(a)) + h.slice(j));
+  }
+  function todos() { document.querySelectorAll('a[href*="' + BASE + '"]').forEach(fix); }
+  if (document.readyState !== 'loading') todos(); else document.addEventListener('DOMContentLoaded', todos);
+  document.addEventListener('pointerdown', function (e) {
+    var a = e.target && e.target.closest && e.target.closest('a[href*="' + BASE + '"]');
+    if (a) fix(a);
+  }, true);
+})();
+
 const I18N = {
   es: {
     title: 'BILLETES LARGOS',
@@ -3579,7 +3610,7 @@ function isMobile() {
 
 function buildCouponURL(couponCode) {
   // Both mobile & desktop: go.html sets affiliate cookie, then redirects to deep link
-  return `/go.html?c=${encodeURIComponent(couponCode)}`;
+  return `/go.html?c=${encodeURIComponent(couponCode)}&s=${window.mpSub ? window.mpSub('cupon') : 'mpescupon'}`;
 }
 
 // === BET ON DBBET ===

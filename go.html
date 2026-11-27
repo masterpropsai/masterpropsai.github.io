@@ -22,8 +22,11 @@ p{font-size:14px;opacity:.7;margin:0}
 (function() {
   var params = new URLSearchParams(window.location.search);
   var code = params.get('c') || params.get('code');
-  var affiliate = 'https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213';
-  var tag = 'd_5777587m_11213c_';
+  // SubID (27-nov-2026): de que idioma/boton vino el click. Solo letras y numeros.
+  var sub = (params.get('s') || '').toLowerCase();
+  if (!/^[a-z0-9]{1,30}$/.test(sub)) sub = 'mpcupon';
+  var tag = 'd_5777587m_11213c_' + sub;
+  var affiliate = 'https://refpa96317.com/L?tag=' + tag + '&site=5777587&ad=11213';
   var direct = 'https://db-bet.com/es';
 
   if (!code) {

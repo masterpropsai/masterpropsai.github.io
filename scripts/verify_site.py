@@ -71,5 +71,11 @@ try:
 except Exception as e:
     check('versiones por idioma con los mismos billetes', False, type(e).__name__)
 
+try:
+    go = get('/go.html')
+    check('SubID de afiliado en links y cupon', 'window.mpSub = sub' in html and "&s=${window.mpSub" in html and "params.get('s')" in go)
+except Exception as e:
+    check('SubID de afiliado en links y cupon', False, type(e).__name__)
+
 print(f"\n{len(oks)} pass / {len(fails)} fail")
 sys.exit(1 if fails else 0)

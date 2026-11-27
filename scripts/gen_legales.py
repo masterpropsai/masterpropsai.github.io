@@ -7,7 +7,7 @@ import os
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 MAIL = 'pronosticosarg@gmail.com'
 FECHA = '27 de noviembre de 2026'
-AFI = 'https://refpa96317.com/L?tag=d_5777587m_11213c_&site=5777587&ad=11213'
+AFI = 'https://refpa96317.com/L?tag=d_5777587m_11213c_mplegal&site=5777587&ad=11213'
 
 CSS = """:root{--bg:#0a0a0f;--card:#111118;--gold:#d4a520;--gold-l:#f0c850;--text:#f0ece0;--text-s:#a8a294;--border:rgba(212,165,32,0.18)}
 *{margin:0;padding:0;box-sizing:border-box}
